@@ -1,0 +1,25 @@
+---
+import PostSummary from "./PostSummary.astro";
+
+type Post = {
+    data: {
+        title: string;
+        date: Date;
+    };
+    id: string;
+};
+
+interface Props {
+    posts: Post[] | undefined;
+}
+
+const { posts } = Astro.props;
+---
+
+<div>
+    {
+        posts
+            ?.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+            .map((post) => <PostSummary post={post} />)
+    }
+</div>

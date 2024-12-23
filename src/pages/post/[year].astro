@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 
-import Layout from "../../layouts/Layout.astro";
-import PostSummary from "../../components/PostSummary.astro";
+import Layout from "@layouts/Layout.astro";
+import PostListing from "@components/PostListing.astro";
 
 type Post = {
     data: {
@@ -15,13 +15,13 @@ type Post = {
 type Year = {
     year: string;
     posts: Post[];
-}
+};
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
     const years = new Map<string, Post[]>();
 
-    posts.forEach(post => {
+    posts.forEach((post) => {
         const year = post.data.date.getFullYear().toString();
         if (!years.has(year)) {
             years.set(year, []);
@@ -29,15 +29,22 @@ export async function getStaticPaths() {
         years.get(year)?.push(post);
     });
 
-    return Array.from(years.keys()).map(year => ({
+    return Array.from(years.keys()).map((year) => ({
         params: { year },
-        props: { year, posts: years.get(year) }
+        props: { year, posts: years.get(year) },
     }));
 }
+
+interface Props {
+    year: string;
+    posts: Post[];
+}
+
 const { year, posts } = Astro.props;
 ---
+
 <Layout title={`Posts from ${year}`}>
     <p>Blog posts from {year} go here.</p>
 
-    {posts.map((post: any) => <PostSummary post={post} />)}
+    <PostListing posts={posts} />
 </Layout>

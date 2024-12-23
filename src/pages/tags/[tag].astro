@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "@layouts/Layout.astro";
-import PostSummary from "@components/PostSummary.astro";
+import PostListing from "@components/PostListing.astro";
 
 type Post = {
     data: {
@@ -37,10 +37,5 @@ const { tag, posts } = Astro.props;
 
 <Layout title={`Posts tagged ${tag}`}>
     <p>Posts tagged {tag} go here.</p>
-
-    {
-        posts
-            ?.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-            .map((post: Post) => <PostSummary post={post} />)
-    }
+    <PostListing posts={posts} />
 </Layout>
