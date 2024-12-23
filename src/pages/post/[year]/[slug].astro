@@ -2,6 +2,8 @@
 import * as path from "node:path";
 
 import Layout from "../../../layouts/Layout.astro";
+import Timestamp from "../../../components/Timestamp.astro";
+
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -23,6 +25,7 @@ const { Content } = await render(post);
     <article>
         <header>
             <h1>{post.data.title}</h1>
+            <Timestamp date={post.data.date} />
         </header>
         <Content />
     </article>
