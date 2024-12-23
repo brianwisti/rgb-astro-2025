@@ -1,0 +1,47 @@
+---
+import { DateTime } from 'luxon'
+
+type TimeStampInfo = {
+    forHumans: string
+    forMachines: string
+}
+
+const generateTimeStampInfo = (date: Date): TimeStampInfo => {
+    const dt = DateTime.fromJSDate(date);
+
+    return {
+        forHumans: dt.toISODate(),
+        forMachines: dt.toISO()
+    }
+}
+
+const { post } = Astro.props
+const timestamp = generateTimeStampInfo(post.data.date)
+---
+<section>
+    <header>
+        <a href={`/post/${post.id}/`}>
+            {post.data.title}
+        </a>
+    </header>
+    <time class="dt-published" datetime={timestamp.forMachines}>
+        {timestamp.forHumans}
+    </time>
+</section>
+
+<style>
+    section {
+        border-bottom: 1px solid var(--sand-3);
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    header {
+        font-size: var(--font-size-3);
+        margin-bottom: 0.5rem;
+    }
+
+    time {
+        color: var(--sand-5);
+        font-size: var(--font-size-1);
+    }

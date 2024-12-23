@@ -1,3 +1,9 @@
+---
+import SiteHeader from "../components/SiteHeader.astro"
+
+const { title } = Astro.props
+const pageTitle = title ? `${title} : Random Geekery` : 'Random Geekery'
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,18 +11,32 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{ pageTitle }</title>
 	</head>
 	<body>
-		<slot />
+		<SiteHeader />
+		<main>
+			<header>
+				<h1>{ title }</h1>
+			</header>
+			<slot />
+		</main>
 	</body>
 </html>
 
-<style>
-	html,
+<style is:global>
+	@import "https://unpkg.com/open-props";
+
 	body {
+		background-color: var(--sand-2);
+		font-family: var(--font-geometric-humanist);
+		font-size: var(--font-size-2);
 		margin: 0;
-		width: 100%;
-		height: 100%;
+	}
+
+	main {
+		margin: 0 auto;
+		max-width: 40rem;
+		padding: 1rem;
 	}
 </style>

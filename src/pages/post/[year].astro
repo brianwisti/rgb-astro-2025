@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+
+import Layout from "../../layouts/Layout.astro";
+import PostSummary from "../../components/PostSummary.astro";
+
+type Post = {
+    data: {
+        title: string;
+        date: Date;
+    };
+    id: string;
+};
+
+type Year = {
+    year: string;
+    posts: Post[];
+}
+
+export async function getStaticPaths() {
+    const posts = await getCollection("posts");
+    const years = new Map<string, Post[]>();
+
+    posts.forEach(post => {
+        const year = post.data.date.getFullYear().toString();
+        if (!years.has(year)) {
+            years.set(year, []);
+        }
+        years.get(year)?.push(post);
+    });
+
+    return Array.from(years.keys()).map(year => ({
+        params: { year },
+        props: { year, posts: years.get(year) }
+    }));
+}
+const { year, posts } = Astro.props;
+---
+<Layout title={`Posts from ${year}`}>
+    <p>Blog posts from {year} go here.</p>
+
+    {posts.map((post: any) => <PostSummary post={post} />)}
+</Layout>

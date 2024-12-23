@@ -1,0 +1,17 @@
+---
+aliases:
+- /2000/12/06/coolnamehere/
+- /post/2000/12/coolnamehere/
+categories:
+- post
+date: 2000-12-06 00:00:00-08:00
+description: ancient history
+draft: false
+tags:
+- coolnamehere
+title: coolnamehere
+---
+
+Once upon a time I kept my stuff on a different Web site. Then I missed the
+email to renew the domain registration. Oh well. Now I keep those old pages in
+{{< tag "coolnamehere" >}}

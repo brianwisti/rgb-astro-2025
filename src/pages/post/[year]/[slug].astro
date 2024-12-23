@@ -1,0 +1,29 @@
+---
+import * as path from "node:path";
+
+import Layout from "../../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+    const posts = await getCollection("posts");
+
+    return posts.map(post => ({
+        params: {
+            year: post.data.date.getFullYear().toString(),
+            slug: path.basename(post.filePath, ".md"),
+        },
+        props: { post }
+    }));
+}
+
+const { post } = Astro.props
+const { Content } = await render(post);
+---
+<Layout title={post.data.title}>
+    <article>
+        <header>
+            <h1>{post.data.title}</h1>
+        </header>
+        <Content />
+    </article>
+</Layout>
