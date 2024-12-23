@@ -6,7 +6,7 @@ const postSchema = z.object({
     date: z.date(),
 })
 const posts = defineCollection({
-    loader: glob({ pattern: "./**/[^_]*.md", base: "src/posts" }),
+    loader: glob({ pattern: "./**/[^_]*.mdoc", base: "src/posts" }),
     schema: postSchema,
 })
 

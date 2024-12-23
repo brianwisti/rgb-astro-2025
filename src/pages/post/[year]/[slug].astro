@@ -10,7 +10,7 @@ export async function getStaticPaths() {
     return posts.map(post => ({
         params: {
             year: post.data.date.getFullYear().toString(),
-            slug: path.basename(post.filePath, ".md"),
+            slug: path.basename(post.filePath, ".mdoc"),
         },
         props: { post }
     }));

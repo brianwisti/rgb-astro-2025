@@ -15,14 +15,10 @@ tags:
 title: Python Babysteps Tutorial
 ---
 
-{{% note %}}
-
-[better version]: /post/2011/06/python-2.x-babysteps/
-
+{% note %}
 This is my original Python Babysteps tutorial, which has existed in more
-or less the same form since 2001. I’ve finally committed to writing a [better version][].
-
-{{% /note %}}
+or less the same form since 2001. There's better stuff out there now.
+{% /note %}
 
 ## Introduction
 
@@ -63,17 +59,14 @@ Before you can *use* Python, you need to *get* Python.
 
 ### Which Version of Python?
 
-<aside class="admonition note">
-<p class="admonition-title">Note</p>
-
+{% note %}
 You can also try Python 3, but this tutorial is just going to discuss
 2.6. Why is that? I prefer people use the latest version of Python.
 People who are using this tutorial in the context of a classroom
 probably aren’t going to have 3.0 as their default yet. There are enough
 differences between 2.6 and 3.0 that I’ll probably need a distinct
 Python 3 section on coolnamehere.
-
-</aside>
+{% /note %}
 
 There are a few versions of Python available for download:
 
@@ -104,16 +97,13 @@ Windows-friendly tools, ActivePython may be the best choice for business
 users. It’s the version that I’m using for testing the tutorial in
 Linux, so maybe that has some bearing on your decision.
 
-<aside class="admonition note">
-<p class="admonition-title">Note</p>
-
+{% note %}
 PythonWin is still available to you as part of the
 [win32all](http://starship.python.net/crew/mhammond/win32/) package, but
 you need to download and install it separately from your Python
 distribution. ActiveState Python for Linux includes IDLE, so I will be
 getting my Python from them for this article.
-
-</aside>
+{% /note %}
 
 Python 2.6, on the other hand, is the "official" version. It comes with
 a standard set of tools which are available on every platform that
@@ -465,15 +455,13 @@ easier to sort everything out.
 I like to start every one of my scripts off with a quick header to
 describe the purpose of the program. Here is the rough template:
 
-{{% note %}}
-
+{% note %}
 [Docstrings](https://www.python.org/dev/peps/pep-0257/) would actually
 be better for script headers, but:
 
 1.  I haven’t described those yet
 2.  I needed an excuse to show you what comments look like.
-
-{{% /note %}}
+{% /note %}
 
 ``` python
 # filename
