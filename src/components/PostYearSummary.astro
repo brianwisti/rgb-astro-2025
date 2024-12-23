@@ -1,0 +1,21 @@
+---
+interface Post {
+    data: {
+        title: string;
+        date: Date;
+    };
+    id: string;
+}
+
+interface Props {
+    year: string;
+    posts: Post[] | undefined;
+}
+
+const { year, posts } = Astro.props;
+---
+
+<div>
+    <a href={`/post/${year}/`}>{year}</a>
+    ({posts?.length})
+</div>

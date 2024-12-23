@@ -6,14 +6,20 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.12.4",
+    "@astrojs/rss": "^4.0.10",
     "astro": "^5.0.9",
-    "luxon": "^3.5.0"
+    "astro-breadcrumbs": "^3.3.1",
+    "luxon": "^3.5.0",
+    "rimraf": "^6.0.1",
+    "sanitize-html": "^2.14.0"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.15"
+    "@tailwindcss/typography": "^0.5.15",
+    "sass": "^1.83.0"
   }
 }

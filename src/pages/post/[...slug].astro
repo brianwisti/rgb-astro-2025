@@ -1,9 +1,9 @@
 ---
 import * as path from "node:path";
 
-import Layout from "../../../layouts/Layout.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 import TagLink from "@components/TagLink.astro";
-import Timestamp from "../../../components/Timestamp.astro";
+import Timestamp from "@components/Timestamp.astro";
 
 import { getCollection, render } from "astro:content";
 
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
     return posts.map((post) => ({
         params: {
             year: post.data.date.getFullYear().toString(),
-            slug: path.basename(post.filePath, ".mdoc"),
+            slug: post.id,
         },
         props: { post },
     }));
@@ -23,7 +23,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout title={post.data.title}>
+<PageLayout title={post.data.title}>
     <article>
         <header>
             <h1>{post.data.title}</h1>
@@ -34,4 +34,4 @@ const { Content } = await render(post);
         </header>
         <Content />
     </article>
-</Layout>
+</PageLayout>

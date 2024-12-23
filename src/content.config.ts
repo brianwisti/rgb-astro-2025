@@ -6,6 +6,7 @@ const postSchema = z.object({
   date: z.date(),
   tags: z.array(z.string()),
 });
+
 const posts = defineCollection({
   loader: glob({ pattern: "./**/[^_]*.mdoc", base: "src/posts" }),
   schema: postSchema,

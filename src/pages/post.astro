@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from '../layouts/Layout.astro';
-import PostSummary from "../components/PostSummary.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import PostYearSummary from "@components/PostYearSummary.astro";
 
 type Post = {
     data: {
@@ -14,13 +14,13 @@ type Post = {
 type Year = {
     year: string;
     posts: Post[];
-}
+};
 
 async function getYears() {
     const posts = await getCollection("posts");
     const years = new Map<string, Post[]>();
 
-    posts.forEach(post => {
+    posts.forEach((post) => {
         const year = post.data.date.getFullYear().toString();
         if (!years.has(year)) {
             years.set(year, []);
@@ -28,19 +28,20 @@ async function getYears() {
         years.get(year)?.push(post);
     });
 
-    return years
+    return years;
 }
 
 const years = await getYears();
 ---
-<Layout title="Posts">
+
+<PageLayout title="Posts">
     <p>Top-level blog post listing goes here.</p>
-    <ul>
-        {Array.from(years.keys()).sort().reverse().map(year => (
-            <li>
-                <a href={`/post/${year}/`}>{year}</a>
-                ({years.get(year)?.length})
-            </li>
-        ))}
-    </ul>
-</Layout>
+    {
+        Array.from(years.keys())
+            .sort()
+            .reverse()
+            .map((year) => (
+                <PostYearSummary year={year} posts={years.get(year)} />
+            ))
+    }
+</PageLayout>

@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+
+import PageLayout from "@layouts/PageLayout.astro";
+import PostListing from "@components/PostListing.astro";
+
+type Post = {
+    data: {
+        title: string;
+        date: Date;
+    };
+    id: string;
+};
+
+type YearMonth = {
+    year: string;
+    month: string;
+    posts: Post[];
+};
+
+export async function getStaticPaths() {
+    const posts = await getCollection("posts");
+    const monthlyPosts = new Map<string, Post[]>();
+
+    posts.forEach((post) => {
+        const year = post.data.date.getFullYear().toString();
+        const month = (post.data.date.getMonth() + 1)
+            .toString()
+            .padStart(2, "0");
+        const yearMonth = `${year}/${month}`;
+
+        if (!monthlyPosts.has(yearMonth)) {
+            monthlyPosts.set(yearMonth, []);
+        }
+        monthlyPosts.get(yearMonth)?.push(post);
+    });
+
+    return Array.from(monthlyPosts.keys()).map((yearMonth) => {
+        const [year, month] = yearMonth.split("/");
+
+        return {
+            params: { year, month },
+            props: { year, month, posts: monthlyPosts.get(yearMonth) },
+        };
+    });
+}
+
+interface Props {
+    year: string;
+    month: string;
+    posts: Post[];
+}
+
+const { year, month, posts } = Astro.props;
+---
+
+<PageLayout title={`Posts from ${year} / ${month}`}>
+    <PostListing posts={posts} />
+</PageLayout>

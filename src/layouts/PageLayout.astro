@@ -1,0 +1,18 @@
+---
+import { Breadcrumbs } from "astro-breadcrumbs";
+import "astro-breadcrumbs/breadcrumbs.css";
+
+import Layout from "@layouts/Layout.astro";
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+    <Breadcrumbs linkTextFormat="capitalized">
+        <span slot="separator">/</span>
+    </Breadcrumbs>
+    <header>
+        <h1>{title}</h1>
+    </header>
+    <slot />
+</Layout>
