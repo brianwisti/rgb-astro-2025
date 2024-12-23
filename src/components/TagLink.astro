@@ -1,0 +1,17 @@
+---
+const { tag } = Astro.props;
+---
+
+<a class="p-category" href={`/tags/${tag}/`}>{tag}</a>
+
+<style>
+    a {
+        background-color: var(--sand-1);
+        border-radius: 0.25rem;
+        color: var(--sand-9);
+        display: inline-block;
+        margin: 0 0.5rem;
+        padding: 0.25rem 0.5rem;
+        text-decoration: none;
+    }
+</style>

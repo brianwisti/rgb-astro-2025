@@ -27,13 +27,20 @@ const pageTitle = title ? `${title} : Random Geekery` : 'Random Geekery'
 	body {
 		background-color: var(--sand-2);
 		font-family: var(--font-geometric-humanist);
-		font-size: var(--font-size-2);
+		font-size: var(--font-size-3);
 		margin: 0;
 	}
 
 	main {
 		margin: 0 auto;
 		max-width: 40rem;
+		padding: 1rem;
+	}
+
+	pre.astro-code {
+		border-radius: 0.25rem;
+		font-size: var(--font-size-2);
+		overflow-x: auto;
 		padding: 1rem;
 	}
 </style>

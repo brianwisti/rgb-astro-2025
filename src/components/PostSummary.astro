@@ -1,8 +1,19 @@
 ---
-import Timestamp from './Timestamp.astro'
+import TagLink from "@components/TagLink.astro";
+import Timestamp from "@components/Timestamp.astro";
 
-const { post } = Astro.props
+interface Post {
+    data: {
+        title: string;
+        date: Date;
+        tags: string[];
+    };
+    id: string;
+}
+
+const { post } = Astro.props;
 ---
+
 <section>
     <header>
         <a href={`/post/${post.id}/`}>
@@ -10,17 +21,20 @@ const { post } = Astro.props
         </a>
     </header>
     <Timestamp date={post.data.date} />
+    <p>
+        {post.data.tags.map((tag) => <TagLink tag={tag} />)}
+    </p>
+
+    <style>
+        section {
+            border-bottom: 1px solid var(--sand-3);
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        header {
+            font-size: var(--font-size-3);
+            margin-bottom: 0.5rem;
+        }
+    </style>
 </section>
-
-<style>
-    section {
-        border-bottom: 1px solid var(--sand-3);
-        margin-bottom: 1rem;
-        padding-bottom: 1rem;
-    }
-
-    header {
-        font-size: var(--font-size-3);
-        margin-bottom: 0.5rem;
-    }
-</style>

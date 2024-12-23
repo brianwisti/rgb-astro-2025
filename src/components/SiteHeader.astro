@@ -1,13 +1,36 @@
+---
+interface MenuLink {
+    link: string;
+    text: string;
+}
+
+const menuLinks = [
+    {
+        link: "/about/",
+        text: "About",
+    },
+    {
+        link: "/post/",
+        text: "Blog",
+    },
+    {
+        link: "/tags/",
+        text: "Tags",
+    },
+];
+---
+
 <header>
     <nav class="flex my-4">
         <a href="/">Random Geekery</a>
         <ul>
-            <li>
-                <a href="/about/">About</a>
-            </li>
-            <li>
-                <a href="/post/">Posts</a>
-            </li>    
+            {
+                menuLinks.map((link) => (
+                    <li>
+                        <a href={link.link}>{link.text}</a>
+                    </li>
+                ))
+            }
         </ul>
     </nav>
 </header>

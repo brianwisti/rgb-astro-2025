@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import TagLink from "@components/TagLink.astro";
+
+type Post = {
+    data: {
+        title: string;
+        date: Date;
+    };
+    id: string;
+};
+
+type Tag = {
+    tag: string;
+    posts: Post[];
+};
+
+async function getTags() {
+    const posts = await getCollection("posts");
+    const tags = new Map<string, Post[]>();
+
+    posts.forEach((post) => {
+        post.data.tags.forEach((tag) => {
+            if (!tags.has(tag)) {
+                tags.set(tag, []);
+            }
+            tags.get(tag)?.push(post);
+        });
+    });
+
+    return tags;
+}
+
+const tags = await getTags();
+---
+
+<Layout title="Tags">
+    <p>Top-level tag listing goes here.</p>
+    <ul>
+        {
+            Array.from(tags.keys())
+                .sort()
+                .map((tag) => (
+                    <li>
+                        <TagLink tag={tag} />({tags.get(tag)?.length})
+                    </li>
+                ))
+        }
+    </ul>
+</Layout>
