@@ -1,0 +1,36 @@
+---
+import CategoryLink from "./CategoryLink.astro";
+import TagLink from "./TagLink.astro";
+import Timestamp from "./Timestamp.astro";
+
+interface Props {
+    date: Date;
+    categories: string[];
+    tags: string[];
+}
+
+const { date, categories, tags } = Astro.props;
+---
+
+<p>
+    <Timestamp {date} />
+    <span>
+        {categories.map((category) => <CategoryLink {category} />)}
+        {tags.map((tag) => <TagLink {tag} />)}
+    </span>
+</p>
+
+<style>
+    p {
+        font-size: var(--font-size-1);
+        margin-block-end: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    span {
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>

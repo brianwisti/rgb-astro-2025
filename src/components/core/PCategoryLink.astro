@@ -1,14 +1,19 @@
 ---
 interface Props {
     href: string;
+    classNames?: string;
 }
 
-const { href } = Astro.props;
+const { href, classNames } = Astro.props;
+let classes = "p-category";
+if (classNames) {
+    classes += ` ${classNames}`;
+}
 ---
 
-<a class="p-category" {href}><slot /></a>
+<a class={classes} {href}><slot /></a>
 
-<style>
+<style type="text/scss">
     a {
         background-color: var(--sand-1);
         border-radius: 0.25rem;
@@ -16,6 +21,19 @@ const { href } = Astro.props;
         display: inline-block;
         margin: 0 0.5rem;
         padding: 0.25rem 0.5rem;
+        font-size: var(--font-size-1);
         text-decoration: none;
+
+        &.category {
+            font-weight: bold;
+        }
+
+        &.tag {
+            font-style: italic;
+
+            &::before {
+                content: "#";
+            }
+        }
     }
 </style>

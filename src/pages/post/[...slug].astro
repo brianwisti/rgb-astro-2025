@@ -2,6 +2,7 @@
 import * as path from "node:path";
 
 import PageLayout from "@layouts/PageLayout.astro";
+import PostMetadata from "@components/PostMetadata.astro";
 import CategoryLink from "@components/CategoryLink.astro";
 import TagLink from "@components/TagLink.astro";
 import Timestamp from "@components/Timestamp.astro";
@@ -21,23 +22,14 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const { date, categories, tags } = post.data;
 const { Content } = await render(post);
 ---
 
 <PageLayout title={post.data.title}>
     <article>
         <header>
-            <p>
-                {
-                    post.data.categories.map((category) => (
-                        <CategoryLink category={category} />
-                    ))
-                }
-                <Timestamp date={post.data.date} />
-            </p>
-            <p>
-                {post.data.tags.map((tag) => <TagLink tag={tag} />)}
-            </p>
+            <PostMetadata {date} {categories} {tags} />
         </header>
         <Content />
     </article>

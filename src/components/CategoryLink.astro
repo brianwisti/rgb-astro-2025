@@ -7,4 +7,12 @@ interface Props {
 const { category } = Astro.props;
 ---
 
-<PCategoryLink href={`/categories/${category}/`}>{category}</PCategoryLink>
+<PCategoryLink classNames="category" href={`/categories/${category}/`}
+    >{category}</PCategoryLink
+>
+
+<style type="text/css">
+    a {
+        font-weight: bold;
+    }
+</style>
