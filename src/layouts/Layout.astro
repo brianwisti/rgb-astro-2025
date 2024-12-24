@@ -25,21 +25,35 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery";
 <style is:global>
     @import "https://unpkg.com/open-props";
 
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+
+    :root {
+        --font-prose: var(--font-geometric-humanist);
+        --color-bg-page: var(--sand-2);
+    }
+
+    html {
+        box-sizing: border-box;
+    }
+
     body {
-        background-color: var(--sand-2);
-        font-family: var(--font-geometric-humanist);
-        font-size: var(--font-size-3);
+        background-color: var(--color-bg-page);
+        font-family: var(--font-prose);
+        font-size: var(--font-size-fluid-1);
         margin: 0;
     }
 
     main {
-        margin: 0 auto;
-        max-width: 40rem;
-        padding: 1rem;
+        margin: 0 var(--size-8);
+        padding: var(--size-3);
     }
 
     pre.astro-code {
-        border-radius: 0.25rem;
+        border-radius: var(--radius-2);
         font-size: var(--font-size-2);
         overflow-x: auto;
         padding: 1rem;

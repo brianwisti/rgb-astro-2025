@@ -1,4 +1,4 @@
-import { defineMarkdocConfig, component } from "@astrojs/markdoc/config";
+import { defineMarkdocConfig, component, nodes } from "@astrojs/markdoc/config";
 import shiki from "@astrojs/markdoc/shiki";
 
 export default defineMarkdocConfig({
@@ -7,6 +7,17 @@ export default defineMarkdocConfig({
       theme: "github-dark",
     }),
   ],
+  nodes: {
+    image: {
+      attributes: {
+        caption: {
+          type: String,
+        },
+        ...nodes.image.attributes,
+      },
+      render: component("./src/components/MarkdocImage.astro"),
+    },
+  },
   tags: {
     note: {
       render: component("./src/components/Note.astro"),

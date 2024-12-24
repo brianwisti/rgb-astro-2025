@@ -1,0 +1,55 @@
+---
+import { Picture } from "astro:assets";
+
+interface Props {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    caption: string;
+}
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/img/**/*.{jpeg,jpg,png,gif}",
+);
+
+const { src, alt, caption } = Astro.props;
+let assetPath = src.replace(/^@img/, "/src/assets/img");
+
+if (!images[assetPath]) {
+    throw new Error(`Image not found: ${assetPath}`);
+}
+
+const image = images[assetPath]();
+---
+
+<figure>
+    <Picture
+        src={image}
+        {alt}
+        widths={[600, 800, 1000, image.width]}
+        sizes={`(max-width: 800px) 600px, (max-width: 1000px) 800px, (max-width: 1200px) 1000px, ${image.width}px`}
+        formats={["avif", "webp"]}
+    />
+    {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style type="text/scss">
+    img {
+        height: auto;
+        margin: auto;
+        max-width: 100%;
+
+        @container (min-width: 800px) {
+            max-width: 1000px;
+        }
+
+        @container (min-width: 1000px) {
+            max-width: 1200px;
+        }
+
+        @container (min-width: 1200px) {
+            max-width: 1000px;
+        }
+    }
+</style>
