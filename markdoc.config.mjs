@@ -14,6 +14,14 @@ export default defineMarkdocConfig({
         title: "string",
       },
     },
+    quote: {
+      render: component("./src/components/Quote.astro"),
+      attributes: {
+        from: "string",
+        cite: "string",
+        title: "string",
+      },
+    },
     tag: {
       render: component("./src/components/TagLink.astro"),
       attributes: {
