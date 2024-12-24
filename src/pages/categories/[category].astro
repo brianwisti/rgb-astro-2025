@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import PostListing from "@components/PostListing.astro";
+
+type Post = {
+    data: {
+        title: string;
+        date: Date;
+        categories: string[];
+    };
+    id: string;
+};
+
+export async function getStaticPaths() {
+    const posts = await getCollection("posts");
+    const categories = new Map<string, Post[]>();
+
+    posts.forEach((post) => {
+        post.data.categories.forEach((category) => {
+            if (!categories.has(category)) {
+                categories.set(category, []);
+            }
+            categories.get(category)?.push(post);
+        });
+    });
+
+    return Array.from(categories.keys()).map((category) => ({
+        params: { category: category },
+        props: { category: category, posts: categories.get(category) },
+    }));
+}
+
+const { category, posts } = Astro.props;
+---
+
+<PageLayout title={category}>
+    <PostListing posts={posts} />
+</PageLayout>

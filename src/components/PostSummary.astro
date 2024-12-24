@@ -1,4 +1,5 @@
 ---
+import CategoryLink from "@components/CategoryLink.astro";
 import TagLink from "@components/TagLink.astro";
 import Timestamp from "@components/Timestamp.astro";
 
@@ -7,8 +8,13 @@ interface Post {
         title: string;
         date: Date;
         tags: string[];
+        categories: string[];
     };
     id: string;
+}
+
+interface Props {
+    post: Post;
 }
 
 const { post } = Astro.props;
@@ -20,21 +26,28 @@ const { post } = Astro.props;
             {post.data.title}
         </a>
     </header>
-    <Timestamp date={post.data.date} />
     <p>
-        {post.data.tags.map((tag) => <TagLink tag={tag} />)}
+        {
+            post.data.categories.map((category) => (
+                <CategoryLink category={category} />
+            ))
+        }
+        <Timestamp date={post.data.date} />
+        <p>
+            {post.data.tags.map((tag) => <TagLink tag={tag} />)}
+        </p>
+
+        <style>
+            section {
+                border-bottom: 1px solid var(--sand-3);
+                margin-bottom: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            header {
+                font-size: var(--font-size-3);
+                margin-bottom: 0.5rem;
+            }
+        </style>
     </p>
-
-    <style>
-        section {
-            border-bottom: 1px solid var(--sand-3);
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-        }
-
-        header {
-            font-size: var(--font-size-3);
-            margin-bottom: 0.5rem;
-        }
-    </style>
 </section>

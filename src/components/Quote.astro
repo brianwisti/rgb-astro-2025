@@ -1,20 +1,4 @@
 ---
-/*
-{{% quote
-  from="WCAG21"
-  cite="https://www.w3.org/WAI/WCAG21/Techniques/failures/F41.html"
-  title="Failure of Success Criterion 2.2.1, 2.2.4, and 3.2.5 due to using meta refresh to reload the page"
-  %}}
-For a page that uses `meta http-equiv="refresh"`:
-
-1. Check that the numerical value for seconds until refresh in the content attribute is present.
-1. Check that the numerical value for seconds until refresh in the content attribute is less than one or greater than 72,000.
-1. Check if the page qualifies for Real-time or Essential Exceptions in Success Criterion 2.2.1 Timing Adjustable.
-1. Check if the user is provided an opportunity to turn off, extend, or adjust the timing of the page refresh.
-1. Check if the page does not refresh after the duration specified in the content attribute.
-{{% /quote %}}
-*/
-
 interface Props {
     from: string;
     cite: string;

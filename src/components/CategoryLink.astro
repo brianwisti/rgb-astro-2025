@@ -1,0 +1,10 @@
+---
+import PCategoryLink from "./core/PCategoryLink.astro";
+
+interface Props {
+    category: string;
+}
+const { category } = Astro.props;
+---
+
+<PCategoryLink href={`/categories/${category}/`}>{category}</PCategoryLink>

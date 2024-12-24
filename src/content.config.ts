@@ -5,6 +5,7 @@ const postSchema = z.object({
   title: z.string(),
   date: z.date(),
   tags: z.array(z.string()).default([]),
+  categories: z.array(z.string()),
 });
 
 const posts = defineCollection({

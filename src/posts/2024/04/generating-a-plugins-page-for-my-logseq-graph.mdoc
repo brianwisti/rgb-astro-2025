@@ -1,6 +1,7 @@
 ---
 title: "Generating a Plugins Page For My Logseq Graph"
 date: 2024-04-30T10:06:00-07:00
+description: I didn't just break down a one-liner this time, but I also did that
 tags:
 - nushell
 - logseq
@@ -12,18 +13,13 @@ posse:
 - https://hackers.town/@randomgeek/112351149757759978
 ---
 
-I didn't just break down a one-liner this time, but I also did that.
-
-<!--more-->
-
-
-## What? {#what}
+## What?
 
 I wrote a Nushell script that updates my Logseq workflow note with a current
 list of installed plugins.
 
 
-## Why? {#why}
+## Why?
 
 Logseq plugins are installed at the user level, and do not currently sync across
 machines with a Git-based workflow. If I want a consistent workflow — and I do —
@@ -33,7 +29,7 @@ elements of my Logseq setup without needing to interact with the application
 itself.
 
 
-## How? {#how}
+## How?
 
 Everything we need to know can be determined by looking at the plugin files and
 reading some JSON. I'm going to use Nushell for this task, but just about
@@ -41,7 +37,7 @@ anything should do the job. The same basic logic will work in any language with
 support for loading and processing JSON.
 
 
-### The `~/.logseq/` Folder {#the-dot-logseq-folder}
+### The `~/.logseq/` Folder
 
 User-level Logseq config, including installed plugins, is at `~/.logseq`. This
 is also true on Windows, where the equivalent for me would be
@@ -54,7 +50,7 @@ let logseq_folder = "~/.logseq" | path expand
 ```
 
 
-### Load Installed Plugins and Themes {#load-installed-plugins-and-themes}
+### Load Installed Plugins and Themes
 
 Logseq installs its plugins to `~/.logseq/plugins/`. Each plugin's
 `package.json` holds important project information such as title, repo,
@@ -70,12 +66,10 @@ Something like this:
 	- Enhanced content blocks (tasks, quotes, flashcards, headers, queries, diagrams, etc...)
 ```
 
-<div class="note">
-
+{% note %}
 I use the `heading` property rather than Markdown header markers. That way a
 section header looks like a level one header when I zoom into that section.
-
-</div>
+{% /note %}
 
 Because I only have a couple dozen plugins installed and I'm only working with
 local data, I won't worry about optimizing performance. I can set up everything
@@ -120,8 +114,7 @@ let everything = (
 )
 ```
 
-
-#### Breaking down that series of pipes {#breaking-down-that-series-of-pipes}
+#### Breaking down that series of pipes
 
 A piped sequence felt like the clearest way to assemble this, but let's look at
 it piecemeal so we understand what's going on at each step of the process.
@@ -175,7 +168,7 @@ let everything = $everything | each { |it|
 
 With the nested structures, it's easier to show that in a screenshot.
 
-{{< figure src="/img/2024/nested-structures.png" caption="<span class=\"figure-number\">Figure 1: </span>terminal showing Logseq settings as nested tables" >}}
+![terminal showing Logseq settings as nested tables](@img/2024/nested-structures.png)
 
 I want our summary string generation and filtering logic clear and easy to read,
 without deeply nested accessors.  [get](https://www.nushell.sh/commands/docs/get.html) each of the details I care about and add a
@@ -192,8 +185,7 @@ let everything = $everything | each { |it|
 ```
 
 Nushell ordinarily throws an error when you try to `get` an undefined field.
-Work around that by providing a [default](https://www.nushell.sh/commands/docs/default.html) and using `-i` to ignore errors in
-fields that we **know** could be absent.
+Work around that by providing a [default](https://www.nushell.sh/commands/docs/default.html) and using `-i` to ignore errors in fields that we **know** could be absent.
 
 We're relying the presence or absence of a `themes` field in package info to
 determine whether we're looking at a theme.  [is-not-empty](https://www.nushell.sh/commands/docs/is-not-empty.html) manages that,
@@ -207,7 +199,7 @@ grab the [last](https://www.nushell.sh/commands/docs/last.html) row and [transpo
 $everything | last 1 | transpose
 ```
 
-{{< figure src="/img/2024/as-record.png" caption="<span class=\"figure-number\">Figure 2: </span>the final item as a record of nested fields" >}}
+![terminal showing the final item as a record of nested fields](@img/2024/as-record.png)
 
 This is still messy. Nushell doesn't care — I went through a few iterations
 pretty much ignoring the extra bulk — but I'm trying to write coherent code for
@@ -255,13 +247,12 @@ That'll look a little clunky as a table. Let's transpose the last row again.
 $everything | last 1 | transpose
 ```
 
-{{< figure src="/img/2024/cleaned-record.png" caption="<span class=\"figure-number\">Figure 3: </span>a cleaned up record with fewer fields" >}}
+![terminal showing the cleaned up record with fewer fields](@img/2024/cleaned-record.png)
 
 Now we know what `$everything` looks like, or at least the structure we end up
 with for each row. Let's move on.
 
-
-### Transform to Active Plugin and Theme Lists {#transform-to-active-plugin-and-theme-lists}
+### Transform to Active Plugin and Theme Lists
 
 I only want to summarize the themes and plugins I currently have enabled.  [where](https://www.nushell.sh/commands/docs/where.html)
 helps us filter out those that have the `disabled` flag turned on in their
@@ -280,7 +271,7 @@ let plugins = $active | where is-theme == false
 ```
 
 
-### Save to a New Page {#save-to-a-new-page}
+### Save to a New Page
 
 I'll want to know when this page was generated. Determine the current time with
 [date now](https://www.nushell.sh/commands/docs/date_now.html) and use [format date](https://www.nushell.sh/commands/docs/format_date.html) to match my graph's journal day format.
@@ -321,7 +312,6 @@ $page_text | save --force $page_file
 ```
 
 We set the `--force` flag on [save](https://www.nushell.sh/commands/docs/save.html) , otherwise it won't update an existing file.
-
 
 ## Is It Fast Enough? {#is-it-fast-enough}
 
