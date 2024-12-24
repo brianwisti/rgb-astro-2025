@@ -26,7 +26,6 @@ const { Content } = await render(post);
 <PageLayout title={post.data.title}>
     <article>
         <header>
-            <h1>{post.data.title}</h1>
             <Timestamp date={post.data.date} />
             <p>
                 {post.data.tags.map((tag) => <TagLink tag={tag} />)}
