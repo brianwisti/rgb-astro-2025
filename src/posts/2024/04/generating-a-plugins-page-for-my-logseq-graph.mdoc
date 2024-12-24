@@ -1,0 +1,337 @@
+---
+title: "Generating a Plugins Page For My Logseq Graph"
+date: 2024-04-30T10:06:00-07:00
+tags:
+- nushell
+- logseq
+- second-brain
+categories:
+- post
+draft: false
+posse:
+- https://hackers.town/@randomgeek/112351149757759978
+---
+
+I didn't just break down a one-liner this time, but I also did that.
+
+<!--more-->
+
+
+## What? {#what}
+
+I wrote a Nushell script that updates my Logseq workflow note with a current
+list of installed plugins.
+
+
+## Why? {#why}
+
+Logseq plugins are installed at the user level, and do not currently sync across
+machines with a Git-based workflow. If I want a consistent workflow — and I do —
+I need to maintain this list myself, ideally somewhere that I can reference
+later. Also, I could work this on-demand script into other workflows, processing
+elements of my Logseq setup without needing to interact with the application
+itself.
+
+
+## How? {#how}
+
+Everything we need to know can be determined by looking at the plugin files and
+reading some JSON. I'm going to use Nushell for this task, but just about
+anything should do the job. The same basic logic will work in any language with
+support for loading and processing JSON.
+
+
+### The `~/.logseq/` Folder {#the-dot-logseq-folder}
+
+User-level Logseq config, including installed plugins, is at `~/.logseq`. This
+is also true on Windows, where the equivalent for me would be
+`C:\Users\brian\.logseq`. [path expand](https://www.nushell.sh/commands/docs/path_expand.html) turns that tilde into my `$HOME` directory
+regardless of platform, so I won't need to specify a different `$logseq_folder`
+on every machine.
+
+```shell
+let logseq_folder = "~/.logseq" | path expand
+```
+
+
+### Load Installed Plugins and Themes {#load-installed-plugins-and-themes}
+
+Logseq installs its plugins to `~/.logseq/plugins/`. Each plugin's
+`package.json` holds important project information such as title, repo,
+description, and theme hooks if any. Installation-specific settings, such as
+whether the plugin is disabled, are under `~/.logseq/settings`.
+
+I need to use all those details to generate summary strings for every plugin.
+Something like this:
+
+```markdown
+- [Awesome Content](https://github.com/yoyurec/logseq-awesome-content)
+  heading:: true
+	- Enhanced content blocks (tasks, quotes, flashcards, headers, queries, diagrams, etc...)
+```
+
+<div class="note">
+
+I use the `heading` property rather than Markdown header markers. That way a
+section header looks like a level one header when I zoom into that section.
+
+</div>
+
+Because I only have a couple dozen plugins installed and I'm only working with
+local data, I won't worry about optimizing performance. I can set up everything
+I need with a few loops.
+
+That's the secret of success: make every problem small enough that you don't
+have to care.
+
+```shell
+let everything = (
+	ls -s $"($logseq_folder)/plugins"
+    | select name
+	| each { |it|
+		insert settings (
+			open $"($logseq_folder)/settings/($it.name).json"
+		)
+		| insert package (
+			open $"($logseq_folder)/plugins/($it.name)/package.json"
+		)
+	}
+	| each { |it|
+		insert title ($it | get package.title)
+		| insert url  $"https://github.com/($it.package.repo)"
+		| insert description ($it | get package.description)
+        | insert is-disabled (
+	        $it | get -i settings.disabled | default false
+	    )
+		| insert is-theme (
+			$it | get -i package.logseq.themes | is-not-empty
+		)
+	}
+	| select title url description is-disabled is-theme
+	| each { |it|
+		insert block ([
+			$"\t- [($it.title)]\(($it.repository)\)"
+			$"\t  heading:: true"
+			$"\t\t- ($it.description)"
+		]
+		| str join "\n"
+		)
+	}
+)
+```
+
+
+#### Breaking down that series of pipes {#breaking-down-that-series-of-pipes}
+
+A piped sequence felt like the clearest way to assemble this, but let's look at
+it piecemeal so we understand what's going on at each step of the process.
+
+```shell
+let everything = ls -s $"($logseq_folder)/plugins"
+```
+
+Ordinarily, [ls](https://www.nushell.sh/commands/docs/ls.html) includes path information in the **name**. The `-s` flag requests
+filenames without that path information, which simplifies later processing.
+
+| name                   | type | size   | modified                                       |
+|------------------------|------|--------|------------------------------------------------|
+| logseq-agenda          | dir  | 4.1 KB | Thu, 29 Feb 2024 10:19:27 -0800 (2 months ago) |
+| logseq-awesome-content | dir  | 4.1 KB | Mon, 1 Jan 2024 15:54:13 -0800 (3 months ago)  |
+| ...                    | ...  | ...    | ...                                            |
+| logseq-tags            | dir  | 4.1 KB | Tue, 2 Jan 2024 06:07:29 -0800 (3 months ago)  |
+| logseq-webpage-title   | dir  | 4.1 KB | Mon, 1 Jan 2024 15:54:57 -0800 (3 months ago)  |
+
+We only care about the filename here, so we specifically [select](https://www.nushell.sh/commands/docs/select.html) it, producing a
+new single-table column.
+
+```shell
+let everything = $everything | select name
+```
+
+| name                   |
+|------------------------|
+| logseq-agenda          |
+| logseq-awesome-content |
+| logseq-awesome-links   |
+| ...                    |
+| logseq-split-block     |
+| logseq-tags            |
+| logseq-webpage-title   |
+
+We [insert](https://www.nushell.sh/commands/docs/insert.html) new `settings` and `package` columns to our table. These columns hold
+the full records generated by Nushell's automatic JSON handler after we [open](https://www.nushell.sh/commands/docs/open.html)
+project package and local settings files for each entry in our list.
+
+```shell
+let everything = $everything | each { |it|
+	insert settings (
+    	open $"($logseq_folder)/settings/($it.name).json"
+    )
+    | insert package (
+    	open $"($logseq_folder)/plugins/($it.name)/package.json"
+    )
+}
+```
+
+With the nested structures, it's easier to show that in a screenshot.
+
+{{< figure src="/img/2024/nested-structures.png" caption="<span class=\"figure-number\">Figure 1: </span>terminal showing Logseq settings as nested tables" >}}
+
+I want our summary string generation and filtering logic clear and easy to read,
+without deeply nested accessors.  [get](https://www.nushell.sh/commands/docs/get.html) each of the details I care about and add a
+column for it.
+
+```shell
+let everything = $everything | each { |it|
+    insert title ($it | get package.title)
+    | insert url $"https://github.com/($it.package.repo)"
+    | insert description ($it | get package.description)
+    | insert is-disabled ($it | get -i settings.disabled | default false)
+    | insert is-theme ($it | get -i package.logseq.themes | is-not-empty)
+}
+```
+
+Nushell ordinarily throws an error when you try to `get` an undefined field.
+Work around that by providing a [default](https://www.nushell.sh/commands/docs/default.html) and using `-i` to ignore errors in
+fields that we **know** could be absent.
+
+We're relying the presence or absence of a `themes` field in package info to
+determine whether we're looking at a theme.  [is-not-empty](https://www.nushell.sh/commands/docs/is-not-empty.html) manages that,
+returning true if there's a `logseq.themes` field with content in it, and false
+any other time.
+
+What's that look like?  Wait — in order to make sense of this view, we should
+grab the [last](https://www.nushell.sh/commands/docs/last.html) row and [transpose](https://www.nushell.sh/commands/docs/transpose.html) it so that each column becomes a record field.
+
+```shell
+$everything | last 1 | transpose
+```
+
+{{< figure src="/img/2024/as-record.png" caption="<span class=\"figure-number\">Figure 2: </span>the final item as a record of nested fields" >}}
+
+This is still messy. Nushell doesn't care — I went through a few iterations
+pretty much ignoring the extra bulk — but I'm trying to write coherent code for
+you. Let's select only those new columns for extracted details.
+
+```shell
+let everything = (
+	$everything | select title url description is-disabled is-theme
+)
+```
+
+Now we can go back to a regular table view.
+
+| title             | url                                                  | description                                                                             | is-disabled | is-theme |
+|-------------------|------------------------------------------------------|-----------------------------------------------------------------------------------------|-------------|----------|
+| Agenda            | <https://github.comhaydenull/logseq-plugin-agenda>   | An agenda manager plugin for logseq                                                     | true        | false    |
+| Awesome Content   | <https://github.comyoyurec/logseq-awesome-content>   | Enhanced content blocks (tasks, quotes, flashcards, headers, queries, diagrams, etc...) | false       | false    |
+| Awesome Links     | <https://github.comyoyurec/logseq-awesome-links>     | Favicons for external links, page icons for internal                                    | false       | false    |
+| ..                | ..                                                   | ..                                                                                      | ...         | ...      |
+| Split block       | <https://github.comhyrijk/logseq-plugin-split-block> | Splitting multi-line text into blocks                                                   | false       | false    |
+| Tags              | <https://github.comgidongkwon/logseq-plugin-tags>    | A plugin that lets you find and search all of your #tags.                               | false       | false    |
+| Get webpage title | <https://github.compaulkinlan/logseq-webpage-title>  | A neat little tool to fetch the title of a link and wrap it in markdown syntax.         | false       | false    |
+
+How about the summary string `block` column? I'll need to throw a few tabs and
+newlines in there for the Logseq page structure I already have in mind. In
+order to keep the whole thing readable, I'll [interpolate](https://www.nushell.sh/book/working_with_strings.html#string-interpolation) row cells into a list
+of strings, then [join](https://www.nushell.sh/commands/docs/str_join.html) with newlines.
+
+```shell
+let everything = $everything | each { |it|
+	insert block (
+		[
+			$"\t- [($it.title)]\(($it.url)\)"
+			$"\t  heading:: true"
+			$"\t\t- ($it.description)"
+		]
+		| str join "\n"
+    )
+}
+```
+
+That'll look a little clunky as a table. Let's transpose the last row again.
+
+```shell
+$everything | last 1 | transpose
+```
+
+{{< figure src="/img/2024/cleaned-record.png" caption="<span class=\"figure-number\">Figure 3: </span>a cleaned up record with fewer fields" >}}
+
+Now we know what `$everything` looks like, or at least the structure we end up
+with for each row. Let's move on.
+
+
+### Transform to Active Plugin and Theme Lists {#transform-to-active-plugin-and-theme-lists}
+
+I only want to summarize the themes and plugins I currently have enabled.  [where](https://www.nushell.sh/commands/docs/where.html)
+helps us filter out those that have the `disabled` flag turned on in their
+settings file.
+
+```shell
+let active = $everything | where disabled == false
+```
+
+I want to show themes and plugins in different sections, so let's make different
+tables for each.
+
+```shell
+let themes = $active | where is-theme == true
+let plugins = $active | where is-theme == false
+```
+
+
+### Save to a New Page {#save-to-a-new-page}
+
+I'll want to know when this page was generated. Determine the current time with
+[date now](https://www.nushell.sh/commands/docs/date_now.html) and use [format date](https://www.nushell.sh/commands/docs/format_date.html) to match my graph's journal day format.
+
+```shell
+let now = date now | format date "%Y-%m-%d"
+```
+
+Now, generate a page string for the collection. I need to keep it consistent
+with my other note pages in Logseq, with indentation for page sections and a
+specific section to describe the page.
+
+```shell
+let page_text = [
+	"- Summary"
+	"  heading:: true"
+	$"\t- My currently installed [Logseq](card/Logseq.md) plugins as of [($now)](($now))"
+	"- Plugins"
+	"  heading:: true"
+	($plugins | get block | to text)
+	"- Themes"
+	"  heading:: true"
+	($themes | get block | to text)
+] | str join "\n"
+```
+
+Next I write it to disk for the Logseq graph. Establish what file we're saving
+to, and save it.
+
+```shell
+let graph_folder = (
+	"~/Documents/logseq/my-logseq-brain"
+	| path expand
+)
+let page_file = $"($graph_folder)/pages/My Currently Installed Logseq Plugins.md"
+
+$page_text | save --force $page_file
+```
+
+We set the `--force` flag on [save](https://www.nushell.sh/commands/docs/save.html) , otherwise it won't update an existing file.
+
+
+## Is It Fast Enough? {#is-it-fast-enough}
+
+```text
+nu ❯ timeit { nu plugin_page.nu }
+29ms 478µs 301ns
+```
+
+Yes.
+
+Anything up to a second would have been good enough in a script I run only for
+myself. I still might've tried tweaking it, just for practice. But 29.5
+milliseconds from start to finish? There's no point optimizing that.

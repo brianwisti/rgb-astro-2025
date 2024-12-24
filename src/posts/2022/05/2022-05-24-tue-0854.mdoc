@@ -1,0 +1,66 @@
+---
+author:
+- Brian Wisti
+categories:
+- note
+date: 2022-05-24 08:54:51-07:00
+draft: false
+tags:
+- now
+- workflow
+- ruby
+title: '[2022-05-24 Tue 08:54]'
+---
+
+Brain insists on a CLI flow for this tumblelog. So of course I have to mess up my perfectly functional flow.
+
+<!--more-->
+
+I know I'll fiddle with it more later, but here's what I got at the moment.
+
+I consider the Org inactive timestamps title core to the tumblelog flow. Better let
+[`time.Format`][time-format] produce something plausible in my `posts.md` Hugo archetype.
+
+```md
+---
+title: "[{{ time.Format "2006-01-02 Mon 15:04" .Date }}]"
+author:
+- Brian Wisti
+date: {{ .Date }}
+tags: []
+draft: false
+---
+```
+
+The archetype uses YAML frontmatter instead of [ox-hugo][ox-hugo]'s default
+TOML. I find manually managing the tags is easier that way.
+
+My brain picked Ruby for the script to generate and open a new post, thanks
+mainly to the convenience of Piotr Murach's [TTY toolkit][tty-toolkit].
+
+```ruby
+#!/usr/bin/env ruby
+
+require "tty-command"
+require "tty-editor"
+
+POST_PATH = "content/posts/%Y/%m/%s.md"
+
+post_path = Time.now.strftime POST_PATH
+cmd = TTY::Command.new
+cmd.run "hugo new #{post_path}"
+
+TTY::Editor.open post_path
+```
+
+All it does is ask Hugo to create a new post based on the archetype, and then
+open that post file in my `$EDITOR`.
+
+I'll get to more later. I know from past experience I can use `tty-command` to
+manage the git bits after I'm done writing.
+
+But apparently if I want to pay rent I need to *work*.
+
+[ox-hugo]: https://ox-hugo.scripter.co
+[time-format]: https://gohugo.io/functions/dateformat/
+[tty-toolkit]: https://ttytoolkit.org

@@ -1,0 +1,21 @@
+---
+categories:
+- note
+date: 2022-05-21 17:51:00-07:00
+draft: false
+tags:
+- emacs
+title: '[2022-05-21 Sat 17:44]  My basic org-roam-dailies capture template'
+---
+
+Just a really mild adjustment to the [org-roam-dailies](https://www.orgroam.com/manual.html#org_002droam_002ddailies) "sane default configuration." Main difference is an inactive timestamp like I have for the tumblelog --- I like having a chronology --- and some file tags.
+
+```elisp
+(setq org-roam-dailies-capture-templates
+      '(("j" "Jot" entry "* %U %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n#+filetags: %<:%Y:%B>\n")
+         :unarrowed t)))
+```
+
+I may go past this with specific templates for tasks and bookmarks. But first I need to make sure this basic setup works for me.

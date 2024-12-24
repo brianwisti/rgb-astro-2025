@@ -1,0 +1,35 @@
+---
+aliases:
+- /note/2021/02/tweaking-my-tools/
+categories:
+- note
+date: 2021-02-16 14:40:03-08:00
+posse:
+- https://dev.to/brianwisti/note-tweaking-my-tools-3f6f
+- https://hackers.town/@randomgeek/105743422712512318
+- https://twitter.com/brianwisti/status/1361813716367474688
+tags:
+- ruby
+- site
+title: Tweaking my tools
+---
+
+[TTY Toolkit]: https://ttytoolkit.org
+
+Playing a little more with [TTY Toolkit][] for the site workflow.
+I wanted to say I'm tightening focus, but with a `require` list like this for one tool?
+
+```ruby
+require 'pastel'
+require 'ruby-slugify'
+require 'tty-editor'
+require 'tty-exit'
+require 'tty-logger'
+require 'tty-option'
+require 'tty-prompt'
+require 'tty-screen'
+```
+
+"Tightening focus" would be a lie.
+
+Anyways, it seems to function correctly. Huzzah! Now back to work.

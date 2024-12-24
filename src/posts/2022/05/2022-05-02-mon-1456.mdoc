@@ -1,0 +1,23 @@
+---
+categories:
+- note
+date: 2022-05-02 15:00:00-07:00
+draft: false
+tags:
+- emacs
+title: '[2022-05-02 Mon 14:56]'
+---
+
+Note added with a capture template, though I still need to manually assemble a bit.
+
+```elisp
+(setq org-capture-templates
+      '(("t" "Tumblelog" entry
+         (file+olp+datetree bmw/tumble-log)
+         "* %U %?\n:properties:\n:export_file_name: nnn.md\n:end:\n")
+        ))
+```
+
+Less manual construction than a couple minutes ago!
+
+I'll have to learn some Elisp to make it work how it does in my head.

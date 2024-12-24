@@ -1,0 +1,50 @@
+---
+author:
+- Brian Wisti
+categories:
+- note
+date: 2022-05-25 09:54:19-07:00
+draft: false
+tags:
+- tools
+- windows
+title: '[2022-05-25 Wed 09:54]'
+---
+
+New Windows Terminal Preview [release][wt-release] dropped. I spend enough
+time working in Windows that I pay attention to this stuff.
+
+[wt-release]: https://devblogs.microsoft.com/commandline/windows-terminal-preview-1-14-release/
+
+<!--more-->
+
+I'm fussy about my terminal experience, so I use [Windows Terminal
+Preview][wt-preview] when getting work done on Windows. It's a few steps ahead
+of the main release, which currently means fewer --- not _none_ but fewer ---
+wierd little display bugs in Neovim and tmux.
+
+> It’s Microsoft Build! We have a Windows Terminal Preview release for you
+> focused on fixing bugs and improving quality.
+
+You'll probably mostly see screenshots of the multi-pane single-image
+background, but I don't mess with image backgrounds in my terminal. Too
+distracting for my brain.
+
+This bit about GUI apps interests me though. It might smooth things out when
+I'm running X11 Emacs from WSL2.
+
+> Using windowed applications from the terminal should work much better now:
+>
+> - ConPTY can now handle show/hide window calls.
+> - Windows created by console applications now appear above the terminal.
+> - Focus events are now sent through VT input.
+
+Oh hey what's this?
+
+> The terminal should no longer crash when deleting the last profile in the
+> settings UI.
+
+Bumped into this bug the other day, while cleaning out some
+neglected distro installations.
+
+[wt-preview]: https://apps.microsoft.com/store/detail/windows-terminal-preview/9N8G5RFZ9XK3?hl=en-us&gl=US

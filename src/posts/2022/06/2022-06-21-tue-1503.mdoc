@@ -1,0 +1,37 @@
+---
+author:
+- Brian Wisti
+categories:
+- note
+date: 2022-06-21 15:03:53-07:00
+draft: false
+tags:
+- hugo
+- i-fixed-it
+title: '[2022-06-21 Tue 15:03]'
+---
+
+I'm not dead yet! Site wasn't updating because Netlify failed with an `exit
+code 2`. Bit vague. Finally had a few minutes to look closer.
+
+<!--more-->
+
+Turns out it's because I've been keeping up locally with Hugo releases and
+syntax changes, but not telling Netlify. They need the same version of Hugo
+that I use.
+
+So now I've got a basic `netlify.toml` based on [Netlify Hugo
+docs][netlify-hugo].
+
+[netlify-hugo]: https://docs.netlify.com/integrations/frameworks/hugo/
+
+```toml
+[build]
+  command = "hugo"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.101.0"
+```
+
+Looks like everything is good again.

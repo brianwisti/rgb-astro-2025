@@ -1,0 +1,120 @@
+---
+author:
+- Brian Wisti
+categories:
+- note
+date: 2022-05-30 13:45:00-07:00
+draft: false
+tags:
+- workflow
+- obsidian
+title: '[2022-05-30 Mon 13:45]'
+---
+
+Having a fun day fiddling with the [Templater][templater] plugin for
+[Obsidian][obsidian].
+
+[obsidian]: https://obsidian.md
+[templater]: https://silentvoid13.github.io/Templater/
+
+<!--more-->
+
+{{< figure
+  src="/img/2022/2022-05-30-obsidian.png"
+  caption="Screenshot of journal page showing attempts at automating link creation"
+  link="/img/2022/2022-05-30-obsidian.png" >}}
+
+Here's the template code I have at the moment, if that's the sort of thing that
+interests you. Borrowed heavily from [ThoughtAsylum][thought-asylum] and [Red
+Gregory][red-gregory].
+
+[thought-asylum]: https://www.thoughtasylum.com/2022/03/29/auto-link-and-generate-page-in-obsidian/
+[red-gregory]: https://www.redgregory.com/obsidian-content/2021/11/17/15-templater-commands-for-obsidian
+
+This is the template *I* invoke  to create a new jot file. It prompts me for an
+optional topic, creates the file, and inserts a link wherever my cursor is.
+
+With syntax highlighting, since inside the `<%* ... %>` it's just JavaScript.
+
+```js{title="jot-insert.md"}
+<%*
+// Jot title is a Zettel timestamp and optional topic
+const timestamp = tp.date.now("YYYYMMDDhhmm");
+let title = timestamp;
+
+const jotSubject = await tp.system.prompt("What's this jot about?");
+
+if (jotSubject) {
+	title = `${title} ${jotSubject}`;
+}
+
+// Where I keep my quick jots
+const targetPath = "jots";
+
+// The template used to generate the new jot
+const templateName = "_templates/jot-new";
+
+// Create the folder object
+let folder = app.vault.getAbstractFileByPath(targetPath);
+// Get the template file content
+let templateFile = await tp.file.find_tfile(templateName);
+let rawContent = await app.vault.read(templateFile);
+
+// Create the new file in the folder from the template (do not open it by default)
+await tp.file.create_new(rawContent, title, false, folder);
+
+// Insert a link at the current cursor position to the new file
+const link = `[[${title}]]`;
+tR += link;
+%>
+```
+
+This template sets the content of the new file. If I provided something for a
+topic when invoking `jot-insert.md`, that will be used as the display title.
+
+Without syntax highlighting. Markdown, YAML, and JavaScript all mixed in
+--- can Hugo / Chroma even do that?
+
+```text{title="jot-new.md"}
+---
+<%*
+const fileTitle = tp.file.title;
+let pageTitle = fileTitle;
+
+if (fileTitle.length > 12) {
+	pageTitle = fileTitle.slice(13);
+}
+-%>
+title: <% pageTitle %>
+created_at: <% tp.file.creation_date() %>
+tags:
+- jot
+---
+
+up:: <% `[[${tp.file.creation_date('gggg-MM-DD')}]]` %>
+
+# <% pageTitle %>
+
+<% tp.file.cursor() %>
+```
+
+Got the `up::` link there for the [Breadcrumbs][breadcrumbs]. That way the jot
+links back to whatever day I made the jot, even if it's a jot for some
+unrelated topic. "When?" is as important of a question as "what?" when I'm
+trying to track my thoughts.
+
+[breadcrumbs]: https://skepticmystic.github.io/breadcrumbs/
+
+Looks a bit like [Zettelkasten][zettel], but the only thing intentionally
+Zettel about it is the timestamp.
+
+Been focusing on the less outliner-oriented note systems to simplify copy and
+paste to / from the outside world. But that means a single page can get
+unwieldy if I'm not careful. Now I can link out for stuff like meeting notes
+and whatever to keep my daily notes from become 10,000 word walls of text.
+
+[zettel]: https://zettelkasten.de
+
+Oh and I know I can export from Org Mode to whatever I need for pasting. I may
+get there. This is an incremental process. Right now I'm dealing with the fact
+that most of my notes are in one flavor of Markdown or another.

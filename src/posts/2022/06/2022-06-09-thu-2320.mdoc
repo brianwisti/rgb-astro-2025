@@ -1,0 +1,60 @@
+---
+author:
+- Brian Wisti
+categories:
+- note
+date: 2022-06-09 23:20:50-07:00
+draft: false
+tags:
+- workflow
+- obsidian
+title: '[2022-06-09 Thu 23:20]'
+---
+
+Meanwhile, in [Obsidian][obsidian]:
+
+[obsidian]: https://obsidian.md
+
+{{< figure
+  src="/img/2022/2022-06-09-obsidian-types.png"
+  link="/img/2022/2022-06-09-obsidian-types.png"
+  target="_blank"
+  alt="Screenshot of my Obsidian Note Types page, with Dataview table"
+  caption="Using an Obsidian plugin to organize the mess I made in Obsidian." >}}
+
+<!--more-->
+
+[Logseq][logseq] is great. Native outlining, org-like tasks, the power of
+[Datalog][datalog]. But Obsidian has the [Dataview][dataview] plugin. What you
+feed it looks a lot like SQL.
+
+[Logseq]: https://logseq.com
+[datalog]: http://www.learndatalogtoday.org
+[dataview]: https://blacksmithgu.github.io/obsidian-dataview/
+
+```dataview
+TABLE
+  length(rows) as "Notes"
+from ""
+where isa != null
+GROUP BY isa
+SORT isa ASC
+```
+
+I kinda know SQL already. Enough to know what to look up to make a table of
+note types.
+
+| Group       | Notes
+| ----------- | -------
+| Book        | 3
+| Game        | 5
+| Meeting     | 1
+| Movie       | 1
+| Package     | 1
+| Person      | 41
+| Pet         | 4
+| Project     | 1
+| Source Note | 16
+
+Nope. Haven't settled on One True Note System and I likely never will. But at
+least I'm enjoying myself.

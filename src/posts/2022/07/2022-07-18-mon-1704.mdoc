@@ -1,0 +1,56 @@
+---
+author:
+- Brian Wisti
+categories:
+- note
+date: 2022-07-18 17:04:38-07:00
+draft: false
+tags:
+- workflow
+- dendron
+- vs-code
+title: '[2022-07-18 Mon 17:04]'
+---
+
+Figured out how to do [text snippets][vscode-snippets] in Visual Studio Code
+for [Dendron][dendron] notes. My wish for this world is less JSON.
+
+[vscode-snippets]: https://code.visualstudio.com/docs/editor/userdefinedsnippets
+[dendron]: https://www.dendron.so
+
+<!--more-->
+
+Would YAML be better? Maybe, but no. I'm thinking something more like Emacs
+[yasnippet][yasnippet] files. Sure a file for every snippet may sound like
+overkill. It's a heck of a lot easier to figure out what a single template
+looks without filtering from JSON list and then translating from JSON string to
+template string.
+
+[yasnippet]: https://github.com/joaotavora/yasnippet
+
+Anyways, snippets for timestamped list items in Dendron.
+
+[interstitial]: https://betterhumans.pub/replace-your-to-do-list-with-interstitial-journaling-to-increase-productivity-4e43109d15ef
+
+```json
+{
+    "itime": {
+        "prefix": "itime",
+        "scope": "markdown",
+        "body": "- **$CURRENT_HOUR:$CURRENT_MINUTE:** ",
+        "description": "timestamp for interstitial notes"
+    },
+    "inow": {
+        "prefix": "inow",
+        "scope": "markdown",
+        "body": "- **$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:** ",
+        "description": "datetime for interstitial notes"
+    }
+}
+```
+
+Handy for [interstitial journaling][interstitial]. Take the claims about
+interstitial journaling with as much salt as you need. I use timestamped notes
+to remember when I did, said, or thought a thing.
+
+For some of us "time tracking" is just a tool to — um — track time.

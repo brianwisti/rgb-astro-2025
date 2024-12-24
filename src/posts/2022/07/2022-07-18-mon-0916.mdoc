@@ -1,0 +1,30 @@
+---
+author:
+- Brian Wisti
+categories:
+- note
+date: 2022-07-18 09:16:25-07:00
+draft: false
+tags:
+- cats
+- nushell
+title: '[2022-07-18 Mon 09:16]'
+---
+
+Cats haven't checked in on me for a bit. It's nice. A bit creepy, but nice.
+
+{{< figure
+    src="/img/2022/2022-07-18-cats.jpg"
+    caption="Okay human, now do something interesting." >}}
+
+<!--more-->
+
+Oh and for a little bit of [Nushell][nushell] geekery, here's how I copied the newest
+photo from Dropbox sync to the folder for this post — since neither are named
+in a readily accessible pattern for quick typing:
+
+```nushell
+cp (ls ~/Dropbox/Camera | last | get name) $"(ls content/posts/2022/07/ | last | get name)/cats.jpg"
+```
+
+[nushell]: https://nushell.sh

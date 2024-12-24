@@ -1,0 +1,29 @@
+---
+categories:
+- note
+date: 2022-05-12 09:21:00-07:00
+draft: false
+tags:
+- workflow
+- emacs
+title: '[2022-05-12 Thu 09:17]'
+---
+
+Seeing if I set up `ox-hugo` [auto-export](https://ox-hugo.scripter.co/doc/auto-export-on-saving/) correctly. Yep, though it didn't apply until I reverted / reloaded this Org buffer.
+
+`SITE/.dir-locals.el` looks like this:
+
+<a id="code-snippet--.dir-locals.el"></a>
+```elisp
+(("content-org/"
+  . ((org-mode . ((eval . (org-hugo-auto-export-mode)))))))
+```
+
+Now `ox-hugo` exports the current subtree every time I save.
+
+```text
+Saving file /home/random/Sites/rgb-life/content/posts/2022/05/1652372242.md...
+Wrote /home/random/Sites/rgb-life/content/posts/2022/05/1652372242.md
+```
+
+Okay cool. Anyways, back to work.
