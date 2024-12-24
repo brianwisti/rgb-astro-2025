@@ -190,7 +190,7 @@ Okay, that’s actually worth looking at. There’s some CSS styling, but I
 won’t get into that. Just spend a few days on
 [CSS-Tricks](https://css-tricks.com/) and have fun.
 
-![simple h-card screenshot](/img/2020/hcard-photo.png "h-card with bio and photo")
+![simple h-card screenshot](@img/2020/hcard-photo.png "h-card with bio and photo")
 
 ### Linking your card to other services
 
@@ -232,7 +232,7 @@ a link to this site. The site includes a rel-me link to my hackers.town
 profile. Mastodon users looking at my profile see a verified connection
 between each.
 
-![screenshot of Mastodon profile page](/img/2020/hackers-town-profile.png
+![screenshot of Mastodon profile page](@img/2020/hackers-town-profile.png
   "That's how you get a verified check on Mastodon sites")
 
 ### RelMeAuth
@@ -243,7 +243,7 @@ IndieWeb authenticators like [IndieLogin](https://indielogin.com/) and
 [IndieAuth](https://indieauth.net/) see rel-me links to known providers,
 they let you verify your site and yourself through those providers.
 
-![screenshot of indielogin.com authentication](/img/2020/indielogin-auth.png
+![screenshot of indielogin.com authentication](@img/2020/indielogin-auth.png
   "I can use my Twitter or Github accounts to authenticate")
 
 #### Specifying my main page
@@ -257,7 +257,7 @@ me. Which one is the real me? I make that link the `u-uid`.
 </a>:
 ```
 
-![screenshot of updated h-card](/img/2020/hcard-relme.png "Now my name links to my `u-uid`")
+![screenshot of updated h-card](@img/2020/hcard-relme.png "Now my name links to my `u-uid`")
 
 ### Add some details
 
@@ -366,7 +366,7 @@ Okay so what do I have now?
 </section>
 ```
 
-![image](/img/2020/hcard-details.png "Some styling distinguishes identity links from details")
+![image](@img/2020/hcard-details.png "Some styling distinguishes identity links from details")
 
 ### Validate me
 
@@ -379,14 +379,14 @@ The [mf2 validator](https://pin13.net/mf2/) shows you the results of
 parsing either a URL or text provided by you, which makes it useful for
 double-checking your h-card while building it.
 
-![mf2 validator JSON output screenshot](/img/2020/mf2-validator.png
+![mf2 validator JSON output screenshot](@img/2020/mf2-validator.png
   "The mf2 validator produces JSON from your h-card")
 
 The [IndieWebify.me validator](https://indiewebify.me/validate-h-card/)
 styles its report for readability. It even offers suggestions for common
 details you could add.
 
-![IndieWebify.me h-card suggestion screenshot](/img/2020/validated-hcard.png "IndieWebify.me h-card summary")
+![IndieWebify.me h-card suggestion screenshot](@img/2020/validated-hcard.png "IndieWebify.me h-card summary")
 
 It doesn’t accept raw HTML, though. You need to provide a URL, which is
 less handy for an in-development h-card.

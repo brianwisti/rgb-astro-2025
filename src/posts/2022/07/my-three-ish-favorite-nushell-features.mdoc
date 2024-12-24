@@ -44,7 +44,7 @@ I'm on [Hugo][hugo] again, which means I have the Hugo CLI. `hugo list all` prin
 hugo list all
 ```
 
-![output of command is a dense blast of CSV text](/img/2022/hugo-list-all.png "Yep that's CSV all right.")
+![output of command is a dense blast of CSV text](@img/2022/hugo-list-all.png "Yep that's CSV all right.")
 
 ## Nushell feature zero point five: Piping output
 
@@ -58,7 +58,7 @@ Of course, the result of that pipe is something a little different from other sh
 
 ## Nushell feature one: tables
 
-![screenshot of nushell table display of hugo articles](/img/2022/from-csv.png "It's pretty. Just needs a little tidying up.")
+![screenshot of nushell table display of hugo articles](@img/2022/from-csv.png "It's pretty. Just needs a little tidying up.")
 
 There's the table output that I find so appealing. Course, a pretty table is not so unusual these days. You can pipe from `hugo` to any number of CSV processing tools and pretty printers available to install on your machine.
 
@@ -72,7 +72,7 @@ Nushell includes *many* commands. You can see for yourself skimming through the 
 
 [cmd-ref]: https://www.nushell.sh/book/command_reference.html
 
-![initial tab-completion display of functions available in Nushell](/img/2022/nushell-tab.png "or hit TAB on a blank line")
+![initial tab-completion display of functions available in Nushell](@img/2022/nushell-tab.png "or hit TAB on a blank line")
 
 How many? Let's ask the shell by piping `help commands` to the `length` command.
 
@@ -94,7 +94,7 @@ All these commands are organized into categories. To see what categories, we can
 help commands | group-by category
 ```
 
-![all of the Nushell command categories](/img/2022/group-by-category.png "Not sorted or anything, but you get the idea")
+![all of the Nushell command categories](@img/2022/group-by-category.png "Not sorted or anything, but you get the idea")
 
 
 ### Listing only commands in a specific category with `where`
@@ -105,7 +105,7 @@ I read ahead, so I know that `from csv` is under the "formats" category. We use 
 help commands | where category =~ formats
 ```
 
-![a table of commands in the "formats" category](/img/2022/format-commands.png "`to md`? Interesting!")
+![a table of commands in the "formats" category](@img/2022/format-commands.png "`to md`? Interesting!")
 
 {% note %}
 I bet the Perl devs perked up seeing that `=~`. Yes it's a regular expression! But it's almost definitely not a Perl regular expression. I haven't gone past literal substring matches yet, and the Nushell [regex documentation][nu-regex] page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust [regex crate][regex-crate] documentation and figure out the differences yourself.
@@ -166,7 +166,7 @@ help to md
 
 One more screenshot, because Nushell help is just so *pretty*.
 
-![screenshot of Nushell builtin help, with usage, flags, and examples](/img/2022/help-to-md.png "syntax highlighted examples? yes please")
+![screenshot of Nushell builtin help, with usage, flags, and examples](@img/2022/help-to-md.png "syntax highlighted examples? yes please")
 
 ### Applying what we've got to the Hugo list
 

@@ -467,7 +467,7 @@ Asciidoctor transforms unsafe characters into HTML entities.
 
 And it looks kind of embarrassing.
 
-![screenshot showing image shortcode instead of an image](/img/2020/escaped-shortcode.png "my shortcode got escaped")
+![screenshot showing image shortcode instead of an image](@img/2020/escaped-shortcode.png "my shortcode got escaped")
 
 The solution? Wrap that shortcode in a [passthrough macro][passthrough-macro].
 
@@ -475,7 +475,7 @@ The solution? Wrap that shortcode in a [passthrough macro][passthrough-macro].
 pass:[{{​< show-figure image="cover.png" description="Taskwarrior edit view" >}}]
 ```
 
-![correct shortcode](/img/2020/correct-shortcode.png "using a passthrough macro")
+![correct shortcode](@img/2020/correct-shortcode.png "using a passthrough macro")
 
 Much better.
 

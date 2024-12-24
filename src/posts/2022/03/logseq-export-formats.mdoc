@@ -37,7 +37,7 @@ Logseq can store pages in Markdown or [org][org] format. I have been using the M
 
 [org]: https://orgmode.org/
 
-![the raw Logseq Markdown for this page](/img/2022/Screenshot_from_2022-03-13_07-06-34_1647180542104_0.png "the raw Logseq Markdown for this page")
+![the raw Logseq Markdown for this page](@img/2022/Screenshot_from_2022-03-13_07-06-34_1647180542104_0.png "the raw Logseq Markdown for this page")
 
 As the screenshot shows, it's not quite the Markdown we're used to.
 
@@ -64,7 +64,7 @@ So what are our options?
 
 Exports all of your public pages to HTML, with a styled, interactive interface for viewing them. Only problem with that is — well— I don't have any public pages.
 
-![fancy HTML page listing with no pages](/img/2022/image_1647178655890_0.png)
+![fancy HTML page listing with no pages](@img/2022/image_1647178655890_0.png)
 
 I have 594 pages in this graph. I wouldn't be surprised if I had over 600 by the end of the end of the day. — _note: 610 by 3pm, when I'm getting ready to publish_ — I'm not going to go through each of those, split private from public content, and then mark which of those 600 pages are public. That's a kind of tediousness I don't enjoy.
 
@@ -72,7 +72,7 @@ I have 594 pages in this graph. I wouldn't be surprised if I had over 600 by the
 
 Takes a bit, but eventually drops a zip file containing mostly mundane Markdown.
 
-![plain exported markdown for this page](/img/2022/Screenshot_from_2022-03-13_07-03-45_1647180250247_0.png)
+![plain exported markdown for this page](@img/2022/Screenshot_from_2022-03-13_07-03-45_1647180250247_0.png)
 
 Course, there's still a fair chunk for me to parse.
 
@@ -86,7 +86,7 @@ Course, there's still a fair chunk for me to parse.
 
 [opml]: https://indieweb.org/OPML
 
-![Screenshot from 2022-03-13 07-57-59.png](/img/2022/Screenshot_from_2022-03-13_07-57-59_1647183496460_0.png "OPML export for this page")
+![Screenshot from 2022-03-13 07-57-59.png](@img/2022/Screenshot_from_2022-03-13_07-57-59_1647183496460_0.png "OPML export for this page")
 
 Is it my imagination, or is there _less_ useful information here than in the standard Markdown export?
 
@@ -98,7 +98,7 @@ Logseq queries make heavy use of [EDN][edn]. Maybe someday I'll learn it.
 
 [edn]: https://github.com/edn-format/edn
 
-![EDN view of the graph focusing on highlights of this page](/img/2022/Screenshot_from_2022-03-13_08-15-24_1647184542358_0.png)
+![EDN view of the graph focusing on highlights of this page](@img/2022/Screenshot_from_2022-03-13_08-15-24_1647184542358_0.png)
 
 Wow. No zip file here. Nearly 34,000 lines of unfamiliar but _very_ structured text. Every node has a UUID, which could simplify organizing them when importing to my site, or processing them with another tool like [sqlite-utils][sqlite-utils].
 
@@ -112,7 +112,7 @@ There's even [edn_format](https://github.com/swaroopch/edn_format), a Python lib
 
 This has pretty much the same structure as the EDN export, with the same benefits and limitations I saw with that. OTOH you don't need to install an extra library to parse it, so there's that.
 
-![JSON view of the graph focusing on highlights of this page](/img/2022/Screenshot_from_2022-03-13_08-47-22_1647186468168_0.png)
+![JSON view of the graph focusing on highlights of this page](@img/2022/Screenshot_from_2022-03-13_08-47-22_1647186468168_0.png)
 
 ### Export as Roam JSON
 
@@ -120,7 +120,7 @@ Well of course [Roam][roam] has its own JSON format.
 
 [roam]: https://roamresearch.com/
 
-![Roam JSON view of the graph focusing on this page](/img/2022/Screenshot_from_2022-03-13_08-47-22_1647186731737_0.png)
+![Roam JSON view of the graph focusing on this page](@img/2022/Screenshot_from_2022-03-13_08-47-22_1647186731737_0.png)
 
 Too bad it holds so much less useful information than Logseq's main JSON export.
 
