@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:htaccess": "tsx build_scripts/build_htaccess.ts",
     "preview": "astro preview",
     "astro": "astro",
     "clean": "rimraf dist"
@@ -20,6 +21,9 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
-    "sass": "^1.83.0"
+    "fast-glob": "^3.3.2",
+    "gray-matter": "^4.0.3",
+    "sass": "^1.83.0",
+    "tsx": "^4.19.2"
   }
 }
