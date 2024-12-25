@@ -1,4 +1,5 @@
 ---
+import MarkdocImage from "./MarkdocImage.astro";
 import PostMetadata from "./PostMetadata.astro";
 
 interface Post {
@@ -7,6 +8,7 @@ interface Post {
         date: Date;
         tags: string[];
         categories: string[];
+        cover_image?: string;
     };
     id: string;
 }
@@ -16,7 +18,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, date, tags, categories } = post.data;
+const { title, date, tags, categories, cover_image } = post.data;
 ---
 
 <section>
@@ -24,19 +26,47 @@ const { title, date, tags, categories } = post.data;
         <a href={`/post/${post.id}/`}>
             {title}
         </a>
-        <PostMetadata {date} {categories} {tags} />
+        {
+            cover_image ? (
+                <MarkdocImage
+                    src={cover_image}
+                    alt=""
+                    widths={[300, 400, 500]}
+                />
+            ) : (
+                ""
+            )
+        }
     </header>
+    <footer>
+        <PostMetadata {date} {categories} {tags} />
+    </footer>
 </section>
 
 <style>
     section {
-        border-bottom: 1px solid var(--sand-3);
+        border: 1px solid var(--sand-3);
+        background-color: var(--sand-1);
+        border-radius: var(--radius-2);
         margin-bottom: 1rem;
-        padding-bottom: 1rem;
-    }
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
-    header {
-        font-size: var(--font-size-3);
-        margin-bottom: 0.5rem;
+        header {
+            font-size: var(--font-size-3);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+
+            a {
+                color: var(--sand-11);
+                text-decoration: none;
+            }
+        }
+
+        figure {
+            margin: 0;
+        }
     }
 </style>

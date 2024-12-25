@@ -44,7 +44,5 @@ const { year, posts } = Astro.props;
 ---
 
 <PageLayout title={`Posts from ${year}`}>
-    <p>Blog posts from {year} go here.</p>
-
-    <PostListing posts={posts} />
+    <PostListing {posts} />
 </PageLayout>

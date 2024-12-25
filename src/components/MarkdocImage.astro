@@ -4,7 +4,8 @@ import { Picture } from "astro:assets";
 interface Props {
     src: string;
     alt: string;
-    width: number;
+    widths?: number[];
+    sizes?: string;
     height: number;
     caption: string;
 }
@@ -14,23 +15,30 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 
 const { src, alt, caption } = Astro.props;
-let assetPath = src.replace(/^@img/, "/src/assets/img");
+let assetPath = src.replace(/^[@\/]img/, "/src/assets/img");
 
 if (!images[assetPath]) {
     throw new Error(`Image not found: ${assetPath}`);
 }
 
 const image = images[assetPath]();
+let { widths, sizes } = Astro.props;
+
+if (!widths) {
+    widths = [600, 800, 1000, image.width];
+}
+
+if (!sizes) {
+    sizes = "";
+    for (let i = 0; i < widths.length; i++) {
+        sizes += `(max-width: ${widths[i]}px) ${widths[i]}px, `;
+    }
+    sizes += `${image.width}px`;
+}
 ---
 
 <figure>
-    <Picture
-        src={image}
-        {alt}
-        widths={[600, 800, 1000, image.width]}
-        sizes={`(max-width: 800px) 600px, (max-width: 1000px) 800px, (max-width: 1200px) 1000px, ${image.width}px`}
-        formats={["avif", "webp"]}
-    />
+    <Picture src={image} {alt} {widths} {sizes} formats={["avif", "webp"]} />
     {caption && <figcaption>{caption}</figcaption>}
 </figure>
 
@@ -39,6 +47,8 @@ const image = images[assetPath]();
         height: auto;
         margin: auto;
         max-width: 100%;
+        object-fit: cover;
+        border-radius: var(--radius-2);
 
         @container (min-width: 800px) {
             max-width: 1000px;

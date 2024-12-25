@@ -1,11 +1,7 @@
 ---
-import * as path from "node:path";
-
+import MarkdocImage from "@components/MarkdocImage.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import PostMetadata from "@components/PostMetadata.astro";
-import CategoryLink from "@components/CategoryLink.astro";
-import TagLink from "@components/TagLink.astro";
-import Timestamp from "@components/Timestamp.astro";
 
 import { getCollection, render } from "astro:content";
 
@@ -22,13 +18,14 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { date, categories, tags } = post.data;
+const { date, categories, tags, cover_image, title } = post.data;
 const { Content } = await render(post);
 ---
 
-<PageLayout title={post.data.title}>
+<PageLayout {title}>
     <article>
         <header>
+            {cover_image ? <MarkdocImage src={cover_image} alt="" /> : ""}
             <PostMetadata {date} {categories} {tags} />
         </header>
         <Content />

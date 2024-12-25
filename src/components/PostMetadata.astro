@@ -20,17 +20,24 @@ const { date, categories, tags } = Astro.props;
     </span>
 </p>
 
-<style>
+<style type="text/scss">
     p {
         font-size: var(--font-size-1);
         margin-block-end: 0;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 12ch auto;
+        grid-gap: 1ch;
         align-items: center;
-    }
 
-    span {
-        display: flex;
-        flex-wrap: wrap;
+        timestamp {
+            flex-shrink: 0;
+            display: inline-block;
+        }
+
+        span {
+            justify-content: end;
+            display: flex;
+            flex-wrap: wrap;
+        }
     }
 </style>

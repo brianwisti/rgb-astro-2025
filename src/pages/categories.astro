@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
+import PageLayout from "@layouts/PageLayout.astro";
 import CategoryLink from "@components/CategoryLink.astro";
 
 type Post = {
@@ -36,17 +36,17 @@ async function getCategories() {
 const categories = await getCategories();
 ---
 
-<Layout title="Categories">
+<PageLayout title="Categories">
     <ul>
         {
             Array.from(categories.keys())
                 .sort()
                 .map((category) => (
                     <li>
-                        <CategoryLink tag={category} />(
+                        <CategoryLink category={category} />(
                         {categories.get(category)?.length})
                     </li>
                 ))
         }
     </ul>
-</Layout>
+</PageLayout>
