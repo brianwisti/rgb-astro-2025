@@ -25,18 +25,18 @@ const { title, date, tags, categories, cover_image } = post.data;
     <header>
         <a href={`/post/${post.id}/`}>
             {title}
+            {
+                cover_image ? (
+                    <MarkdocImage
+                        src={cover_image}
+                        alt=""
+                        widths={[300, 400, 500]}
+                    />
+                ) : (
+                    ""
+                )
+            }
         </a>
-        {
-            cover_image ? (
-                <MarkdocImage
-                    src={cover_image}
-                    alt=""
-                    widths={[300, 400, 500]}
-                />
-            ) : (
-                ""
-            )
-        }
     </header>
     <footer>
         <PostMetadata {date} {categories} {tags} />
