@@ -46,5 +46,11 @@ export default defineMarkdocConfig({
         tag: "string",
       },
     },
+    video: {
+      render: component("./src/components/Video.astro"),
+      attributes: {
+        id: "string",
+      },
+    },
   },
 });

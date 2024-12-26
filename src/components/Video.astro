@@ -1,0 +1,16 @@
+---
+import { YouTube } from "astro-embed"
+
+interface Props {
+  id: string
+}
+
+const { id } = Astro.props
+---
+<YouTube {id} />
+
+<style>
+  lite-youtube {
+    margin: 1rem auto;
+  }
+</style>
