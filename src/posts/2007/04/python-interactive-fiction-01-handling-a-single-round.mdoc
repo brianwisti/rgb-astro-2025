@@ -26,7 +26,7 @@ limit ourselves to Scene 1 to stay focussed.
 First you want to show the description. Start a new Python file in your favorite
 [editor][], or in IDLE with the menu command "File" -> "New".
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 
@@ -42,11 +42,13 @@ Python would complain at us if we left that out. Let's run the script and see wh
 
 Save your new file as `ifiction.py` and run it. Press the `F5` key to run the script if you are using IDLE.
 
-    $ python ifiction.py
+```
+$ python ifiction.py
 
-    You are standing in a field. To the north of you are some mountains, to the ea
-    st of you is a forest, to the west of you is a cave, and to the south of you i
-    s a valley.
+You are standing in a field. To the north of you are some mountains, to the ea
+st of you is a forest, to the west of you is a cave, and to the south of you i
+s a valley.
+```
 
 This may not be happening for you, but when I run the script the description text
 gets cut off at inconvenient points. What happens next is a little more advanced
@@ -69,7 +71,7 @@ You aren't automatically carrying all of those libraries around in your script, 
 You need to use the `import` command to make the functions in a library available to
 your program.
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 
@@ -93,10 +95,12 @@ but for now I will stick with the more explicit version because it is easier for
 
 See what it looks like now?
 
-    $ python ifiction.py
-    You are standing in a field. To the north of you are some mountains,
-    to the east of you is a forest, to the west of you is a cave, and to
-    the south of you is a valley.
+```
+$ python ifiction.py
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+```
 
 Of course, if the wrapping text isn't an issue for you, feel free to leave out the
 `textwrap` related code completely.
@@ -114,7 +118,7 @@ be literals or other variables - that holds each value in order. This lets you a
 for the third item in a list, or ask for each value in order. Let's start by creating
 and displaying the paths.
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 
@@ -140,14 +144,16 @@ for path in paths:
 
 What does it look like now?
 
-    $ python ifiction.py
-    You are standing in a field. To the north of you are some mountains,
-    to the east of you is a forest, to the west of you is a cave, and to
-    the south of you is a valley.
-    Go to the mountains
-    Go into the forest
-    Go into the cave
-    Go to the valley
+```
+$ python ifiction.py
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+Go to the mountains
+Go into the forest
+Go into the cave
+Go to the valley
+```
 
 I want to do a bit of formatting to break things up, but you get the idea of what
 is going on. We have created a variable called `paths` to hold our list of paths.
@@ -175,7 +181,7 @@ The first time through the list, `path` is set to *"Go to the mountains"*, the s
 What is Python going to do with `path`? That is decided in the indented line after the colon `:`
 character.
 
-``` python
+```python
 for path in paths:
     print path
 ```
@@ -208,8 +214,10 @@ accessing list members.
 It normally takes a single argument: the upper edge of the range. All the numbers in
 the list will be *less than* the upper edge. Here is a simple example:
 
-    >>> range(3)
-    [0, 1, 2]
+```
+>>> range(3)
+[0, 1, 2]
+```
 
 `range` can take additional arguments to set the starting number and the step size,
 but this is all we want for now. Oh, notice that the numbering starts at zero. This
@@ -226,17 +234,21 @@ So let's try it out. It is easy to use the indexing operation. Add the left brac
 the index number of the item you want, and then the right bracket. Go back to the
 Python shell and try it out for yourself, getting the value at index 1 of a list:
 
-    >>> items = [ 'apples', 'chocolate bugs', 'bananas']
-    >>> items[1]
-    'chocolate bugs'
+```
+>>> items = [ 'apples', 'chocolate bugs', 'bananas']
+>>> items[1]
+'chocolate bugs'
+```
 
 That was a little confusing, wasn't it? We were expecting apples but got chocolate 
 bugs instead You would *think* that the index would be easy: the first item would 
 be at index 1, the second at index 2, and so on. Unfortunately, that's not the way
 indexes work in Python. Numbering starts with the first item being zero.
 
-    >>> items[0]
-    'apples'
+```
+>>> items[0]
+'apples'
+```
 
 Zero-based indexing is one of those language features that's there for historical reasons.
 It made perfect sense a long time ago in another language, but now it just serves to 
@@ -254,20 +266,24 @@ hand and work with that number, but that is far too much work. Use Python's buil
 `len` function. `len` is blissfully simple. You hand it a list, and it tells you
 how many items are in the list. Try it yourself if you still have that shell open:
 
-    >>> len(items)
-    3
+```
+>>> len(items)
+3
+```
 
 There are three items in the list, so the index starts at zero and ends at two. `len`
 works perfectly with `range`, which hands you a list of numbers starting at zero and
 ending at one less than the upper edge. Back to the shell, where we'll step through
 our list using 'len', 'range', and list indexing.
 
-    >>> for index in range(len(items)):
-    ...     print index, items[index]
-    ...
-    0 apples
-    1 chocolate bugs
-    2 bananas
+```
+>>> for index in range(len(items)):
+...     print index, items[index]
+...
+0 apples
+1 chocolate bugs
+2 bananas
+```
 
 Oh, I didn't mention blocks in the shell, did I? When Python thinks you are in a block,
 it prints `...` instead of `>>>`. Indent by hitting spaces (or I just use the tab key
@@ -281,7 +297,7 @@ updating this section as soon as I find out what that name is.
 This has been a quick crash course through list handling in Python. Let's apply what 
 we've learned about lists to our interactive story.
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 
@@ -320,13 +336,15 @@ are constructed in the future.
 
 Run the script and see what you get.
 
-    You are standing in a field. To the north of you are some mountains,
-    to the east of you is a forest, to the west of you is a cave, and to
-    the south of you is a valley.
-      1 Go to the mountains
-      2 Go into the forest
-      3 Go into the cave
-      4 Go to the valley
+```
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+    1 Go to the mountains
+    2 Go into the forest
+    3 Go into the cave
+    4 Go to the valley
+```
 
 It's starting to look like something! Now go take a break for a minute. I threw a
 lot of information at you all at once, and you may still need to process it. You at least need
@@ -341,7 +359,7 @@ I am pleased that we have the scene description code working, but user input is 
 All we need is `raw_input`, which we encountered in the initial [Python Babysteps tutorial][].
 Add a line to get user input and another line to show the result.
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 
@@ -372,15 +390,17 @@ print "Choice", i, "-", paths[i-1]
 
 Running this code is very exciting indeed:
 
-    You are standing in a field. To the north of you are some mountains,
-    to the east of you is a forest, to the west of you is a cave, and to
-    the south of you is a valley.
-      1 Go to the mountains
-      2 Go into the forest
-      3 Go into the cave
-      4 Go to the valley
-    Make a selection: 3
-    Choice 3 - Go into the cave
+```
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+    1 Go to the mountains
+    2 Go into the forest
+    3 Go into the cave
+    4 Go to the valley
+Make a selection: 3
+Choice 3 - Go into the cave
+```
 
 #### Quitting the game
 
@@ -390,7 +410,7 @@ Our specification mentioned that users may quit the game at any point, so we sho
 Normal choices are numbers and they start at one, so let's take the easy way out and say that zero quits the game. The
 `if` selection [control structure][] can be used to recognize the quit command.
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 
@@ -442,13 +462,15 @@ User input needs to be in the form of a number. Not only that, but that number n
 turns out to be false, Python panics. Let's explore this in the shell. As a special treat, I'll show you a glimpse at making functions
 in Python.
 
-    >>> def get_index():
-    ...     list = [ 10, 20, 30 ]
-    ...     prompt = "Pick a number (0 - 2): "
-    ...     index = int( raw_input(prompt) )
-    ...     print list[index]
-    ...
-    >>>
+```
+>>> def get_index():
+...     list = [ 10, 20, 30 ]
+...     prompt = "Pick a number (0 - 2): "
+...     index = int( raw_input(prompt) )
+...     print list[index]
+...
+>>>
+```
 
 If you make a mistake, hit Enter twice to end the function definition and 
 start over. Don't forget your indentation! Incidentally, I chose to put the 
@@ -457,27 +479,33 @@ were making me a little dizzy.
 
 Test `get_index` with a valid number first.
 
-    >>> get_index()
-    Pick a number (0 - 2): 0
-    10
+```
+>>> get_index()
+Pick a number (0 - 2): 0
+10
+```
 
 What happens when you enter a number that's too big? Try it and see.
 
-    >>> get_index()
-    Pick a number (0 - 2): 20
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in ?
-      File "<stdin>", line 5, in get_index
-    IndexError: list index out of range
+```
+>>> get_index()
+Pick a number (0 - 2): 20
+Traceback (most recent call last):
+    File "<stdin>", line 1, in ?
+    File "<stdin>", line 5, in get_index
+IndexError: list index out of range
+```
 
 How about when you enter something that's not a number again? Once again, TIAS *(Try It And See)*.
 
-    >>> get_index()
-    Pick a number (0 - 2): banana
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in ?
-      File "<stdin>", line 4, in get_index
-    ValueError: invalid literal for int(): banana
+```
+>>> get_index()
+Pick a number (0 - 2): banana
+Traceback (most recent call last):
+    File "<stdin>", line 1, in ?
+    File "<stdin>", line 4, in get_index
+ValueError: invalid literal for int(): banana
+```
 
 Python raises an *exception* at you whenever it encounters a situation it can't handle on its own.
 An exception is a special type of object that is specially used for errors, accidents, or plain old
@@ -486,7 +514,7 @@ That is going to require a new kind of block: The `try` block. This sort of bloc
 is easier to understand in the context of a full program, so let's go back to `ifiction.py`. We'll start with
 catching every kind of exception in one go:
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 
@@ -534,16 +562,18 @@ want to look at right now. We'll just put up a single `except` block that will
 catch every exception raised within the `try` block.  We can test the code by 
 entering a number that is too large.
 
-    You are standing in a field. To the north of you are some mountains,
-    to the east of you is a forest, to the west of you is a cave, and to
-    the south of you is a valley.
-            1 Go to the mountains
-            2 Go into the forest
-            3 Go into the cave
-            4 Go to the valley
-            (0 Quit)
-    Make a selection: 20
-    Choice 20 - 20 is not a valid selection!
+```
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go into the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection: 20
+Choice 20 - 20 is not a valid selection!
+```
 
 This is odd-looking. Our error message prints at exactly the spot where the 
 exceptional situation was encountered: trying to access `paths[19]`.  Well, at 
@@ -553,7 +583,7 @@ look for an error. I think it would be a little cleaner to put the choice
 description in its own variable before printing it.  That way we get an 
 exception before we try to give normal feedback to the user.
 
-``` python
+```python
 try:
     choice = int( raw_input("Make a selection: ") )
 
@@ -573,38 +603,42 @@ Python will raise the exception about bad indexing here, instead of in the
 middle of printing out feedback. We have also made the code more readable in 
 the process, which is a nice thing.
 
-    You are standing in a field. To the north of you are some mountains,
-    to the east of you is a forest, to the west of you is a cave, and to
-    the south of you is a valley.
-            1 Go to the mountains
-            2 Go into the forest
-            3 Go into the cave
-            4 Go to the valley
-            (0 Quit)
-    Make a selection: 20
-    20 is not a valid selection!
+```
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go into the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection: 20
+20 is not a valid selection!
+```
 
 Our input code handles bad indexes. Test the code again by entering a non-number for `choice`.
 
-    You are standing in a field. To the north of you are some mountains,
-    to the east of you is a forest, to the west of you is a cave, and to
-    the south of you is a valley.
-            1 Go to the mountains
-            2 Go into the forest
-            3 Go into the cave
-            4 Go to the valley
-            (0 Quit)
-    Make a selection: steak and eggs
-    Traceback (most recent call last):
-      File "ifiction.py", line 35, in ?
-        print choice, "is not a valid selection!"
-    NameError: name 'choice' is not defined
+```
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go into the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection: steak and eggs
+Traceback (most recent call last):
+    File "ifiction.py", line 35, in ?
+    print choice, "is not a valid selection!"
+NameError: name 'choice' is not defined
+```
 
 Oops. I raised a whole new exception because `choice` isn't defined until *after* 
 it's converted to a number, but I referred to it in the `except` block. Another 
 intermediate variable will save us from that error.
 
-``` python
+```python
 try:
     choice = raw_input("Make a selection: ")
     menu_selection = int(choice)
@@ -629,15 +663,17 @@ expression and later replace it with a variable when I think it would make my
 meaning clearer.  The "start sloppy and refine as you go" approach happens to 
 work for me, but use whatever tactic you are most comfortable with.
 
-    Make a selection: an iced coffee would good right now
-    an iced coffee would good right now is not a valid selection!
+```
+Make a selection: an iced coffee would good right now
+an iced coffee would good right now is not a valid selection!
+```
 
 Right. We can recognize bad input from the user. What do we want to do about it? 
 The best approach may be to continue asking the user for input until we get something 
 acceptable for the next step that she wants to take. We can use a simple `while` loop 
 [control structure][] to handle this.
 
-``` python
+```python
 # Keep asking for input until we have a valid choice for the next step
 next_step = None
 while next_step == None:
@@ -659,12 +695,14 @@ print "You decided to:", next_step
 
 Now we've given our user endless opportunities to enter a valid choice.
 
-    Make a selection: Rad
-    Rad is not a valid selection!
-    Make a selection: 42
-    42 is not a valid selection!
-    Make a selection: 0
-    You decided to: quit
+```
+Make a selection: Rad
+Rad is not a valid selection!
+Make a selection: 42
+42 is not a valid selection!
+Make a selection: 0
+You decided to: quit
+```
 
 What is going on here? We have created a variable `next_step` and assigned it 
 the value of .... `None`? We are going to be using `next_step` in the test 
@@ -695,16 +733,16 @@ that we aren't ready for. Why not? The error messages won't make sense, for
 starters. Say you decided to hit `Control-C` in the program to force quit. 
 Here's what we end up seeing:
 
-    Make a selection: ^CTraceback (most recent call last):
-      File "ifiction.py", line 40, in ?
-        print choice, "is not a valid selection!"
-    NameError: name 'choice' is not defined
+```
+Make a selection: ^CTraceback (most recent call last):
+    File "ifiction.py", line 40, in ?
+    print choice, "is not a valid selection!"
+NameError: name 'choice' is not defined
+```
 
-<aside>
-Please don't explore this with other types of bad input. 
-You could end up with a Python process that won't quit unless you
-force it to quit from your task / process manager.
-</aside>
+{% note title="Warning" %}
+Please don't explore this with other types of bad input. You could end up with a Python process that won't quit unless youforce it to quit from your task / process manager.
+{% /note %}
 
 The problem is that the original exception was a `KeyboardInterrupt`. We don't 
 see that here, because we referred to `choice` which isn't defined until the 
@@ -738,7 +776,7 @@ ValueError
 
 Let's add a handler for IndexError.
 
-``` python
+```python
 while next_step == None:
     try:
         choice = raw_input("Make a selection: ")
@@ -756,23 +794,27 @@ while next_step == None:
 
 This change now handles `IndexError` just fine. Look at what happens when we hit `Control-C`.
 
-    Make a selection: ^CTraceback (most recent call last):
-      File "ifiction.py", line 30, in ?
-        choice = raw_input("Make a selection: ")
-    KeyboardInterrupt
+```
+Make a selection: ^CTraceback (most recent call last):
+    File "ifiction.py", line 30, in ?
+    choice = raw_input("Make a selection: ")
+KeyboardInterrupt
+```
 
 Of course, we're only looking for `IndexError`, so look what happens right now 
 if we enter something that isn't a number.
 
-    Make a selection: mmm coffee
-    Traceback (most recent call last):
-      File "ifiction.py", line 31, in ?
-        menu_selection = int(choice)
-    ValueError: invalid literal for int(): mmm coffee
+```
+Make a selection: mmm coffee
+Traceback (most recent call last):
+    File "ifiction.py", line 31, in ?
+    menu_selection = int(choice)
+ValueError: invalid literal for int(): mmm coffee
+```
 
 Now we add the code to handle `ValueError`.
 
-``` python
+```python
 except IndexError:
     print choice, "is not a valid selection!"
 except ValueError:
@@ -783,14 +825,16 @@ Yes, Python can handle multiple `except` blocks just fine. This can be very
 handy. A calculator program would want to handle "no input" differently from 
 "user tried to divide by zero." What does the program look like with these changes?
 
-    Make a selection: 12
-    12 is not a valid selection!
-    Make a selection: Can I have a banana?
-    Can I have a banana? is not a valid selection!
-    Make a selection: ^CTraceback (most recent call last):
-      File "ifiction.py", line 30, in ?
-        choice = raw_input("Make a selection: ")
-    KeyboardInterrupt
+```
+Make a selection: 12
+12 is not a valid selection!
+Make a selection: Can I have a banana?
+Can I have a banana? is not a valid selection!
+Make a selection: ^CTraceback (most recent call last):
+    File "ifiction.py", line 30, in ?
+    choice = raw_input("Make a selection: ")
+KeyboardInterrupt
+```
 
 Wonderful! Our exception handling code is now behaving politely instead of 
 trying to grab every exception that occurs. Now for the style issue. Both of 
@@ -800,7 +844,7 @@ to do exactly that. It's not something I'm concerned about, though. I am
 comfortable with using the same error message. I *would* prefer to cut down on 
 the repetition.
 
-``` python
+```python
 except (IndexError, ValueError):
     print choice, "is not a valid selection!"
 ```
@@ -820,7 +864,7 @@ things were printing out in my shell. We looked at the common control structures
 examined `try` for trying out code that we know can misbehave. Here's the full source of what we've done so far, along with a couple
 of additional comments intended to clarify what the program is doing.
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 

@@ -17,8 +17,6 @@ tags:
 title: Python Blogger Refresh Part 2 - Settings
 ---
 
-<!--more-->
-
 ## The Idea
 
 [last time]: /post/2009/06/python-blogger-refresh-part-1
@@ -49,7 +47,7 @@ settings from the command line won't be difficult. Three options are needed:
 
 Add those options in `main` with `parser.add_option`.
 
-``` python
+```python
 def main():
     from optparse import OptionParser
     parser = OptionParser()
@@ -94,35 +92,39 @@ def main():
 Let's see how that behaves. First I'll try using the old way, which is now the
 wrong way.
 
-    $ python post-to-blog.py -f python-blogger-part-2-settings.mkd
-    /usr/local/lib/python2.6/dist-packages/gdata/tlslite/utils/cryptomath.py:9: \
-    DeprecationWarning: the sha module is deprecated; use the hashlib module instead
-      import sha
-    Usage: post-to-blog.py [options]
+```
+$ python post-to-blog.py -f python-blogger-part-2-settings.mkd
+/usr/local/lib/python2.6/dist-packages/gdata/tlslite/utils/cryptomath.py:9: \
+DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+Usage: post-to-blog.py [options]
 
-    Options:
-      -h, --help            show this help message and exit
-      -D, --do-tests        Run built-in doctests
-      -f FILENAME, --file=FILENAME
-                            Specify source file for post
-      -a AUTHOR, --author=AUTHOR
-                            The author for this post
-      -e EMAIL, --email=EMAIL
-                            The email of the blog owner
-      -p PASSWORD, --password=PASSWORD
-                            The password of the blog owner
-    Author required. --help for usage
+Options:
+  -h, --help            show this help message and exit
+  -D, --do-tests        Run built-in doctests
+  -f FILENAME, --file=FILENAME
+                        Specify source file for post
+  -a AUTHOR, --author=AUTHOR
+                        The author for this post
+  -e EMAIL, --email=EMAIL
+                        The email of the blog owner
+  -p PASSWORD, --password=PASSWORD
+                        The password of the blog owner
+Author required. --help for usage
+```
 
 That `DeprecationWarning` is coming from inside GData. I won't worry about it for the moment, but
 I *will* keep my eyes open for new releases.
 
 Anyways, how about when running it correctly?
 
-    $ python post-to-blog.py -f python-blogger-part-2-settings.mkd -a "Brian Wisti" \
-    -e "me@here.com" -p "mysecretpassword"
-    /usr/local/lib/python2.6/dist-packages/gdata/tlslite/utils/cryptomath.py:9:     \
-    DeprecationWarning: the sha module is deprecated; use the hashlib module instead
-      import sha
+```
+$ python post-to-blog.py -f python-blogger-part-2-settings.mkd -a "Brian Wisti" \
+-e "me@here.com" -p "mysecretpassword"
+/usr/local/lib/python2.6/dist-packages/gdata/tlslite/utils/cryptomath.py:9:     \
+DeprecationWarning: the sha module is deprecated; use the hashlib module instead
+  import sha
+```
 
 A quick look at the drafts in my Blogspot dashboard confirms that the code works.
 That command line has gotten a bit long, though. How about adding a config file?
@@ -142,7 +144,7 @@ Or `dist-packages`, in Ubuntu's case. Why do they always have to be different?
 The actual config file will be a simple ini-style file spiked with *key*=*value* lines.
 Here's mine:
 
-``` ini
+```ini
 # config/blog.cfg
 [connection]
 author=Brian Wisti
@@ -158,7 +160,7 @@ require poking a little bit at everything, so I'm going to move along slowly.
 
 In `main`, I'll set up the ConfigParser.
 
-``` python
+```python
 def main():
     from optparse import OptionParser
     import ConfigParser
@@ -227,7 +229,7 @@ pieces even after parsing the command line? The behavior I would hope for in an 
 is that it would ask me to fill in the missing blanks. Might as well allow the post filename
 to be one of the blanks.
 
-``` python
+```python
 def main():
     # ...
     if options.password:
@@ -248,18 +250,20 @@ Hey, it works and I don't even have to use a config file if I don't want to!
 
 The only problem is that now I've messed up the way testing behaves.
 
-    $ python post-to-blog.py -D
-    /usr/local/lib/python2.6/dist-packages/gdata/tlslite/utils/cryptomath.py:\
-    9: DeprecationWarning: the sha module is deprecated; use the hashlib modu\
-    le instead
-      import sha
-    filename:
+```
+$ python post-to-blog.py -D
+/usr/local/lib/python2.6/dist-packages/gdata/tlslite/utils/cryptomath.py:\
+9: DeprecationWarning: the sha module is deprecated; use the hashlib modu\
+le instead
+  import sha
+filename:
+```
 
 That's easy enough to fix. I'll just exit after running the tests. You would think I would have
 noticed that before. Why would I? I never used the `-f` flag at the same time as
 the `-D` flag, so this issue wouldn't have come up.
 
-``` python
+```python
 def main():
 # ...
 if options.doTests:

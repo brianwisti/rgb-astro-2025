@@ -24,11 +24,9 @@ user interface and explored one way of storing multiple scenes. This part will
 finally bring the needed glue for the player to move between all of the scenes
 in the story. In other words, we'll have a game!
 
-<!--more-->
-
 You're going to be amazed at how simple this is to do. We'll start with a simple, clumsy approach.
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 
@@ -131,39 +129,41 @@ of exiting the Python system. That's all we need to break out of our loop.
 
 Let's take a look at running the game.
 
-    You are standing in a field. To the north of you are some mountains,
-    to the east of you is a forest, to the west of you is a cave, and to
-    the south of you is a valley.
-            1 Go to the mountains
-            2 Go to the forest
-            3 Go into the cave
-            4 Go to the valley
-            (0 Quit)
-    Make a selection (0 - 4): 1
-    You decided to: Go to the mountains
-    You are standing at the foot of a mountain range. Huge impassable
-    peaks loom over you. There is a cave to the east, and a field south of
-    you leading into a valley.
-            1 Go into the cave
-            2 Go south into the field
-            (0 Quit)
-    Make a selection (0 - 2): 2
-    You decided to: Go south into the field
-    You are standing in a field. To the north of you are some mountains,
-    to the east of you is a forest, to the west of you is a cave, and to
-    the south of you is a valley.
-            1 Go to the mountains
-            2 Go to the forest
-            3 Go into the cave
-            4 Go to the valley
-            (0 Quit)
-    Make a selection (0 - 4): 4
-    You decided to: Go to the valley
-    You are standing in the middle of a huge, beautiful valley. Standing
-    right before you is ... whatever it was you were looking for. Success!
-            (0 Quit)
-    Make a selection (0 - 0): 0
-    Good bye!
+```
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go to the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection (0 - 4): 1
+You decided to: Go to the mountains
+You are standing at the foot of a mountain range. Huge impassable
+peaks loom over you. There is a cave to the east, and a field south of
+you leading into a valley.
+        1 Go into the cave
+        2 Go south into the field
+        (0 Quit)
+Make a selection (0 - 2): 2
+You decided to: Go south into the field
+You are standing in a field. To the north of you are some mountains,
+to the east of you is a forest, to the west of you is a cave, and to
+the south of you is a valley.
+        1 Go to the mountains
+        2 Go to the forest
+        3 Go into the cave
+        4 Go to the valley
+        (0 Quit)
+Make a selection (0 - 4): 4
+You decided to: Go to the valley
+You are standing in the middle of a huge, beautiful valley. Standing
+right before you is ... whatever it was you were looking for. Success!
+        (0 Quit)
+Make a selection (0 - 0): 0
+Good bye!
+```
 
 Congratulations, it's a game!
 
@@ -191,7 +191,7 @@ it harder to figure out what's going on.
 
 This looks like a good candidate right here.
 
-``` python
+```python
 # Get the user selection from the menu.
 prompt = "Make a selection (0 - %i): " % len(paths)
 
@@ -212,7 +212,7 @@ while next_step == None:
 What do we want? We want the user to tell us what she wants to do next. The user picks a number which
 could lead to another scene or quitting. Let us define it in a function.
 
-``` python
+```python
 # Scene definitions
 # ...
 
@@ -259,7 +259,7 @@ back to it later.
 As I was saying - if `select_path` holds the code for getting user input and sends the results to the
 caller, what does our main game code look like now?
 
-``` python
+```python
 # Game starts here.
 scene = scenes["field"]
 
@@ -298,7 +298,7 @@ We still need that `paths` data, so it'll be an argument for our new function as
 
 Here is a first version of `menu_input`, followed by the modified version of `select_path`.
 
-``` python
+```python
 # Function definitions
 def menu_input(paths):
     next_step = None
@@ -339,7 +339,7 @@ phrase the task:
 
 How do you say that in Python? You say it with *recursion*.
 
-``` python
+```python
 def menu_input(paths):
     prompt = "Make a selection (0 - %i): " % len(paths)
 
@@ -371,7 +371,7 @@ when it was being defined in the context of a whole game, but now it is being de
 context. The variable should have a new name which reflects that we are getting and returning the path
 that was selected by the user. `selected_path` ought to do it.
 
-``` python
+```python
 def menu_input(paths):
     prompt = "Make a selection (0 - %i): " % len(paths)
 
@@ -435,7 +435,7 @@ heavily on recursion.
 
 Oh well, I guess I could put this block into its own function.
 
-``` python
+```python
 def play_game(start_scene):
     scene = start_scene
     while 1 == 1:  # Watch out, could be an infinite loop!
@@ -460,7 +460,7 @@ This does make the application code simple. It's just a function call to play th
 the "field" scene. And really, this is as far as I feel like refactoring the game code. Here is the final
 form of our simple interactive fiction game.
 
-``` python
+```python
 # ifiction.py
 #  - An interactive fiction game
 
@@ -593,12 +593,12 @@ code much more complicated. Still, go ahead and give it a shot if you are intere
 
 ## A Bonus Diversion: Scope
 
-<aside>
+{% note %}
 This was originally part of the main text, but it didn't really belong anywhere once
 I had finished writing. I decided to leave it in as one more bout of insane rambling instead of deleting
 it and probably forever forgetting it. At least this way I have something to start from when I *do* feel
 like talking about scope.
-</aside>
+{% /note %}
 
 Hey, you may be wondering how I could get away with using the variable `next_step` in so many places. First, let
 me make a confession. Reusing the same name like that over and over again is poor form. I should be 
@@ -619,21 +619,23 @@ the local variable "masks" the global variable until the end of the function.
 
 It's all fairly confusing, and easiest to demonstrate with another trip to the Python console.
 
-    >>> x = "waffle"
-    >>> def foo():
-    ...     print x
-    ...
-    >>> foo()
-    waffle
-    >>> def bar():
-    ...     x = "angry bears!"
-    ...     print x
-    ...
-    >>> bar()
-    angry bears!
-    >>> print x
-    waffle
-    >>>  
+```
+>>> x = "waffle"
+>>> def foo():
+...     print x
+...
+>>> foo()
+waffle
+>>> def bar():
+...     x = "angry bears!"
+...     print x
+...
+>>> bar()
+angry bears!
+>>> print x
+waffle
+>>>  
+```
 
 Are you feeling a little lost? It's okay, variable scope confuses many developers. The scope rule to
 remember is that a local definition trumps a global definition. The style rule to remember? Don't use global

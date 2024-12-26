@@ -134,46 +134,50 @@ Open up a terminal after your download finishes and move to the
 directory that is holding the archive. Use `sudo` to run the
 `install.sh` script with administrative privileges.
 
-    $ tar xfz ActivePython-2.6.0.0-linux-x86.tar.gz
-    $ cd ActivePython-2.6.0
-    $ sudo ./install.sh
-    press 'Enter' to use the default [/opt/ActivePython-2.6].
-    Install directory:
-    ()
-    Installing ActivePython to '/opt/ActivePython-2.6'...
-    Relocating dir-dependent files...
-    Pre-compiling .py files in the standard library...
+```
+$ tar xfz ActivePython-2.6.0.0-linux-x86.tar.gz
+$ cd ActivePython-2.6.0
+$ sudo ./install.sh
+press 'Enter' to use the default [/opt/ActivePython-2.6].
+Install directory:
+()
+Installing ActivePython to '/opt/ActivePython-2.6'...
+Relocating dir-dependent files...
+Pre-compiling .py files in the standard library...
 
-    ActivePython has been successfully installed to:
+ActivePython has been successfully installed to:
 
-        /opt/ActivePython-2.6
+    /opt/ActivePython-2.6
 
-    You can add the following to your .bashrc (or equivalent)
-    to put python on your PATH:
+You can add the following to your .bashrc (or equivalent)
+to put python on your PATH:
 
-        export PATH=/opt/ActivePython-2.6/bin:$PATH
+    export PATH=/opt/ActivePython-2.6/bin:$PATH
 
-    The documentation is available here:
+The documentation is available here:
 
-        /opt/ActivePython-2.6/doc/python2.6/index.html
-        web: http://aspn.activestate.com/ASPN/docs/ActivePython
+    /opt/ActivePython-2.6/doc/python2.6/index.html
+    web: http://aspn.activestate.com/ASPN/docs/ActivePython
 
-    Please send us any feedback you might have or log bugs here:
+Please send us any feedback you might have or log bugs here:
 
-        activepython-feedback@ActiveState.com
-        http://bugs.activestate.com/ActivePython/
+    activepython-feedback@ActiveState.com
+    http://bugs.activestate.com/ActivePython/
 
-    Thank you for using ActivePython.
+Thank you for using ActivePython.
+```
 
 Now we get the required settings into the bashrc file, reload the shell
 configuration, and make sure python is where we expect it to be.
 
-    $ echo 'export PATH=/opt/ActivePython-2.6/bin:$PATH' >> ~/.bashrc
-    $ . ~/.bashrc
-    $ which python
-    /opt/ActivePython-2.6/bin/python
-    $ which idle
-    /opt/ActivePython-2.6/bin/idle
+```
+$ echo 'export PATH=/opt/ActivePython-2.6/bin:$PATH' >> ~/.bashrc
+$ . ~/.bashrc
+$ which python
+/opt/ActivePython-2.6/bin/python
+$ which idle
+/opt/ActivePython-2.6/bin/idle
+```
 
 There you go. ActivePython 2.6 has been installed on our Linux machine.
 
@@ -317,7 +321,9 @@ The IDLE shell allows you to enter code — from simple statements to
 function and class definitions — and execute it immediately. Since you
 have the shell open already, type in this example:
 
-    >>> print "Hello, world!"
+```
+>>> print "Hello, world!"
+```
 
 ![IDLE screenshot](@img/2001/idle.png)
 
@@ -330,16 +336,20 @@ color, *strings* of text are another, and so on.
 
 Press the ENTER key, and the shell will perform that command right away:
 
-    >>> print "Hello, world!"
-    Hello, world!
-    >>>
+```
+>>> print "Hello, world!"
+Hello, world!
+>>>
+```
 
 The shell allows you to define more complex things, too. Say you want to
 get the user’s name, and print a customized "Hello you\!" for the user.
 
 First, you have to get their name:
 
-    >>> name = raw_input("Please enter your name: ")
+```
+>>> name = raw_input("Please enter your name: ")
+```
 
 [raw_input](https://docs.python.org/2/library/functions.html#raw_input)
 is a function that displays a prompt to the user, gets some keyboard
@@ -358,8 +368,10 @@ PythonWin it opens a little window showing the message you handed to
 
 Here’s what I see in IDLE:
 
-    >>> name = raw_input("Enter your name: ")
-    Enter your name:
+```
+>>> name = raw_input("Enter your name: ")
+Enter your name:
+```
 
 I provide my name ("Brian"), and Python quietly saves that answer in the
 variable `name`, then waits for me to do something new. One of the
@@ -367,8 +379,10 @@ things that confused me when I first tried `raw_input()` in the Python
 shell was: how do I know that Python actually grabbed the name I gave?
 Well, it turns out that it’s easy enough to ask:
 
-    >>> print name
-    Brian
+```
+>>> print name
+Brian
+```
 
 When you want to get at a value that Python has stored for you, all you
 have to do is call it by name. In this case, I just wanted to print out
@@ -386,8 +400,10 @@ it along with some other text?
 
 Here’s the easiest way:
 
-    >>> print "Hello", name
-    Hello Brian
+```
+>>> print "Hello", name
+Hello Brian
+```
 
 Every time you normally tell Python to print something, it will print
 that something out, and then start a new line. If you paste a comma onto
@@ -402,8 +418,10 @@ ending with the name that was given to it by `raw_input`.
 You can print several things at once, too. Just put a comma in between
 each item to be printed.
 
-    >>> print "Hello", name, "- good to see you!"
-    Hello Brian - good to see you!
+```
+>>> print "Hello", name, "- good to see you!"
+Hello Brian - good to see you!
+```
 
 Wow. That made me feel pretty good. It’s amazing how just a few nice
 words can lift your mood — even if you have to write them yourself\!
@@ -463,14 +481,14 @@ be better for script headers, but:
 2.  I needed an excuse to show you what comments look like.
 {% /note %}
 
-``` python
+```python
 # filename
 #  A quick description of what this program does
 ```
 
 Of course, your header can be as complicated as you like:
 
-``` python
+```python
 # # # # # # # #
 # hello.py
 #  Get the user's name and print a friendly hello
@@ -516,21 +534,23 @@ I bet you’re just itching to run that program\! Since you’ve already got
 "Run module". Python puts you in the IDLE shell, where you see something
 like this:
 
-    Python 2.6 (r26:66714, Nov 11 2008, 12:18:59)
-    [GCC 3.3.1 (SuSE Linux)] on linux2
-    Type "copyright", "credits" or "license()" for more information.
+```
+Python 2.6 (r26:66714, Nov 11 2008, 12:18:59)
+[GCC 3.3.1 (SuSE Linux)] on linux2
+Type "copyright", "credits" or "license()" for more information.
 
-        ****************************************************************
-        Personal firewall software may warn about the connection IDLE
-        makes to its subprocess using this computer's internal loopback
-        interface.  This connection is not visible on any external
-        interface and no data is sent to or received from the Internet.
-        ****************************************************************
+    ****************************************************************
+    Personal firewall software may warn about the connection IDLE
+    makes to its subprocess using this computer's internal loopback
+    interface.  This connection is not visible on any external
+    interface and no data is sent to or received from the Internet.
+    ****************************************************************
 
-    IDLE 2.6
-    >>> ================================ RESTART ================================
-    >>>
-    Please enter your name:
+IDLE 2.6
+>>> ================================ RESTART ================================
+>>>
+Please enter your name:
+```
 
 Enter your name, press ENTER, and there’s your warm fuzzy greeting\!
 
@@ -559,11 +579,13 @@ box. Simply open your own DOS box ('Start Menu | Programs | Accessories
 | Command Prompt'), move to the directory that contains your script, and
 call Python yourself:
 
-    C:>cd scripts
-    C:\scripts>python hello.py
-    Please enter your name: Brian
-    Hello Brian - good to see you!
-    C:\scripts>
+```
+C:>cd scripts
+C:\scripts>python hello.py
+Please enter your name: Brian
+Hello Brian - good to see you!
+C:\scripts>
+```
 
 In order for this to work, you’ll have to have your Python installation
 directory specified as part of your environment variable `PATH`. How you

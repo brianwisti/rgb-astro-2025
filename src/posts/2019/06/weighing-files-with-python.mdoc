@@ -19,16 +19,6 @@ tags:
 title: Weighing Files With Python
 ---
 
-<aside class="admonition">
-<p class="admonition-title">Updates</p>
-
-2018-06-02
-: adjusted a couple clumsy property methods with
-  [attr.Factory](https://attrs.readthedocs.io/en/stable/api.html#attr.Factory)
-  callables for legibility
-
-</aside>
-
 ## The idea
 
 I got an idea in my head a while ago to reduce image sizes for the site.
@@ -105,16 +95,14 @@ checking an entire site. I suppose I could use
 for "simulating shitty network conditions" and maybe
 [HTTPie](https://httpie.org/) to crawl the site under those conditions.
 
-<aside class="admonition">
-
+{% note %}
 Brian, stop. This is taking you into the world of resilience testing and
 [chaos engineering](https://en.wikipedia.org/wiki/Chaos_engineering),
 which sounds *awesome* and has a wealth of tools already written. It
 also sounds completely unnecessary for this humble little blog.
 
 "Pick your battles" is another truism that applies here.
-
-</aside>
+{% /note %}
 
 We’ll ignore latency for now. Besides, I’ve already managed many major
 elements of latency. [Hugo](https://gohugo.io) creates a static site.
@@ -137,24 +125,24 @@ that with a [Perl](/tags/perl) one-liner using
 [procedural](https://metacpan.org/pod/distribution/File-Find-Rule/lib/File/Find/Rule/Procedural.pod)
 flavor.
 
-    $ perl -MFile::Find::Rule -E 'say for find(file => size => "> 6M" => in => "public");'
-    public/2015/08/01/zentangle-doodle/cover.png
-    public/2017/04/22/kalaidoscope-symmetry/cover.jpg
-    public/2017/11/07/something-colorful/cover.jpg
-    public/2019/04/14/psychedelic-playing-card/cover.png
-    public/2018/09/30/cougar-mountain/fantastic-erratic.jpg
-    public/2018/09/30/cougar-mountain/old-stump.jpg
-    public/2018/09/30/cougar-mountain/mossy.jpg
-    public/2018/09/30/cougar-mountain/tall-stump.jpg
-    public/2018/09/30/cougar-mountain/cover.jpg
+```
+$ perl -MFile::Find::Rule -E 'say for find(file => size => "> 6M" => in => "public");'
+public/2015/08/01/zentangle-doodle/cover.png
+public/2017/04/22/kalaidoscope-symmetry/cover.jpg
+public/2017/11/07/something-colorful/cover.jpg
+public/2019/04/14/psychedelic-playing-card/cover.png
+public/2018/09/30/cougar-mountain/fantastic-erratic.jpg
+public/2018/09/30/cougar-mountain/old-stump.jpg
+public/2018/09/30/cougar-mountain/mossy.jpg
+public/2018/09/30/cougar-mountain/tall-stump.jpg
+public/2018/09/30/cougar-mountain/cover.jpg
+```
 
 Or maybe find the median between my biggest and smallest files, flagging
 everything bigger than the median. I promised [Python](/tags/python) in
 the tags, so let’s move away from Perl.
 
-**`median.py`**
-
-```python
+```python title="median.py"
 
 import os
 
@@ -189,16 +177,18 @@ working on older versions of the language.
 Running this gives me the same files as my one-liner. Good choice for an
 arbitrary number, right?
 
-    $ python median.py
-    FileWeight(path='public/2015/08/01/zentangle-doodle/cover.png', size=8964751)
-    FileWeight(path='public/2017/04/22/kalaidoscope-symmetry/cover.jpg', size=7729604)
-    FileWeight(path='public/2017/11/07/something-colorful/cover.jpg', size=9594815)
-    FileWeight(path='public/2019/04/14/psychedelic-playing-card/cover.png', size=13088396)
-    FileWeight(path='public/2018/09/30/cougar-mountain/fantastic-erratic.jpg', size=7114429)
-    FileWeight(path='public/2018/09/30/cougar-mountain/old-stump.jpg', size=7672471)
-    FileWeight(path='public/2018/09/30/cougar-mountain/mossy.jpg', size=6639527)
-    FileWeight(path='public/2018/09/30/cougar-mountain/tall-stump.jpg', size=7052340)
-    FileWeight(path='public/2018/09/30/cougar-mountain/cover.jpg', size=8412560)
+```
+$ python median.py
+FileWeight(path='public/2015/08/01/zentangle-doodle/cover.png', size=8964751)
+FileWeight(path='public/2017/04/22/kalaidoscope-symmetry/cover.jpg', size=7729604)
+FileWeight(path='public/2017/11/07/something-colorful/cover.jpg', size=9594815)
+FileWeight(path='public/2019/04/14/psychedelic-playing-card/cover.png', size=13088396)
+FileWeight(path='public/2018/09/30/cougar-mountain/fantastic-erratic.jpg', size=7114429)
+FileWeight(path='public/2018/09/30/cougar-mountain/old-stump.jpg', size=7672471)
+FileWeight(path='public/2018/09/30/cougar-mountain/mossy.jpg', size=6639527)
+FileWeight(path='public/2018/09/30/cougar-mountain/tall-stump.jpg', size=7052340)
+FileWeight(path='public/2018/09/30/cougar-mountain/cover.jpg', size=8412560)
+```
 
 I learned that this technique of grabbing everything on one side of the
 median is called a "median split." I also learned that however
@@ -243,9 +233,7 @@ bigger.
 Let’s teach the FileWeight class to estimate downloads. I’ll clarify its
 printed details while I’m at it.
 
-**`download-time.py`**
-
-```python
+```python title="download-time.py"
 import os
 
 import attr
@@ -286,16 +274,18 @@ if __name__ == '__main__':
 The script is still focusing on the median, but the extra information
 should give us a little context.
 
-    $ python download-time.py
-    <public/2015/08/01/zentangle-doodle/cover.png> (8.55 MB) 3g=95.624s
-    <public/2017/04/22/kalaidoscope-symmetry/cover.jpg> (7.37 MB) 3g=82.449s
-    <public/2017/11/07/something-colorful/cover.jpg> (9.15 MB) 3g=102.345s
-    <public/2019/04/14/psychedelic-playing-card/cover.png> (12.48 MB) 3g=139.610s
-    <public/2018/09/30/cougar-mountain/fantastic-erratic.jpg> (6.78 MB) 3g=75.887s
-    <public/2018/09/30/cougar-mountain/old-stump.jpg> (7.32 MB) 3g=81.840s
-    <public/2018/09/30/cougar-mountain/mossy.jpg> (6.33 MB) 3g=70.822s
-    <public/2018/09/30/cougar-mountain/tall-stump.jpg> (6.73 MB) 3g=75.225s
-    <public/2018/09/30/cougar-mountain/cover.jpg> (8.02 MB) 3g=89.734s
+```
+$ python download-time.py
+<public/2015/08/01/zentangle-doodle/cover.png> (8.55 MB) 3g=95.624s
+<public/2017/04/22/kalaidoscope-symmetry/cover.jpg> (7.37 MB) 3g=82.449s
+<public/2017/11/07/something-colorful/cover.jpg> (9.15 MB) 3g=102.345s
+<public/2019/04/14/psychedelic-playing-card/cover.png> (12.48 MB) 3g=139.610s
+<public/2018/09/30/cougar-mountain/fantastic-erratic.jpg> (6.78 MB) 3g=75.887s
+<public/2018/09/30/cougar-mountain/old-stump.jpg> (7.32 MB) 3g=81.840s
+<public/2018/09/30/cougar-mountain/mossy.jpg> (6.33 MB) 3g=70.822s
+<public/2018/09/30/cougar-mountain/tall-stump.jpg> (6.73 MB) 3g=75.225s
+<public/2018/09/30/cougar-mountain/cover.jpg> (8.02 MB) 3g=89.734s
+```
 
 Oh that’s not good. The biggest file would take almost two and a half
 minutes to download, while the smallest above the median would still
@@ -336,7 +326,7 @@ I can and do make excuses –
 I know my thresholds. Let’s teach FileWeight about them so it can report
 the news.
 
-``` python
+```python
 # ...
 
 DOWNLOAD_EXPRESSIONS = {
@@ -393,17 +383,19 @@ if __name__ == '__main__':
 I also added a little emoji quick reference so I can tell at a glance
 the expected user reaction at the file’s download rate.
 
-    $ python download-time.py
-    <public/2018/12/31/hopepunk-for-2019/cover_hu302a359ad2f64a42481affbc4fbbb8c4_4191368_1000x0_resize_q75_linear.jpg> (156.96 KB) 3g=1.714s😐
-    <public/2018/10/27/winter-hat-and-gloves/cover_hu42513aeed6d773f768448596f8f497f6_2320770_1000x0_resize_q75_linear.jpg> (182.43 KB) 3g=1.993s😐
-    <public/tags/pagetemplate/index.xml> (128.25 KB) 3g=1.401s😐
-    <public/2018/05/26/crafts-are-now-posts/index.html> (17.27 KB) 3g=0.189s😊
-    <public/2001/01/17/python/index.html> (6.44 KB) 3g=0.070s😁
-    <public/post/2013/fickle/index.html> (328 bytes) 3g=0.003s😁
-    <public/2018/08/11/satellite/satellite-lines-black.jpg> (476.27 KB) 3g=5.202s😐
-    <public/coolnamehere/2007/04/19_01-handling-a-single-round.html> (469 bytes) 3g=0.005s😁
-    <public/2018/08/19/island-center-forest/mossy-trees.jpg> (3.56 MB) 3g=39.789s🙁
-    <public/2008/10/01/natalies-hat/cover.jpg> (84.94 KB) 3g=0.928s😊
+```
+$ python download-time.py
+<public/2018/12/31/hopepunk-for-2019/cover_hu302a359ad2f64a42481affbc4fbbb8c4_4191368_1000x0_resize_q75_linear.jpg> (156.96 KB) 3g=1.714s😐
+<public/2018/10/27/winter-hat-and-gloves/cover_hu42513aeed6d773f768448596f8f497f6_2320770_1000x0_resize_q75_linear.jpg> (182.43 KB) 3g=1.993s😐
+<public/tags/pagetemplate/index.xml> (128.25 KB) 3g=1.401s😐
+<public/2018/05/26/crafts-are-now-posts/index.html> (17.27 KB) 3g=0.189s😊
+<public/2001/01/17/python/index.html> (6.44 KB) 3g=0.070s😁
+<public/post/2013/fickle/index.html> (328 bytes) 3g=0.003s😁
+<public/2018/08/11/satellite/satellite-lines-black.jpg> (476.27 KB) 3g=5.202s😐
+<public/coolnamehere/2007/04/19_01-handling-a-single-round.html> (469 bytes) 3g=0.005s😁
+<public/2018/08/19/island-center-forest/mossy-trees.jpg> (3.56 MB) 3g=39.789s🙁
+<public/2008/10/01/natalies-hat/cover.jpg> (84.94 KB) 3g=0.928s😊
+```
 
 Plenty of build process artifacts in there. The long image names come
 from using Hugo [image
@@ -427,9 +419,7 @@ This post is long enough already.
 
 ### All the files
 
-**`report-weight.py`**
-
-```python
+```python title="report-weight.py"
 from typing import List
 
 # ...
@@ -510,14 +500,16 @@ I spent too much time on that download table. I could have spent even
 more, sizing each column to the longest field and *anyways* that wasn’t
 the point. Let’s look at my download estimates.
 
-    $ python report-weight.py
-    All files in public
-    1,886 files (418.71 MB)
-    Download guesses for 750.00 Kbps
-     🙁 > 10s      > 915.53 KB                   111
-     😐 1s - 10s   91.55 KB - 915.53 KB          269
-     😊 0.1s - 1s  9.16 KB - 91.55 KB            611
-     😁 ≤ 0.1s     ≤ 9.16 KB                     895
+```
+$ python report-weight.py
+All files in public
+1,886 files (418.71 MB)
+Download guesses for 750.00 Kbps
+  🙁 > 10s      > 915.53 KB                   111
+  😐 1s - 10s   91.55 KB - 915.53 KB          269
+  😊 0.1s - 1s  9.16 KB - 91.55 KB            611
+  😁 ≤ 0.1s     ≤ 9.16 KB                     895
+```
 
 Way too many files take more than ten seconds to load. I know better
 than to be pleased about the large number of files that load instantly.
@@ -628,23 +620,25 @@ if __name__ == '__main__':
 The script makes two download reports now, with only a little more
 work!
 
-    $ python weight-with-media.py
-    ---
-    All files in public
-    1,886 files (418.71 MB)
-    Download guesses for 750.00 Kbps
-     🙁 > 10s      > 915.53 KB                   111
-     😐 1s - 10s   91.55 KB - 915.53 KB          269
-     😊 0.1s - 1s  9.16 KB - 91.55 KB            611
-     😁 ≤ 0.1s     ≤ 9.16 KB                     895
-    ---
-    Media files in public
-    802 files (392.19 MB)
-    Download guesses for 750.00 Kbps
-     🙁 > 10s      > 915.53 KB                   107
-     😐 1s - 10s   91.55 KB - 915.53 KB          236
-     😊 0.1s - 1s  9.16 KB - 91.55 KB            339
-     😁 ≤ 0.1s     ≤ 9.16 KB                     120
+```
+$ python weight-with-media.py
+---
+All files in public
+1,886 files (418.71 MB)
+Download guesses for 750.00 Kbps
+  🙁 > 10s      > 915.53 KB                   111
+  😐 1s - 10s   91.55 KB - 915.53 KB          269
+  😊 0.1s - 1s  9.16 KB - 91.55 KB            611
+  😁 ≤ 0.1s     ≤ 9.16 KB                     895
+---
+Media files in public
+802 files (392.19 MB)
+Download guesses for 750.00 Kbps
+  🙁 > 10s      > 915.53 KB                   107
+  😐 1s - 10s   91.55 KB - 915.53 KB          236
+  😊 0.1s - 1s  9.16 KB - 91.55 KB            339
+  😁 ≤ 0.1s     ≤ 9.16 KB                     120
+```
 
 Yeah, that’s what I thought. The majority of those small files are text,
 and the vast majority of the large files are image or video. Yes, I
@@ -696,12 +690,14 @@ couple I included but removed to maintain focus.
 
 Good question! Let’s look at the numbers.
 
-    $ time make weight
-    python weight-with-media.py
-    ...
-    real    0m0.131s
-    user    0m0.083s
-    sys     0m0.044s
+```
+$ time make weight
+python weight-with-media.py
+...
+real    0m0.131s
+user    0m0.083s
+sys     0m0.044s
+```
 
 No.
 

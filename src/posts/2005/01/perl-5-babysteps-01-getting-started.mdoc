@@ -27,8 +27,10 @@ Done?
 Excellent.
 Here is how you install Perl 5.14.1 and make it your default Perl.
 
-    $ perlbrew install perl-5.14.1
-    $ perlbrew switch perl-5.14.1
+```
+$ perlbrew install perl-5.14.1
+$ perlbrew switch perl-5.14.1
+```
 
 ### Installing Perl on Windows
 
@@ -49,17 +51,19 @@ It is also the only readily available release of Perl 5.14 for Windows at this e
 
 We want to make sure that `perl` installed where we expected it to and that our system finds the right one.
 
-    $ perl --version
-    This is perl 5, version 14, subversion 1 (v5.14.1) built for darwin-2level
+```
+$ perl --version
+This is perl 5, version 14, subversion 1 (v5.14.1) built for darwin-2level
 
-    Copyright 1987-2011, Larry Wall
+Copyright 1987-2011, Larry Wall
 
-    Perl may be copied only under the terms of either the Artistic License or the
-    GNU General Public License, which may be found in the Perl 5 source kit.
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
 
-    Complete documentation for Perl, including FAQ lists, should be found on
-    this system using "man perl" or "perldoc perl".  If you have access to the
-    Internet, point your browser at http://www.perl.org/, the Perl Home Page.
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using "man perl" or "perldoc perl".  If you have access to the
+Internet, point your browser at http://www.perl.org/, the Perl Home Page.
+```
 
 ## Using Perl From The Command Line
 
@@ -70,19 +74,25 @@ It would be unfair of me to ignore simple command-line Perl.
 Although most of my Perl time is spent on large projects, occasionally I just want a quick answer.
 Because I usually have a terminal open, Perl presents itself as a convenient calculator:
 
-    $ perl -E 'say 3.1415926 * 5 ** 2'
-    78.539815
+```
+$ perl -E 'say 3.1415926 * 5 ** 2'
+78.539815
+```
 
 It is almost the same on Windows, except that you need to use double quotes:
 
-    C:>perl -E "say 3.1415926 * 5 ** 2"
-    78.539815
+```
+C:>perl -E "say 3.1415926 * 5 ** 2"
+78.539815
+```
 
 The `-E` flag tells `perl` that the next bit is code to be executed directly.
 There are many flags to adjust the behavior of `perl` when you run it.
 [perlrun](http://perldoc.perl.org/perlrun.html)shows all the gory details.
 
-    $ perldoc perlrun
+```
+$ perldoc perlrun
+```
 
 I don’t plan on talking any more about Perl one-liners.
 I just thought you should know that they are available.
@@ -94,40 +104,37 @@ What exactly are we doing with that one line?
 There’s something that looks like math, and `say`.
 I guess it is fairly obvious what `say` is doing here: it is printing stuff out to our terminal.
 
-<aside class="admonition">
-<p class="admonition-title">2020-02-24</p>
-
+{% note title="2020-02-24" %}
 Reading back, and it looks like I was starting to write something about `perldoc`?
-
-</aside>
+{% /note %}
 
 ### `perldoc -f`
 
 We can ask about specific built-in functions using the `-f` parameter.
 
-    $ perldoc -f say
-    say FILEHANDLE LIST
-    say FILEHANDLE
-    say LIST
-    say     Just like "print", but implicitly appends a newline. "say LIST"
-            is simply an abbreviation for "{ local $\ = "\n"; print LIST }".
-            To use FILEHANDLE without a LIST to print the contents of $_ to
-            it, you must use a real filehandle like "FH", not an indirect
-            one like $fh.
+```
+$ perldoc -f say
+say FILEHANDLE LIST
+say FILEHANDLE
+say LIST
+say     Just like "print", but implicitly appends a newline. "say LIST"
+        is simply an abbreviation for "{ local $\ = "\n"; print LIST }".
+        To use FILEHANDLE without a LIST to print the contents of $_ to
+        it, you must use a real filehandle like "FH", not an indirect
+        one like $fh.
 
-            This keyword is available only when the "say" feature is
-            enabled; see feature. Alternately, include a "use v5.10" or
-            later to the current scope.
+        This keyword is available only when the "say" feature is
+        enabled; see feature. Alternately, include a "use v5.10" or
+        later to the current scope.
 
-            This keyword is available only when the "say" feature is
-            enabled; see feature. Alternately, include a "use v5.10" or
-            later to the current scope.
+        This keyword is available only when the "say" feature is
+        enabled; see feature. Alternately, include a "use v5.10" or
+        later to the current scope.
+```
 
-<aside class="admonition">
-
+{% note %}
 Yeah I had a bad habit of posting unfinished content in the pre-blog days.
-
-</aside>
+{% /note %}
 
 ### `perldoc -q`
 
@@ -172,12 +179,16 @@ They are instead processed by the `perldoc` application.
 Use POD to write about what you want *users* to know about your Perl application.
 A proper introduction to `perldoc` is far beyond the scope of this little tutorial, but you can see the potential usefulness of this tool from the console with a simple command:
 
-    $ perldoc hello.pl
+```
+$ perldoc hello.pl
+```
 
 You get a simple display showing a formatted version of the POD you wrote.
 There is a lot more information you can get about POD and perldoc within Perl’s own POD:
 
-    $ perldoc perlpod
+```
+$ perldoc perlpod
+```
 
 There’s also an [HTML version](http://perldoc.perl.org/perlpod.html) if
 `perldoc` is not available on your system or you just want to see something
@@ -185,7 +196,7 @@ pretty.
 
 ### Comments
 
-``` perl
+```perl
 # Depends on features not in older Perls.
 ```
 
@@ -197,7 +208,7 @@ Having the comments there help to remind you what you were intending, and genera
 
 ### `use`
 
-``` perl
+```perl
 use 5.14.0;
 ```
 
@@ -218,7 +229,7 @@ Let’s get back to looking at `hello.pl`
 
 ### `say`
 
-``` perl
+```perl
 say "Hello, World!";
 ```
 
@@ -236,7 +247,9 @@ Save the file you have been editing and switch to a command line.
 Make sure you are in the same directory as your script - this should be as simple as `cd project-directory`.
 Once you are in the right place, type the following into the command line:
 
-    $ perl hello.pl Hello, World!
+```
+$ perl hello.pl Hello, World!
+```
 
 All this is kind of cool, but it would be nice to customize it a little bit.
 Maybe we could change the program so that it says "Hello" to us personally.
@@ -263,7 +276,9 @@ What’s a variable?
 We’ll get to that in a second.
 I’m impatient to see a running program! Save the file, and run it again.
 
-    $ perl hello.pl Hello, Brian!
+```
+$ perl hello.pl Hello, Brian!
+```
 
 There, I feel better.
 Let’s move on to talking about variables.
@@ -277,7 +292,6 @@ Later, we can get that value back by referring to the tag.
 The `$` symbol at the beginning tells Perl what type of value this variable will be used for.
 The _type_ of a variables gives clues for how it can be treated.
 Most variables in Perl break down into two broad categories.
-
 
 1. Individual things like strings and numbers
 2. Collections of things like lists and dictionaries
@@ -300,7 +314,7 @@ Anyways, this single line both declares the variable `$name`, letting Perl know 
 What happens if you skip one or both of these steps?
 It depends, so the best thing to do is try it and see.
 
-``` perl
+```perl
 =head1 hello.pl
 
 Displays a warm greeting.
@@ -315,9 +329,11 @@ say "Hello, $name!";
 We’ve removed the declaration and assignment.
 Let’s see what happens now.
 
-    $ perl hello.pl
-    Global symbol "$name" requires explicit package name at hello.pl line 12.
-    Execution of hello.pl aborted due to compilation errors.
+```
+$ perl hello.pl
+Global symbol "$name" requires explicit package name at hello.pl line 12.
+Execution of hello.pl aborted due to compilation errors.
+```
 
 Because we insisted on 5.14, Perl politely informed us that it found some mention of a variable called `$name` that we never declared.
 This is considered rude by recent Perls, so the interpreter quit without running the program.
@@ -333,7 +349,9 @@ say "Hello, $name!";
 
 This time Perl runs, but the results are confusing.
 
-    $ perl hello.pl Hello, !
+```
+$ perl hello.pl Hello, !
+```
 
 Since `$name` has no value, Perl has nothing to put in that string.
 That’s exactly what it puts there: nothing.
@@ -358,9 +376,11 @@ say "Hello, $name!";
 
 That addition makes Perl much friendlier for learners or people with large, unpredictable applications.
 
-    $ perl name.pl
-    Use of uninitialized value $name in concatenation (.) or string at name.pl line 5.
-    Hello, !
+```
+$ perl name.pl
+Use of uninitialized value $name in concatenation (.) or string at name.pl line 5.
+Hello, !
+```
 
 The combined behavior of `use 5.14.0;` and `use warnings;` may not seem like much right now, but they are vital when working with large applications that have thousands of lines of code.
 

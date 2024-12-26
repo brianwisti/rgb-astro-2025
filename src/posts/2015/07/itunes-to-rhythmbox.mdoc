@@ -7,10 +7,9 @@ aliases:
 categories:
 - post
 date: 2015-07-27 00:00:00-07:00
-description: 'I nearly wrote a script that transfers my iTunes ratings to Rhythmbox.
+description: |
+  I nearly wrote a script that transfers my iTunes ratings to Rhythmbox.
   Instead I used Edgar Salgado''s version of iTunesToRhythm.
-
-  '
 tags:
 - itunes
 - ruby
@@ -37,10 +36,12 @@ Salgado’s code is a fork of [another
 project](https://github.com/esanbock/ITunesToRhythm), but he won my
 heart because he wrote how to use his version.
 
-    $ git clone git@github.com:esalgado/iTunesToRhythm.git
-    $ cd iTunesToRhythm
-    $ python iTunesToRhythm.py -w ~/Sync/iTunes\ Music\ Library.xml \
-      ~/.local/share/rhythmbox/rhythmdb.xml
+```
+$ git clone git@github.com:esalgado/iTunesToRhythm.git
+$ cd iTunesToRhythm
+$ python iTunesToRhythm.py -w ~/Sync/iTunes\ Music\ Library.xml \
+  ~/.local/share/rhythmbox/rhythmdb.xml
+```
 
 Some things about the process annoyed me. For some strange reason, not
 every iTunes entry included a file location. I manually fixed those.
@@ -52,9 +53,7 @@ live with that. It’s only 3,000 tracks that I need to rate again.
 
 Hey, let’s make a pretty picture.
 
-**`graph-ratings.rb`**
-
-```ruby
+```ruby title="graph-ratings.rb"
 require 'nokogiri'
 require 'gruff'
 
@@ -106,14 +105,16 @@ opportunity to flex my amazing
 [XPath](http://www.nokogiri.org/tutorials/searching_a_xml_html_document.html)
 skills. Nothing too complex. Thank goodness.
 
-    $ ruby graph-ratings.rb
-    Rating Songs Percent Duration
-         0  8926   55.2% 24:13:00:24
-         1   254    1.6% 00:19:49:30
-         2   984    6.1% 02:21:42:54
-         3  3932   24.3% 10:08:49:09
-         4  1716   10.6% 04:10:50:01
-         5   370    2.3% 00:23:16:01
+```
+$ ruby graph-ratings.rb
+Rating Songs Percent Duration
+      0  8926   55.2% 24:13:00:24
+      1   254    1.6% 00:19:49:30
+      2   984    6.1% 02:21:42:54
+      3  3932   24.3% 10:08:49:09
+      4  1716   10.6% 04:10:50:01
+      5   370    2.3% 00:23:16:01
+```
 
 How about that pretty picture?
 

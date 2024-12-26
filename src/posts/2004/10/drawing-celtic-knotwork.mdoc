@@ -79,63 +79,67 @@ first.
 Let’s step through what we’ll be doing later in code. Here is a collection of
 image tiles arranged in a grid.
 
-    . . . . x x x x x  x x . . . . . x x  x x x x x . . . .
-    . . . . x . . . .  . . x x . x x . .  . . . . x . . . .
-    . . . . x . . . x  . . . . x . . . .  x . . . x . . . .
-    . . . . x . . x .  x x . . . x . x x  . x . . x . . . .
-    . . . . x . . x .  . . x . . . x . .  . x . . x . . . .
-    . . . . . x . . x  x . . . x . . . x  x . . x . . . . .
-    . . . . . x . . x  . . . x . x . . x  . . . x . . . . .
-    . . . . . . x x .  . . x . . . x x .  . . x . . . . . .
+```
+. . . . x x x x x  x x . . . . . x x  x x x x x . . . .
+. . . . x . . . .  . . x x . x x . .  . . . . x . . . .
+. . . . x . . . x  . . . . x . . . .  x . . . x . . . .
+. . . . x . . x .  x x . . . x . x x  . x . . x . . . .
+. . . . x . . x .  . . x . . . x . .  . x . . x . . . .
+. . . . . x . . x  x . . . x . . . x  x . . x . . . . .
+. . . . . x . . x  . . . x . x . . x  . . . x . . . . .
+. . . . . . x x .  . . x . . . x x .  . . x . . . . . .
 
-    . . . . . . x . .  . . x . . . x . .  . x x . . . . . .
-    . . . . . x . . .  . x . x . x . . .  x . . x . . . . .
-    . . . . . x . . .  x . . . x . . . x  x . . x . . . . .
-    . . . . x . . . x  . x . . . x . x .  . x . . x . . . .
-    . . . . x . . x .  . . x . . . x . .  . x . . x . . . .
-    . . . . x . . x .  . x . x . . . x .  . x . . x . . . .
-    . . . . . x . . x  x . . . x . . . x  x . . x . . . . .
-    . . . . . x . . x  . . . x . x . x .  . . . x . . . . .
-    . . . . . . x x .  . . x . . . x . .  . . x . . . . . .
+. . . . . . x . .  . . x . . . x . .  . x x . . . . . .
+. . . . . x . . .  . x . x . x . . .  x . . x . . . . .
+. . . . . x . . .  x . . . x . . . x  x . . x . . . . .
+. . . . x . . . x  . x . . . x . x .  . x . . x . . . .
+. . . . x . . x .  . . x . . . x . .  . x . . x . . . .
+. . . . x . . x .  . x . x . . . x .  . x . . x . . . .
+. . . . . x . . x  x . . . x . . . x  x . . x . . . . .
+. . . . . x . . x  . . . x . x . x .  . . . x . . . . .
+. . . . . . x x .  . . x . . . x . .  . . x . . . . . .
 
-    . . . . . . x . .  . x x . . . x . .  . x x . . . . . .
-    . . . . . x . . .  x . . x . x . . .  x . . x . . . . .
-    . . . . . x . . x  x . . . x . . . x  x . . x . . . . .
-    . . . . x . . x .  . x . . . x . x .  . x . . x . . . .
-    . . . . x . . x .  . . x . . . x . .  . x . . x . . . .
-    . . . . x . . . x  x x . x . . . x x  x . . . x . . . .
-    . . . . x . . . .  . . . . x . . . .  . . . . x . . . .
-    . . . . x . . . .  . . x x . x x . .  . . . . x . . . .
-    . . . . x x x x x  x x . . . . . x x  x x x x x . . . .
+. . . . . . x . .  . x x . . . x . .  . x x . . . . . .
+. . . . . x . . .  x . . x . x . . .  x . . x . . . . .
+. . . . . x . . x  x . . . x . . . x  x . . x . . . . .
+. . . . x . . x .  . x . . . x . x .  . x . . x . . . .
+. . . . x . . x .  . . x . . . x . .  . x . . x . . . .
+. . . . x . . . x  x x . x . . . x x  x . . . x . . . .
+. . . . x . . . .  . . . . x . . . .  . . . . x . . . .
+. . . . x . . . .  . . x x . x x . .  . . . . x . . . .
+. . . . x x x x x  x x . . . . . x x  x x x x x . . . .
+```
 
 Squish them together into one big image, and guess what? We have a knot!
 
-    . . . . x x x x x x x . . . . . x x x x x x x . . . .
-    . . . . x . . . . . . x x . x x . . . . . . x . . . .
-    . . . . x . . . x . . . . x . . . . x . . . x . . . .
-    . . . . x . . x . x x . . . x . x x . x . . x . . . .
-    . . . . x . . x . . . x . . . x . . . x . . x . . . .
-    . . . . . x . . x x . . . x . . . x x . . x . . . . .
-    . . . . . x . . x . . . x . x . . x . . . x . . . . .
-    . . . . . . x x . . . x . . . x x . . . x . . . . . .
-    . . . . . . x . . . . x . . . x . . . x x . . . . . .
-    . . . . . x . . . . x . x . x . . . x . . x . . . . .
-    . . . . . x . . . x . . . x . . . x x . . x . . . . .
-    . . . . x . . . x . x . . . x . x . . x . . x . . . .
-    . . . . x . . x . . . x . . . x . . . x . . x . . . .
-    . . . . x . . x . . x . x . . . x . . x . . x . . . .
-    . . . . . x . . x x . . . x . . . x x . . x . . . . .
-    . . . . . x . . x . . . x . x . x . . . . x . . . . .
-    . . . . . . x x . . . x . . . x . . . . x . . . . . .
-    . . . . . . x . . . x x . . . x . . . x x . . . . . .
-    . . . . . x . . . x . . x . x . . . x . . x . . . . .
-    . . . . . x . . x x . . . x . . . x x . . x . . . . .
-    . . . . x . . x . . x . . . x . x . . x . . x . . . .
-    . . . . x . . x . . . x . . . x . . . x . . x . . . .
-    . . . . x . . . x x x . x . . . x x x . . . x . . . .
-    . . . . x . . . . . . . . x . . . . . . . . x . . . .
-    . . . . x . . . . . . x x . x x . . . . . . x . . . .
-    . . . . x x x x x x x . . . . . x x x x x x x . . . .
+```
+. . . . x x x x x x x . . . . . x x x x x x x . . . .
+. . . . x . . . . . . x x . x x . . . . . . x . . . .
+. . . . x . . . x . . . . x . . . . x . . . x . . . .
+. . . . x . . x . x x . . . x . x x . x . . x . . . .
+. . . . x . . x . . . x . . . x . . . x . . x . . . .
+. . . . . x . . x x . . . x . . . x x . . x . . . . .
+. . . . . x . . x . . . x . x . . x . . . x . . . . .
+. . . . . . x x . . . x . . . x x . . . x . . . . . .
+. . . . . . x . . . . x . . . x . . . x x . . . . . .
+. . . . . x . . . . x . x . x . . . x . . x . . . . .
+. . . . . x . . . x . . . x . . . x x . . x . . . . .
+. . . . x . . . x . x . . . x . x . . x . . x . . . .
+. . . . x . . x . . . x . . . x . . . x . . x . . . .
+. . . . x . . x . . x . x . . . x . . x . . x . . . .
+. . . . . x . . x x . . . x . . . x x . . x . . . . .
+. . . . . x . . x . . . x . x . x . . . . x . . . . .
+. . . . . . x x . . . x . . . x . . . . x . . . . . .
+. . . . . . x . . . x x . . . x . . . x x . . . . . .
+. . . . . x . . . x . . x . x . . . x . . x . . . . .
+. . . . . x . . x x . . . x . . . x x . . x . . . . .
+. . . . x . . x . . x . . . x . x . . x . . x . . . .
+. . . . x . . x . . . x . . . x . . . x . . x . . . .
+. . . . x . . . x x x . x . . . x x x . . . x . . . .
+. . . . x . . . . . . . . x . . . . . . . . x . . . .
+. . . . x . . . . . . x x . x x . . . . . . x . . . .
+. . . . x x x x x x x . . . . . x x x x x x x . . . .
+```
 
 You don’t quite see it? Well, squint a little and tilt your head a bit. Still
 nothing? Just bear with me. We will get to actual pictures soon, I promise.
@@ -146,9 +150,7 @@ Okay, let’s find a way to automate this process.
 
 This works, doesn’t it?
 
-**`print-knot.rb`**
-
-```ruby
+```ruby title="print-knot.rb"
 knot =<<HERE
      . . . . x x x x x x x . . . . . x x x x x x x . . . .
      . . . . x . . . . . . x x . x x . . . . . . x . . . .
@@ -398,9 +400,7 @@ We only need to be able to do a few simple things with a Grid:
 
 And here’s the code.
 
-**`knotwork/grid.rb`**
-
-```ruby
+```ruby title="knotwork/grid.rb"
 # I am an arranged collection of Tiles. I know how to add and remove
 # Tiles along a 2-d grid, and can also present myself as if I were a single
 # large Tile.
@@ -445,9 +445,7 @@ class Grid
 end
 ```
 
-**`tests/test_grid.rb`**
-
-```ruby
+```ruby title="test/test_grid.rb"
 require "minitest/autorun"
 require "../knotwork/grid"
 
@@ -526,19 +524,15 @@ characters, " but got " … a really long chain of `x` and `.` characters, almos
 identical to the first chain. My solution? Test each row of output, that way I
 see exactly which line was one character off.
 
-**`knotwork/knotwork_panel.rb`**
-
-```ruby
+```ruby title="knotwork/knotwork_panel.rb"
 require "tile"
 require "grid"
 
 # «define-tile-maps»
 # «define-knotwork-panel-class»
-----
+```
 
-.define-tile-maps
-[source,ruby]
-----
+```ruby title="define-tile-maps"
 NW_CORNER =<<~HERE.strip
   . . . . x x x x x
   . . . . x . . . .
@@ -648,9 +642,7 @@ SE_CORNER = <<~HERE.strip
 HERE
 ```
 
-**`define-knotwork-panel-class`**
-
-```ruby
+```ruby title="define-knotwork-panel-class"
 # I am a lovely Celtic knotwork panel. I know my dimensions, and can output
 # myself as ASCII art.
 class KnotworkPanel
@@ -697,9 +689,7 @@ class KnotworkPanel
 end
 ```
 
-**`tests/test_knotwork_panel.rb`**
-
-```ruby
+```ruby title="tests/test_knotwork_panel.rb"
 require "minitest/autorun"
 require "../knotwork/knotwork_panel"
 
@@ -829,9 +819,7 @@ generating power I need today.
 [RMagick]: https://rmagick.github.io/
 [ImageMagick]: https://www.imagemagick.org
 
-**`knotwork-image-logic`**
-
-```ruby
+```ruby title="knotwork-image-logic"
 require 'rmagick'
 include Magick
 
@@ -862,9 +850,7 @@ Looks like I skipped tests for `Knotwork#to_image` as well. And wasn't I saying 
 
 Time to make an image.
 
-**`draw-knot.rb`**
-
-```ruby
+```ruby title="draw-knot.rb"
 require './knotwork/knotwork_panel.rb'
 
 # «knotwork-image-logic»
@@ -890,9 +876,7 @@ won’t cut it. Let’s haul out our trusty [OptParse][] library again.
 
 [OptParse]: http://www.ruby-doc.org/stdlib/libdoc/optparse/rdoc/classes/OptionParser.html
 
-**`main-with-option-parser`**
-
-```ruby
+```ruby title="main-with-option-parsers"
 def main
   rows = 1
   columns = 1
@@ -929,13 +913,17 @@ end
 
 Running it with the default should result in a 3x3 panel:
 
-    $ ruby knotworkpanel.rb
+```
+$ ruby knotworkpanel.rb
+```
 
 ![3x3 panel](@img/2004/panel-3x3.png)
 
 Setting `rows` to 2 results in a 4x4 panel.
 
-    $ ruby knotworkpanel.rb --rows 2
+```
+$ ruby knotworkpanel.rb --rows 2
+```
 
 ![4x4 panel](@img/2004/panel-4x4.png)
 
@@ -946,7 +934,9 @@ Me from the immediate future says "See? This is what I was talking about. You sa
 Ignoring me from the future for today, let’s see what happens when we try to
 make a nice *big* KnotworkPanel.
 
-    $ ruby knotworkpanel.rb --rows 98 --columns 73
+```
+$ ruby knotworkpanel.rb --rows 98 --columns 73
+```
 
 Hmm … took a few seconds this time. If I cared about performance, I might go in
 and see where this could be tightened up. I don’t care about performance today,
@@ -967,9 +957,7 @@ up the code a little bit. Not actually change any functionality or user
 interface, so Me From The Future is just going to have to wait. I only want to
 make it easier to read the code that I have already written.
 
-**`knotwork.rb`**
-
-```ruby
+```ruby title="knotwork.rb"
 require './knotwork/knotwork_panel.rb'
 
 # «knotwork-image-logic»

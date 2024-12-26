@@ -17,14 +17,11 @@ tags:
 title: Exporting From Org to Markdown
 ---
 
-<aside class="admonition tldr">
-<p class="admonition-title">tl;dr</p>
-
+{% note title="TL;DR:" %}
 `C-h v org-export-backends` to ensure that Markdown export is available.
 `C-c C-e m m` invokes `org-md-export-to-markdown`. You may need to
 update Org Mode, which could be a fussy process.
-
-</aside>
+{% /note %}
 
 Let’s say that I am supposed to be writing a blog post. Not this one,
 another one. I have spent a lot of time learning about [Org
@@ -54,7 +51,9 @@ version? The [installation
 instructions](http://orgmode.org/manual/Installation.html) suggest it
 can be done with `package-install` before you’ve loaded any org files.
 
-    package-install RET org
+```
+package-install RET org
+```
 
 And now I have 8.2.6.
 
@@ -71,11 +70,13 @@ enabled by default.
 I need to set `org-export-backends`. The documentation specifies that I
 should use the Emacs customization interface. All righty.
 
-    C-h v org-export-backends
+```
+C-h v org-export-backends
+```
 
 I end up with this in my `.init.el`
 
-```elisp
+```lisp
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -86,7 +87,9 @@ I end up with this in my `.init.el`
 
 The export interface is better, but now I get a **different** error.
 
-    org-refresh-category-properties: Invalid function: org-with-silent-modifications
+```
+org-refresh-category-properties: Invalid function: org-with-silent-modifications
+```
 
 This [Markdown Export on
 Aquamacs](http://www.benjaminmgross.com/markdown-export-on-aquamacs/)
@@ -100,7 +103,7 @@ emacs.
 
 Trying `C-c C-e m m` one more time before I give up for now.
 
-``` md
+```md
 # Exporting From Org to Markdown
 
 Let's say that I am supposed to be writing a blog post. Not this

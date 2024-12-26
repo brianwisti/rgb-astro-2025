@@ -25,13 +25,10 @@ a new [Perl](http://perl.org) toy from [Jesse Luers](http://tozt.net/).
 There will not be much for me to say, because I have only been playing
 with it for about twenty minutes.
 
-<aside class="admonition note">
-<p class="admonition-title">Note</p>
-
+{% note %}
 This post used Questhub.io for a subject. Unfortunately, that site is no
 longer with us.
-
-</aside>
+{% /note %}
 
 Reply is a
 [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)
@@ -46,7 +43,9 @@ I use [perlbrew](http://perlbrew.pl) and
 [cpanm](https://github.com/miyagawa/cpanminus), so installation was
 easy.
 
-    $ cpanm Reply
+```
+$ cpanm Reply
+```
 
 Oh. It is worth pointing out that if you do not have [GNU
 Readline](http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html) or a
@@ -58,34 +57,42 @@ history in Reply.
 The `reply` command starts a new session. Once the session is going,
 it’s pretty much just Perl.
 
-    $ reply
-    0> "Hello World"
-    $res[0] = 'Hello World'
+```
+$ reply
+0> "Hello World"
+$res[0] = 'Hello World'
 
-    1> my $name = "Brian"
-    $res[1] = 'Brian'
+1> my $name = "Brian"
+$res[1] = 'Brian'
 
-    2> "Hello $name"
-    $res[2] = 'Hello Brian'
+2> "Hello $name"
+$res[2] = 'Hello Brian'
+```
 
 Getting user input via `STDIN` works pretty much how you would expect.
 
-    3> chomp( $name = <STDIN> )
-    Brian
-    $res[3] = 1
+```
+3> chomp( $name = <STDIN> )
+Brian
+$res[3] = 1
 
-    4> $name
-    $res[4] = 'Brian'
+4> $name
+$res[4] = 'Brian'
+```
 
 Defining subroutines is no big deal.
 
-    5> sub greeting { "Hello $_[0]" }
-    6> greeting $name
-    $res[5] = 'Hello Brian'
+```
+5> sub greeting { "Hello $_[0]" }
+6> greeting $name
+$res[5] = 'Hello Brian'
+```
 
 And `exit` will quit Reply. It all seems straightforward.
 
-    7> exit
+```
+7> exit
+```
 
 ## A Marginally More Complex Example
 
@@ -94,31 +101,33 @@ with [Mojo::UserAgent](http://mojolicio.us/perldoc/Mojo/UserAgent) and
 [Mojo::JSON](http://mojolicio.us/perldoc/Mojo/JSON). I decided to see if
 I could try some of that experiment in Reply.
 
-    0> use Mojo::UserAgent
-    1> use Mojo::JSON 'decode_json'
-    2> my $ua = Mojo::UserAgent->new
-    $res[0] = bless( {}, 'Mojo::UserAgent' )
+```
+0> use Mojo::UserAgent
+1> use Mojo::JSON 'decode_json'
+2> my $ua = Mojo::UserAgent->new
+$res[0] = bless( {}, 'Mojo::UserAgent' )
 
-    3> sort map { $_->{name} } @{ decode_json( $ua->get( 'https://questhub.io/api/realm' )->res->body ) }
-    $res[1] = [
-      'Big Data',
-      'Chaos',
-      'Code',
-      'DC Metro Region',
-      'Fitness',
-      'Haskell',
-      'Japanese',
-      'Lisp',
-      'MOOCs',
-      'Meta',
-      'Node.js',
-      'Perl',
-      'Portland',
-      'Python (Ru)',
-      'Read',
-      'Testing',
-      'Yoga + Meditation'
-    ]
+3> sort map { $_->{name} } @{ decode_json( $ua->get( 'https://questhub.io/api/realm' )->res->body ) }
+$res[1] = [
+  'Big Data',
+  'Chaos',
+  'Code',
+  'DC Metro Region',
+  'Fitness',
+  'Haskell',
+  'Japanese',
+  'Lisp',
+  'MOOCs',
+  'Meta',
+  'Node.js',
+  'Perl',
+  'Portland',
+  'Python (Ru)',
+  'Read',
+  'Testing',
+  'Yoga + Meditation'
+]
+```
 
 Yes, I can.
 

@@ -3,7 +3,6 @@ aliases:
 - /coolnamehere/2009/05/05_02-user-input.html
 - /post/2009/02-user-input/
 - /2009/05/05/perl-5-babysteps-02-user-input/
-- /post/2009/05/perl-5-babysteps-02-user-input/
 categories:
 - post
 date: 2009-05-05 00:00:00-07:00
@@ -21,7 +20,6 @@ Let's make things a little more interesting. We could change the value
 of `$name` in the code, but it might be a little tiresome to do this before 
 showing it to each new person. How about making the program ask for a name? 
 User interaction - a neat idea.
-<!--more-->
 
 It's so neat that I'm going to show you two ways to do it.
 
@@ -30,7 +28,7 @@ It's so neat that I'm going to show you two ways to do it.
 Here's how I got user input before Perl 5.10. You'll find a lot of code
 that looks like this.
 
-``` perl
+```perl
 =pod
 
 =head1 hello.pl
@@ -50,13 +48,15 @@ say "Hello, $name!";
 
 Why don't we run this before we start trying to decipher it?
 
-    $ perl hello.pl
-    What is your name? Brian[ENTER]
-    Hello, Brian!
+```
+$ perl hello.pl
+What is your name? Brian[ENTER]
+Hello, Brian!
+```
 
 There is a lot going on in the few lines we added. Let's look at them one by one.
 
-``` perl
+```perl
 print "What is your name? ";
 ```
 
@@ -66,7 +66,7 @@ line when it's done. We use `print` so that our answer to the question will
 display on the same line as the question itself. That is a common approach
 to user prompts.
 
-``` perl
+```perl
 my $name = <STDIN>;
 ```
 
@@ -89,7 +89,7 @@ with it. The long version works out like this:
 
 There's a really long version, but I'm getting bored so we'll skip it.
 
-``` perl
+```perl
 chomp($name);
 ```
 
@@ -102,11 +102,13 @@ name to the program. What that ENTER actually looks like depends on your platfor
 but the end result is a line break in the text. Sometimes we like that, but not
 today. Here's what you would see if you left out `chomp`:
 
-    $ perl hello.pl
-    What is your name? Brian[ENTER]
-    Hello, Brian
-    !
-    $
+```
+$ perl hello.pl
+What is your name? Brian[ENTER]
+Hello, Brian
+!
+$
+```
 
 You can see that you're going to use `chomp` a lot when getting user input. But
 what if there were an easier way? There is ... sort of.
@@ -117,7 +119,7 @@ The new way looks better to my eyes, but I'm willing to admit that there's a lot
 going on for a beginner. You can feel free to ignore this section if you like,
 and my feelings won't be hurt at all.
 
-``` perl
+```perl
 =pod
 
 =head1 hello.pl
@@ -144,7 +146,7 @@ anything.
 
 ### Looking at the changes
 
-``` perl
+```perl
 use Term::UI;
 use Term::ReadLine;
 ```
@@ -158,7 +160,7 @@ related modules within a category.
 
 Why do we want those modules? So we can create an object that reads user input.
 
-``` perl
+```perl
 my $console = Term::ReadLine->new();
 my $name    = $console->get_reply( prompt => "What is your name? " );
 ```
@@ -191,11 +193,11 @@ as dictionaries, but they're really called *hashes*.
 
 Enough babbling. Let's run it.
 
-<pre>
+```
 $ perl hello.pl
-<u>What is your name?</u> <b>Brian</b>
+What is your name? Brian
 Hello, Brian!
-</pre>
+```
 
 Nice, it adds some formatting to the process! Well, it does for me. You might 
 not get the formatting if your console doesn't support it.

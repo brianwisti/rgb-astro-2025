@@ -45,9 +45,7 @@ gives me a chance to simplify my content creation workflow.
 My archetype focuses on [front matter][]. Since the site sections share taxonomy
 rules, I use a single default archetype.
 
-**`archetypes/default.md`**
-
-```markdown
+```markdown title="archetypes/default.md"
 ---
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
 date: {{ dateFormat "2006-01-02" .Date }}
@@ -83,7 +81,9 @@ tl;dr
 That's good enough for `hugo new`. Since I have `newContentEditor` set to "vim"
 in my [config][], Hugo opens the new file in my editor after creating it.
 
-    $ hugo new post/2017/23-things-i-hate-about-lists.md
+```
+$ hugo new post/2017/23-things-i-hate-about-lists.md
+```
 
 My workflow is a little more complicated than "create a draft and edit it"
 though.
@@ -111,9 +111,7 @@ branch and generate a content file for me. The file generating code is not
 needed now that Hugo archetypes are templates. My small, slightly clunky Ruby
 script can be replaced with a smaller, hopefully less clunky [Bash][] script.
 
-**`scripts/add`**
-
-```bash
+```bash title="scripts/add"
 #!/usr/bin/env bash
 
 # stricter bash
@@ -161,9 +159,10 @@ format string! Turns out that GNU Coreutils gives the shell quite a bit of
 functionality that I usually ran to some programming language and its
 libraries for. Being self-taught produces weird gaps in my knowledge.
 
-
-    $ ./script/add post "23 Things I Hate About Lists"
-    Switched to a new branch 'post/2017/23-things-i-hate-about-lists'
-    /home/brian/Sites/rgb-hugo/content/post/2017/23-things-i-hate-about-lists.md created
+```
+$ ./script/add post "23 Things I Hate About Lists"
+Switched to a new branch 'post/2017/23-things-i-hate-about-lists'
+/home/brian/Sites/rgb-hugo/content/post/2017/23-things-i-hate-about-lists.md created
+```
 
 Excuse me while I go write my masterpiece. Have fun!

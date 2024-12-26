@@ -16,7 +16,6 @@ title: I'm too cheap to buy a radio alarm
 ---
 
 I have trouble waking up on time. That's probably because I have trouble getting to bed on time. You can tell I have trouble getting to bed on time, because it's 1:40 in the morning right now and I'm writing a little blog post instead of going to bed.
-<!--more-->
 
 I'm working on getting to sleep earlier. Hey, I might even be to bed by 2, instead of 3 or 3:30. Waking up takes a few tricks. Say, for example: an alarm clock that's too big for me to pick it up and stuff under my pillow like a gift for the tooth fairy. A loud annoying beeping gift. How about getting a bigger alarm and putting across the room? Well you would expect that to work, but apparently I can get up, walk over to the alarm, hit the snooze, pick up the alarm, bring it back to bed, and stuff the alarm under the bed for the tooth fairy again, all without actually waking up.
 
@@ -33,7 +32,7 @@ the morning selection is fantastic unless it's Winter and his
 
 I've got my app, I've got my radio station feed. Now a little AppleScript to automate the process of firing up and playing the station. I haven't experimented much with AppleScript, but there's no time like the present for putting a simple script together:
 
-~~~applescript
+```applescript
 -- PlayKEXP.applescript
 --  Play the KEXP live stream
 
@@ -41,18 +40,22 @@ tell application "iTunes"
   set sound volume to 60
   play user playlist "KEXP Live"
 end tell
-~~~
+```
 
 I test it with `osascript PlayKEXP.applescript`. It works like a charm.
 
 Now to set this alarm so it goes off at a set time every day. This is the part where I really love the UNIXy goodness of OS X. I can just use crontab. So here's my new crontab file:
 
-    # minute/hour/mday/month/wday/command
-    30  6   *   *   *   osascript /Users/brian/iTunesScripts/PlayKEXP.applescript
+```
+# minute/hour/mday/month/wday/command
+30  6   *   *   *   osascript /Users/brian/iTunesScripts/PlayKEXP.applescript
+```
 
 Then I make sure that crontab knows about the task:
 
-    $ crontab mycrontab
+```
+$ crontab mycrontab
+```
 
 This was my first time using crontab for a personal task as well. It's awesome. Every morning at 6:30 iTunes will set the volume and start playing the KEXP broadcast.
 

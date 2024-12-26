@@ -64,13 +64,13 @@ of Posts or the simple content dump of a Page.
 Who would that help, besides the slightly technical examples from the
 description?
 
--   A writer could organize their stories into collections
--   An artist could present their works as one or more collections
--   A knitter could put their yarn projects in a collection.
--   Anyone who takes pictures could use collections as photo galleries.
--   Recipes, maybe?
--   Music playlists!
--   All the books I own, and the few I have actually read!
+- A writer could organize their stories into collections
+- An artist could present their works as one or more collections
+- A knitter could put their yarn projects in a collection.
+- Anyone who takes pictures could use collections as photo galleries.
+- Recipes, maybe?
+- Music playlists!
+- All the books I own, and the few I have actually read!
 
 A blog post probably works for most of these use cases. Maybe fiddle a
 bit with categories and put a tag here and there, and your content is
@@ -120,7 +120,9 @@ collections:
 Next I create the folder to hold this collection. By default its name
 must match the collection name with an underscore prefix.
 
-    $ mkdir _crafts
+```
+$ mkdir _crafts
+```
 
 ### One Thing
 
@@ -129,9 +131,7 @@ stitch scarf post](/post/2015/04/quick-garter-stitch-scarf) as a
 starting point, filling in the details of a new collection item from
 that post.
 
-**`crafts/garter-scarf-wrapped.md`**
-
-```markdown
+```markdown title="crafts/garter-scarf-wrapped.md"
 ---
 name: Quick Garter Stitch Scarf
 layout: craft
@@ -228,7 +228,7 @@ summary shows every craft project I ever documented.
 The project list should only show projects I have finished so far in the
 year.
 
-``` liquid {% process=false %}
+```liquid {% process=false %}
 {% assign this_year = 'now' | date: "%Y" %}
 <h2>{{ this_year }} Crafts Projects</h2>
 <ul>
@@ -286,7 +286,9 @@ permalink: /crafts/
 
 Then add a link to my index page and craft project template.
 
-    <p>See the <a href="/crafts/">Crafts</a> page to see all projects.
+```
+<p>See the <a href="/crafts/">Crafts</a> page to see all projects.
+```
 
 ![Short and sweet version of the crafts index](@img/2015/crafts-index.png)
 
@@ -304,11 +306,11 @@ I know. I mentioned an aesthetic issue earlier. You want to *see* the
 knitting projects in those summaries. I will gloss over the details.
 They deserve a blog post of their own.
 
--   Make thumbnails for each of my craft pictures.
--   Add a `thumbnail` item with a thumbnail path to the Front Matter for
-    each project.
--   Include a thumbnail pic in the project summary.
--   Fiddle a bunch with CSS for the summary and craft index views.
+- Make thumbnails for each of my craft pictures.
+- Add a `thumbnail` item with a thumbnail path to the Front Matter for
+  each project.
+- Include a thumbnail pic in the project summary.
+- Fiddle a bunch with CSS for the summary and craft index views.
 
 Generating a thumbnail and associating it with the project sounds like
 the sort of thing that should be automated, but none of the Jekyll
@@ -357,9 +359,7 @@ I update `index.html` to reference the new include file.
 
 And then the same to the Crafts index.
 
-**`crafts/index.html`**
-
-```liquid {% process=false %}
+```liquid title="crafts/index.html" {% process=false %}
 {% assign projects = site.crafts | sort: 'finished' | reverse %}
 {% for project in projects %}
   {% assign year_finished = project.finished | date: "%Y" %}
@@ -423,9 +423,9 @@ going on. Feel free to comment, email, tweet, or whatever!
 
 ## Other Resources
 
--   [Explain Like I’m Five: Jekyll
-    Collections](http://ben.balter.com/2015/02/20/jekyll-collections/)
-    by Ben Balter
--   [Getting Started with Jekyll
-    Collections](http://www.sitepoint.com/getting-started-jekyll-collections/)
-    by Taylor Jones
+- [Explain Like I’m Five: Jekyll
+  Collections](http://ben.balter.com/2015/02/20/jekyll-collections/)
+  by Ben Balter
+- [Getting Started with Jekyll
+  Collections](http://www.sitepoint.com/getting-started-jekyll-collections/)
+  by Taylor Jones

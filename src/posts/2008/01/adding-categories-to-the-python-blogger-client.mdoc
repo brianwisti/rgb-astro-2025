@@ -20,9 +20,8 @@ title: Adding Categories to the Python Blogger Client
 ## Update 2009-06-09
 
 I've revisited the code for Blogger posting with Python. Start with the [Python Blogger refresh][] to see the new starting point.
-<!--more-->
 
-<h2>The Original Tale</h2>
+## The Original Tale
 
 [Python Blogger client]: /post/2007/12/python-loves-blogger-part-1/
 
@@ -33,11 +32,13 @@ them "categories." Well, whatever they are called it looks like they are pretty 
 
 You already know that tags are defined in my config header, and are simply a comma-delimited list like so:
 
-    tags: python,gdata,blogger
+```
+tags: python,gdata,blogger
+```
 
 Here's the new `sendPost` method:
 
-``` python
+```python
 def sendPost(self):
     """Log into Blogger and submit my already parsed post"""
 
@@ -77,5 +78,5 @@ def sendPost(self):
 ```
 
 I hope this works. If it does work, then I am going to do a little refactoring
- as time allows to make this mess a little cleaner. If it doesn't work, then I
- guess I'll have to ... you know ... *fix it*.
+as time allows to make this mess a little cleaner. If it doesn't work, then I
+guess I'll have to ... you know ... *fix it*.

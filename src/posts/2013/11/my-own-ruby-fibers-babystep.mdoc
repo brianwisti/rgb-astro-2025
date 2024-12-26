@@ -22,15 +22,17 @@ Interesting stuff.
 Thought I would extrapolate from their initial example.
 My old static pages started from a MANIFEST file that looked something like this:
 
-    index.html
-    /babblings/index.html
-    /babblings/2013-05-30-javascript.html
-    /babblings/2013-04-05-perl-and-opensuse.html
-    /babblings/2013-03-big-updates.html
-    /babblings/seattle.html
-    /babblings/stalkingswfans.html
-    /babblings/bra.html
-    /brian/index.html
+```
+index.html
+/babblings/index.html
+/babblings/2013-05-30-javascript.html
+/babblings/2013-04-05-perl-and-opensuse.html
+/babblings/2013-03-big-updates.html
+/babblings/seattle.html
+/babblings/stalkingswfans.html
+/babblings/bra.html
+/brian/index.html
+```
 
 And so on.
 The path components create a topic heirarchy.
@@ -61,10 +63,12 @@ counts.keys.sort.each { |section| puts "#{section}: #{counts[section]}" }
 Yes, this is just the example from the Pickaxe book with `line.scan` changed to
 `line.match` with a slightly altered regular expression.
 
-    $ ruby nom-manifest.rb
-    babblings: 7
-    brian: 2
-    geekery: 78
+```
+$ ruby nom-manifest.rb
+babblings: 7
+brian: 2
+geekery: 78
+```
 
 This isn’t that helpful though.
 I already knew that the majority of my pages were in `/geekery/`.
@@ -88,24 +92,26 @@ end
 Now I’m looking for possible subsections and lumping them with the top level section.
 Does this change get me more useful information (for varying definitions of useful)?
 
-    $ ruby nom-manifest.rb
-    babblings: 7
-    brian: 2
-    geekery: 2
-    geekery/editors: 3
-    geekery/js: 1
-    geekery/lisp: 1
-    geekery/osx: 1
-    geekery/parrot: 17
-    geekery/perl: 13
-    geekery/php: 2
-    geekery/python: 9
-    geekery/rakudo: 3
-    geekery/rebol: 10
-    geekery/ruby: 10
-    geekery/tools: 2
-    geekery/unix: 2
-    geekery/xml: 2
+```
+$ ruby nom-manifest.rb
+babblings: 7
+brian: 2
+geekery: 2
+geekery/editors: 3
+geekery/js: 1
+geekery/lisp: 1
+geekery/osx: 1
+geekery/parrot: 17
+geekery/perl: 13
+geekery/php: 2
+geekery/python: 9
+geekery/rakudo: 3
+geekery/rebol: 10
+geekery/ruby: 10
+geekery/tools: 2
+geekery/unix: 2
+geekery/xml: 2
+```
 
 Yeah.
 It does.

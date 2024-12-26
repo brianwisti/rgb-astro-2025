@@ -33,11 +33,9 @@ Not that there’s anything wrong with that.
 But I want to try a more unified approach. I also decided that 2020 is
 my year of [Python](/tags/python).
 
-<aside class="admonition">
-
+{% note %}
 Don’t hold me to that "year of Python" thing. I get distracted.
-
-</aside>
+{% /note %}
 
 I could use the [Invoke](https://www.pyinvoke.org/) tool created by
 [Jeff Forcier](http://bitprophet.org/) for this unified approach.
@@ -59,13 +57,16 @@ Let’s get started.
 
 Mercifully simple. Do you have [Homebrew](https://brew.sh/)? Use that.
 
-    $ brew install pyinvoke
-
+```
+$ brew install pyinvoke
+```
 
 You can also use `pip` if you want Invoke in a particular Python
 environment.
 
-    (rgbhugo) $ pip install pyinvoke
+```
+(rgbhugo) $ pip install pyinvoke
+```
 
 Using Invoke with or near pyenv
 
@@ -85,7 +86,7 @@ the [task
 decorator](http://docs.pyinvoke.org/en/stable/api/tasks.html#invoke.tasks.task)
 to use Invoke’s powers.
 
-``` python
+```python
 from invoke import task
 ```
 
@@ -93,7 +94,7 @@ from invoke import task
 
 There’s not *much* boilerplate to a task, but there’s still a little.
 
-``` python
+```python
 @task
 def hello(c):
     print("Hello, world!")
@@ -110,17 +111,21 @@ called with context as its first argument.
 
 To *run* that task?
 
-    $ invoke hello
-    Hello, world!
+```
+$ invoke hello
+Hello, world!
+```
 
 My Makefile uses a clever bit of
 [sed](https://www.grymoire.com/Unix/Sed.html) to list available targets
 when you call `make help`. With Invoke? No cleverness needed.
 
-    $ invoke --list
-    Available tasks:
+```
+$ invoke --list
+Available tasks:
 
-      hello
+  hello
+```
 
 I strongly prefer Invoke’s built-in behavior to my `sed` one-liner.
 
@@ -130,15 +135,14 @@ This list could be more helpful, though. We know what the `hello` task
 does because I wrote it a few minutes ago. What about in a few months,
 when I have dozens of tasks?
 
-<aside class="admoonition">
-
+{% note %}
 Trust me. In a few months I will have dozens of tasks. Maybe in a few
 hours.
+{% /note %}
 
-</aside>
 Add a docstring!
 
-``` python
+```python
 @task
 def hello(c, name):
     """
@@ -153,7 +157,7 @@ def hello(c, name):
 Invoke takes the first line from that docstring and uses it to summarize
 our task in `--list`.
 
-``` console
+```
 $ invoke --list
 Available tasks:
 
@@ -162,15 +166,10 @@ Available tasks:
 
 Nice.
 
-<aside class="admonition note">
-    <p class="admonition-title">Note</p>
-
 Since Invoke only uses the docstring’s first line for the summary, keep
 it short and to the point. Deep dives and technical explanations can go
 in following paragraphs. But you should be doing that anyways. It’s a
 good documentation habit.
-
-</aside>
 
 #### Task parameters
 
@@ -179,7 +178,7 @@ you’ve added
 [parameters](http://docs.pyinvoke.org/en/stable/getting-started.html#task-parameters)
 to the task.
 
-``` python
+```python
 @task
 def hello(c, name):
     """
@@ -195,58 +194,68 @@ Invoke accepts both long and short form parameters. Either `--name` or
 `-n` count for `name`. I’ll use the long form today to keep things
 clear.
 
-    $ invoke hello --name Rumpelstiltskin
-    Hello, Rumpelstiltskin!
+```
+$ invoke hello --name Rumpelstiltskin
+Hello, Rumpelstiltskin!
+```
 
 If we ask Invoke about a specific task, it tells us about available
 parameters — along with the rest of the task function’s docstring.
 
-    $ invoke --help hello
-    Usage: inv[oke] [--core-opts] hello [--options] [other tasks here ...]
+```
+$ invoke --help hello
+Usage: inv[oke] [--core-opts] hello [--options] [other tasks here ...]
 
-    Docstring:
-      Print the standard greeting
+Docstring:
+  Print the standard greeting
 
-      "Hello world" is the classic first program to see what a language looks like.
-      So of course I used it to understand Invoke.
+  "Hello world" is the classic first program to see what a language looks like.
+  So of course I used it to understand Invoke.
 
-    Options:
-      -n STRING, --name=STRING
+Options:
+  -n STRING, --name=STRING
+```
 
 We can document the parameters by handing a dictionary of names and
 summary strings to the decorator.
 
-``` python
+```python
 @task(help={"name": "Who or what is being greeted"})
 def hello(c, name):
     ...
 ```
 
-    invoke --help hello
-    Usage: inv[oke] [--core-opts] hello [--options] [other tasks here ...]
+```
+invoke --help hello
+Usage: inv[oke] [--core-opts] hello [--options] [other tasks here ...]
 
-    Docstring:
-      Print the standard greeting
+Docstring:
+  Print the standard greeting
 
-      "Hello world" is the classic first program to see what a language looks like.
-      So of course I used it to understand Invoke.
+  "Hello world" is the classic first program to see what a language looks like.
+  So of course I used it to understand Invoke.
 
-    Options:
-      -n STRING, --name=STRING   Who or what is being greeted
+Options:
+  -n STRING, --name=STRING   Who or what is being greeted
+```
 
 #### Optional parameters
 
 Right now, the `name` option is required. Invoke gets confused when we
 skip it.
 
-    $ invoke hello
-    'hello' did not receive required positional arguments: 'name'
+```
+$ invoke hello
+'hello' did not receive required positional arguments: 'name'
+```
 
 Positional? Well yeah. You don’t *need* the name for a required
 parameter.
 
-    $ invoke hello world
-    Hello, world!
+```
+$ invoke hello world
+Hello, world!
+```
 
 I prefer to be explicit about things. But we weren’t talking about
 positional parameters. Not on purpose anyways.
@@ -254,7 +263,7 @@ positional parameters. Not on purpose anyways.
 It’s reasonable to want a default parameter for your task. Do that by
 giving your function argument a default value.
 
-``` python
+```python
 DEFAULT_NAME = "world"
 
 @task(help={"name": f"Who or what is being greeted (default '{DEFAULT_NAME}')"})
@@ -268,13 +277,17 @@ documentation, as a special favor to future us.
 
 And hey — we can invoke the `hello` task without a name\!
 
-    $ invoke hello
-    Hello, world!
+```
+$ invoke hello
+Hello, world!
+```
 
 It gets confusing again if we try a positional parameter though.
 
-    $ invoke hello Canute
-    No idea what 'Canute' is!
+```
+$ invoke hello Canute
+No idea what 'Canute' is!
+```
 
 And that’s why I prefer explicit invocations. But if you must know:
 
@@ -286,17 +299,14 @@ And that’s why I prefer explicit invocations. But if you must know:
 Thankfully Invoke supports another useful feature of Make: requesting
 more than one task at a time.
 
-<aside class="admonition note">
-    <p class="admonition-title">Note</p>
-
+{% note %}
 Took me years to learn `make build && make test && make install` could
 be said `make build test install`
-
-</aside>
+{% /note %}
 
 Let’s add a setup task.
 
-``` python
+```python
 @task
 def setup(c):
     """Get things ready for hello"""
@@ -307,9 +317,11 @@ def setup(c):
 
 We can ask Invoke to run both of them.
 
-    $ invoke setup hello --name Enobarbus
-    Creating the world
-    Hello, Enobarbus!
+```
+$ invoke setup hello --name Enobarbus
+Creating the world
+Hello, Enobarbus!
+```
 
 #### Pre-tasks
 
@@ -317,7 +329,7 @@ If we find ourselves running the same tasks in the same sequence all the
 time, we may be describing a dependency. Invoke lets us make the
 dependency explicit.
 
-``` python
+```python
 @task(
     pre=[setup],
     help={"name": "Who or what is being greeted (default {DEFAULT_NAME})"},
@@ -330,16 +342,15 @@ The decorator takes `pre` as a list of task names. Invoke calls each of
 these pre-tasks in order — using their default options if any — before
 calling the specified task.
 
-<aside class="admonition note">
-    <p class="admonition-title">Note</p>
-
+{% note %}
 Make sure your pre-tasks have been defined *before* listing them in `pre`!
+{% /note %}
 
-</aside>
-
-    $ invoke hello
-    Creating the world
-    Hello, world!
+```
+$ invoke hello
+Creating the world
+Hello, world!
+```
 
 Pre-tasks can be chained: if `setup` had its own dependencies, they
 would be called before `setup`. Invoke’s documentation on [how tasks
@@ -352,7 +363,7 @@ We have default parameters. What about default tasks?
 
 Sure thing. Just let the decorator know.
 
-``` python
+```python
 @task(
     setup,
     default=True,
@@ -365,33 +376,37 @@ def hello(c, name="world"):
 Run `invoke` without specifying a task, and it calls `hello` using
 default parameters.
 
-    $ invoke
-    Creating the world
-    Hello, world!
+```
+$ invoke
+Creating the world
+Hello, world!
+```
 
 Thankfully Invoke mentions its default when listing tasks.
 
-    $ invoke --list
-    Available tasks:
+```
+$ invoke --list
+Available tasks:
 
-      hello    Print the standard greeting
-      setup    Get things ready for hello
+  hello    Print the standard greeting
+  setup    Get things ready for hello
 
-    Default task: hello
+Default task: hello
+```
 
 You can’t pass task arguments to the default task. Why? Well, once you
 add an argument you’re no longer asking for default behavior.
 
-    $ invoke --name Rapunzel
-    No idea what '--name' is!
+```
+$ invoke --name Rapunzel
+No idea what '--name' is!
+```
 
 ### A useful task
 
 Here’s what we have for our "Hello World" `tasks.py` file.
 
-**`tasks.py`**
-
-```python
+```python title="tasks.py"
 """Tasks for exploring Invoke"""
 
 from invoke import task
@@ -438,14 +453,16 @@ Hugo’s built-in development
 [server](https://gohugo.io/commands/hugo_server/) takes many options,
 but I care about these:
 
-    -D, --buildDrafts   include content marked as draft
-    --navigateToChanged navigate to changed content file on live browser reload
-    --bind string       interface to which the server will bind (default "127.0.0.1")
+```
+-D, --buildDrafts   include content marked as draft
+--navigateToChanged navigate to changed content file on live browser reload
+--bind string       interface to which the server will bind (default "127.0.0.1")
+```
 
 That way I can see the post I’m writing, and can preview from my phone
 if needed. Assuming my phone is on local wifi, which it usually is.
 
-``` python
+```python
 """Tasks for managing my Hugo site."""
 
 from invoke import task
@@ -463,28 +480,30 @@ Most important for today, they give us a way to
 [run](http://docs.pyinvoke.org/en/stable/api/context.html#invoke.context.Context.run)
 shell commands.
 
-    $ invoke server
-    SHOW_INFO=1 hugo server --buildDrafts --bind 0.0.0.0 --navigateToChanged
-    Building sites …
-                       |  EN
-    -------------------+-------
-      Pages            | 1114
-      Paginator pages  |    7
-      Non-page files   |  452
-      Static files     |   25
-      Processed images | 1338
-      Aliases          |  452
-      Sitemaps         |    1
-      Cleaned          |    0
+```
+$ invoke server
+SHOW_INFO=1 hugo server --buildDrafts --bind 0.0.0.0 --navigateToChanged
+Building sites …
+                    |  EN
+-------------------+-------
+  Pages            | 1114
+  Paginator pages  |    7
+  Non-page files   |  452
+  Static files     |   25
+  Processed images | 1338
+  Aliases          |  452
+  Sitemaps         |    1
+  Cleaned          |    0
 
-    Built in 4092 ms
-    Watching for changes in /home/randomgeek/Sites/random-geekery-blog/{archetypes,content,data,layouts,static,themes}
-    Watching for config changes in /home/randomgeek/Sites/random-geekery-blog/config.toml
-    Environment: "development"
-    Serving pages from memory
-    Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
-    Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
-    Press Ctrl+C to stop
+Built in 4092 ms
+Watching for changes in /home/randomgeek/Sites/random-geekery-blog/{archetypes,content,data,layouts,static,themes}
+Watching for config changes in /home/randomgeek/Sites/random-geekery-blog/config.toml
+Environment: "development"
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 0.0.0.0)
+Press Ctrl+C to stop
+```
 
 Technically a
 [Runner](http://docs.pyinvoke.org/en/stable/api/runners.html#invoke.runners.Runner)

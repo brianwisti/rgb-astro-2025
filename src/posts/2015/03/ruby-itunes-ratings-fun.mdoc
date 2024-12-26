@@ -23,16 +23,11 @@ I use the [plist](https://github.com/bleything/plist) and
 [gruff](https://github.com/topfunky/gruff) gems to summarize my iTunes
 music ratings.
 
-<aside class="admonition">
-<p class="admonition-title">Updates</p>
+{% note title="2015-07-26" %}
+There was a missing `format` in the version of `graph-ratings.rb` that I pasted here. I am properly shamed.
+{% /note %}
 
-2015-07-26
-: There was a missing `format` in the version of `graph-ratings.rb` that I pasted here. I am properly shamed.
-
-</aside>
-
-Introduction
-------------
+## Introduction
 
 Earlier this year I did a fresh operating system install on my laptop.
 Part of that install involved moving all my music from an older machine.
@@ -54,22 +49,21 @@ that simplifies the task in Ruby.
 Since I like pretty pictures, I may as well use Geoffrey Grosenbach’s
 [gruff](https://github.com/topfunky/gruff) to make a pretty pie chart.
 
-    $ ruby --version
-    ruby 2.2.0p0 (2014-12-25 revision 49005) [x86_64-darwin14]
-    $ gem install plist
-    $ gem install gruff
+```
+$ ruby --version
+ruby 2.2.0p0 (2014-12-25 revision 49005) [x86_64-darwin14]
+$ gem install plist
+$ gem install gruff
+```
 
-Here It Is
-----------
+## Here It Is
 
 No big code explanation this time around. My last few attempts at that
 have gone stale in my drafts folder. Plus, I’m worn out. I *tried* the
 naive XML parsing thing, and it frustrated me quickly. Thank goodness
 for [plist](https://github.com/bleything/plist).
 
-**`graph-ratings.rb`**
-
-```ruby
+```ruby title="graph-gratings.rb"
 require 'plist'
 require 'gruff'
 
@@ -125,13 +119,15 @@ graph.write "song-pie.png"
 Running it shows me that I have more than a month of music to rate, and
 only if I can rate music in my sleep.
 
-    Rating Songs Percent Duration
-         0 13907   83.0% 38:05:56:14
-        20    60    0.4% 00:03:41:48
-        40   179    1.1% 00:12:28:46
-        60  1351    8.1% 03:16:21:32
-        80   984    5.9% 02:14:57:47
-       100   273    1.6% 00:17:44:35
+```
+Rating Songs Percent Duration
+      0 13907   83.0% 38:05:56:14
+    20    60    0.4% 00:03:41:48
+    40   179    1.1% 00:12:28:46
+    60  1351    8.1% 03:16:21:32
+    80   984    5.9% 02:14:57:47
+    100   273    1.6% 00:17:44:35
+```
 
 It seems I still like most of the music I own at least a little bit.
 Many former favorites have drifted to the 60 rating (3 stars), though.

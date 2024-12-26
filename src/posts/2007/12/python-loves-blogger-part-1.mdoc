@@ -16,8 +16,9 @@ title: Python Loves Blogger (Part 1)
 
 [here]: /post/2009/06/python-blogger-refresh-part-1/
 
+{% note %}
 I've revisited the code for Blogger posting with Python. Start [here][] to see the new starting point.
-<!--more-->
+{% /note %}
 
 ## The Original Tale
 
@@ -61,7 +62,7 @@ Here's the basic pseudo-code that will work fine for simple posts.
 
 It's fairly straightforward, but already shows me one class I'll be using to mask the details:
 
-``` python
+```python
 # post-to-blog.py
 
 class BlogPost(object):
@@ -81,7 +82,6 @@ be run but it doesn't have to be the default behavior.
 
 I already know what libraries I'm going to use, so let's install those.
 
-
 ## Installing Dependencies
 
 I need a few things to make this work:
@@ -96,32 +96,37 @@ I need a few things to make this work:
 I already have Python installed, so let's move on to Markdown. It's simple
 enough to install and verify.
 
-    ~/src/pymods brian$ unzip ~/python_markdown-1.7.rc1.zip
-    ~/src/pymods brian$ cd python_markdown-1.7/
-    ~/src/pymods/python_markdown-1.7 brian$ sudo python setup.py install
-    ~/src/pymods/python_markdown-1.7 brian$ python
-    ActivePython 2.5.1.1 (ActiveState Software Inc.) based on
-    Python 2.5.1 (r251:54863, May  1 2007, 17:40:00)
-    [GCC 4.0.1 (Apple Computer, Inc. build 5250)] on darwin
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> import markdown
-    >>> markdown.markdown("# Hello")
-    u'<h1>Hello</h1>'
-    >>>
+```
+~/src/pymods brian$ unzip ~/python_markdown-1.7.rc1.zip
+~/src/pymods brian$ cd python_markdown-1.7/
+~/src/pymods/python_markdown-1.7 brian$ sudo python setup.py install
+~/src/pymods/python_markdown-1.7 brian$ python
+ActivePython 2.5.1.1 (ActiveState Software Inc.) based on
+Python 2.5.1 (r251:54863, May  1 2007, 17:40:00)
+[GCC 4.0.1 (Apple Computer, Inc. build 5250)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import markdown
+>>> markdown.markdown("# Hello")
+u'<h1>Hello</h1>'
+>>>
+```
 
 Next I'll install GData.
 
-    ~/src/pymods brian$ tar xfvz ~/gdata.py-1.0.10.latest.tar.gz
-    ~/src/pymods/gdata.py-1.0.10.1 brian$ cd gdata.py-1.0.10.1/
-    ~/src/pymods/gdata.py-1.0.10.1 brian$ sudo python setup.py install
+```
+~/src/pymods brian$ tar xfvz ~/gdata.py-1.0.10.latest.tar.gz
+~/src/pymods/gdata.py-1.0.10.1 brian$ cd gdata.py-1.0.10.1/
+~/src/pymods/gdata.py-1.0.10.1 brian$ sudo python setup.py install
+```
 
 What can I do to verify this one? Let's just run the provided sample Blogger code.
 
-    $ cd samples/blogger
-    $ python BloggerExample.py --email [email] --password [password]
+```
+$ cd samples/blogger
+$ python BloggerExample.py --email [email] --password [password]
+```
 
 There's a bunch of spew, and posts are made and deleted along with comments. Looks like it works.
-
 
 ## Posting Formats
 
@@ -131,7 +136,7 @@ My blog post files will have a fairly straightforward layout, with a head
 section and a body section. It'll look ... well, it'll look a lot like the
 `lj-compose` buffer in [Emacs][] for composing Livejournal posts, now that I think about it.
 
-``` markdown
+```markdown
 title: Python Loves Blogger
 tags: python,gdata,project,blogger
 --
@@ -152,12 +157,13 @@ this particular file. Right now that means I'm only using *title* and *tags*.
 I'll just use commas for now when listing multiple values for a single key,
 such as with tags.
 
-    key1: value1
-    key2: value2,value3,value4,value5
+```
+key1: value1
+key2: value2,value3,value4,value5
+```
 
 The body section is just Markdown-formatted text, including extensions that
 are available in the Python Markdown library.
-
 
 ### Parsing the Config Header
 
@@ -169,7 +175,7 @@ need in a single post file. I just want to examine each line for key/value
 pairings without worrying about providing sections or a filehandle-like object
 to make ConfigParser happy.
 
-``` python
+```python
 class BlogPost(object):
    """A single posting for a blog owned by a Blogger account
    """
@@ -208,12 +214,11 @@ fact that newline escapes tend to be read before `doctest` can get to them. Anyw
 config lines are split on the `: ` pair of characters. A regular expression might be
 better for general use but I'm still going for quick, dirty, and exactly what *I* want.
 
-
 ### Parsing the Post Body
 
 Now let's get some HTML out of a block of Markdown-formatted text.
 
-``` python
+```python
 import markdown
 
 class BlogPost(object):
@@ -274,7 +279,7 @@ As long as we're refactoring, I'd prefer it if the message body could be
 treated as a property. Setting it would store the string, while getting it
 would invoke markup and return the result.
 
-``` python
+```python
 import markdown
 
 class BlogPost(object):
@@ -343,7 +348,7 @@ Before I get too carried away, I want to make sure that there are no ugly
 surprises in the formatting of my posts. Let's do the heavy lifting with
 [optparse][].
 
-``` python
+```python
 import markdown
 
 class BlogPost(object):
@@ -449,19 +454,20 @@ Well, except for verifying that the final output looked roughly like what I
 hoped for. I'm not 100% sure how Markdown is going to place its newlines, so
 I am looking at the output via STDOUT:
 
-    $ ./post-to-blog.py -f post.txt | more
-    <p>I want the ability to post to my blogs from the command line. That's because
-      I prefer to do <em>everything</em> from the command line, but that's not really the
-      point. The point is that I want an excuse to write a new quick script and
-      satisfy that constant urge to gain some new superpower. Okay, so blogging's
-      not a superpower. Hush.
-    </p>
-    ...
+```
+$ ./post-to-blog.py -f post.txt | more
+<p>I want the ability to post to my blogs from the command line. That's because
+  I prefer to do <em>everything</em> from the command line, but that's not really the
+  point. The point is that I want an excuse to write a new quick script and
+  satisfy that constant urge to gain some new superpower. Okay, so blogging's
+  not a superpower. Hush.
+</p>
+...
+```
 
 I'll save you the details of the full output. It looked about right, though.
 
 Enough stalling. It's time to login and post this article.
-
 
 ## Interacting with Blogger
 
@@ -471,13 +477,11 @@ I'll be using [the official guide][]
 for Python and Blogger to choose my steps. You aren't likely to find anything
 here that isn't already there.
 
-<aside>
-<h3>Update 2015-03-28</h3>
-
+{% note title="Update 2015-03-28" %}
 The "official guide" link is newer than this post, and you should favor its lessons over these.
-</aside>
+{% /note %}
 
-``` python
+```python
 import markdown
 from xml.etree import ElementTree
 from gdata import service
@@ -624,7 +628,7 @@ At some point I'll figure out how to add labels.
 
 This is the code I used to publish this post. Definitely a work in progress - this version will submit your post as a draft, for example.
 
-``` python
+```python
 # post-to-blog.py
 
 import markdown

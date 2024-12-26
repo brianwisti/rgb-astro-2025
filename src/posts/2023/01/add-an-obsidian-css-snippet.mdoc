@@ -21,10 +21,7 @@ include attribution.
 My daily journal template is a small mess of Markdown, HTML, and Templater directives, but
 it gets the job done.
 
-<details>
-<summary>Template details</summary>
-
-```text{title="_templates/journal-daily.md"}
+```text title="_templates/journal-daily.md" {% process=false %}
 ---
 title: <% tp.file.title %>
 created_at: <% tp.file.creation_date("YYYY-MM-DDTHH:mm:ssZ") %>
@@ -71,8 +68,6 @@ banner: "/assets/journal-entry-joel-montes-de-oca.jpg"
 </p>
 ```
 
-</details>
-
 It should have its own style. A little smaller than the note text, and maybe
 centered for an aesthetic touch. After spending a little too long looking for
 some kind of theme or plugin magic, I realized Obsidian supports [custom CSS
@@ -80,7 +75,7 @@ snippets][obsidian-css].
 
 So I added a CSS snippet for attribution paragraphs.
 
-```css{title=".obsidian/snippets/attributions.css"}
+```css title=".obsidian/snippets/attributions.css"
 .attribution {
     font-size: 0.8em;
     text-align: center;

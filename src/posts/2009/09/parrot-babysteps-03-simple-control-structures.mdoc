@@ -32,18 +32,20 @@ reading today's step. Maybe even a little more.
 As usual for many programming languages, the the sequence control structure is 
 implemented in Parrot as a pattern of one instruction following another.
 
-    # example-03-01.pir
-    .sub main :main
-        .const string PROMPT = "What is your name? "
-        .local string name
-        .local string response
-        .local pmc    stdin
+```
+# example-03-01.pir
+.sub main :main
+    .const string PROMPT = "What is your name? "
+    .local string name
+    .local string response
+    .local pmc    stdin
 
-        stdin = getstdin
-        name = stdin.'readline_interactive'(PROMPT)
-        response = "Hello, " . name
-        say response
-    .end
+    stdin = getstdin
+    name = stdin.'readline_interactive'(PROMPT)
+    response = "Hello, " . name
+    say response
+.end
+```
 
 ## Selection
 
@@ -69,73 +71,85 @@ Labels consist of a series of letters, numbers, and underscores followed by a co
 Although it's not strictly required, I use uppercase letters for label identifiers.
 You will generally find labels by themselves, outdented from the other instructions around it.
 
-    <IDENTIFIER>:
-        # Code following instruction
+```
+  <IDENTIFIER>:
+      # Code following instruction
+```
 
 Again: this is not required. I follow this convention because I believe it makes my
 code easier to read. You could just as easily have the following instruction on the same line,
 but it has the risk of making your code visually cluttered.
 
-    SET_NAME: $S0 = 'Brian'
-    say $S0
+```
+SET_NAME: $S0 = 'Brian'
+say $S0
+```
 
 Labels serve as markers in your code. They don't accomplish much by themselves, but can
 show some of your program structure if named and placed intelligently.
 
-    # example-03-02.pir
-    .sub main :main
-        .const string PROMPT = "What is your name? "
-        .local string name
-        .local string response
-        .local pmc    stdin
+```
+# example-03-02.pir
+.sub main :main
+    .const string PROMPT = "What is your name? "
+    .local string name
+    .local string response
+    .local pmc    stdin
 
-        stdin = getstdin
+    stdin = getstdin
 
-    GET_NAME:
-        name = stdin.'readline_interactive'(PROMPT)
+GET_NAME:
+    name = stdin.'readline_interactive'(PROMPT)
 
-        response = "Hello, " . name
-        say response
-    .end
+    response = "Hello, " . name
+    say response
+.end
+```
 
 ### `goto`
 
 A `goto` instruction sends Parrot execution to a specific labelled location
 in your code. 
 
-    goto <LABEL_IDENTIFIER>
+```
+goto <LABEL_IDENTIFIER>
+```
 
 When it follows a `goto`, Parrot picks up by executing the first
 instruction following the label. In this example, it creates an
 infinite loop which can only be interrupted by pressing
 Control-C.
 
-    # example-03-03.pir
-    .sub main :main
-        .const string PROMPT = "What is your name? "
-        .local string name
-        .local string response
-        .local pmc    stdin
+```
+# example-03-03.pir
+.sub main :main
+    .const string PROMPT = "What is your name? "
+    .local string name
+    .local string response
+    .local pmc    stdin
 
-        stdin = getstdin
+    stdin = getstdin
 
-    GET_NAME:
-        name = stdin.'readline_interactive'(PROMPT)
+GET_NAME:
+    name = stdin.'readline_interactive'(PROMPT)
 
-        goto GET_NAME
+    goto GET_NAME
 
-        response = "Hello, " . name
-        say response
-    .end
+    response = "Hello, " . name
+    say response
+.end
+```
 
 Infinite loops have their occasional uses, but most of the time they're just
 annoying.
 
-    $ parrot example-03-03.pir
-    What is your name? Brian
-    What is your name? Brian
-    What is your name? I said "Brian!"
-    What is your name? <Control-C>
+```
+$ parrot example-03-03.pir
+What is your name? Brian
+What is your name? Brian
+What is your name? I said "Brian!"
+What is your name? <Control-C>
+```
 
 ### `if`
 
@@ -144,32 +158,36 @@ condition is true by branching control. At our level of expertise, that
 branching is performed with `goto`. So for us, the general `if` syntax looks
 like this:
 
-    if <conditional> goto <LABEL>
+```
+if <conditional> goto <LABEL>
+```
 
 Let's see `if` in action by adding a little control logic to our name
 prompt.
 
-    # example-03-04.pir
-    .sub 'main' :main
-        .const string PROMPT = "What is your name? "
-        .local string name
-        .local string response
-        .local pmc    stdin
+```
+# example-03-04.pir
+.sub 'main' :main
+    .const string PROMPT = "What is your name? "
+    .local string name
+    .local string response
+    .local pmc    stdin
 
-        stdin = getstdin
+    stdin = getstdin
 
-        name = stdin.'readline_interactive'(PROMPT)
-        if name == "Brian" goto GREETING_FOR_BRIAN
-        response = "Hello, " . name
-        goto SAY_IT
+    name = stdin.'readline_interactive'(PROMPT)
+    if name == "Brian" goto GREETING_FOR_BRIAN
+    response = "Hello, " . name
+    goto SAY_IT
 
-      GREETING_FOR_BRIAN:
-        response = "Hey, Brian!"
+  GREETING_FOR_BRIAN:
+    response = "Hey, Brian!"
 
-      SAY_IT:
-        say response
+  SAY_IT:
+    say response
 
-    .end
+.end
+```
 
 I admit it. This example is all about making me feel good. One greeting is prepared for users named Brian, while
 another greeting is prepared for everybody else. The program accomplishes this by examining the value of `name`.
@@ -194,43 +212,47 @@ Anything that doesn't look false is considered true.
 
 You can also use comparison operators to compare two values in your conditional.
 
-    # example-03-05.pir
-    .sub main :main
-        .local int    a
-        .local int    b
-        .local pmc    stdin
+```
+# example-03-05.pir
+.sub main :main
+    .local int    a
+    .local int    b
+    .local pmc    stdin
 
-        stdin = getstdin
+    stdin = getstdin
 
-        a = stdin.'readline_interactive'('a: ')
-        b = stdin.'readline_interactive'('b: ')
+    a = stdin.'readline_interactive'('a: ')
+    b = stdin.'readline_interactive'('b: ')
 
-        if a > b goto A_IS_GREATER
-        if b > a goto B_IS_GREATER
-        goto BOTH_EQUAL
+    if a > b goto A_IS_GREATER
+    if b > a goto B_IS_GREATER
+    goto BOTH_EQUAL
 
-    A_IS_GREATER:
-        say "a is greater"
-        goto END
-    B_IS_GREATER:
-        say "b is greater"
-        goto END
-    BOTH_EQUAL:
-        say "a and b are the same"
-        goto END
+A_IS_GREATER:
+    say "a is greater"
+    goto END
+B_IS_GREATER:
+    say "b is greater"
+    goto END
+BOTH_EQUAL:
+    say "a and b are the same"
+    goto END
 
-    END:
-        say "Wasn't that fun?"
-    .end
+END:
+    say "Wasn't that fun?"
+.end
+```
 
 This little script grabs two values from the user and reports which one is greater -
 or reports the special case when they are the same.
 
-    $ parrot example-03-05.pir
-    a: 5
-    b: 10
-    b is greater
-    Wasn't that fun?
+```
+$ parrot example-03-05.pir
+a: 5
+b: 10
+b is greater
+Wasn't that fun?
+```
 
 Here are the comparison operators that are available for your conditionals.
 
@@ -248,71 +270,77 @@ a number if it's within a certain range. Parrot does not let us chain
 comparisons, but we can still use multiple tests with the `and` and `or`
 opcodes.
 
-    # example-03-06.pir
-    .sub main :main
-        .const int MINIMUM = 10
-        .const int MAXIMUM = 100
-        .local int input
-        .local int input_is_valid
-        .local pmc stdin
+```
+# example-03-06.pir
+.sub main :main
+    .const int MINIMUM = 10
+    .const int MAXIMUM = 100
+    .local int input
+    .local int input_is_valid
+    .local pmc stdin
 
-        stdin = getstdin
+    stdin = getstdin
 
-    GET_NUMBER:
-        print "Enter a number ("
-        print MINIMUM
-        print " - "
-        print MAXIMUM
-        print ")"
-        input = stdin.'readline_interactive'(': ')
-        $I0 = input >= MINIMUM
-        $I1 = input <= MAXIMUM
-        input_is_valid = and $I0, $I1
-        if input_is_valid goto VALID_INPUT
-        say "That is not in the acceptable range!"
-        goto END_PROGRAM
+GET_NUMBER:
+    print "Enter a number ("
+    print MINIMUM
+    print " - "
+    print MAXIMUM
+    print ")"
+    input = stdin.'readline_interactive'(': ')
+    $I0 = input >= MINIMUM
+    $I1 = input <= MAXIMUM
+    input_is_valid = and $I0, $I1
+    if input_is_valid goto VALID_INPUT
+    say "That is not in the acceptable range!"
+    goto END_PROGRAM
 
-      VALID_INPUT:
-        say "That is in the acceptable range."
+  VALID_INPUT:
+    say "That is in the acceptable range."
 
-      END_PROGRAM:
-        say "Thank you!"
-    .end
+  END_PROGRAM:
+    say "Thank you!"
+.end
+```
 
 `and` compares its arguments, and returns true if the arguments all look true.
 Parrot lets you store test results in a variable, as you can see. Then you can
 examine the truthiness of the variable in your `if` condition.
 
-    $ parrot example-03-06.pir
-    Enter a number (10 - 100): 990
-    That is not in the acceptable range!
-    Thank you!
-    $ parrot example-03-06.pir
-    Enter a number (10 - 100): 82
-    That is in the acceptable range.
-    Thank you!
+```
+$ parrot example-03-06.pir
+Enter a number (10 - 100): 990
+That is not in the acceptable range!
+Thank you!
+$ parrot example-03-06.pir
+Enter a number (10 - 100): 82
+That is in the acceptable range.
+Thank you!
+```
 
 This approach looked odd enough to me that I thought I'd show the equivalent
 Perl code.
 
 This Parrot code:
 
-      $I0 = input >= MINIMUM
-      $I1 = input <= MAXIMUM
-      input_is_valid = and $I0, $I1
-      if input_is_valid goto VALID_INPUT
-      say "That is not in the acceptable range!"
-      goto END_PROGRAM
+```
+  $I0 = input >= MINIMUM
+  $I1 = input <= MAXIMUM
+  input_is_valid = and $I0, $I1
+  if input_is_valid goto VALID_INPUT
+  say "That is not in the acceptable range!"
+  goto END_PROGRAM
 
-    VALID_INPUT:
-      say "That is in the acceptable range."
+VALID_INPUT:
+  say "That is in the acceptable range."
 
-    END_PROGRAM:
-      say "Thank you!"
+END_PROGRAM:
+  say "Thank you!"
+```
 
 is roughly equivalent to the following Perl code:
 
-``` perl
+```perl
 if ($input >= $MINIMUM && $input <= $MAXIMUM) {
     say "That is in the acceptable range.";
 } else {
@@ -325,35 +353,37 @@ say "Thank you!";
 We could also use `or`, which compares its arguments and returns true if *either*
 argument looks true.
 
-    # example-03-07.pir
-    .sub 'main' :main
-        .const int MINIMUM = 10
-        .const int MAXIMUM = 100
-        .local int input
-        .local int input_is_invalid
-        .local pmc stdin
+```
+# example-03-07.pir
+.sub 'main' :main
+    .const int MINIMUM = 10
+    .const int MAXIMUM = 100
+    .local int input
+    .local int input_is_invalid
+    .local pmc stdin
 
-        stdin = getstdin
+    stdin = getstdin
 
-    GET_NUMBER:
-        print "Enter a number ("
-        print MINIMUM
-        print " - "
-        print MAXIMUM
-        print ")"
-        input = stdin.'readline_interactive'(': ')
-        $I0 = input <= MINIMUM
-        $I1 = input >= MAXIMUM
-        input_is_invalid = or $I0, $I1
-        if input_is_invalid goto WARN_USER_ABOUT_INPUT
-        goto END_PROGRAM
+GET_NUMBER:
+    print "Enter a number ("
+    print MINIMUM
+    print " - "
+    print MAXIMUM
+    print ")"
+    input = stdin.'readline_interactive'(': ')
+    $I0 = input <= MINIMUM
+    $I1 = input >= MAXIMUM
+    input_is_invalid = or $I0, $I1
+    if input_is_invalid goto WARN_USER_ABOUT_INPUT
+    goto END_PROGRAM
 
-    WARN_USER_ABOUT_INPUT:
-        say "That is not in the acceptable range!"
+WARN_USER_ABOUT_INPUT:
+    say "That is not in the acceptable range!"
 
-    END_PROGRAM:
-        say "Thank you!"
-    .end
+END_PROGRAM:
+    say "Thank you!"
+.end
+```
 
 ### `unless`
 
@@ -362,31 +392,35 @@ may only want to branch if a test fails. While you *can* do this with `if`,
 Parrot also provides the `unless` test for exactly this situation. `unless`
 looks similar to `if`:
 
-    unless <conditional> goto <LABEL>
+```
+unless <conditional> goto <LABEL>
+```
 
 I can use it in the user prompt program to streamline the description of
 the application's response to anyone but me.
 
-    # example-03-08.pir
-    .sub main :main
-        .const string PROMPT = "What is your name? "
-        .local string name
-        .local string response
-        .local pmc    stdin
+```
+# example-03-08.pir
+.sub main :main
+    .const string PROMPT = "What is your name? "
+    .local string name
+    .local string response
+    .local pmc    stdin
 
-        stdin = getstdin
+    stdin = getstdin
 
-        name = stdin.'readline_interactive'(PROMPT)
-        unless name == "Brian" goto GENERIC_GREETING
-        response = "Hey, Brian!"
-        goto SAY_IT
+    name = stdin.'readline_interactive'(PROMPT)
+    unless name == "Brian" goto GENERIC_GREETING
+    response = "Hey, Brian!"
+    goto SAY_IT
 
-      GENERIC_GREETING:
-        response = "Hello, " . name
+  GENERIC_GREETING:
+    response = "Hello, " . name
 
-      SAY_IT:
-        say response
-    .end
+  SAY_IT:
+    say response
+.end
+```
 
 The program will run the same after this little change. Try it and see.
 
@@ -407,22 +441,24 @@ get interesting now that we've added these tools to our kit.
 
 How about a countdown?
 
-    # example-03-09.pir
-    .sub 'main' :main
-        .const int start = 10
-        .const int stop  = 0
-        .local int current
+```
+# example-03-09.pir
+.sub 'main' :main
+    .const int start = 10
+    .const int stop  = 0
+    .local int current
 
-        current = start
-      COUNTDOWN:
-        if current < stop goto LIFTOFF
-        say current
-        current -= 1
-        goto COUNTDOWN
+    current = start
+  COUNTDOWN:
+    if current < stop goto LIFTOFF
+    say current
+    current -= 1
+    goto COUNTDOWN
 
-      LIFTOFF:
-        say "Liftoff!"
-    .end
+  LIFTOFF:
+    say "Liftoff!"
+.end
+```
 
 This presents a simple count-controlled loop. We set a loop counter `current` to a reasonable start value before we
 start looping. We check the value of the loop counter each time we start the loop, quitting if `current` is less
@@ -430,34 +466,38 @@ than our stopping value. After our check, we display the value, subtract one, an
 
 A condition-controlled loop is easy, too.
 
-    # example-03-10.pir
-    .sub main :main
-        .const string PROMPT = "What is your name? "
-        .local string name
-        .local string response
-        .local pmc    stdin
+```
+# example-03-10.pir
+.sub main :main
+    .const string PROMPT = "What is your name? "
+    .local string name
+    .local string response
+    .local pmc    stdin
 
-        stdin = getstdin
+    stdin = getstdin
 
-    GET_NAME:
-        name = stdin.'readline_interactive'(PROMPT)
-        if name goto GREET_USER
-        goto GET_NAME
+GET_NAME:
+    name = stdin.'readline_interactive'(PROMPT)
+    if name goto GREET_USER
+    goto GET_NAME
 
-    GREET_USER:
-        response = "Hello, " . name
-        say response
-    .end
+GREET_USER:
+    response = "Hello, " . name
+    say response
+.end
+```
 
 Our script will now continue to check to see if the user actually entered
 anything for a name. If the user has entered a name, control goes to
 the `GREET_USER` label. Otherwise, control is sent backwards to the 
 `GET_USER` label.
 
-    $ parrot example-03-10.pir
-    What is your name? 
-    What is your name? Brian
-    Hello, Brian
+```
+$ parrot example-03-10.pir
+What is your name? 
+What is your name? Brian
+Hello, Brian
+```
 
 Collection loops such as list iterators will have to wait until we examine PMCs.
 

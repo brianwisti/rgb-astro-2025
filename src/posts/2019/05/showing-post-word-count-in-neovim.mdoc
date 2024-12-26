@@ -89,23 +89,24 @@ text, and count the words of text produced.
 
 We use pipes. Pipes everywhere.
 
-    $ mmark -html -fragment index.md | pandoc -f html -t plain | wc -w | tr -d ' '
-    403
+```
+$ mmark -html -fragment index.md | pandoc -f html -t plain | wc -w | tr -d ' '
+403
+```
 
-<aside class="admonition">
-<p class="admonition-title">2019-05-06 Update</p>
-
+{% note title="2019-05-06" %}
 Found out that Hugo shortcodes look a lot like mmark includes, and that
 choked my pipes up a bit. Added an initial pass through Perl to remove
 anything that might be a shortcode. Confuses counting in a couple of my
 posts *about* Hugo, but I will survive.
 
-    $ perl -pe 'BEGIN{ undef $/ } s/\{\{<.+?>}}//gsm' " index.md \
-      | mmark -html -fragment index.md \
-      | pandoc -f html -t plain \
-      | wc -w | tr -d ' '
-
-</aside>
+```
+$ perl -pe 'BEGIN{ undef $/ } s/\{\{<.+?>}}//gsm' " index.md \
+  | mmark -html -fragment index.md \
+  | pandoc -f html -t plain \
+  | wc -w | tr -d ' '
+```
+{% /note %}
 
 I told mmark to generate a fragment of HTML rather than a complete HTML
 document, to reduce noise from things like a `<title>` tag.
@@ -124,26 +125,23 @@ So I know how to get the numbers I want. Now I must learn enough [Vimscript][]
 to move that information from the shell to the status line.
 
 [Vimscript]: http://learnvimscriptthehardway.stevelosh.com/
-
-<aside class="admonition">
-
 [neovim]: https://neovim.io/
 
+{% note %}
 I've been using [neovim][] as my main terminal `$EDITOR`. Although it maintains
 compatibility with Vim, some of the functions here may require a newer release
 of Vim than you have on your machine.
 
 The goal was to figure this out on my own machine, so unfortunately the only
 advice I can offer if your Vim complains is: upgrade Vim or switch to Neovim.
-
-</aside>
+{% /note %}
 
 Later I may expand this into a library function that understands about different
 content types. Right now it returns a formatted word count if the filetype of
 the current buffer is Markdown, and an empty string otherwise. That way there's
 *something* to put in the status line.
 
-``` vim
+```vim
 function! MarkdownWordCount()
   let my_filetype = &filetype
 
@@ -178,7 +176,7 @@ fast enough on my computer, but it just feels like wasted effort. Keep the word
 count and time of last check in buffer variables. Update the word count only
 if the file's been touched since the last check.
 
-``` vim
+```vim
 " Word Count for Markdown posts
 function! MarkdownWordCount()
   let my_filetype = &filetype
@@ -222,7 +220,7 @@ Both of these time functions work in "seconds since 1970-01-01." That's not
 unusual, but it does mean you'd need to feed the values to `strftime` if you
 wanted human-readable times.
 
-``` vim
+```vim
 " Later, in my status line:
 set statusline=%m%h%w<%f>\ %=%(%{fugitive#statusline()}\ [%Y]%{MarkdownWordCount()}[%l,%v][%p%%]%)
 ```

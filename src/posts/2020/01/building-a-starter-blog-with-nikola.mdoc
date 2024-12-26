@@ -46,36 +46,42 @@ My site has too many moving parts for me to casually port it, but I can still pl
 It’s generally a good idea to have a dedicated Python environment for each of your projects.
 So I’ll set something up with [pyenv][] and [pyenv-virtualenv][].
 
-    $ pyenv virtualenv 3.8.0 nikola
-    $ pyenv activate nikola
+```
+$ pyenv virtualenv 3.8.0 nikola
+$ pyenv activate nikola
+```
 
 [suggestion]: https://getnikola.com/getting-started.html
 
 Next is Nikola itself.
 I’ll follow the [suggestion][] to install Nikola\[Extras\], which includes all sorts of niftiness.
 
-    $ pip install --upgrade "Nikola[Extras]"
+```
+$ pip install --upgrade "Nikola[Extras]"
+```
 
 ## Initialize the site
 
 Let’s initialize an empty site.
 
-    $ nikola init starter-blog
-    Creating Nikola Site
-    ====================
+```
+$ nikola init starter-blog
+Creating Nikola Site
+====================
 
-    This is Nikola v8.0.3.  We will now ask you a few easy questions about your new site.
-    If you do not want to answer and want to go with the defaults instead, simply restart with the `-q` parameter.
-    --- Questions about the site ---
-    ...
-    --- Questions about languages and locales ---
-    ...
-    --- Questions about comments ---
-    ...
-    That's it, Nikola is now configured.  Make sure to edit conf.py to your liking.
-    If you are looking for themes and addons, check out https://themes.getnikola.com/ and https://plugins.getnikola.com/.
-    Have fun!
-    [2020-01-04T07:08:02Z] INFO: init: Created empty site at starter-blog.
+This is Nikola v8.0.3.  We will now ask you a few easy questions about your new site.
+If you do not want to answer and want to go with the defaults instead, simply restart with the `-q` parameter.
+--- Questions about the site ---
+...
+--- Questions about languages and locales ---
+...
+--- Questions about comments ---
+...
+That's it, Nikola is now configured.  Make sure to edit conf.py to your liking.
+If you are looking for themes and addons, check out https://themes.getnikola.com/ and https://plugins.getnikola.com/.
+Have fun!
+[2020-01-04T07:08:02Z] INFO: init: Created empty site at starter-blog.
+```
 
 Okay, no need to paste the entire exchange.
 Suffice to say that many questions are asked.
@@ -88,20 +94,22 @@ I see nothing for themes, but that’s okay.
 Nikola starts us off with the [bootblog4][] theme.
 We can pick or make new themes later.
 
-    $ tree
-    .
-    ├── conf.py
-    ├── files
-    ├── galleries
-    ├── listings
-    ├── pages
-    └── posts
+```
+$ tree
+.
+├── conf.py
+├── files
+├── galleries
+├── listings
+├── pages
+└── posts
 
-    5 directories, 1 file
+5 directories, 1 file
+```
 
 My answers to Nikola’s setup questions sit up there near the top of `conf.py`.
 
-``` python
+```python
 # Data about this site
 BLOG_AUTHOR = "Brian Wisti"  # (translatable)
 BLOG_TITLE = "Random Geekery"  # (translatable)
@@ -126,23 +134,22 @@ Nevertheless, I plan to keep the [documentation][] handy.
 Nikola includes a built-in server to check your site locally. We have no
 content yet, but let’s take a look anyways.
 
-    $ nikola auto --browser
-    [2020-01-04T17:51:45Z] INFO: serve: Serving on http://127.0.0.1:8000/ ...
-    [2020-01-04T17:51:45Z] INFO: serve: Opening http://127.0.0.1:8000/ in the default web browser...
+```
+$ nikola auto --browser
+[2020-01-04T17:51:45Z] INFO: serve: Serving on http://127.0.0.1:8000/ ...
+[2020-01-04T17:51:45Z] INFO: serve: Opening http://127.0.0.1:8000/ in the default web browser...
+```
 
 The `auto` command instructs Nikola to serve your site, refreshing
 whenever you save a change. With the `--browser` flag, it also opens a
 new browser tab to your development site.
 
-<aside class="admonition note">
-  <p class="admonition-title">Note</p>
-
+{% note %}
 Unless you’re in tmux, in which case it depends on how your desktop and
 tmux are configured. I had to run `nikola auto --browser` from a
 separate terminal tab in Linux Cinnamon to get the browser action. I’ll
 look up how to fix that eventually.
-
-</aside>
+{% /note %}
 
 `http://127.0.0.1:8000` shows a basically empty front page. Nikola
 filled in the templates for the default theme with values from
@@ -159,7 +166,7 @@ We want to see how the development site works, not the live site.
 
 We can probably fix that in theme templates or with an option, but for the moment let’s just update `config.py`.
 
-``` python
+```python
 SITE_URL = "/"
 ```
 
@@ -182,18 +189,20 @@ Despite its many options, Nikola includes a default workflow.
 
 The `new_post` command asks you for a title and uses that to create a file from your settings.
 
-    $ nikola new_post
-    Creating New Post
-    -----------------
+```
+$ nikola new_post
+Creating New Post
+-----------------
 
-    Title: Trying Out Nikola
-    Scanning posts........done!
-    [2020-01-04T20:39:06Z] INFO: new_post: Your post's text is at: posts/trying-out-nikola.rst
+Title: Trying Out Nikola
+Scanning posts........done!
+[2020-01-04T20:39:06Z] INFO: new_post: Your post's text is at: posts/trying-out-nikola.rst
+```
 
 Fire up an editor — or do it automatically with `nikola new_post -e` —
 and add something!
 
-``` rst
+```rst
 .. title: Trying Out Nikola
 .. slug: trying-out-nikola
 .. date: 2020-01-04 12:39:06 UTC-08:00
@@ -234,14 +243,14 @@ What does the site look like now that it has a post?
 This theme shows post content.
 I prefer showing a quick summary of posts on the front page.
 
-``` python
+```python
 # Show teasers (instead of full posts) in indexes? Defaults to False.
 INDEX_TEASERS = True
 ```
 
 And a comment in the post to show where the cutoff point is:
 
-``` rst
+```rst
 .. TEASER_END
 
 Delectus ut aut ea et dolore autem. Sint nihil sapiente voluptate id aut quo impedit. Aut
@@ -259,7 +268,7 @@ What about that "Source" link?
 Nikola lets you download the ReST source of a post.
 Neat, but not a feature I care about.
 
-``` python
+```python
 # Copy the source files for your pages?
 # Setting it to False implies SHOW_SOURCELINK = False
 COPY_SOURCES = False
@@ -285,13 +294,15 @@ Anyways.
 Blogging is good, but a site needs more than blog posts.
 Let’s use `nikola new_post -p` to create a page instead of a post.
 
-    $ nikola new_post -p
-    Creating New Page
-    -----------------
+```
+$ nikola new_post -p
+Creating New Page
+-----------------
 
-    Title: Now
-    Scanning posts........done!
-    [2020-01-05T09:37:40Z] INFO: new_page: Your page's text is at: pages/now.rst
+Title: Now
+Scanning posts........done!
+[2020-01-05T09:37:40Z] INFO: new_page: Your page's text is at: pages/now.rst
+```
 
 Everybody could use a [/now](/now/) page.
 Excuse me a moment while I edit `pages/now.rst`.
@@ -301,7 +312,7 @@ The `/now` page is significant enough that it should go on the site menu.
 
 Back over to `config.py`:
 
-``` python
+```python
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/pages/now/", "Now"),
@@ -319,8 +330,10 @@ NAVIGATION_LINKS = {
 
 If this was a really real site, we would build and deploy.
 
-    $ nikola build
-    $ nikola deploy
+```
+$ nikola build
+$ nikola deploy
+```
 
 [deployment]: https://getnikola.com/handbook.html#deployment
 [rsync]: https://rsync.samba.org/
@@ -330,7 +343,7 @@ Well sure!
 You can configure multiple [deployment][] options.
 [rsync][] — my favorite — even gets highlighted in the commented example.
 
-``` python
+```python
 # DEPLOY_COMMANDS = {
 #     'default': [
 #         "rsync -rav --delete output/ joe@my.site:/srv/www/site",

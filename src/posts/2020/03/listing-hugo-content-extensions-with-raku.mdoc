@@ -24,8 +24,10 @@ title: Listing Hugo Content Extensions With Raku
 How many text formatting languages have I used for my Hugo site? For
 that matter, how many content files were written in each?
 
-    $ hugo list all | raku -e 'bag(lines[1..*].map({ .split(",")[0].IO.extension })).say'
-    Bag(adoc(4), html, md(327), rst(109))
+```
+$ hugo list all | raku -e 'bag(lines[1..*].map({ .split(",")[0].IO.extension })).say'
+Bag(adoc(4), html, md(327), rst(109))
+```
 
 Mostly Markdown, with a fair chunk of reStructuredText and a little bit
 of Asciidoctor. Oh and one HTML source file, originally an [Org-Jekyll
@@ -71,12 +73,14 @@ subcommand you use:
 
 What does that output look like?
 
-    $ hugo list all
-    path,slug,title,date,expiryDate,publishDate,draft,permalink
-    content/draft/listing-hugo-content-extensions-with-raku/index.adoc,,Listing Hugo Content Extensions With Raku,2020-03-27T22:36:13-07:00,0001-01-01T00:00:00Z,0001-01-01T00:00:00Z,true,https://randomgeekery.org/draft/listing-hugo-content-extensions-with-raku/
-    content/draft/managing-music-with-beets/index.adoc,,Managing My Music With Beets,2020-03-27T10:31:41-07:00,0001-01-01T00:00:00Z,0001-01-01T00:00:00Z,true,https://randomgeekery.org/draft/managing-music-with-beets/
-    content/post/2020/03/stdu-viewer/index.rst,,STDU Viewer,2020-03-26T23:42:16-07:00,0001-01-01T00:00:00Z,2020-03-26T23:42:16-07:00,false,https://randomgeekery.org/2020/03/26/stdu-viewer/
-    content/note/2020/03/every-post-has-a-uuid/index.rst,,Every Post Has a UUID,2020-03-21T19:06:00-07:00,0001-01-01T00:00:00Z,2020-03-21T19:06:00-07:00,false,https://randomgeekery.org/note/2020/81/every-post-has-a-uuid/
+```
+$ hugo list all
+path,slug,title,date,expiryDate,publishDate,draft,permalink
+content/draft/listing-hugo-content-extensions-with-raku/index.adoc,,Listing Hugo Content Extensions With Raku,2020-03-27T22:36:13-07:00,0001-01-01T00:00:00Z,0001-01-01T00:00:00Z,true,https://randomgeekery.org/draft/listing-hugo-content-extensions-with-raku/
+content/draft/managing-music-with-beets/index.adoc,,Managing My Music With Beets,2020-03-27T10:31:41-07:00,0001-01-01T00:00:00Z,0001-01-01T00:00:00Z,true,https://randomgeekery.org/draft/managing-music-with-beets/
+content/post/2020/03/stdu-viewer/index.rst,,STDU Viewer,2020-03-26T23:42:16-07:00,0001-01-01T00:00:00Z,2020-03-26T23:42:16-07:00,false,https://randomgeekery.org/2020/03/26/stdu-viewer/
+content/note/2020/03/every-post-has-a-uuid/index.rst,,Every Post Has a UUID,2020-03-21T19:06:00-07:00,0001-01-01T00:00:00Z,2020-03-21T19:06:00-07:00,false,https://randomgeekery.org/note/2020/81/every-post-has-a-uuid/
+```
 
 I could feed that to any language with a nice library for handling CSV
 files — which is most of them. Heck, I could feed it to Excel\!
@@ -93,7 +97,7 @@ Look, we’ve all been stuck at home for a bit. I need a break from
 [Python](/tags/python). How about [Perl](https://www.perl.org/)'s sister
 language, [Raku](https://raku.org/)?
 
-``` raku
+```raku
 bag(lines[1..*].map({ .split(",")[0].IO.extension })).say
 ```
 
@@ -146,14 +150,18 @@ object lets me ask for an
 The block returns that extension, so when `map` is all done it has a
 list of file extensions:
 
-    (adoc adoc rst rst md md md rst ...)
+```
+(adoc adoc rst rst md md md rst ...)
+```
 
 During initialization, the Bag counts how many times each extension
 appears in the list. Since the result of that tally is all I care about,
 I print it out.
 
-    $ hugo list all | raku -e 'bag(lines[1..*].map({ .split(",")[0].IO.extension })).say'
-    Bag(adoc(4), html, md(327), rst(109))
+```
+$ hugo list all | raku -e 'bag(lines[1..*].map({ .split(",")[0].IO.extension })).say'
+Bag(adoc(4), html, md(327), rst(109))
+```
 
 ## Alternate versions
 
@@ -168,8 +176,10 @@ old subroutines too. Course, we have to reach for
 lower-level [IO::Spec](https://docs.raku.org/type/IO::Spec) object
 understands file extensions on our platform.
 
-    $ hugo list all | raku -e 'say bag(map({ $*SPEC.extension(split(",", $_)[0]) }, lines[1..*]))'
-    Bag(adoc(4), html, md(327), rst(109))
+```
+$ hugo list all | raku -e 'say bag(map({ $*SPEC.extension(split(",", $_)[0]) }, lines[1..*]))'
+Bag(adoc(4), html, md(327), rst(109))
+```
 
 ### Using Text::CSV
 
@@ -177,10 +187,12 @@ I know what to expect from Hugo’s CSV output, but what if I didn’t? I’d
 feed the standard input handle `$*IN` to H. Merijn Brand’s
 [Text::CSV](https://github.com/Tux/CSV) module.
 
-    $ zef install Text::CSV
-    $ hugo list all | raku -MText::CSV -e \
-      'bag(csv(in => $*IN, headers=>"skip", fragment=>"col=1").map({ .IO.extension })).say'
-    Bag(adoc(4), html, md(327), rst(109))
+```
+$ zef install Text::CSV
+$ hugo list all | raku -MText::CSV -e \
+  'bag(csv(in => $*IN, headers=>"skip", fragment=>"col=1").map({ .IO.extension })).say'
+Bag(adoc(4), html, md(327), rst(109))
+```
 
 Though if I was being *this* careful, I’d probably also move away from a
 one-liner. But that takes us a long ways away from my original goal of

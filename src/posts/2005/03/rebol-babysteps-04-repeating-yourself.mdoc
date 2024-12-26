@@ -34,20 +34,22 @@ Hopefully you get the idea. Sometimes all you need to do is repeat a process a s
 
 ### `loop`
 
-    >> loop 5 [
-    [    print "Spam!"
-    [    ]
-    Spam!
-    Spam!
-    Spam!
-    Spam!
-    Spam!
+```
+>> loop 5 [
+[    print "Spam!"
+[    ]
+Spam!
+Spam!
+Spam!
+Spam!
+Spam!
+```
 
 That’s a little boring.
 Let’s try something a little more involved.
 Maybe we could use `loop` to create a simple math quiz program.
 
-``` rebol
+```rebol
 REBOL [
     Title: "Simple Math Quiz"
     File: %math.r
@@ -103,11 +105,13 @@ You don’t want a loop to run forever.
 But that doesn’t mean you *can’t* run a loop forever.
 REBOL provides us with the `forever` word to let us do exactly that.
 
-    >> forever [ print "spam." ]
-    spam.
-    spam.
-    spam.
-    ...
+```
+>> forever [ print "spam." ]
+spam.
+spam.
+spam.
+...
+```
 
 And so on until you hit `Ctrl + C`, or kill the process, or do something to make
 the program *stop saying "spam"*!
@@ -119,18 +123,20 @@ But please, don’t use `forever` without a mighty good reason.
 Sometimes you’re right in the middle of a loop and you want to break out of it and get back to the rest of the program.
 That’s easy enough.
 
-    >> i: 0
-    == 0
-    >> forever [
-    [    prin i
-    [    i: i + 1
-    [    if equal? i 5 [
-    [        print "Augh!"
-    [        break
-    [        ]
-    [    ]
-    01234Augh!
-    >>
+```
+>> i: 0
+== 0
+>> forever [
+[    prin i
+[    i: i + 1
+[    if equal? i 5 [
+[        print "Augh!"
+[        break
+[        ]
+[    ]
+01234Augh!
+>>
+```
 
 Oh, you noticed that `prin` in there?
 That’s a different way of printing.
@@ -153,18 +159,20 @@ REBOL gives us a few words which help us in that situation.
 The main difference is that it stores the number of trips you’ve taken through the loop in a variable that you can get to from inside the loop.
 The variable has a value of `1` on the first trip through, `2` on the second trip through, and so on.
 
-    >> repeat count 9 [
-    [    print [ "3 x" count "is" 3 * count ]
-    [    ]
-    3 x 1 is 3
-    3 x 2 is 6
-    3 x 3 is 9
-    3 x 4 is 12
-    3 x 5 is 15
-    3 x 6 is 18
-    3 x 7 is 21
-    3 x 8 is 24
-    3 x 9 is 27
+```
+>> repeat count 9 [
+[    print [ "3 x" count "is" 3 * count ]
+[    ]
+3 x 1 is 3
+3 x 2 is 6
+3 x 3 is 9
+3 x 4 is 12
+3 x 5 is 15
+3 x 6 is 18
+3 x 7 is 21
+3 x 8 is 24
+3 x 9 is 27
+```
 
 ### `for`
 
@@ -172,7 +180,9 @@ The next sort of repetition structure is `for`, which adds a starting point, sto
 `for` is useful for producing very specific loops.
 It might be a little wordy for simple loops which can be handled by the `repeat` word:
 
-    >> for num 1 9 1 [ print ["3 x" num "is" 3 * num] ]
+```
+>> for num 1 9 1 [ print ["3 x" num "is" 3 * num] ]
+```
 
 [datatypes]: /post/2004/12/rebol-datatypes
 
@@ -187,21 +197,23 @@ That way we can play a little bit with some [datatypes][] while helping out our 
 Hey, what do you expect from me?
 I was a waiter for ten years, so this is the sort of stuff that pops into my head!
 
-    >> for bill $10 $20 $1 [
-    [    tip: bill * .15
-    [    print ["Bill:" bill "-- Tip:" tip]
-    [    ]
-    Bill: $10.00 -- Tip: $1.50
-    Bill: $11.00 -- Tip: $1.65
-    Bill: $12.00 -- Tip: $1.80
-    Bill: $13.00 -- Tip: $1.95
-    Bill: $14.00 -- Tip: $2.10
-    Bill: $15.00 -- Tip: $2.25
-    Bill: $16.00 -- Tip: $2.40
-    Bill: $17.00 -- Tip: $2.55
-    Bill: $18.00 -- Tip: $2.70
-    Bill: $19.00 -- Tip: $2.85
-    Bill: $20.00 -- Tip: $3.00
+```
+>> for bill $10 $20 $1 [
+[    tip: bill * .15
+[    print ["Bill:" bill "-- Tip:" tip]
+[    ]
+Bill: $10.00 -- Tip: $1.50
+Bill: $11.00 -- Tip: $1.65
+Bill: $12.00 -- Tip: $1.80
+Bill: $13.00 -- Tip: $1.95
+Bill: $14.00 -- Tip: $2.10
+Bill: $15.00 -- Tip: $2.25
+Bill: $16.00 -- Tip: $2.40
+Bill: $17.00 -- Tip: $2.55
+Bill: $18.00 -- Tip: $2.70
+Bill: $19.00 -- Tip: $2.85
+Bill: $20.00 -- Tip: $3.00
+```
 
 We can’t do *that* with a `repeat` loop.
 At least, I don’t think we can.
@@ -219,17 +231,19 @@ Very bad indeed.
 As long as I’m looking at datatypes in `for` loops, let’s look at another example.
 Starting from Saturday, January 3 2009, what is the calendar date of each following Saturday until March 7 2009?
 
-    >> for day 3-jan-2009 7-mar-2009 7 [ print day ]
-    3-Jan-2009
-    10-Jan-2009
-    17-Jan-2009
-    24-Jan-2009
-    31-Jan-2009
-    7-Feb-2009
-    14-Feb-2009
-    21-Feb-2009
-    28-Feb-2009
-    7-Mar-2009
+```
+>> for day 3-jan-2009 7-mar-2009 7 [ print day ]
+3-Jan-2009
+10-Jan-2009
+17-Jan-2009
+24-Jan-2009
+31-Jan-2009
+7-Feb-2009
+14-Feb-2009
+21-Feb-2009
+28-Feb-2009
+7-Mar-2009
+```
 
 Start on January 3, step 7 days at a time until we reach March 7, and print the calendar date at each step.
 Not bad, eh?
@@ -273,20 +287,22 @@ How do you know if the block returns `true`?
 Because the block returns the value of the last statement in the block.
 This means that we could put a simple test as the last statement, using the guidelines from the chapter on [selection structures][].
 
-    >> until [
-    [    print "Spam"
-    [    response: ask "? "
-    [    equal? response "Bloody Vikings!"
-    [    ]
-    Spam
-    ? Spam
-    Spam
-    ? Bacon Eggs and Spam
-    Spam
-    ? I don't like Spam!
-    Spam
-    ? Bloody Vikings!
-    == true
+```
+>> until [
+[    print "Spam"
+[    response: ask "? "
+[    equal? response "Bloody Vikings!"
+[    ]
+Spam
+? Spam
+Spam
+? Bacon Eggs and Spam
+Spam
+? I don't like Spam!
+Spam
+? Bloody Vikings!
+== true
+```
 
 Because it doesn’t test until the end of the loop, `until` will step through the loop at least once.
 
@@ -300,19 +316,21 @@ If it’s true, then it runs through the loop and tests again.
 Hrm, I need to think of a decent example of `while`.
 For now, let’s just make a variation of what we might do with an `until` loop.
 
-    >> response: none
-    == none
-    >> while [ not-equal? response "Bloody Vikings!" ] [
-    [    print "Spam."
-    [    response: ask "? "
-    [    ]
-    Spam.
-    ? flerg
-    Spam.
-    ? flop
-    Spam.
-    ? Bloody Vikings!
-    == "Bloody Vikings!"
+```
+>> response: none
+== none
+>> while [ not-equal? response "Bloody Vikings!" ] [
+[    print "Spam."
+[    response: ask "? "
+[    ]
+Spam.
+? flerg
+Spam.
+? flop
+Spam.
+? Bloody Vikings!
+== "Bloody Vikings!"
+```
 
 `while` will not run at all if the condition isn’t true at the start of the loop, because it tests the condition before beginning each step.
 
@@ -332,12 +350,14 @@ The name is set to the value of the current item in the list.
 It is easier to demonstrate a `foreach` loop than it is to describe one.
 Here’s a quick example.
 
-    >> colors: to-list [ "red" "green" "blue" ]
-    == make list! ["red" "green" "blue"]
-    >> foreach color colors [ print color ]
-    red
-    green
-    blue
+```
+>> colors: to-list [ "red" "green" "blue" ]
+== make list! ["red" "green" "blue"]
+>> foreach color colors [ print color ]
+red
+green
+blue
+```
 
 I would like to close this chapter with something a little meatier than that example, though.
 Let’s write a script that takes a list of dates and tells us how far from today each of those dates are.
@@ -380,12 +400,14 @@ foreach day days [
 
 Now that we’ve written the code, let’s run the script:
 
-    23-Jan-2009 was 32 days ago
-    24-Feb-2009 is today!
-    13-Mar-2009 is in 17 days
-    30-Apr-2009 is in 65 days
-    31-Oct-2009 is in 249 days
-    5-Jan-2010 is in 315 days
+```
+23-Jan-2009 was 32 days ago
+24-Feb-2009 is today!
+13-Mar-2009 is in 17 days
+30-Apr-2009 is in 65 days
+31-Oct-2009 is in 249 days
+5-Jan-2010 is in 315 days
+```
 
 Naturally, your results may vary.
 In fact, they will almost definitely vary unless you read this article the day I updated it or your clock is set wrong.

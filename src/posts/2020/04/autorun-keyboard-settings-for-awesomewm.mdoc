@@ -32,15 +32,15 @@ I’m running [Manjaro](https://manjaro.org/) on my Linux partition this
 week, I’ll use [pamac](https://wiki.manjaro.org/index.php?title=Pamac)
 to install.
 
-    $ pamac install xcape
+```
+$ pamac install xcape
+```
 
 I set up an
 [autostart](https://wiki.archlinux.org/index.php/Awesome#Autostart)
 script to get this in every Awesomewm session.
 
-**`~/.config/awesome/autorun.sh`**
-
-```bash
+```bash title="~/.config/awesome/autorun.sh"
 #!/usr/bin/env bash
 
 function run {
@@ -56,14 +56,14 @@ run xcape -e 'Control_L=Escape'
 
 It’s a script, so make sure it’s executable.
 
-    $ chmod 755 ~/.config/awesome/autorun.sh
+```
+$ chmod 755 ~/.config/awesome/autorun.sh
+```
 
 Add one line of code to my `rc.lua` to make sure `autorun.sh` gets
 spawned on startup.
 
-**`~/.config/awesome/rc.lua`**
-
-```lua
+```lua title="~/.config/awesome/rc.lua"
 -- {{{ Autorun
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 -- }}}

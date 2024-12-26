@@ -44,9 +44,7 @@ it right now or I really want to be.
 [dependencies]: /post/2018/02/setting-task-dependencies-in-taskwarrior/
 [task-active]: /post/2018/12/active-tasks-in-taskwarrior/
 
-<aside class="admonition">
-<p class="admonition-title">Yeah I know</p>
-
+{% note title="Yeah I know" %}
 Taskwarrior lets you assign [due dates][due-dates] and
 [dependencies][dependencies] . Tasks that are due or that block something else
 get higher `Urgency`, and bubble to the top of reports. For some folks, that
@@ -64,8 +62,7 @@ as less important, and the rest as "whatever."
 
 I still use [`start`][task-active] to remember what I’m doing right now though. I’m not
 completely weird.
-
-</aside>
+{% /note %}
 
 Time for me to figure out `or` in Taskwarrior.
 
@@ -75,21 +72,27 @@ Filters already have an implied `and`. It looks like this.
 
 How many active tasks do I have?
 
-    $ task +PENDING count
-    198
+```
+$ task +PENDING count
+198
+```
 
 How many active tasks do I want to work on soon?
 
-    $ task +PENDING priority:M count
-    28
+```
+$ task +PENDING priority:M count
+28
+```
 
 That’s filtering tasks to those for which `+PENDING` **and** `priority:M` are
 true.
 
 How many active tasks do I want to be working on now?
 
-    $ task +PENDING priority:H count
-    6
+```
+$ task +PENDING priority:H count
+6
+```
 
 That’s a bit much. It should be more like four or five.
 
@@ -99,14 +102,18 @@ are `+PENDING` and have either `priority:M` or `priority:H`?
 We can use `or` to join two filters. If either of them is true for the task,
 that task is included. Use parentheses to build more complex filters.
 
-    $ task +PENDING (priority:H or priority:M) count
-    zsh: unknown file attribute: i
+```
+$ task +PENDING (priority:H or priority:M) count
+zsh: unknown file attribute: i
+```
 
 Tada — oops. Hang on. This stuff goes through the shell before it reaches
 Taskwarrior. Let’s put the filter in a string.
 
-    $ task '+PENDING (priority:H or priority:M)' count
-    34
+```
+$ task '+PENDING (priority:H or priority:M)' count
+34
+```
 
 Tada!
 
@@ -119,14 +126,18 @@ I could add that priority filter to my "focused" [context](/post/2018/02/taskwar
 
 **`~/.taskrc`**
 
-    context.focused=-idea -shelved (priority:H or priority:M)
+```
+context.focused=-idea -shelved (priority:H or priority:M)
+```
 
 Now *every* report skips low priority tasks.
 
-    $ task context focused
-    Context 'focused' set. Use 'task context none' to remove.
-    $ task +PENDING count
-    34
+```
+$ task context focused
+Context 'focused' set. Use 'task context none' to remove.
+$ task +PENDING count
+34
+```
 
 This is great, but I want to know my top tasks even when I’m not in focused context.
 
@@ -134,7 +145,9 @@ Plus it’s easy to forget which context you’re in. I once spent 15 minutes
 trying to find a `+work` task before remembering I was still in `offwork`
 context. Which reminds me — 
 
-    $ task context blog
+```
+$ task context blog
+```
 
 ## Use a shell alias
 
@@ -142,16 +155,16 @@ Part of Taskwarrior’s charm is the fact that we use `task` from the command
 line. I could take advantage of that with a shell alias for `task` using the
 preface filter.
 
-**`~/.aliases`**
-
-``` bash
+```bash title="~/.aliases"
 alias ttop='task +PENDING "(priority:H or priority:M)"'
 ```
 
 This gives me sort of an on-the-fly context.
 
-    $ ttop count
-    34
+```
+$ ttop count
+34
+```
 
 I could use `ttop` with any Taskwarrior command, so `ttop next` would be a fine
 way to look at my important tasks.
@@ -166,9 +179,7 @@ Might be easier to show than tell. For more of a "tell" approach, check the
 "REPORTS" section of `man taskrc`. Here’s my custom "top" report, loosely based
 on Taskwarrior’s `minimal` report.
 
-**`~/.taskrc`**
-
-```text
+```text title="~/.taskrc"
 # Almost-minimal view of tasks I want to work on most
 report.top.columns=id,priority,project,tags,description.count 
 report.top.description='Minimal details of tasks'
@@ -186,53 +197,57 @@ report.top.sort=priority-/,project-,description+
 
 And here’s what my `top` report looks like.
 
-    $ task top
-    ID  Pri Project    Tags              Description
-     28 H   Site       blog taskwarrior  custom reports [1]
-    194 H   Site       blog              describe workflow
-    193 H   Site       ops               use content UUID in RSS feed
-    192 H   Site       blog              walk through setting up webmention.io and bridgy
-    184 H   Make.yarn  knitting personal hemmed edge hat for diedre
-    185 H              ops               persist xrandr fix
+```
+$ task top
+ID  Pri Project    Tags              Description
+  28 H   Site       blog taskwarrior  custom reports [1]
+194 H   Site       blog              describe workflow
+193 H   Site       ops               use content UUID in RSS feed
+192 H   Site       blog              walk through setting up webmention.io and bridgy
+184 H   Make.yarn  knitting personal hemmed edge hat for diedre
+185 H              ops               persist xrandr fix
 
-    170 M   VimWiki    ops               back up current wiki pages
-     76 M   Site.Notes site              note pics do not need zoom link
-     70 M   Site       ops               Evaluate new permalink templates
-    188 M   Site       ops               blogroll of indieweb folks I mentioned
-    114 M   Site       blog ops          clean up hard drive
-    198 M   Site       layout            consolidate content format
-    148 M   Site       ops               cron job to fetch site logs
-    181 M   Site       learn ops         pamac for manjaro
-    191 M   Site       ops               permanent local server for site
-    196 M   Site       blog ops          sending webmentions
-     20 M   Site       layout            store link on every page
-    167 M   Site       ops               task to list posts via `hugo list`
-    147 M   Site       blog taskwarrior  taskwarrior aliases
-    143 M   Site       blog              testing a static website
-    146 M   Site       blog              update taskwarrior notes script post to show usage
-    197 M   OrgConfig  ops               add awesomewm settings
-     30 M   Artbiz     research          coloring book options
-     39 M   Artbiz     art inventory     redo Voodoo Vince for dbh
-     46 M   Artbiz     art learn         udemy affinity designer course [1]
-     99 M              dev readlist      Art of PostgreSQL
-    186 M              emacs ops         Try telega for emacs
-    178 M              ops               add windows option to manjaro boot
-    179 M              ops               folding at home fah-config
-    176 M              ops               get task count in status
-    187 M              ops               get wsl xorg emacs autostart in windows
-     50 M              javascript learn  node-tap Node TAP testing library
-    145 M              ops               refactor sync cronjob to script
-     16 M              tools             try out newsboat news reader
-    34 tasks
-    Filter: ( status = pending and ( priority = H or priority = M ) )
+170 M   VimWiki    ops               back up current wiki pages
+  76 M   Site.Notes site              note pics do not need zoom link
+  70 M   Site       ops               Evaluate new permalink templates
+188 M   Site       ops               blogroll of indieweb folks I mentioned
+114 M   Site       blog ops          clean up hard drive
+198 M   Site       layout            consolidate content format
+148 M   Site       ops               cron job to fetch site logs
+181 M   Site       learn ops         pamac for manjaro
+191 M   Site       ops               permanent local server for site
+196 M   Site       blog ops          sending webmentions
+  20 M   Site       layout            store link on every page
+167 M   Site       ops               task to list posts via `hugo list`
+147 M   Site       blog taskwarrior  taskwarrior aliases
+143 M   Site       blog              testing a static website
+146 M   Site       blog              update taskwarrior notes script post to show usage
+197 M   OrgConfig  ops               add awesomewm settings
+  30 M   Artbiz     research          coloring book options
+  39 M   Artbiz     art inventory     redo Voodoo Vince for dbh
+  46 M   Artbiz     art learn         udemy affinity designer course [1]
+  99 M              dev readlist      Art of PostgreSQL
+186 M              emacs ops         Try telega for emacs
+178 M              ops               add windows option to manjaro boot
+179 M              ops               folding at home fah-config
+176 M              ops               get task count in status
+187 M              ops               get wsl xorg emacs autostart in windows
+  50 M              javascript learn  node-tap Node TAP testing library
+145 M              ops               refactor sync cronjob to script
+  16 M              tools             try out newsboat news reader
+34 tasks
+Filter: ( status = pending and ( priority = H or priority = M ) )
+```
 
 I can apply additional filters just like with any other report.
 
-    $  rgb-hugo (master) task project:OrgConfig top
-    ID  Pri Project   Tags Description
-    197 M   OrgConfig ops  add awesomewm settings
-    1 task
-    Filter: ( status = pending and ( priority = H or priority = M ) ) and ( project = OrgConfig )
+```
+$  rgb-hugo (master) task project:OrgConfig top
+ID  Pri Project   Tags Description
+197 M   OrgConfig ops  add awesomewm settings
+1 task
+Filter: ( status = pending and ( priority = H or priority = M ) ) and ( project = OrgConfig )
+```
 
 So that’s pretty handy. But clearly I need to clean this up a bit. Some of
 those aren’t really things I want to work on soon. But at least now I have one
@@ -241,11 +256,13 @@ less `priority:H` task.
 You can see Taskwarrior’s settings for the `minimal` report, or any other, with
 `show report.NAME`:
 
-    $ task show report.minimal
+```
+$ task show report.minimal
 
-    Config Variable            Value
-    report.minimal.columns     id,project,tags.count,description.count
-    report.minimal.description Minimal details of tasks
-    report.minimal.filter      status:pending or status:waiting
-    report.minimal.labels      ID,Project,Tags,Description
-    report.minimal.sort        project+/,description+
+Config Variable            Value
+report.minimal.columns     id,project,tags.count,description.count
+report.minimal.description Minimal details of tasks
+report.minimal.filter      status:pending or status:waiting
+report.minimal.labels      ID,Project,Tags,Description
+report.minimal.sort        project+/,description+
+```

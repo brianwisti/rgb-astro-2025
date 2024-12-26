@@ -14,10 +14,7 @@ tags:
 title: Perldoc
 ---
 
-I have heard first-time Perl programmers complain about the lack of documentation. 
-This is understandable. They don't know all the nifty stuff that comes with the 
-standard Perl distribution. 
-<!--more-->
+I have heard first-time Perl programmers complain about the lack of documentation. This is understandable. They don't know all the nifty stuff that comes with the standard Perl distribution. 
 
 Perl has a built-in documentation system referred to as `perldoc`. Perl modules 
 are spiked with documentation about how to access the features of that module. 
@@ -35,7 +32,9 @@ reading any time you like.
 
 Using `perldoc` is easy. Basic usage looks like this:
 
-    $ perldoc name-of-article-or-module
+```
+$ perldoc name-of-article-or-module
+```
 
 `perldoc` goes looking for the POD associated with the specific article or 
 module. If it finds the POD, it formats it using a special program (usually 
@@ -48,20 +47,26 @@ find for you, but first I need to make a small confession. All I'm doing is revi
 the documentation for `perldoc` itself. You can skip my rambling notes and get
 directly to the meat of the information with the following command:
 
-    $ perldoc perldoc
+```
+$ perldoc perldoc
+```
 
 All the information you could possibly want is in the perldocs, or it should be.
 It may not always make sense the first time through. It will seem clear as a bell
 after a little practice. You can always refer to other sources until it starts to
 make sense.
 
-    $ perldoc perl
+```
+$ perldoc perl
+```
 
 This provides a simple summary of perl's command line options, a very brief summary 
 of the available documentation, and a description of Perl itself. Use use this 
 for the summary, but there is a more detailed summary available.
 
-    perldoc perltoc
+```
+perldoc perltoc
+```
 
 This contains an extensive overview of the documentation available, including 
 summaries, keywords, and a table of contents for each article. Look close enough 
@@ -69,25 +74,35 @@ and you will notice that there are several tutorials available.
 
 ## Accessing information about a specific module
 
-    $ perldoc <module>
+```
+$ perldoc <module>
+```
 
 ### Viewing the source of that module
 
-    $ perldoc -m <module>
+```
+$ perldoc -m <module>
+```
 
 ### Finding out exactly which file contains the documentation
 
-    $ perldoc -l <module>
+```
+$ perldoc -l <module>
+```
 
 ## Accessing specific information
 
 ### Perl built-in functions
 
-    $ perldoc -f <function>
+```
+$ perldoc -f <function>
+```
 
 ### The Perl FAQ
 
-    $ perldoc -q <search-expression>
+```
+$ perldoc -q <search-expression>
+```
 
 `perldoc` will then look for a FAQ question containing the search expression, and 
 present it to you.

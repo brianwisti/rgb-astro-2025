@@ -20,44 +20,48 @@ library.
 I saw an email last night from somebody with a simple
 [Python](http://python.org) question.
 
-> Hi,
-> 
-> … I have some issues in my python program. I have installed python27
-> in C:Python27. I started learning python with small programs. I’m
-> saving all python programs in C:ROUGH When I am executing these
-> scripts through command prompt facing some problem with "import".
-> Please help me out
-> 
-> My program:
-> 
-> ``` python
-> #!python
-> import sys
-> #import C:\Python27\Lib\string
-> import string
-> 
-> Subject = "Testmail"
-> To = "yeahright@nonotreallyawebsiteihope.com"
-> From = "yeahright@nonotreallyawebsiteihope.com"
-> text = "Test"
-> body = string.join(("From: %s" % From,
->                     "To: %s" % To,
->                     "Subject: %s" %Subject,
->                     text
->                     ),"\r\n")
-> 
-> print body
-> ```
-> 
-> ERROR IS:
-> 
->     C:\Python27>python.exe c:\ROUGH\addingsubtofrm.py
->     Traceback (most recent call last):
->       File "c:\ROUGH\addingsubtofrm.py", line 12, in <module>
->         body = string.join(("From: %s" % From,
->     AttributeError: 'module' object has no attribute 'join'
-> 
-> …​
+{% quote %}
+Hi,
+
+… I have some issues in my python program. I have installed python27
+in C:Python27. I started learning python with small programs. I’m
+saving all python programs in C:ROUGH When I am executing these
+scripts through command prompt facing some problem with "import".
+Please help me out
+
+My program:
+
+``` python
+#!python
+import sys
+#import C:\Python27\Lib\string
+import string
+
+Subject = "Testmail"
+To = "yeahright@nonotreallyawebsiteihope.com"
+From = "yeahright@nonotreallyawebsiteihope.com"
+text = "Test"
+body = string.join(("From: %s" % From,
+                    "To: %s" % To,
+                    "Subject: %s" %Subject,
+                    text
+                    ),"\r\n")
+
+print body
+```
+
+ERROR IS:
+
+```
+C:\Python27>python.exe c:\ROUGH\addingsubtofrm.py
+Traceback (most recent call last):
+  File "c:\ROUGH\addingsubtofrm.py", line 12, in <module>
+    body = string.join(("From: %s" % From,
+AttributeError: 'module' object has no attribute 'join'
+```
+
+…
+{% /quote %}
 
 For some reason, I do not get any error when I try to run her code with
 Python 2.7.1 on Windows XP. That’s okay, though. I can still help a

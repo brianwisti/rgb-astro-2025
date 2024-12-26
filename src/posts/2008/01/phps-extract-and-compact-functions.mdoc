@@ -19,7 +19,6 @@ I've been brushing up on my PHP basics lately. Why? Well, it never hurts to
 revisit things you think you already know. There is a good chance you will
 discover something you didn't know after all. For example: this time I
 learned about [PHP][]'s `extract` and `compact` functions.
-<!--more-->
 
 [`extract`]: http://us3.php.net/manual/en/function.extract.php
 [`compact`]: http://us3.php.net/manual/en/function.compact.php
@@ -29,7 +28,7 @@ fly, named for the keys in the array and with the corresponding values
 matched up. [`compact`][] is the corresponding function for taking a
 collection of variables and stuffing them into an associative array.
 
-``` php
+```php
 <?php
   $book = array(
       "title"     => "Dad's Own Cookbook",
@@ -49,13 +48,15 @@ collection of variables and stuffing them into an associative array.
 
 Running this code:
 
-    $ php -f extract-compact.php
-    Dad's Own Cookbook was written by Bob Sloan
-    Array
-    (
-        [first] => Brian
-        [last] => Wisti
-    )
+```
+$ php -f extract-compact.php
+Dad's Own Cookbook was written by Bob Sloan
+Array
+(
+    [first] => Brian
+    [last] => Wisti
+)
+```
 
 `extract` is the more immediately useful of the two for my purposes, because
 it simplifies a common tactic I use for creating local variables based on 
@@ -63,7 +64,7 @@ database lookups.
 
 Instead of manually creating local variables, like this:
 
-``` php
+```php
 <?php
     # ...
     while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
@@ -76,7 +77,7 @@ Instead of manually creating local variables, like this:
 
 I can save myself a little effort with `extract`.
 
-``` php
+```php
 <?php
     # ...
     while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {

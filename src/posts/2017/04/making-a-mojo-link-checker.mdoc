@@ -193,16 +193,13 @@ do with it, then that’s a bad link and gets remembered as a falsey value.
 
 [`each`]: http://mojolicious.org/perldoc/Mojo/Collection#each
 
-<aside class="admonition note">
-<p class="admonition-title">Note</p>
-
+{% note %}
 [`each`][] hands two items to the subroutine it invokes: an item in the
 collection and what number in the collection that item is (starting from 1). No,
 I don’t use `$n`, but I wanted you to see that it’s available. You can also
 access the item as `$_` as I did earlier. You can even do your subroutine
 arguments the old fashioned way with `@_`.
-
-</aside>
+{% /note %}
 
 ### Is it an internal link?
 
@@ -329,20 +326,24 @@ leave that bit of logic in.
 
 ## What’s That Do?
 
-    $ ./scripts/link-checker > links.txt
+```
+$ ./scripts/link-checker > links.txt
+```
 
 A couple hundred lines like this, basically.
 
-    When checking http://coolnamehere.com: Premature connection close at scripts/check-links.pl line 53.
-    - public/categories/blogspot/index.html http://coolnamehere.com
-    - public/categories/blogspot/index.html http://blogspot.com
-    When checking http://vim.org/: Can't connect: Name or service not known at scripts/check-links.pl line 53.
-    - public/categories/blogspot/index.html http://vim.org/
-    When checking http://jruby.codehaus.org: Connect timeout at scripts/check-links.pl line 53.
-    - public/categories/blogspot/index.html http://jruby.codehaus.org
-    - public/categories/blogspot/index.html http://devzone.zend.com/article/2262-Zend-Framework-1.0.0-production-release
-    When checking http://jruby.codehaus.org/: Connect timeout at scripts/check-links.pl line 53.
-    - public/categories/coolnamehere/index.html http://jruby.codehaus.org/
+```
+When checking http://coolnamehere.com: Premature connection close at scripts/check-links.pl line 53.
+- public/categories/blogspot/index.html http://coolnamehere.com
+- public/categories/blogspot/index.html http://blogspot.com
+When checking http://vim.org/: Can't connect: Name or service not known at scripts/check-links.pl line 53.
+- public/categories/blogspot/index.html http://vim.org/
+When checking http://jruby.codehaus.org: Connect timeout at scripts/check-links.pl line 53.
+- public/categories/blogspot/index.html http://jruby.codehaus.org
+- public/categories/blogspot/index.html http://devzone.zend.com/article/2262-Zend-Framework-1.0.0-production-release
+When checking http://jruby.codehaus.org/: Connect timeout at scripts/check-links.pl line 53.
+- public/categories/coolnamehere/index.html http://jruby.codehaus.org/
+```
 
 Goodness those are embarrassing.
 

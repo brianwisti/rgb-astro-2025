@@ -36,7 +36,6 @@ I dislike relying on an external tool like [MyPy][] that runs separately.
 
 [Pandas]: https://pandas.pydata.org
 
-
 I've also been looking at [Pandas][] a lot recently for work stuff.
 Okay, Pandas looks interesting to my non-data science brain.
 I mainly use it to filter Excel files for database updates.
@@ -60,8 +59,6 @@ julia> [f(x) for x in [0, 1, 2, 3]]
   0.6568542494923806
   7.727922061357857
 ```
-
-
 
 By way of contrast, this is Python's equivalent of those two lines of Julia code.
 
@@ -149,24 +146,28 @@ Weave.
 
 Set different [chunk options][] for the block if you want to tweak the code's treatment.
 
-	```julia; term = true
-	f(x) = √2x^2 - 5
-	[f(x) for x in [0, 1, 2, 3]]
-	```
+````
+```julia; term = true
+f(x) = √2x^2 - 5
+[f(x) for x in [0, 1, 2, 3]]
+```
+````
 
 Weave does its thing, and produces something interesting depending on what ouput options you use.
 
-	```julia
-	julia> f(x) = √2x^2 - 5
-	f (generic function with 1 method)
+````
+```julia
+julia> f(x) = √2x^2 - 5
+f (generic function with 1 method)
 
-	julia> [f(x) for x in [0, 1, 2, 3]]
-	4-element Array{Float64,1}:
-	-5.0
-	-3.585786437626905
-	0.6568542494923806
-	7.727922061357857
-	```
+julia> [f(x) for x in [0, 1, 2, 3]]
+4-element Array{Float64,1}:
+-5.0
+-3.585786437626905
+0.6568542494923806
+7.727922061357857
+```
+````
 
 ## The script
 
@@ -305,9 +306,7 @@ finish()
 
 Much fancier!
 
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-
+{% note %}
 First off, PNG format works better than SVG when you're drawing 500
 random circles.
 
@@ -319,8 +318,7 @@ random circles.
 
 Second, I added an `eval = false` chunk option after the image was good enough.
 No point regenerating the cover every time I fix a typo.
-
-</div>
+{% /note %}
 
 That's enough writing about writing with Julia.
 I have a couple other drafts I want to revisit now.

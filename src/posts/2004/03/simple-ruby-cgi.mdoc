@@ -89,9 +89,7 @@ will be handed off to a plugin.
 Let’s start with a basic task, pushing some plain old HTML out to the
 browser. It isn’t fancy, but it’ll do to help us get a feel for things.
 
-**`hello1.cgi`**
-
-```ruby
+```ruby title="hello1.cgi"
 #!/usr/bin/ruby
 
 puts "Content-Type: text/html"
@@ -110,7 +108,9 @@ already in place. You’ll also need to make the file executable. If your
 FTP application or site management tool supports it, you can use those.
 Otherwise, you’ll need to rely on the `chmod` command:
 
-    $ chmod 755 hello1.cgi
+```
+$ chmod 755 hello1.cgi
+```
 
 Direct your browser to the appropriate URL, and you should see that
 basic "Hello Ruby!" message. Simple, but at least we’ve gotten some

@@ -73,17 +73,21 @@ To create a variable, make a name and assign a value to it using the
 equals `=` character. To get the value, use the variable name in a
 statement.
 
-    >>> number = 5
-    >>> print number
-    5
+```
+>>> number = 5
+>>> print number
+5
+```
 
 You can change the value of a variable any time by using `=`.
 
-    >>> print number
-    5
-    >>> number = 7
-    >>> print number
-    7
+```
+>>> print number
+5
+>>> number = 7
+>>> print number
+7
+```
 
 ### Identifiers aka Variable Names
 
@@ -98,12 +102,14 @@ variables named `print`, for example.
 Here is the complete list of identifiers that Python has reserved for
 its own purposes:
 
-    and       del       for       is        raise
-    assert    elif      from      lambda    return
-    break     else      global    not       try
-    class     except    if        or        while
-    continue  exec      import    pass      yield
-    def       finally   in        print
+```
+and       del       for       is        raise
+assert    elif      from      lambda    return
+break     else      global    not       try
+class     except    if        or        while
+continue  exec      import    pass      yield
+def       finally   in        print
+```
 
 Here are a few guidelines to follow when deciding on a variable name:
 
@@ -204,11 +210,13 @@ you that something is very wrong. There are a lot of ways that things
 can go wrong, so there are a lot of different types of exception that we
 will see. Let’s see what Python does when we play the role of Bob.
 
-    >>> name = "Brian"
-    >>> print name + 5
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    TypeError: cannot concatenate 'str' and 'int' objects
+```
+>>> name = "Brian"
+>>> print name + 5
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: cannot concatenate 'str' and 'int' objects
+```
 
 All of the "File" gibberish is called a *traceback*, showing where
 things went wrong. Yours will probably look a little different, but the
@@ -257,14 +265,16 @@ treat Python numbers exactly the same as the numbers in our checkbook.
 
 ### Numeric Literals: How To Describe Numbers
 
-    >>> 1
-    1
-    >>> 35
-    35
-    >>> 34456432
-    34456432
-    >>> 355556499871154247854
-    355556499871154247854L
+```
+>>> 1
+1
+>>> 35
+35
+>>> 34456432
+34456432
+>>> 355556499871154247854
+355556499871154247854L
+```
 
 What? Where did that `L` come from? It turns out that computers are
 faster at dealing with integers if they can fit them into a small chunk
@@ -280,8 +290,10 @@ advance that your number will end up being very large. Specifying long
 integer type is very very easy. Just paste the letter `L` to the end of
 your literal.
 
-    >>> 6209389143L
-    6209389143L
+```
+>>> 6209389143L
+6209389143L
+```
 
 While it is technically okay to use a lowercase `l`, it is *much* harder
 to read when scanning program code. `6209389143l` looks too much like
@@ -292,12 +304,14 @@ The next type of number is floating point. You can either write floating
 point literals in the familiar decimal notation, or you can use
 something more like scientific notation.
 
-    >>> 1.0
-    1.0
-    >>> 1.234e+02
-    123.40000000000001
-    >>> 1.1
-    1.1000000000000001
+```
+>>> 1.0
+1.0
+>>> 1.234e+02
+123.40000000000001
+>>> 1.1
+1.1000000000000001
+```
 
 This is where things start to bite us if we’re not paying attention.
 `1.0` made sense, but what in the world went wrong with our other two
@@ -318,9 +332,11 @@ there when you do hit that particular wall. Everyday python does an
 excellent job of protecting us from all the chaos when printing a
 variable:
 
-    >>> value = 1.1
-    >>> print value
-    1.1
+```
+>>> value = 1.1
+>>> print value
+1.1
+```
 
 Internally, it’s still `1.1000000000000001` or so, but Python realizes
 that human readers are not going to be interested in the extra 14
@@ -342,9 +358,11 @@ number (the *real* part), a `+` character, and another floating point
 number followed by a `J` (the *imaginary* part). Here, just look at my
 example, and you math people can figure it out yourself.
 
-    >>> number = 1.1 + 9.87J
-    >>> print number
-    (1.1+9.87j)
+```
+>>> number = 1.1 + 9.87J
+>>> print number
+(1.1+9.87j)
+```
 
 I guess imaginary numbers don’t make it into everyday math that much,
 but they do show up in my checkbook a lot. Wrong kind of "imaginary", I
@@ -359,20 +377,22 @@ The Python shell does make a handy calculator. You can do all of the
 handy four-function operations, plus we get a nifty *exponent* operator
 and *modulus* operator at no extra charge.
 
-    >>> print 2 + 2
-    4
-    >>> print 10 - 2
-    8
-    >>> print 11 * 3
-    33
-    >>> print 27 / 3
-    9
-    >>> print 2 ** 3
-    8
-    >>> print 20 / 3
-    6
-    >>> print 20 % 3
-    2
+```
+>>> print 2 + 2
+4
+>>> print 10 - 2
+8
+>>> print 11 * 3
+33
+>>> print 27 / 3
+9
+>>> print 2 ** 3
+8
+>>> print 20 / 3
+6
+>>> print 20 % 3
+2
+```
 
 {% note %}
 Right about here I got distracted by a bright shiny object. Sorry about

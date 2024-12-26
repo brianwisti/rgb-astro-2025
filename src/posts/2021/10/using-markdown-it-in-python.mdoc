@@ -15,14 +15,13 @@ tags:
 title: Using markdown-it in Python
 ---
 
-{{< note >}}
-
+{% note %}
 I hope the information I share here is useful, but I'm just documenting what I
 needed to know *after* reading the markdown-it-py [user guide][] for basic
 usage and principles.
 
 [user guide]: https://markdown-it-py.readthedocs.io/en/latest/using.html
-{{< /note >}}
+{% /note %}
 
 ## What is it
 
@@ -413,10 +412,7 @@ But for now we're good. Let me drop in the Python code that transformed
 this post in the context of my Hugo site, then go convert the Typer logic to
 [Invoke][].
 
-<details>
-    <summary><tt>rendermd.py</tt></summary>
-
-```python
+```python title="rendermd.py"
 #!/usr/bin/python
 
 import frontmatter
@@ -474,5 +470,3 @@ def main(source_path: str):
 if __name__ == "__main__":
     typer.run(main)
 ```
-
-</details>

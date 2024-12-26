@@ -12,8 +12,15 @@ tags:
 - coolnamehere
 title: perlbrew
 ---
+{% note title="TL;DR:" %}
+```
+$ curl -L http://xrl.us/perlbrewinstall | bash
+$ perlbrew init
+$ perlbrew install perl-5.14.2
+$ perlbrew switch perl-5.14.2
+```
+{% /note %}
 
-<!--more-->
 ## Introduction
 
 You probably already have Perl if you are running Linux or OS X.
@@ -29,30 +36,6 @@ your own personal Perl, which doesn't interfere with other installed
 versions. Speaking of versions: `perlbrew` lets you install and switch
 between multiple personal Perls. When Perl 5.16 is released, upgrading
 will be handled by a couple of quick commands.
-
-<aside>
-
-<h2>tl;dr</h2>
-
-<p>Not interested in reading my rambling article? That's okay.</p>
-
-<h3>Install Perlbrew</h3>
-
-<p>Make sure you have your operating system's build tools first.</p>
-
-<pre><code>$ curl -L http://xrl.us/perlbrewinstall | bash
-$ perlbrew init
-</code></pre>
-
-<p>Follow the instructions to make sure <a href="https://perlbrew.pl/">perlbrew</a> is set up right.</p>
-
-<h3>Install Perl</h3>
-
-<pre><code>$ perlbrew install perl-5.14.2
-$ perlbrew switch perl-5.14.2
-</code></pre>
-
-</aside>
 
 ## Installing Perlbrew
 
@@ -76,8 +59,10 @@ if I learn of more.
 Current versions of [Fedora Linux][] already have `perlbrew` available
 via [`yum`][].
 
-    $ su -
-    # yum install perlbrew
+```
+$ su -
+# yum install perlbrew
+```
 
 #### Installing `perlbrew` on Ubuntu 11.10
 
@@ -87,8 +72,10 @@ If you're on the bleeding edge of Ubuntu development, or are reading
 this after October 2011, you'll be happy to know that there is an
 [Ubuntu 11.10 perlbrew package][].
 
-    # Ubuntu 11.10 or later only!
-    $ sudo apt-get install perlbrew
+```
+# Ubuntu 11.10 or later only!
+$ sudo apt-get install perlbrew
+```
 
 #### Installing `perlbrew` on other UNIX-like systems
 
@@ -100,11 +87,15 @@ you install `perlbrew`.
 The `build-essentials` package provides the basic command line tools you
 will need to build and install Perl via `perlbrew`.
 
-    $ sudo apt-get install build-essentials
+```
+$ sudo apt-get install build-essentials
+```
 
 Once `build-essentials` has been installed, you can install `perlbrew`.
 
-    $ curl -L http://xrl.us/perlbrewinstall | bash
+```
+$ curl -L http://xrl.us/perlbrewinstall | bash
+```
 
 #### OS X
 
@@ -119,7 +110,9 @@ tested it yet. I just know that it exists.
 Once you have your development tools installed via [Xcode][], run the
 following command from a Terminal.
 
-    $ curl -L http://xrl.us/perlbrewinstall | bash
+```
+$ curl -L http://xrl.us/perlbrewinstall | bash
+```
 
 [App::perlbrew documentation]: https://metacpan.org/module/App::perlbrew
 
@@ -131,7 +124,9 @@ should help you get the details about fiddly bits of installing `perlbrew`.
 Regardless of how you installed [perlbrew][], now you will want to make
 sure it is set up for your account.
 
-    $ perlbrew init
+```
+$ perlbrew init
+```
 
 You will get directions on the next step. It will probably be something
 like this:
@@ -139,14 +134,16 @@ like this:
 Make sure you have something like the following line at the end of your 
 shell profile. That's `~/.bashrc` for me.
 
-``` bash
+```bash
 source /Users/brian/perl5/perlbrew/etc/bashrc
 ```
 
 Reload your settings either by opening a new Terminal or directly from
 the shell:
 
-    $ . ~/.bashrc
+```
+$ . ~/.bashrc
+```
 
 Now you are ready to install your own Perl.
 
@@ -155,16 +152,18 @@ Now you are ready to install your own Perl.
 It's probably a good idea to see what Perl versions are available to 
 install.
 
-    $ perlbrew available
-       perl-5.15.3
-       perl-5.14.2
-       perl-5.12.4
-       i perl-5.10.1
-       perl-5.8.9
-       perl-5.6.2
-       perl5.005_04
-       perl5.004_05
-       perl5.003_07
+```
+$ perlbrew available
+    perl-5.15.3
+    perl-5.14.2
+    perl-5.12.4
+    i perl-5.10.1
+    perl-5.8.9
+    perl-5.6.2
+    perl5.005_04
+    perl5.004_05
+    perl5.003_07
+```
 
 We're looking for the latest stable release. Stable releases use an
 even number for the second number (`perl-5.14.2`, `perl-5.12.4`).
@@ -176,17 +175,23 @@ development Perl.
 Right now, the latest stable Perl is `perl-5.14.2`. Let's install it with
 `perlbrew install`.
 
-    $ perlbrew install perl-5.14.2
+```
+$ perlbrew install perl-5.14.2
+```
 
 A little while later, it'll be complete. You can make this the default
 Perl for your account with `perlbrew switch`.
 
-    $ perlbrew switch perl-5.14.2
+```
+$ perlbrew switch perl-5.14.2
+```
 
 Let's verify just to be on the safe side.
 
-    $ perl --version
-    This is perl 5, version 14, subversion 2 (v5.14.2) built for darwin-2level
+```
+$ perl --version
+This is perl 5, version 14, subversion 2 (v5.14.2) built for darwin-2level
+```
 
 There. Now we have the latest stable Perl, ready for us to use. The system
 Perl is completely safe.

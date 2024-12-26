@@ -27,12 +27,14 @@ How would I print a quick summary of a file? Besides
 [`ls`](http://www.man7.org/linux/man-pages/man1/ls.1.html), of course. I
 mean how would I print a quick summary of a file using Crystal?
 
-``` crystal
+```crystal
 filename = "#{ENV["HOME"]}/Dropbox/Camera Uploads/2019-11-13 08.11.12.png"
 puts `ls -l #{filename}`
 ```
 
-    -rw-r--r-- 1 randomgeek randomgeek 3346960 Nov 13 08:11 /home/randomgeek/Dropbox/Camera Uploads/2019-11-13 08.11.12.png
+```
+-rw-r--r-- 1 randomgeek randomgeek 3346960 Nov 13 08:11 /home/randomgeek/Dropbox/Camera Uploads/2019-11-13 08.11.12.png
+```
 
 We already looked at [Crystal as a glue
 language](/post/2019/08/trying-the-crystal-language/). No, I’m wondering
@@ -42,17 +44,19 @@ library](https://crystal-lang.org/api/).
 Turns out I can get the same information with
 [`File::Info`](https://crystal-lang.org/api/File/Info.html).
 
-``` crystal
+```crystal
 puts File.info "#{ENV["HOME"]}/Dropbox/Camera Uploads/2019-11-13 08.11.12.png"
 ```
 
-    Crystal::System::FileInfo(@stat=LibC::Stat(@st_dev=2051, @st_ino=6983901, \
-      @st_nlink=1, @st_mode=33188, @st_uid=1000, @st_gid=1000, @__pad0=0,     \
-      @st_rdev=0, @st_size=3346960, @st_blksize=4096, @st_blocks=6552,        \
-      @st_atim=LibC::Timespec(@tv_sec=1573661608, @tv_nsec=641856438),        \
-      @st_mtim=LibC::Timespec(@tv_sec=1573661472, @tv_nsec=0),                \
-      @st_ctim=LibC::Timespec(@tv_sec=1573661609, @tv_nsec=941857986),        \
-      @__glibc_reserved=StaticArray[0, 0, 0]))
+```
+Crystal::System::FileInfo(@stat=LibC::Stat(@st_dev=2051, @st_ino=6983901, \
+  @st_nlink=1, @st_mode=33188, @st_uid=1000, @st_gid=1000, @__pad0=0,     \
+  @st_rdev=0, @st_size=3346960, @st_blksize=4096, @st_blocks=6552,        \
+  @st_atim=LibC::Timespec(@tv_sec=1573661608, @tv_nsec=641856438),        \
+  @st_mtim=LibC::Timespec(@tv_sec=1573661472, @tv_nsec=0),                \
+  @st_ctim=LibC::Timespec(@tv_sec=1573661609, @tv_nsec=941857986),        \
+  @__glibc_reserved=StaticArray[0, 0, 0]))
+```
 
 This is both more and less information than I was hoping for. Clearly
 whoever wrote `to_s` for `File::Info` figured the main time you would
@@ -61,7 +65,7 @@ need to directly print the object is when you were debugging.
 That makes sense, and they provide methods to get at the information I
 care about most.
 
-``` crystal
+```crystal
 # Returns a multiline string summary of a single file
 def describe_file(filename)
     info = File.info(filename)
@@ -84,9 +88,11 @@ filename = "#{ENV["HOME"]}/Dropbox/Camera Uploads/2019-11-13 08.11.12.png"
 puts describe_file filename
 ```
 
-    Filename: /home/randomgeek/Dropbox/Camera Uploads/2019-11-13 08.11.12.png
-    Size:     3.19 MB
-    Modified: 2019-11-13 16:11:12 UTC
+```
+Filename: /home/randomgeek/Dropbox/Camera Uploads/2019-11-13 08.11.12.png
+Size:     3.19 MB
+Modified: 2019-11-13 16:11:12 UTC
+```
 
 I grabbed the logic from [Weighing Files With
 Python](/post/2019/06/weighing-files-with-python/) to get a description
@@ -129,7 +135,7 @@ And what did I learn?
 Hang on. I’m curious to explore that last one. Procs are treated
 differently. Are they faster?
 
-``` crystal
+```crystal
 require "benchmark"
 
 filename = "#{ENV["HOME"]}/Dropbox/Camera Uploads/2019-11-13 08.11.12.png"
@@ -161,14 +167,16 @@ Benchmark.ips do |benchmark|
 end
 ```
 
-    $ crystal run --release proc_vs_def.cr
-    using method   2.20M (455.45ns) (± 6.08%)  352B/op        fastest
-      using proc   2.18M (458.85ns) (± 5.46%)  352B/op   1.01× slower
+```
+$ crystal run --release proc_vs_def.cr
+using method   2.20M (455.45ns) (± 6.08%)  352B/op        fastest
+  using proc   2.18M (458.85ns) (± 5.46%)  352B/op   1.01× slower
+```
 
 The method is almost three whole nanoseconds faster than the Proc. I
 wonder…
 
-``` console
+```console
 $ crystal run --release proc_vs_def.cr
 using method   2.15M (465.37ns) (± 5.93%)  352B/op   1.01× slower
   using proc   2.16M (462.10ns) (± 6.04%)  352B/op        fastest

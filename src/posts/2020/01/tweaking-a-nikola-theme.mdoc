@@ -56,9 +56,7 @@ sense.
 I’ll mirror the content path with images, and add `previewimage`
 metadata which points to the right spot.
 
-**`posts/2019/12/again-with-the-manual-symmetry/index.md`**
-
-```yaml
+```yaml title="posts/2019/12/again-with-the-manual-symmetry/index.md"
 ---
 date: 2019-12-15 12:37:51-08:00
 tags:
@@ -71,15 +69,11 @@ previewimage: /images/2019/12/again-with-the-manual-symmetry/cover.jpg
 ---
 ```
 
-<aside class="admonition">
-
 I like how [Hugo](https://gohugo.io/) handles [page
 bundles](https://gohugo.io/content-management/page-bundles/). Everything
 for your content is in the same folder. Many other static site
 generators — including Nikola — keep supplemental content separate from
 posts.
-
-</aside>
 
 Hugo uses a powerful but sometimes confusing
 [taxonomy](https://gohugo.io/content-management/taxonomies/) system in
@@ -111,9 +105,11 @@ So let’s inherit a theme.
 
 So I ask Nikola for a new theme, using bootblog4 as the parent.
 
-    $ nikola theme --new rgb-bootblog4 --parent bootblog4
-    ...
-    [2020-01-21T15:35:33Z] NOTICE: theme: Remember to set THEME="rgb-bootblog4" in conf.py to use this theme.
+```
+$ nikola theme --new rgb-bootblog4 --parent bootblog4
+...
+[2020-01-21T15:35:33Z] NOTICE: theme: Remember to set THEME="rgb-bootblog4" in conf.py to use this theme.
+```
 
 Because I didn’t specify a template engine, rgb-bootblog4 uses
 [Mako](https://www.makotemplates.org/).
@@ -126,7 +122,7 @@ page bundles for a second and got excited, until I realized
 [bundles](https://getnikola.com/creating-a-theme.html#bundles) meant
 bundled JavaScript and CSS for quicker HTTP/1 downloads.
 
-``` python
+```python
 # Name of the theme to use.
 THEME = "rgb-bootblog4"
 USE_BUNDLES = False
@@ -145,9 +141,7 @@ to veer wildly from the parent, you should probably use
 
 ## Editing templates
 
-<aside class="admonition note">
-  <p class="admonition-title">Note</p>
-
+{% note %}
 The [Mako
 extension](https://marketplace.visualstudio.com/items?itemName=tommorris.mako)
 for [Visual Studio Code](https://code.visualstudio.com/) associates
@@ -159,7 +153,7 @@ not want to do that globally though. `.tmpl` could be Mako here, but
 
 Instead, change it in the workspace file for your Nikola site.
 
-``` json
+```json
 {
   "folders": [
     {
@@ -173,8 +167,7 @@ Instead, change it in the workspace file for your Nikola site.
   }
 }
 ```
-
-</aside>
+{% /note %}
 
 So which of the [built-in
 templates](https://getnikola.com/theming.html#built-in-templates) do I
@@ -182,11 +175,13 @@ want? Since both posts and pages have cover images on my site, I’ll
 start with the most general template. Everything starts with
 `base.tmpl`. Let’s look there.
 
-    $ nikola theme -c base.tmpl
+```
+$ nikola theme -c base.tmpl
+```
 
 Can I find anything interesting in the base template?
 
-``` mako
+```mako
 ${template_hooks['page_header']()}
 <%block name="extra_header"></%block>
 <%block name="content"></%block>
@@ -203,7 +198,9 @@ inheritance](https://docs.makotemplates.org/en/latest/inheritance.html),
 letting the parent define some blocks while overriding others. We might
 be able to do this with one change.
 
-    $ nikola theme -c post.tmpl
+```
+$ nikola theme -c post.tmpl
+```
 
 Nikola provides a large number of [template
 variables](https://getnikola.com/template-variables.html) to work with,
@@ -213,9 +210,7 @@ to do that though. `previewimage` metadata is important enough that it
 gets promoted to an attribute of the [post
 object](https://getnikola.com/template-variables.html#post-object-attributes).
 
-**`post.tmpl`**
-
-```mako
+```mako title="post.tmpl"
 <%block name="extra_header">
   % if post.previewimage:
       <div class="figure">
@@ -256,7 +251,7 @@ bootblog4 *is* based off of Bootstrap. I feel compelled to make the
 cover image a
 [Jumbotron](https://getbootstrap.com/docs/4.4/components/jumbotron/).
 
-``` mako
+```mako
 <%block name="extra_header">
   % if post.previewimage:
       <div class="figure jumbotron">

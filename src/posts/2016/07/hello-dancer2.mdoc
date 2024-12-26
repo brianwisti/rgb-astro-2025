@@ -35,13 +35,15 @@ I use Perl 5.24.0 and [cpanm](https://metacpan.org/pod/App::cpanminus)
 via [Perlbrew](http://perlbrew.pl/). Installation of Dancer2 and its
 dependencies requires a single command.
 
-    $ cpanm Dancer2
+```
+$ cpanm Dancer2
+```
 
 ## Hey
 
 You do not need much code to create a Dancer2 application.
 
-``` perl
+```perl
 use Dancer2;     # Load Dancer2 and its keywords
 
 get '/hey' => sub { # Define some routes
@@ -53,8 +55,10 @@ start;           # Run the application
 
 Even better: you can hand this code to Perl and it starts a server\!
 
-    $ perl hey.pl
-    >> Dancer2 v0.200002 server 15388 listening on http://0.0.0.0:3000
+```
+$ perl hey.pl
+>> Dancer2 v0.200002 server 15388 listening on http://0.0.0.0:3000
+```
 
 Loading `http://localhost:3000/hey` in a browser shows our simple
 message.
@@ -101,7 +105,7 @@ Keywords make the Dancer2 DSL work, but the code style takes advantage
 of Perl’s flexible syntax. Our route looks like this with less
 [syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar).
 
-``` perl
+```perl
 get('/hey', sub { return 'Hey!'; });
 ```
 
@@ -116,7 +120,7 @@ are tokens prefixed with a colon, such as `:name` or `:id`. When you
 make a request that matches, such as `/hey/brian`, Dancer2 saves the
 matching path part. Here, look at some code.
 
-``` perl
+```perl
 use Dancer2;
 
 # A simple greeting: /hey
@@ -143,8 +147,10 @@ In order to use the new code, we need to stop the Perl process.
 `Control-C` should do it. Then launch it again, and the new code will be
 loaded.
 
-    $ perl hey.pl
-    >> Dancer2 v0.200002 server 31385 listening on http://0.0.0.0:3000
+```
+$ perl hey.pl
+>> Dancer2 v0.200002 server 31385 listening on http://0.0.0.0:3000
+```
 
 Now we should be able to see <http://localhost:3000/hey/Brian> — or
 whatever name you prefer.

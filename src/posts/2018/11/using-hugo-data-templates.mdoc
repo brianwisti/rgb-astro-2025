@@ -48,7 +48,7 @@ That’s it. I can revisit the glossary idea if my needs change later.
 So let’s start with the links I just used. I like to talk about YAML,
 TOML, and JSON sometimes, after all.
 
-```toml{title="data/links.toml"}
+```toml title="data/links.toml"
 # Frequently used URLs
 JSON = "https://json.org/"
 TOML = "https://github.com/toml-lang/toml"
@@ -75,20 +75,20 @@ focusing on exactly what I need right now: the URL in
 positional argument as a key, returning the value at that
 [index](https://gohugo.io/functions/index-function/) in the glossary.
 
-``` html
+```html
 {{- with .Get 0 -}}{{ index $.Site.Data.links . }}{{- end -}}
 ```
 
 Then in my content Markdown:
 
-``` md
+```md
 [TOML]({{</* linkFor "TOML" */>}})
 ```
 
 That’s *almost* everything I need. I should throw in error checking for
 inevitable typos such as the one I made a couple minutes ago.
 
-``` md
+```md
 [TOML]({{</* linkFor "YOML" */>}})
 ```
 
@@ -110,10 +110,12 @@ to a lazily written shortcode.
 
 Now I get an error both on the console and in the browser:
 
-    $ hugo server -D
-    Building sites … ERROR 2018/11/10 15:53:14 No link for key YOML
-    Total in 1389 ms
-    Error: Error building site: logged 1 error(s)
+```
+$ hugo server -D
+Building sites … ERROR 2018/11/10 15:53:14 No link for key YOML
+Total in 1389 ms
+Error: Error building site: logged 1 error(s)
+```
 
 ![Hugo shows the error in-browser](@img/2018/error-screenshot.png)
 

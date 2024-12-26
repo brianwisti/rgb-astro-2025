@@ -44,7 +44,7 @@ stats, and I've been meaning to play with their [API][plausible-api]. But I'm he
 about Rich, not Plausible. Let's use a static copy of API results so everyone's
 using the same data.
 
-```python{title="showstats.py"}
+```python title="showstats.py"
 import rich
 from rich.table import Table
 
@@ -112,14 +112,14 @@ This post focuses on the "blog writing and pretty reports" situations. For
 everyday sharing, all I need is a legibly formatted data dump. [`xclip`][xclip] works for
 those situations.
 
-``` bash
+```bash
 python showstats.py | xclip
 ```
 
 I don't see anything on my screen, of course, because I piped everything to
 `xclip`. But when I paste from the clipboard:
 
-``` text{title="output" verbatim=false}
+```text
                     Plausible.io Traffic Breakdown
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 ┃ Page                                                    ┃ Visitors ┃
@@ -156,14 +156,14 @@ paste from Python.  The Rich [Console][console] can [`capture`][capture] the
 characters it would have printed, and hand them to us when needed. Sounds like
 a great team.
 
-``` python
+```python
 import pyperclip
 from rich.console import Console
 ```
 
 I set up Pyperclip and create a local Console to handle capturing.
 
-``` python
+```python
 def show_stats(stats):
     """Display Plausible's breakdown of site traffic."""
 
@@ -180,12 +180,12 @@ def show_stats(stats):
 ```
 
 I need to tell Pyperclip about `xclip` or it gets a bit confused on WSL.
-Also, since I captured the output, I need to print it myself. Why print`
+Also, since I captured the output, I need to print it myself. Why `print`
 instead of `rich.print` or `console.print`?
 
 Let me answer that question by pasting the contents of my clipboard:
 
-``` text
+```text
 [3m                    Plausible.io Traffic Breakdown                    [0m
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
 ┃[1m [0m[1mPage                                                   [0m[1m [0m┃[1m [0m[1mVisitors[0m[1m [0m┃
@@ -236,7 +236,7 @@ Fortunately, `export_html` also lets us tell it exactly what we want:
 
 Let's make some HTML for Pyperclip to copy.
 
-``` python
+```python
 def show_stats():
     """Display Plausible's breakdown of site traffic."""
 
@@ -255,27 +255,27 @@ def show_stats():
 
 What do the contents of my clipboard look like now?
 
-<pre><span style="font-style: italic">                    Plausible.io Traffic Breakdown                    </span>
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
-┃<span style="font-weight: bold"> Page                                                    </span>┃<span style="font-weight: bold"> Visitors </span>┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩
-│ /post/2017/11/drawing-grids-with-python-and-pillow/     │<span style="color: #008000; text-decoration-color: #008000">    1,114 </span>│
-│ /post/2017/01/cinnamon-screenshot-shortcuts/            │<span style="color: #008000; text-decoration-color: #008000">      580 </span>│
-│ /                                                       │<span style="color: #008000; text-decoration-color: #008000">      458 </span>│
-│ /post/2014/06/what-is-build-essentials-for-opensuse/    │<span style="color: #008000; text-decoration-color: #008000">      340 </span>│
-│ /config/emacs/doom/                                     │<span style="color: #008000; text-decoration-color: #008000">      303 </span>│
-│ /post/2020/06/csv-and-data-tables-in-hugo/              │<span style="color: #008000; text-decoration-color: #008000">      293 </span>│
-│ /post/2019/05/kitty-terminal/                           │<span style="color: #008000; text-decoration-color: #008000">      265 </span>│
-│ /post/2018/02/setting-task-dependencies-in-taskwarrior/ │<span style="color: #008000; text-decoration-color: #008000">      263 </span>│
-│ /post/2019/02/taskwarrior-projects/                     │<span style="color: #008000; text-decoration-color: #008000">      260 </span>│
-│ /post/2019/01/circular-grids-with-python-and-pillow/    │<span style="color: #008000; text-decoration-color: #008000">      242 </span>│
+<pre><span style="font-style: italic">                    Plausible.io Traffic Breakdown                    </span><br/>
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓<br/>
+┃<span style="font-weight: bold"> Page                                                    </span>┃<span style="font-weight: bold"> Visitors </span>┃<br/>
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━┩<br/>
+│ /post/2017/11/drawing-grids-with-python-and-pillow/     │<span style="color: #008000; text-decoration-color: #008000">    1,114 </span>│<br/>
+│ /post/2017/01/cinnamon-screenshot-shortcuts/            │<span style="color: #008000; text-decoration-color: #008000">      580 </span>│<br/>
+│ /                                                       │<span style="color: #008000; text-decoration-color: #008000">      458 </span>│<br/>
+│ /post/2014/06/what-is-build-essentials-for-opensuse/    │<span style="color: #008000; text-decoration-color: #008000">      340 </span>│<br/>
+│ /config/emacs/doom/                                     │<span style="color: #008000; text-decoration-color: #008000">      303 </span>│<br/>
+│ /post/2020/06/csv-and-data-tables-in-hugo/              │<span style="color: #008000; text-decoration-color: #008000">      293 </span>│<br/>
+│ /post/2019/05/kitty-terminal/                           │<span style="color: #008000; text-decoration-color: #008000">      265 </span>│<br/>
+│ /post/2018/02/setting-task-dependencies-in-taskwarrior/ │<span style="color: #008000; text-decoration-color: #008000">      263 </span>│<br/>
+│ /post/2019/02/taskwarrior-projects/                     │<span style="color: #008000; text-decoration-color: #008000">      260 </span>│<br/>
+│ /post/2019/01/circular-grids-with-python-and-pillow/    │<span style="color: #008000; text-decoration-color: #008000">      242 </span>│<br/>
 └─────────────────────────────────────────────────────────┴──────────┘</pre>
 
 That works well enough for a blog post!
 
 If you're curious about the exported HTML, here's a chunk of it:
 
-``` html
+```html
     <pre><span style="font-style: italic">                    Plausible.io Traffic Breakdown                    </span>
     ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━┓
     ┃<span style="font-weight: bold"> Page                                                    </span>┃<span style="font-weight: bold"> Visitors </span>┃

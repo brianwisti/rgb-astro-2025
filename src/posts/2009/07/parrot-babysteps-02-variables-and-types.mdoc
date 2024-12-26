@@ -43,7 +43,9 @@ has two naming schemes: one for register variables, and another for everything e
 Register variable rules are easy to remember. First comes the register being used, then one or more
 digits.
 
-    <register><identifier>
+```
+<register><identifier>
+```
 
 The registers are named with a dollar sign (`$`), then an upper case letter indicating what types are
 held in that register:
@@ -59,21 +61,25 @@ I thought that the number after the register identifier was something that tells
 especially meaningful, like which slot it's using or something. Turns out that's not the case,
 or at least not in quite the way I thought it was.
 
-    #!parrot
-    # example-02-01.pir
-    .sub main :main
-      $I01 = 10
-      $I1  = 20
-      say $I01
-      say $I1
-    .end
+```
+#!parrot
+# example-02-01.pir
+.sub main :main
+    $I01 = 10
+    $I1  = 20
+    say $I01
+    say $I1
+.end
+```
 
 `01` and `1` are the same number according to the numbering systems that I'm familiar with.
 Look what happens when you run it, though.
 
-    $ parrot example-02-01.pir
-    10
-    20
+```
+$ parrot example-02-01.pir
+10
+20
+```
 
 So the numbers are just a sequence of characters identifying the variable for the register. They
 don't indicate order or anything else. The register takes care of storing variables and lets you
@@ -102,7 +108,9 @@ it and what you plan to use it for.
 Local variables are declared with the `.local` directive, followed by a type identifier and finally
 the name of the variable.
 
-    .local <type-identifier> <name>
+```
+.local <type-identifier> <name>
+```
 
 [previous step]: /post/2009/07/parrot-babysteps-01-getting-started
 
@@ -163,13 +171,15 @@ I break these guidelines sometimes, but at least I think about it before I do.
 Remember that declaring a local variable and assigning a value to it are two different actions, and
 require two separate instructions.
 
-    #!parrot
-    # example-02-02.pir
-    .sub main :main
-      .local int year
-      year = 2010
-      say year
-    .end
+```
+#!parrot
+# example-02-02.pir
+.sub main :main
+    .local int year
+    year = 2010
+    say year
+.end
+```
 
 ## `.const` Variables
 
@@ -178,36 +188,42 @@ for declaring and assigning a value for a local constant variable. Use the `.con
 directive when you want a variable that won't somehow change in value after you've
 created it.
 
-    .const <type-identifier> <name> = <value>
+```
+.const <type-identifier> <name> = <value>
+```
 
 Here's an example of `.const` in action: calculating the area of a circle with
 a radius of 10 units.
 
-    #!parrot
-    # example-02-03.pir
-    .sub main :main
-      .const num PI     = 3.14159
-      .const num RADIUS = 10
-      .local num area
+```
+#!parrot
+# example-02-03.pir
+.sub main :main
+    .const num PI     = 3.14159
+    .const num RADIUS = 10
+    .local num area
 
-      print "Radius: "
-      say RADIUS
+    print "Radius: "
+    say RADIUS
 
-      # Area of a circle: PI * RADIUS * RADIUS
-      area  = PI
-      area *= RADIUS
-      area *= RADIUS
-      print "Area: "
-      say area
-    .end
+    # Area of a circle: PI * RADIUS * RADIUS
+    area  = PI
+    area *= RADIUS
+    area *= RADIUS
+    print "Area: "
+    say area
+.end
+```
 
 `PI` and `RADIUS` are the constants in this program. We define them once and never
 need to change them again. Area, on the other hand, is a local because it needs
 to be touched several times to get the final value.
 
-    $ parrot example-02-03.pir
-    Radius: 10
-    Area: 314.159
+```
+$ parrot example-02-03.pir
+Radius: 10
+Area: 314.159
+```
 
 {% note %}
 This is where developers experienced with other languages should see the
@@ -238,16 +254,18 @@ depends on your system and how Parrot was compiled. 32-bit Parrot uses 4 bytes
 for integers, while it's presumably 8 bytes on 64-bit Parrot. The [`sysinfo`][]
   opcode can tell us for sure.
 
-    #!parrot
-    # example-02-04.pir
-    .loadlib 'sys_ops'
-    .include 'sysinfo.pasm'
+```
+#!parrot
+# example-02-04.pir
+.loadlib 'sys_ops'
+.include 'sysinfo.pasm'
 
-    .sub 'main' :main
-        $I0 = sysinfo .SYSINFO_PARROT_INTSIZE
-        print $I0
-        say " bytes in an integer on this machine"
-    .end
+.sub 'main' :main
+    $I0 = sysinfo .SYSINFO_PARROT_INTSIZE
+    print $I0
+    say " bytes in an integer on this machine"
+.end
+```
 
 Parrot keeps only the most important opcodes in its core. A question like "how
 many bytes are in an integer?" is just not considered all that important most
@@ -261,8 +279,10 @@ that is not available in core Parrot.
 
 What does this code tell us?
 
-    $ parrot example-02-04.pir
-    4 bytes in an integer on this machine
+```
+$ parrot example-02-04.pir
+4 bytes in an integer on this machine
+```
 
 [`BigInt`]: http://docs.parrot.org/parrot/latest/html/src/pmc/bigint.pmc.html
 
@@ -274,27 +294,31 @@ Most often you'll create integers using the 10-based system, but every once in
 a while it will be more informative to use base 8, base 16, or even binary.
 Parrot supports that.
 
-    #!parrot
-    # example-02-05.pir
-    .sub main :main
-        $I0 = 10   # decimal (base 10)
-        say $I0
-        $I0 = 0o10 # octal (base 8)
-        say $I0
-        $I0 = 0x10 # hexadecimal (base 16)
-        say $I0
-        $I0 = 0b10 # binary (base 2)
-        say $I0
-    .end
+```
+#!parrot
+# example-02-05.pir
+.sub main :main
+    $I0 = 10   # decimal (base 10)
+    say $I0
+    $I0 = 0o10 # octal (base 8)
+    say $I0
+    $I0 = 0x10 # hexadecimal (base 16)
+    say $I0
+    $I0 = 0b10 # binary (base 2)
+    say $I0
+.end
+```
 
 Now I can see the value described by `10` in decimal, octal, hex, and binary.
 My life is complete.
 
-    $ parrot example-02-05.pir
-    10
-    8
-    16
-    2
+```
+$ parrot example-02-05.pir
+10
+8
+16
+2
+```
 
 That wasn't as fulfilling as I'd hoped. Perhaps my life is not complete after
 all. I might as well move on to floating point numbers.
@@ -308,21 +332,25 @@ more or less the same as the decimal numbers you may be more familiar with.
 Like integers, numbers may be positive or negative and have a range that depends on their
 size. `sysinfo` can get that size for us.
 
-    #!parrot
-    # example-02-06.pir
-    .loadlib 'sys_ops'
-    .include 'sysinfo.pasm'
+```
+#!parrot
+# example-02-06.pir
+.loadlib 'sys_ops'
+.include 'sysinfo.pasm'
 
-    .sub 'main' :main
-        $I0 = sysinfo .SYSINFO_PARROT_FLOATSIZE
-        print $I0
-        say " bytes in a number on this machine"
-    .end
+.sub 'main' :main
+    $I0 = sysinfo .SYSINFO_PARROT_FLOATSIZE
+    print $I0
+    say " bytes in a number on this machine"
+.end
+```
 
 Now we know how much space is used for a number in Parrot.
 
-    $ parrot example-02-06.pir
-    8 bytes in a number on this machine
+```
+$ parrot example-02-06.pir
+8 bytes in a number on this machine
+```
 
 What does that mean, though? Integers are easy: 4 bytes is 32 bits is somewhere
 over 4 billion possible values. With numbers - well, I have no idea really. The
@@ -334,9 +362,11 @@ know.
 
 You can use ordinary decimal values or scientific notation for number values.
 
-    #!parrot
-    $N0 = 3.1415926
-    $N1 = 6.0221415e+23
+```
+#!parrot
+$N0 = 3.1415926
+$N1 = 6.0221415e+23
+```
 
 What can you do with numbers?
 
@@ -366,22 +396,24 @@ Just for laughs - and to see how the operators fill in for opcodes - let's
 rewrite the area program using opcodes and register variables instead of
 operators, local variables, and constants.
 
-    #!parrot
-    # example-02-07.pir
-    .sub main :main
-        set $N0, 3.14159
-        set $N1, 10
+```
+#!parrot
+# example-02-07.pir
+.sub main :main
+    set $N0, 3.14159
+    set $N1, 10
 
-        print "Radius is "
-        say $N1
+    print "Radius is "
+    say $N1
 
-        # Calculate the area.
-        set $N2, $N0
-        mul $N2, $N1
-        mul $N2, $N1
-        print "Area is "
-        say $N2
-    .end
+    # Calculate the area.
+    set $N2, $N0
+    mul $N2, $N1
+    mul $N2, $N1
+    print "Area is "
+    say $N2
+.end
+```
 
 Actually, this isn't all that hard to read. Still, the operators are more
 familiar to me and I'm more comfortable with variables that have names. I'll
@@ -389,32 +421,36 @@ continue using them. Parrot doesn't care.
 
 Let's have a little fun and add interaction to our original area calculator.
 
-    #!parrot
-    # example-02-08.pir
-    .sub main :main
-        .const num PI = 3.1415926
-        .const string PROMPT = "Radius: "
+```
+#!parrot
+# example-02-08.pir
+.sub main :main
+    .const num PI = 3.1415926
+    .const string PROMPT = "Radius: "
 
-        .local num radius
-        .local num area
-        .local pmc stdin
+    .local num radius
+    .local num area
+    .local pmc stdin
 
-        stdin = getstdin
-        radius = stdin.'readline_interactive'(PROMPT)
-        area = PI
-        area *= radius
-        area *= radius
-        print "Area: "
-        say area
-    .end
+    stdin = getstdin
+    radius = stdin.'readline_interactive'(PROMPT)
+    area = PI
+    area *= radius
+    area *= radius
+    print "Area: "
+    say area
+.end
+```
 
 For some reason, adding user interaction always makes a program seem more
 entertaining to me. Even a silly program that figures out something you could
 use a calculator for.
 
-    $ parrot example-02-08.pir
-    Radius: 10
-    Area: 314.15926
+```
+$ parrot example-02-08.pir
+Radius: 10
+Area: 314.15926
+```
 
 #### Type Conversion
 
@@ -456,27 +492,29 @@ The formula looks like this:
 Calculating the hypotenuse is easy once we notice that there is a `sqrt` opcode
 for finding the square root of a number.
 
-    #!parrot
-    # example-02-09.pir
-    .sub main :main
-        .local num a
-        .local num b
-        .local num c
-        .local num a_squared
-        .local num b_squared
-        .local num c_squared
-        .local pmc stdin
+```
+#!parrot
+# example-02-09.pir
+.sub main :main
+    .local num a
+    .local num b
+    .local num c
+    .local num a_squared
+    .local num b_squared
+    .local num c_squared
+    .local pmc stdin
 
-        stdin = getstdin
-        a = stdin.'readline_interactive'('A: ')
-        b = stdin.'readline_interactive'('B: ')
-        a_squared = a * a
-        b_squared = b * b
-        c_squared = a_squared + b_squared
-        c = sqrt c_squared
-        print "Hypotenuse: "
-        say c
-    .end
+    stdin = getstdin
+    a = stdin.'readline_interactive'('A: ')
+    b = stdin.'readline_interactive'('B: ')
+    a_squared = a * a
+    b_squared = b * b
+    c_squared = a_squared + b_squared
+    c = sqrt c_squared
+    print "Hypotenuse: "
+    say c
+.end
+```
 
 Don't look at me like that. Using a letter for a variable name makes perfect sense if you're
 writing code that follows a well-established formula.
@@ -485,10 +523,12 @@ I did have to add specific variables to hold the squared values, because as far 
 can tell PIR does not support chained math operations. On the other hand, I did get to
 save a lot of effort with the `sqrt` opcode. I didn't even have to import a library.
 
-    $ parrot example-02-09.pir
-    A: 1
-    B: 1
-    Hypotenuse: 1.4142135623731
+```
+$ parrot example-02-09.pir
+A: 1
+B: 1
+Hypotenuse: 1.4142135623731
+```
 
 We've learned a lot about how math works in Parrot. We've seen some operators and even
 looked at the math opcodes. Okay, a few. Okay, one. At least it's a start.
@@ -524,52 +564,62 @@ Single-quoted strings are simple. Parrot assumes they are [ASCII
 encoded](http://en.wikipedia.org/wiki/ASCII), and very little magic happens when
 processing them.
 
-    #!parrot
-    $S0 = 'Hello World!'
+```
+#!parrot
+$S0 = 'Hello World!'
+```
 
 Double-quoted strings are a little more complex. Parrot assumes they are ASCII, but allows you
 to set the encoding yourself. Double-quoted strings also handle several backslash escapes.
 Encoding is easy in Parrot but I'm having a heck of a time getting Unicode to display on
 my machines, so I'll skip encoding. I will talk about escapes in a few minutes.
 
-    #!parrot
-    $S1 = "Hello World!\n"
+```
+#!parrot
+$S1 = "Hello World!\n"
+```
 
 Heredocs are multi-line, which is a great convenience for larger strings. They can
 act like single-quoted strings or double-quoted strings, depending on the way
 they are created.
 
-    #!parrot
-      $S2 =<<"EndS2"
-    Hello, World!
-    Isn't it a lovely day?
-    EndS2
+```
+#!parrot
+    $S2 =<<"EndS2"
+Hello, World!
+Isn't it a lovely day?
+EndS2
+```
 
 If you like, we can whip up some quick code to show these string quoting methods in action.
 
-    #!parrot
-    # example-02-10.pir
-    .sub main :main
-        $S0 = 'Hello World!'
-        $S1 = "Hello World!\n"
-        $S2 =<<"EndS2"
-    Hello, World!
-    Isn't it a lovely day?
-    EndS2
+```
+#!parrot
+# example-02-10.pir
+.sub main :main
+    $S0 = 'Hello World!'
+    $S1 = "Hello World!\n"
+    $S2 =<<"EndS2"
+Hello, World!
+Isn't it a lovely day?
+EndS2
 
-        say $S0
-        say $S1
-        say $S2
-    .end
+    say $S0
+    say $S1
+    say $S2
+.end
+```
 
 I don't think there are any surprises in this code.
 
-    $ parrot example-02-10.pir
-    Hello World!
-    Hello World!
+```
+$ parrot example-02-10.pir
+Hello World!
+Hello World!
 
-    Hello, World!
-    Isn't it a lovely day?
+Hello, World!
+Isn't it a lovely day?
+```
 
 So that's the basics of quoting. Now what about escapes?
 
@@ -578,17 +628,21 @@ So that's the basics of quoting. Now what about escapes?
 Backslash escapes make it possible for you to include normally unprintable characters
 in a string. For example, they allow tabs and quotation marks to be part of your string:
 
-    #!parrot
-    # example-02-11.pir
-    .sub main :main
-        $S0 = "Question:\tAren't you sick of \"Hello World\"?\n"
-        print $S0
-    .end
+```
+#!parrot
+# example-02-11.pir
+.sub main :main
+    $S0 = "Question:\tAren't you sick of \"Hello World\"?\n"
+    print $S0
+.end
+```
 
 See?
 
-    $ parrot example-02-11.pir
-    Question:  Aren't you sick of "Hello World"?
+```
+$ parrot example-02-11.pir
+Question:  Aren't you sick of "Hello World"?
+```
 
 Here are my favorite backslash escapes:
 
@@ -628,39 +682,43 @@ We have already been doing some interesting things with strings. Well *I* think 
 input and converting it to numbers is interesting. The opcodes open up the possibilities for
 some more interesting statistics and transformations.
 
-    #!parrot
-    # example-02-12.pir
-    .sub main :main
-        .const string PROMPT = "Enter some text: "
-        .local string text
-        .local int    text_length
-        .local string transformed
-        .local pmc    stdin
+```
+#!parrot
+# example-02-12.pir
+.sub main :main
+    .const string PROMPT = "Enter some text: "
+    .local string text
+    .local int    text_length
+    .local string transformed
+    .local pmc    stdin
 
-        stdin = getstdin
-        text = stdin.'readline_interactive'(PROMPT)
-        print "Number of characters: "
-        text_length = length text
-        say text_length
-        print "Uppercase: "
-        transformed = upcase text
-        say transformed
-        print "Lowercase: "
-        transformed = downcase text
-        say transformed
-        print "Title case: "
-        transformed = titlecase text
-        say transformed
-    .end
+    stdin = getstdin
+    text = stdin.'readline_interactive'(PROMPT)
+    print "Number of characters: "
+    text_length = length text
+    say text_length
+    print "Uppercase: "
+    transformed = upcase text
+    say transformed
+    print "Lowercase: "
+    transformed = downcase text
+    say transformed
+    print "Title case: "
+    transformed = titlecase text
+    say transformed
+.end
+```
 
 Granted, it doesn't do a whole lot.
 
-    $ parrot example-02-12.pir
-    Enter some text: BRian
-    Number of characters: 5
-    Uppercase: BRIAN
-    Lowercase: brian
-    Title case: Brian
+```
+$ parrot example-02-12.pir
+Enter some text: BRian
+Number of characters: 5
+Uppercase: BRIAN
+Lowercase: brian
+Title case: Brian
+```
 
 Still, I think this shows that there is good reason to study those [string
 opcodes](http://docs.parrot.org/parrot/latest/html/src/ops/string.ops.html).

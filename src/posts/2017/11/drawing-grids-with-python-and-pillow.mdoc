@@ -35,7 +35,7 @@ Templates exist, but I want custom templates to fit the size of my workspace. I
 started exploring the Pillow library recently, so let’s use that to make custom
 grids for my drawings.
 
-``` python
+```python
 from PIL import Image
 
 if __name__ == '__main__':
@@ -82,7 +82,7 @@ if __name__ == '__main__':
 
 Nice. Okay, how about repeating some lines across?
 
-``` python
+```python
 from PIL import Image, ImageDraw
 
 if __name__ == '__main__':
@@ -216,8 +216,9 @@ if __name__ == '__main__':
 
 Run it.
 
-    $ python grid.py 12
-
+```
+$ python grid.py 12
+```
 
 ![Grabbing a step count from the command line](@img/2017/grid-specify-step-count.png)
 
@@ -271,7 +272,7 @@ if __name__ == '__main__':
 Oh come on. Stop it with `sys.argv`. Get some real command line handling in
 there.
 
-``` python
+```python
 import argparse
 
 from PIL import Image, ImageDraw
@@ -316,18 +317,20 @@ if __name__ == '__main__':
 
 Much better. Run it.
 
-    $ python grid.py
-    usage: grid.py [-h] width height step_count
+```
+$ python grid.py
+usage: grid.py [-h] width height step_count
 
-    positional arguments:
-      width       width of image in pixels
-      height      height of image in pixels
-      step_count  how many steps across the grid
+positional arguments:
+  width       width of image in pixels
+  height      height of image in pixels
+  step_count  how many steps across the grid
 
-    optional arguments:
-      -h, --help  show this help message and exit
+optional arguments:
+  -h, --help  show this help message and exit
 
-    $ python grid.py 500 500 20
+$ python grid.py 500 500 20
+```
 
 [Argparse]: https://docs.python.org/3/library/argparse.html[Argparse]
 
@@ -337,7 +340,9 @@ I like [Argparse][].
 
 Anyways - what if I ask for a rectangle instead of a square?
 
-    $ python grid.py 400 600 24 \{\{< /console >}}
+```
+$ python grid.py 400 600 24 \{\{< /console >}}
+```
 
 ![Rectangular grid](@img/2017/grid-rectangular.png)
 
@@ -357,15 +362,15 @@ if __name__ == '__main__':
 
 Run it.
 
-    $ python grid.py 400 600 24
+```
+$ python grid.py 400 600 24
+```
 
 ![Correct Image initialization](@img/2017/grid-correct-image-init.png)
 
 This works. I have half a dozen ideas left, but I want to use it for a sketch _now_.
 
-**`grid.py`**
-
-```python
+```python title="grid.py"
 import argparse
 
 from PIL import Image, ImageDraw
@@ -409,10 +414,12 @@ if __name__ == '__main__':
     image.save(filename)
 ```
 
-    $ python grid.py 1800 2400 50
-    Saving grid-1800-2400-50.png
-    $ ls
-    grid-1800-2400-50.png   grid.py*
+```
+$ python grid.py 1800 2400 50
+Saving grid-1800-2400-50.png
+$ ls
+grid-1800-2400-50.png   grid.py*
+```
 
 Let’s skim over the part where I get the grid onto the iPad and import it as a
 new layer in my current sketch. That part includes no code — for now.

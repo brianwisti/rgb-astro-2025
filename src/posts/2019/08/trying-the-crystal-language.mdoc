@@ -49,40 +49,41 @@ working on a full Windows port, the best path for now is to use
 [Homebrew](https://brew.sh/) on
 [WSL](https://docs.microsoft.com/en-us/windows/wsl/wsl2-about).
 
-<aside class="admonition warning">
-<p class="admonition-title">Warning<?p>
-
+{% note title="Warning" %}
 I’m using WSL 2, which is still in development. I haven’t tested any of
 this under WSL 1.
+{% /note %}
 
-</aside>
 
-
-    $ brew install crystal
-    ...
-    $ crystal version
-    Crystal 0.30.1 (2019-08-15)
-    LLVM: 8.0.1
-    Default target: x86_64-unknown-linux-gnu
+```
+$ brew install crystal
+...
+$ crystal version
+Crystal 0.30.1 (2019-08-15)
+LLVM: 8.0.1
+Default target: x86_64-unknown-linux-gnu
+```
 
 `crystal` provides a collection of subcommands.
 
-    $ crystal help
+```
+$ crystal help
 
-    Usage: crystal [command] [switches] [program file] [--] [arguments]
+Usage: crystal [command] [switches] [program file] [--] [arguments]
 
-    Command:
-        init                     generate a new project
-        build                    build an executable
-        docs                     generate documentation
-        env                      print Crystal environment information
-        eval                     eval code from args or standard input
-        play                     starts Crystal playground server
-        run (default)            build and run program
-        spec                     build and run specs (in spec directory)
-        tool                     run a tool
-        help, --help, -h         show this help
-        version, --version, -v   show version
+Command:
+    init                     generate a new project
+    build                    build an executable
+    docs                     generate documentation
+    env                      print Crystal environment information
+    eval                     eval code from args or standard input
+    play                     starts Crystal playground server
+    run (default)            build and run program
+    spec                     build and run specs (in spec directory)
+    tool                     run a tool
+    help, --help, -h         show this help
+    version, --version, -v   show version
+```
 
 Oh my there are some interesting commands in there\! I’ll just focus on
 the ones that result in me running code.
@@ -94,30 +95,38 @@ considering that it’s supposed to be a compiled language. Still, it’s
 more flexible than I expected. If all I want is a one-liner, Crystal can
 do that!
 
-    $ crystal eval 'puts "Hi!"'
-    Hi!
+```
+$ crystal eval 'puts "Hi!"'
+Hi!
+```
 
 Okay, that wasn’t super exciting. What about pretty-printing the current
 environment variables?
 
-    $ crystal eval 'pp ENV'
-    {"BF" => "$albumartist | $album | $track/$tracktotal | $title",
-    "BREW_PREFIX" => "/home/linuxbrew/.linuxbrew",
-    "CLICOLOR" => "1",
-    ...
-    "_" => "/home/linuxbrew/.linuxbrew/bin/crystal",
-    "wg_date" => "#[]%Y-%m-%d %H:%M%z#[default]"}
+```
+$ crystal eval 'pp ENV'
+{"BF" => "$albumartist | $album | $track/$tracktotal | $title",
+"BREW_PREFIX" => "/home/linuxbrew/.linuxbrew",
+"CLICOLOR" => "1",
+...
+"_" => "/home/linuxbrew/.linuxbrew/bin/crystal",
+"wg_date" => "#[]%Y-%m-%d %H:%M%z#[default]"}
+```
 
 [ENV](https://crystal-lang.org/api/ENV.html) is a Hash-like accessor.
 You can access and iterate through environment variables as if they were
 keys in a Hash.
 
-    $ crystal eval 'ENV.each { |k, v| puts "#{k}: #{v}" }'
+```
+$ crystal eval 'ENV.each { |k, v| puts "#{k}: #{v}" }'
+```
 
 Except that the `pp` output was sorted. That’s fine. We’ll sort the
 keys.
 
-    $ crystal eval 'ENV.keys.sorted.each { |k| puts "#{k}: #{ENV[k]}" }'
+```
+$ crystal eval 'ENV.keys.sorted.each { |k| puts "#{k}: #{ENV[k]}" }'
+```
 
 Printing data as JSON is a pretty common task. Common enough that it’s a
 Hash method here. Except ENV isn’t a
@@ -126,16 +135,18 @@ accessor."
 
 No problem, we can make a Hash from `ENV`.
 
-    $ crystal eval 'require "json"; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json'
-    {"NVM_DIR":"/home/random/.nvm","HOSTTYPE":"x86_64","PYENV_HOME":"/home/random/.pyenv", ...
-    "WSLENV":"","_":"/home/linuxbrew/.linuxbrew/bin/crystal"}
+```
+$ crystal eval 'require "json"; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json'
+{"NVM_DIR":"/home/random/.nvm","HOSTTYPE":"x86_64","PYENV_HOME":"/home/random/.pyenv", ...
+"WSLENV":"","_":"/home/linuxbrew/.linuxbrew/bin/crystal"}
+```
 
 Well. I lost my sorting and the JSON isn’t exactly pretty-printed. I
 know I can fix this from inside Crystal, but my one-liner would get
 clunky. Hey, this is a one-liner. Let’s pipe it to
 [jq](https://stedolan.github.io/jq/)\!
 
-``` console
+```
 $ crystal eval 'require "json"; env = Hash.zip(ENV.keys, ENV.values); puts env.to_json' | jq --sort-keys '.'
 ```
 
@@ -155,9 +166,7 @@ But even stock Crystal looks like it would work as a glue language for
 shell scripts. Plus, the `run` command lets you ignore the build process
 and pretend your code is being run directly.
 
-**`hello-user.cr`**
-
-```crystal
+```crystal title="hello-user.cr"
 #!/usr/bin/env crystal
 
 print "Who are you? "
@@ -211,9 +220,7 @@ have — or had, no idea if they still do — a neat trick to show quick
 task status in their shell prompt. I’ll do the same thing, but in
 Crystal.
 
-**`task-indicator.cr`**
-
-```crystal
+```crystal title="task-indicator.cr"
 URGENT       = '\u{2757}'  # exclamation
 DUE_TOMORROW = '\u{1f4c5}' # calendar
 DUE_TODAY    = '\u{1f631}' # screaming
@@ -267,23 +274,25 @@ small, but it produces the same output. Yes, the screaming face.
 The default build includes a lot of debugging information that I won’t
 need in my daily usage. I’ll make a release version.
 
-    $ crystal build --release task-indicator.cr -o task-indicator-release
-    $ ls -lhF
-    total 2.0M
-    -rwxrwxr-x 1 random random 1.3M Aug 25 14:17 task-indicator*
-    -rwxrwxr-x 1 random random 665K Aug 25 14:23 task-indicator-release*
-    -rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr
+```
+$ crystal build --release task-indicator.cr -o task-indicator-release
+$ ls -lhF
+total 2.0M
+-rwxrwxr-x 1 random random 1.3M Aug 25 14:17 task-indicator*
+-rwxrwxr-x 1 random random 665K Aug 25 14:23 task-indicator-release*
+-rw-rw-r-- 1 random random  546 Aug 25 14:05 task-indicator.cr
+```
 
 I didn’t *have* to give it a different name. I wanted to see the size
 difference between debug and release builds.
 
-    $ cp task-indicator-release ~/bin/task-indicator
+```
+$ cp task-indicator-release ~/bin/task-indicator
+```
 
 Then over in my `.bashrc`:
 
-**`~/.bashrc`**
-
-```bash
+```bash title="~/.bashrc"
 # Terminal colours (after installing GNU coreutils)
 NM="\[\033[0;38m\]"  # means no background and white lines
 HI="\[\033[0;34m\]"  # change this for username letter colors

@@ -32,28 +32,32 @@ I grabbed the [jekyll-rst][] Jekyll plugin and followed its directions.
 [Nikola]: http://getnikola.com
 [jekyll-rst]: https://github.com/xdissent/jekyll-rst
 
-    $ mkvirtualenv jekyll-rst
-    $ pip install docutils pygments
-    $ gem install RbST
-    $ git submodule add https://github.com/xdissent/jekyll-rst.git _plugins/jekyll-rst
+```
+$ mkvirtualenv jekyll-rst
+$ pip install docutils pygments
+$ gem install RbST
+$ git submodule add https://github.com/xdissent/jekyll-rst.git _plugins/jekyll-rst
+```
 
 Let me just build real quick to make sure this works at all.
 
 Well, no.
 
-    $ bundle exec jekyll build -D
-    # ...
-    TypeError: Unicode-objects must be encoded before hashing
-    Exiting due to error.  Use "--traceback" to diagnose.
-    Please report errors to <docutils-users@lists.sf.net>.
-    Include "--traceback" output, Docutils version (0.12 [release]),
-    Python version (3.4.3), your OS type & version, and the
-    command line used.
+```
+$ bundle exec jekyll build -D
+# ...
+TypeError: Unicode-objects must be encoded before hashing
+Exiting due to error.  Use "--traceback" to diagnose.
+Please report errors to <docutils-users@lists.sf.net>.
+Include "--traceback" output, Docutils version (0.12 [release]),
+Python version (3.4.3), your OS type & version, and the
+command line used.
+```
 
 Oh I know that smell. You get that with code that isn't completely ready for
 Python 3. Here's the smallest change to make that error go away.
 
-``` python
+```python
 # _plugins/jekyll-rst/directives.py line 54-55
 content_text = u'\n'.join(self.content).encode('utf-8')
 cache_file_name = u'%s-%s.html' % (lexer_name, hashlib.md5(content_text).hexdigest())

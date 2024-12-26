@@ -27,15 +27,12 @@ Got it?
 Okay, good.
 Now that we’ve settled this little detail, let’s move on.
 
-<aside class="admonition note">
-<p class="admonition-title">Note</p>
-
+{% note %}
 I should mention that if all you want is a command-line printout of your battery information on Linux,
 you can get that with the command `acpi -b`.
 Still, reinventing wheels can be fun.
 Why not give this a shot?
-
-</aside>
+{% /note %}
 
 ## The Raw Materials
 
@@ -45,66 +42,72 @@ Linux follows this ideal by keeping system information in a number of files in t
 I could probably find everything I might want to know about the system in that directory,
 but let’s just focus on the directories which contain battery information.
 
-
-<aside class="admonition note">
-<p class="admonition-title">Note</p>
-
+{% note %}
 Ubuntu keeps the files in `/proc/`, but other distros may keep the files in other locations, such as `/var/proc/`.
 Poke around on your own system to find out the specifics for your distribution.
+{% /note %}
 
-</aside>
-
-    >> read %/proc/acpi/battery/
-    == [%BAT0/]
-    >> read %/proc/acpi/battery/BAT0/
-    == [%alarm %state %info]
+```
+>> read %/proc/acpi/battery/
+== [%BAT0/]
+>> read %/proc/acpi/battery/BAT0/
+== [%alarm %state %info]
+```
 
 I only have one battery, and this time I only see one folder under `/proc/acpi/battery`.
 There were two folders when I ran this on another machine a while back.
 
-    >> print read %/proc/acpi/battery/BAT0/state
-    present:                 yes
-    capacity state:          ok
-    charging state:          charged
-    present rate:            0 mA
-    remaining capacity:      4263 mAh
-    present voltage:         12495 mV
+```
+>> print read %/proc/acpi/battery/BAT0/state
+present:                 yes
+capacity state:          ok
+charging state:          charged
+present rate:            0 mA
+remaining capacity:      4263 mAh
+present voltage:         12495 mV
+```
 
 That one battery happens to be fully charged.
 Good thing, because it’s been sitting plugged in all day.
 I’m curious.
 Let’s see what the `state` file looks like when I unplug the computer.
 
-    >> print read %/proc/acpi/battery/BAT0/state
-    present:                 yes
-    capacity state:          ok
-    charging state:          discharging
-    present rate:            0 mA
-    remaining capacity:      4341 mAh
-    present voltage:         12107 mV
+```
+>> print read %/proc/acpi/battery/BAT0/state
+present:                 yes
+capacity state:          ok
+charging state:          discharging
+present rate:            0 mA
+remaining capacity:      4341 mAh
+present voltage:         12107 mV
+```
 
 Okay, so it is pretty easy to tell when your computer is plugged in and when it isn’t.
 The `info` file contains some more useful information about the battery which will come in handy later on.
 
-    >> print read %/proc/acpi/battery/BAT0/info
-    present:                 yes
-    design capacity:         4400 mAh
-    last full capacity:      4263 mAh
-    battery technology:      rechargeable
-    design voltage:          10800 mV
-    design capacity warning: 210 mAh
-    design capacity low:     147 mAh
-    capacity granularity 1:  63 mAh
-    capacity granularity 2:  4053 mAh
-    model number:            Primary
-    serial number:
-    battery type:            LION
-    OEM info:                Hewlett-Packard
+```
+>> print read %/proc/acpi/battery/BAT0/info
+present:                 yes
+design capacity:         4400 mAh
+last full capacity:      4263 mAh
+battery technology:      rechargeable
+design voltage:          10800 mV
+design capacity warning: 210 mAh
+design capacity low:     147 mAh
+capacity granularity 1:  63 mAh
+capacity granularity 2:  4053 mAh
+model number:            Primary
+serial number:
+battery type:            LION
+OEM info:                Hewlett-Packard
+```
 
 What about the `alarm` file?
 
-    >> print read %/proc/acpi/battery/BAT0/alarm
-    alarm:                   unsupported
+```
+>> print read %/proc/acpi/battery/BAT0/alarm
+alarm:                   unsupported
+```
 
 Oh well, I wasn’t really sure what I’d do with that information anyhow.
 
@@ -143,13 +146,15 @@ We are looking for every battery directory, and printing out its `state`.
 What does that look like?
 Not much, right now.
 
-    BAT0/
-    present:                 yes
-    capacity state:          ok
-    charging state:          charged
-    present rate:            0 mA
-    remaining capacity:      4360 mAh
-    present voltage:         12465 mV
+```
+BAT0/
+present:                 yes
+capacity state:          ok
+charging state:          charged
+present rate:            0 mA
+remaining capacity:      4360 mAh
+present voltage:         12465 mV
+```
 
 It’s time to start looking at REBOL’s `parse` rules.
 
@@ -193,24 +198,26 @@ foreach battery batteries [
 That doesn’t *quite* do the job we wanted, unfortunately.
 All of the whitespace is stuck with `value`, obscuring the actual value.
 
-    BAT0/
-    present:                 yes
-    capacity state:          ok
-    charging state:          discharging
-    present rate:            0 mA
-    remaining capacity:      4310 mAh
-    present voltage:         12081 mV
+```
+BAT0/
+present:                 yes
+capacity state:          ok
+charging state:          discharging
+present rate:            0 mA
+remaining capacity:      4310 mAh
+present voltage:         12081 mV
 
-    present --                  yes
-    capacity state
-              ok
-    charging state --           discharging
-    present rate
-                0 mA
-    remaining capacity --       4310 mAh
-    present voltage
-             12081 mV
-    -- none
+present --                  yes
+capacity state
+          ok
+charging state --           discharging
+present rate
+            0 mA
+remaining capacity --       4310 mAh
+present voltage
+          12081 mV
+-- none
+```
 
 We want to get rid of the leading whitespace for each value.
 
@@ -247,13 +254,15 @@ This obviously isn’t the only Perl solution I could have chosen, but it was th
 The point is that it gets the job done.
 It’s kind of ugly, but Perl is kind enough to let you be ugly if you’re in a hurry.
 
-    $ perl battery.pl
-    present voltage -- 12021 mV
-    capacity state -- ok
-    present rate -- 0 mA
-    remaining capacity -- 4088 mAh
-    charging state -- discharging
-    present -- yes
+```
+$ perl battery.pl
+present voltage -- 12021 mV
+capacity state -- ok
+present rate -- 0 mA
+remaining capacity -- 4088 mAh
+charging state -- discharging
+present -- yes
+```
 
 How do I strip the leading whitespace in Rebol?
 I know there’s a "right" way, but for now I just want to get those spaces out of there.
@@ -298,14 +307,16 @@ This is a lot longer than the Perl version, but you could argue that it’s easi
 And I just _know_ that there’s a better way to do it.
 Sadly, we won’t know what the better way is until we learn a little more about how Parse works.
 
-    $ ./battery.r
-    BAT0/
-    present: -- yes
-    capacity state: -- ok
-    charging state: -- discharging
-    present rate: -- 0 mA
-    remaining capacity: -- 4242 mAh
-    present voltage: -- 12375 mV
+```
+$ ./battery.r
+BAT0/
+present: -- yes
+capacity state: -- ok
+charging state: -- discharging
+present rate: -- 0 mA
+remaining capacity: -- 4242 mAh
+present voltage: -- 12375 mV
+```
 
 Well, that colon is still in there, but at least I got rid of the leading spaces in the values.
 
@@ -357,14 +368,16 @@ foreach [ name info ] batteries [
 
 You aren’t supposed to change the actual functionality during refactoring, because the whole idea is to make it do exactly the same thing it did before, but in a more sane style. I was hit by a lightbulb moment while refactoring the `parse` rule, though, and decided to see what would happen if `skip` would get me past that colon. Sure enough, that did the trick!
 
-    $ ./battery.r
-    BAT0/
-    present -- yes
-    capacity state -- ok
-    charging state -- charged
-    present rate -- 0 mA
-    remaining capacity -- 4299 mAh
-    present voltage -- 12540 mV
+```
+$ ./battery.r
+BAT0/
+present -- yes
+capacity state -- ok
+charging state -- charged
+present rate -- 0 mA
+remaining capacity -- 4299 mAh
+present voltage -- 12540 mV
+```
 
 ### Useful Output
 
@@ -414,8 +427,10 @@ foreach [ name info ] batteries [
 Rather than step through and display every single item of data, we are printing one line with minimal information:
 the name of the battery and whether it is charging or not.
 
-    $ ./battery.r
-    BAT0/ discharging
+```
+$ ./battery.r
+BAT0/ discharging
+```
 
 I like this.
 It is easy for me to understand this output compared to the raw files.
@@ -456,8 +471,10 @@ foreach [ name info ] batteries [
 
 Now I can see the percentage remaining:
 
-    $ ./battery.r
-    $ BAT0/ discharging 91%
+```
+$ ./battery.r
+$ BAT0/ discharging 91%
+```
 
 Yes, that’s the output that I want, but the code is turning into something … *evil*.
 Or at least something *ugly*.
@@ -672,8 +689,10 @@ foreach [ name info ] batteries [
 Running it shows a problem on Ubuntu.
 The discharge rate in the state file is listed as zero, which means the script has no way to determine estimated time remaining.
 
-    wisti grabbag $ ./battery.r
-    BAT0/ discharging 82% --
+```
+wisti grabbag $ ./battery.r
+BAT0/ discharging 82% --
+```
 
 This is a known issue, but I do not yet know a way around it.
 I left the original code intact just in case *your* laptop does not have this problem.
@@ -683,7 +702,9 @@ I might even rename to something like `check-battery` without the ".r" suffix, t
 This is a common manuever on the command line.
 Many of the commands you use every day in the shell are just thinly disguised scripts, written in one language or another.
 
-    wisti grabbag $ cp battery.r ~/bin/check-battery
+```
+wisti grabbag $ cp battery.r ~/bin/check-battery
+```
 
 And now I have one written in REBOL.
 
