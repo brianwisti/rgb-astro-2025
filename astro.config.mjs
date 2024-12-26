@@ -5,6 +5,6 @@ import markdoc from "@astrojs/markdoc";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [markdoc()],
+  integrations: [markdoc({ allowHTML: true })],
   site: "https://randomgeekery.org",
 });

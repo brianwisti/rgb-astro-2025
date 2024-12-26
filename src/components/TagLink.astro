@@ -1,5 +1,5 @@
 ---
-import PCategoryLink from "./core/PCategoryLink.astro";
+import TaxonomyLink from "./core/TaxonomyLink.astro";
 
 interface Props {
     tag: string;
@@ -8,4 +8,4 @@ interface Props {
 const { tag } = Astro.props;
 ---
 
-<PCategoryLink href={`/tags/${tag}/`} classNames="tag">{tag}</PCategoryLink>
+<TaxonomyLink href={`/tags/${tag}/`} classNames="tag">{tag}</TaxonomyLink>
