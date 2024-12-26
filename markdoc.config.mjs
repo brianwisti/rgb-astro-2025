@@ -19,6 +19,13 @@ export default defineMarkdocConfig({
     },
   },
   tags: {
+    bookmark: {
+      render: component("./src/components/Bookmark.astro"),
+      attributes: {
+        href: "string",
+        title: "string",
+      },
+    },
     note: {
       render: component("./src/components/Note.astro"),
       attributes: {
