@@ -1,0 +1,30 @@
+---
+import { collectSiteTagMap } from "@lib/TaxonomyHelpers"
+
+import PageLayout from "@layouts/Layout.astro";
+import PostListing from "@components/PostListing.astro";
+
+type Post = {
+    data: {
+        title: string;
+        date: Date;
+        tags: string[];
+    };
+    id: string;
+};
+
+export async function getStaticPaths() {
+  const slugs = await collectSiteTagMap();
+
+  return Array.from(slugs.keys()).map((slug) => ({
+      params: { slug },
+      props: { slug, posts: slugs.get(slugs) },
+  }));
+}
+
+const { slug, posts } = Astro.props;
+---
+
+<PageLayout title={`Tag ${slug}`}>
+    <PostListing posts={posts} />
+</PageLayout>

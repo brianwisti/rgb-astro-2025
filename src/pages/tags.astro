@@ -1,51 +1,22 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@layouts/Layout.astro";
-import TagLink from "@components/TagLink.astro";
+import { collectSiteTagMap } from "@lib/TaxonomyHelpers"
 
-type Post = {
-    data: {
-        title: string;
-        date: Date;
-    };
-    id: string;
-};
+import PageLayout from "@layouts/PageLayout.astro";
+import TagLink from "@components/TagLink.astro"
 
-type Tag = {
-    tag: string;
-    posts: Post[];
-};
-
-async function getTags() {
-    const posts = await getCollection("posts");
-    const tags = new Map<string, Post[]>();
-
-    posts.forEach((post) => {
-        post.data.tags.forEach((tag) => {
-            if (!tags.has(tag)) {
-                tags.set(tag, []);
-            }
-            tags.get(tag)?.push(post);
-        });
-    });
-
-    return tags;
-}
-
-const tags = await getTags();
+const slugs = await collectSiteTagMap()
 ---
 
-<Layout title="Tags">
-    <p>Top-level tag listing goes here.</p>
+<PageLayout title="Tags">
     <ul>
         {
-            Array.from(tags.keys())
+            Array.from(slugs.keys())
                 .sort()
-                .map((tag) => (
+                .map((slug) => (
                     <li>
-                        <TagLink tag={tag} />({tags.get(tag)?.length})
+                        <TagLink tag={slug} />({slugs.get(slug)?.length})
                     </li>
                 ))
         }
     </ul>
-</Layout>
+</PageLayout>
