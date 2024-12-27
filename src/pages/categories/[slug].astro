@@ -16,6 +16,7 @@ type Post = {
 
 export async function getStaticPaths() {
   const slugs = await collectSiteCategoryMap();
+  console.log(slugs.keys());
 
   return Array.from(slugs.keys()).map((slug) => ({
       params: { slug },

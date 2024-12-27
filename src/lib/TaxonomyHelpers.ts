@@ -19,12 +19,8 @@ export async function collectSiteCategoryMap(): Promise<SluggedTaxonomyMapping> 
   const posts = await getCollection("posts")
   const slugs = new Map<string, Post[]>
 
-  for (let i = 0; i < posts.length; i++) {
-    const post = posts[i]
-    const categories = post.data.categories
-
-    for (let j = 1; j < categories.length; j++) {
-      const category = categories[i]
+  posts.forEach((post) => {
+    post.data.categories.forEach((category) => {
       const slug = slugify(category)
 
       if (!slugs.has(slug)) {
@@ -32,8 +28,8 @@ export async function collectSiteCategoryMap(): Promise<SluggedTaxonomyMapping> 
       }
 
       slugs.get(slug)?.push(post)
-    }
-  }
+    })
+  })
 
   return slugs
 }

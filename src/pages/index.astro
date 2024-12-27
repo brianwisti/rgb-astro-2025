@@ -1,8 +1,98 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import { Image } from "astro:assets"
+import Layout from '../layouts/Layout.astro'
+import TagLink from "@components/TagLink.astro"
+import avatarThumbnail from "@img/avatar-thumbnail.jpg"
+
+const socialLinks = [
+  { service: "Telegram", href: "https://t.me/RandomGeek" },
+  { service: "Mastodon", href: "https://hackers.town/@randomgeek" },
+  { service: "Liberapay", href: "https://liberapay.com/randomgeek" },
+  { service: "LinkedIn", href: "https://linkedin.com/in/brianwisti" },
+]
 ---
 
 <Layout title="Home">
-	<h1>Astro</h1>
-	<p>My Astro site.</p>
+  <section class="h-card">
+    <header>
+      <a class="u-url u-uid" href="https://randomgeekery.org">
+        <span class="p-name">Brian Wisti</span>
+      </a>
+      ( <a class="u-pronoun" href="https://pronoun.is/he">he / him / his</a> )
+    </header>
+    <div class="body">
+      <div>
+        <Image src={avatarThumbnail} alt="Brian Wisti" height="256" width="192" class="u-photo" />
+      </div>
+      <div>
+        <p class="p-note">
+          Caffeinated, occasionally crafty geek from the Pacific Northwest, now living in <span class="p-locality">Tucson</span>.
+          I like <span class="p-category">FOSS</span>, <TagLink tag="drawing" />, and <TagLink tag="knitting">yarn</TagLink>.
+        </p>
+
+        <p>
+        Did you know you can <em>buy</em> some of those drawings on shirts,
+        mugs, stickers, tapestries, etc? It's true!
+        </p>
+
+        <p>
+          You can find my designs on <a href="https://randomgeekery.threadless.com">Threadless</a> and
+          <a href="https://www.designbyhumans.com/shop/randomgeek/">Design By Humans</a>
+        </p>
+        <ul>
+          {socialLinks.map((link) => <li> <a rel="me" href={link.href} class="u-url" title={link.service} aria-label={link.service}> {link.service} </a> </li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style type="text/scss">
+  .h-card {
+    border-radius: var(--radius-3);
+    border: thin solid var(--sand-4);
+    padding: 0;
+
+    header {
+      border-radius: var(--radius-3) var(--radius-3) 0 0;
+      background-color: var(--sand-4);
+      font-weight: bold;
+      text-align: center;
+      padding: 0.5rem;
+      margin-block-end: 0.5rem;
+
+      a {
+        color: var(--sand-11);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    img {
+      border-radius: var(--radius-2);
+      margin: 1rem;
+    }
+
+    .body {
+      display: flex;
+
+      ul {
+        display: flex;
+        list-style-type: none;
+        justify-content: space-evenly;
+        padding-block: 1rem;
+
+        li {
+          font-size: 80%;
+          display: inline-block;
+        }
+      }
+
+      p {
+        padding-inline: 1rem;
+      }
+    }
+  }
+</style>

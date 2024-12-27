@@ -8,4 +8,4 @@ interface Props {
 const { tag } = Astro.props;
 ---
 
-<TaxonomyLink href={`/tags/${tag}/`} classNames="tag">{tag}</TaxonomyLink>
+<TaxonomyLink href={`/tags/${tag}/`} classNames="tag"><slot>{tag}</slot></TaxonomyLink>
