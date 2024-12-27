@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "clean": "rimraf dist",
+    "test": "vitest run tests/",
     "test:lint": "markdownlint -c markdownlint.yml src/posts/**/*.mdoc"
   },
   "dependencies": {
@@ -27,8 +28,13 @@
     "fast-glob": "^3.3.2",
     "gray-matter": "^4.0.3",
     "markdownlint-cli": "^0.43.0",
+    "md-front-matter": "^1.0.4",
     "sass": "^1.83.0",
     "slug": "^10.0.0",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "vitest": "^2.1.8"
+  },
+  "overrides": {
+    "vite": "6.0.2"
   }
 }
