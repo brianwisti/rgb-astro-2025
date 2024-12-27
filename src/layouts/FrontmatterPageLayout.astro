@@ -1,0 +1,14 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+
+interface Props {
+    frontmatter: {
+        title: string
+    }
+}
+
+const { frontmatter } = Astro.props as Props
+---
+<PageLayout title={frontmatter.title}>
+    <slot />
+</PageLayout>
