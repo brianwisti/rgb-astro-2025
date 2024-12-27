@@ -13,14 +13,18 @@ interface Props {
     posts: Post[] | undefined;
 }
 
-const { posts } = Astro.props;
+const { posts, limit } = Astro.props;
+let sortedPosts = posts?.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+
+if (limit) {
+  sortedPosts = sortedPosts.slice(0, limit)
+}
+
 ---
 
 <div>
     {
-        posts
-            ?.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-            .map((post) => <PostSummary post={post} />)
+        sortedPosts.map((post) => <PostSummary post={post} />)
     }
 </div>
 

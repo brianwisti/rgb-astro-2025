@@ -1,6 +1,9 @@
 ---
+import { getCollection } from "astro:content"
 import { Image } from "astro:assets"
+
 import Layout from '../layouts/Layout.astro'
+import PostListing from "@components/PostListing.astro"
 import TagLink from "@components/TagLink.astro"
 import avatarThumbnail from "@img/avatar-thumbnail.jpg"
 
@@ -10,6 +13,8 @@ const socialLinks = [
   { service: "Liberapay", href: "https://liberapay.com/randomgeek" },
   { service: "LinkedIn", href: "https://linkedin.com/in/brianwisti" },
 ]
+const posts = await getCollection("posts")
+const limit = 4
 ---
 
 <Layout title="Home">
@@ -45,6 +50,10 @@ const socialLinks = [
       </div>
     </div>
   </section>
+  <article>
+    <p>Anyway, here's my blog and stuff.</p>
+    <PostListing {posts} {limit } />
+  </article>
 </Layout>
 
 <style type="text/scss">
