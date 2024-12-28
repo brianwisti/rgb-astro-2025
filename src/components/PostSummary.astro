@@ -1,77 +1,108 @@
 ---
-import MarkdocImage from "./MarkdocImage.astro";
-import PostDescription from "@components/PostDescription.astro";
-import PostMetadata from "./PostMetadata.astro";
+import MarkdocImage from "./MarkdocImage.astro"
+import PostDescription from "@components/PostDescription.astro"
+import PostMetadata from "./PostMetadata.astro"
 
 interface Post {
     data: {
-        title: string;
-        date: Date;
-        tags: string[];
-        categories: string[];
-        cover_image?: string;
+        title: string
+        date: Date
+        tags: string[]
+        categories: string[]
+        cover_image?: string
     };
-    id: string;
+    id: string
 }
 
 interface Props {
     post: Post;
 }
 
-const { post } = Astro.props;
-const { title, date, tags, description, categories, cover_image } = post.data;
+const { post } = Astro.props
+const { title, date, tags, description, categories, cover_image } = post.data
+// thumbnails
+const widths = [256]
 ---
 
-<section>
+<section class="h-entry">
     <header>
-        <a href={`/post/${post.id}/`}>
-            <h3>{title}</h3>
-            {
-                cover_image ? (
-                    <MarkdocImage
-                        src={cover_image}
-                        alt=""
-                        widths={[300, 400, 500]}
-                    />
-                ) : (
-                    ""
-                )
-            }
-            {description ? <PostDescription {description} /> : ""}
-        </a>
+      <a href={`/post/${post.id}/`}>
+          {title}
+      </a>
+      {description ? <PostDescription {description} /> : ""}
     </header>
+    {
+        cover_image ? (
+            <MarkdocImage
+                src={cover_image}
+                {widths}
+                alt=""
+            />
+        ) : (
+            ""
+        )
+    }
     <footer>
-        <PostMetadata {date} {categories} {tags} />
+      <PostMetadata {date} {categories} {tags} />
     </footer>
 </section>
 
 <style>
     section {
-        border: 1px solid var(--sand-3);
-        background-color: var(--sand-1);
-        border-radius: var(--radius-2);
-        margin-block-end: 1rem;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      outline: thin solid var(--rg-color-line);
+      background-color: var(--rg-color-accent);
+      border-radius: var(--rg-border-radius);
+      margin-block-end: 1rem;
+      padding-block: 1em;
+      padding-inline: 1em;
+
+      &:has(figure) {
+        display: grid;
+        padding-inline: 0;
+        grid-template-columns: [main] 256px [accent] auto;
+        grid-template-rows: [header] 1fr [footer] auto;
 
         header {
-            font-size: var(--font-size-3);
-            margin-block-end: 0.5rem;
-
-            a {
-                color: var(--sand-11);
-                text-decoration: none;
-            }
-
-            h3 {
-                margin-block-start: 0;
-            }
+          padding-inline: 1em;
         }
 
-        figure {
-            margin: 0;
+        footer {
+          padding-inline: 1em;
         }
+      }
+
+      header {
+        padding-block-end: 0.5rem;
+        font-size: var(--rg-font-size-smaller);
+
+        a {
+          display: block;
+          margin-block-start: 0;
+        }
+      }
+
+      figure {
+        margin-block: -1em;
+        margin-inline: 0;
+        padding: 0;
+        grid-row-start: header;
+        grid-row-end: span 2;
+        grid-column-start: main;
+        grid-column-end: main;
+
+        img {
+          max-width: 100%;
+          aspect-ratio: var(--ratio-landscape);
+          border-radius: var(--rg-border-radius) 0 0 var(--rg-border-radius);
+        }
+
+        footer {
+          grid-row-start: footer;
+          grid-row-end: footer;
+          grid-column-start: main;
+          grid-column-end: accent;
+        }
+      }
+
     }
 </style>

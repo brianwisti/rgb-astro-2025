@@ -1,5 +1,6 @@
 ---
 import { Picture } from "astro:assets";
+import { Image } from "astro:assets";
 
 interface Props {
     src: string;
@@ -21,45 +22,51 @@ if (!images[assetPath]) {
     throw new Error(`Image not found: ${assetPath}`);
 }
 
-const image = images[assetPath]();
+const image = await images[assetPath]();
+const fullWidth = image.default.width;
 let { widths, sizes } = Astro.props;
 
 if (!widths) {
-    widths = [600, 800, 1000, image.width];
+  widths = [600, 800, 1000];
 }
 
-if (!sizes) {
-    sizes = "";
-    for (let i = 0; i < widths.length; i++) {
-        sizes += `(max-width: ${widths[i]}px) ${widths[i]}px, `;
+widths = widths.filter((width) => width < fullWidth)
+
+if (!sizes && widths.length > 1) {
+    sizes = ""
+    const ruleLimit = widths.length - 1
+
+    for (let i = 0; i < ruleLimit; i++) {
+      const thisWidth = widths[i]
+      sizes += `(max-width: ${thisWidth + 200}px) ${thisWidth}px, `
     }
-    sizes += `${image.width}px`;
+
+    sizes += ` ${widths[ruleLimit]}px`
 }
 ---
 
 <figure>
-    <Picture src={image} {alt} {widths} {sizes} formats={["avif", "webp"]} />
+  <Image src={image.default} {alt} {widths} {sizes} />
     {caption && <figcaption>{caption}</figcaption>}
 </figure>
 
 <style type="text/scss">
-    img {
-        height: auto;
-        margin: auto;
-        max-width: 100%;
-        object-fit: cover;
-        border-radius: var(--radius-2);
+  img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    object-fit: cover;
 
-        @container (min-width: 800px) {
-            max-width: 1000px;
-        }
-
-        @container (min-width: 1000px) {
-            max-width: 1200px;
-        }
-
-        @container (min-width: 1200px) {
-            max-width: 1000px;
-        }
+    @container (min-width: 800px) {
+        max-width: 1000px;
     }
+
+    @container (min-width: 1000px) {
+        max-width: 1200px;
+    }
+
+    @container (min-width: 1200px) {
+        max-width: 1400px;
+    }
+  }
 </style>

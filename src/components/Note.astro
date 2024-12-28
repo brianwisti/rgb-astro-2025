@@ -1,25 +1,7 @@
 ---
 const { title } = Astro.props;
-const noteTitle = title ? title : 'Note';
 ---
 <aside>
-    <header>
-        { noteTitle }
-    </header>
-    <slot />
+  {title ? <header>{title}</header> : "" }
+  <slot />
 </aside>
-
-<style type="text/scss">
-    aside {
-        background-color: var(--sand-1);
-        border: 4px solid var(--sand-3);
-        margin: 1rem 0;
-        padding: 1rem;
-    }
-
-    header {
-        font-size: var(--font-size-3);
-        margin-bottom: 0.5rem;
-        font-weight: var(--font-weight-5);
-    }
-</style>

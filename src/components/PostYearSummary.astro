@@ -17,5 +17,16 @@ const { year, posts } = Astro.props;
 
 <div>
     <a href={`/post/${year}/`}>{year}</a>
-    ({posts?.length})
+    <span>({posts?.length})</span>
 </div>
+
+<style type="text/scss">
+  div {
+    background-color: var(--rg-color-accent);
+    padding: 0.5rem;
+    border-radius: var(--rg-border-radius);
+    border: thin solid var(--rg-color-line);
+    display: flex;
+    justify-content: space-between;
+  }
+</style>

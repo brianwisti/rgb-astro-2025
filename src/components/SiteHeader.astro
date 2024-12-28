@@ -1,48 +1,50 @@
 ---
+import MenuLink from "@components/MenuLink.astro";
+
 interface MenuLink {
-    link: string;
+    href: string;
     text: string;
 }
 
 const menuLinks = [
     {
-        link: "/about/",
+        href: "/about/",
         text: "About",
     },
     {
-        link: "/post/",
+        href: "/post/",
         text: "Posts",
     },
     {
-        link: "/now/",
+        href: "/now/",
         text: "Now",
     },
     {
-        link: "/follow/",
+        href: "/follow/",
         text: "Follow",
     },
 ];
 ---
 
 <header>
-    <nav class="flex my-4">
-        <a href="/">Random Geekery</a>
-        <ul>
-            {
-                menuLinks.map((link) => (
-                    <li>
-                        <a href={link.link}>{link.text}</a>
-                    </li>
-                ))
-            }
-        </ul>
-    </nav>
+  <nav>
+    <MenuLink href="/">Random Geekery</MenuLink>
+    <ul>
+      {
+        menuLinks.map(({ href, text }) => (
+            <li>
+              <MenuLink {href}>{text}</MenuLink>
+            </li>
+        ))
+      }
+    </ul>
+  </nav>
 </header>
 
 <style type="text/scss">
     header {
-        background-color: var(--sand-1);
-        padding: 1rem;
+      background-color: var(--rg-color-accent);
+      padding: 1rem;
     }
 
     nav {

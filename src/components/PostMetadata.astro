@@ -12,18 +12,19 @@ interface Props {
 const { date, categories, tags } = Astro.props;
 ---
 
-<p>
+<div class="meta">
     <Timestamp {date} />
-    <span>
-        {categories.map((category) => <CategoryLink {category} />)}
-        {tags.map((tag) => <TagLink {tag} />)}
-    </span>
-</p>
+    <div class="taxonomy">
+      {categories.map((category) => <CategoryLink {category} />)}
+      <ul>
+        {tags.map((tag) => <li><TagLink {tag} /></li>)}
+      </ul>
+    </div>
+</div>
 
 <style type="text/scss">
-    p {
-        font-size: var(--font-size-1);
-        margin-block-end: 0;
+    .meta {
+      font-size: var(--rg-font-size-smaller);
         display: grid;
         grid-template-columns: 12ch auto;
         grid-gap: 1ch;
@@ -34,10 +35,21 @@ const { date, categories, tags } = Astro.props;
             display: inline-block;
         }
 
-        span {
+        .taxonomy {
             justify-content: end;
             display: flex;
             flex-wrap: wrap;
+
+            ul {
+              display: flex;
+              list-style: none;
+              margin: 0;
+              padding-inline-start: 0.5em;
+
+              li {
+                margin-inline-start: 0.25em;
+              }
+            }
         }
     }
 </style>

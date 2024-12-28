@@ -1,0 +1,14 @@
+---
+interface Props {
+  href: string
+}
+
+const { href } = Astro.props
+---
+<a {href}><slot /></a>
+
+<style type="text/scss">
+  a {
+    color: var(--rg-color-fg);
+  }
+</style>

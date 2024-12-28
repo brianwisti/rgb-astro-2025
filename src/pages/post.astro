@@ -31,17 +31,32 @@ async function getYears() {
     return years;
 }
 
-const years = await getYears();
+const years = await getYears()
+const title = "Posts"
+const description = "Pretty much everything I put on this site, in chronological order"
 ---
 
-<PageLayout title="Posts">
-    <p>Top-level blog post listing goes here.</p>
+<PageLayout {title} {description}>
+  <ul>
     {
-        Array.from(years.keys())
-            .sort()
-            .reverse()
-            .map((year) => (
-                <PostYearSummary year={year} posts={years.get(year)} />
-            ))
+      Array.from(years.keys())
+        .sort()
+        .reverse()
+        .map((year) => (
+          <li><PostYearSummary year={year} posts={years.get(year)} /></li>
+        ))
     }
+  </ul>
 </PageLayout>
+
+<style>
+  ul {
+    margin-block: 1rem;
+    margin-inline: auto;
+    list-style: none;
+  }
+
+  li {
+    margin-block: .5em;
+  }
+</style>

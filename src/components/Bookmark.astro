@@ -6,9 +6,9 @@ interface Props {
 
 const { href, title } = Astro.props
 ---
-<div>
+<section class="h-entry">
   <header>
-    <a {href}>{title}</a>
+    <a {href} class="u-bookmark-of">{title}</a>
   </header>
   <slot />
-</div>
+</section>

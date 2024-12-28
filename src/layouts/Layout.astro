@@ -1,8 +1,14 @@
 ---
-import SiteHeader from "../components/SiteHeader.astro";
+import { ClientRouter } from "astro:transitions"
+import SiteHeader from "../components/SiteHeader.astro"
 
-const { title } = Astro.props;
-const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery";
+interface Props {
+  title?: string
+  description?: string
+}
+
+const { title, description } = Astro.props
+const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
 ---
 
 <!doctype html>
@@ -13,6 +19,9 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery";
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         <title>{pageTitle}</title>
+        <ClientRouter />
+        <meta name="title" content={pageTitle} />
+        {description ? <meta name="description" content={description} /> : "" }
     </head>
     <body>
         <SiteHeader />
@@ -22,7 +31,7 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery";
     </body>
 </html>
 
-<style is:global>
+<style is:global type="text/scss">
     @import "https://unpkg.com/open-props";
 
     *,
@@ -32,8 +41,19 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery";
     }
 
     :root {
-        --font-prose: var(--font-geometric-humanist);
-        --color-bg-page: var(--sand-2);
+        --rg-font-prose: var(--font-geometric-humanist);
+        --rg-font-mono: var(--font-monospace-code);
+        --rg-font-size: var(--font-size-fluid-1);
+        --rg-font-size-smaller: 0.8em;
+
+        --rg-color-bg: var(--sand-2);
+        --rg-color-fg: var(--sand-11);
+        --rg-color-accent: var(--sand-1);
+        --rg-color-line: var(--sand-5);
+        --rg-color-link: var(--lime-11);
+
+        --rg-border-radius: var(--radius-2);
+        --rg-border-radius-loose: var(--radius-3);
     }
 
     html {
@@ -41,9 +61,10 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery";
     }
 
     body {
-        background-color: var(--color-bg-page);
-        font-family: var(--font-prose);
-        font-size: var(--font-size-fluid-1);
+        background-color: var(--rg-color-bg);
+        color: var(--rg-color-fg);
+        font-family: var(--rg-font-prose);
+        font-size: var(--rg-font-size);
         margin: 0;
     }
 
@@ -52,18 +73,69 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery";
         padding: var(--size-3);
     }
 
-    pre {
-        white-space: pre;
-        overflow-x: auto;
-        font-size: var(--font-size-2);
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--rg-color-link);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    img {
+      border-radius: var(--rg-border-radius);
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    aside {
+      background-color: var(--sand-1);
+      border-radius: var(--rg-border-radius-loose);
+      border: thin solid var(--rg-color-line);
+      padding: 1rem;
+
+        header {
+          margin: -1rem;
+          font-size: var(--font-size-3);
+          margin-bottom: 0.5rem;
+          border-radius: var(--rg-border-radius-loose) var(--rg-border-radius-loose) 0 0;
+          background-color: var(--rg-color-line);
+          font-weight: bold;
+          text-align: center;
+          padding: 0.5rem;
+        }
     }
 
     blockquote {
       font-style: italic;
+      padding-inline-start: 1em;
+      border-radius: 0 0 0 var(--rg-border-radius-loose);
+      border-left: thin solid var(--rg-color-line);
+      border-bottom: thin solid var(--rg-color-line);
+      margin-bottom: 0.25em;
     }
 
-    pre.astro-code {
-        border-radius: var(--radius-2);
+    figcaption {
+      font-size: var(--rg-font-size-smaller);
+      text-align: right;
+    }
+
+    pre, code, tt {
+      font-size: var(--rg-font-size-smaller);
+      font-family: var(--rg-font-mono);
+    }
+
+    pre {
+
+        white-space: pre;
+        overflow-x: auto;
+        border-radius: var(--rg-border-radius);
         padding: 1rem;
+    }
+
+    .debug {
+      outline: thin red solid;
     }
 </style>
