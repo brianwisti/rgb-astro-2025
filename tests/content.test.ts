@@ -1,7 +1,6 @@
 import fs from "node:fs"
 import glob from "fast-glob"
 import * as matter from "gray-matter";
-import { ZodError } from "astro:schema";
 import { describe, expect, test } from "vitest"
 
 import { PostSchema } from "@lib/Post.ts"
