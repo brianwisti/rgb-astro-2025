@@ -5,8 +5,13 @@ import markdoc from "@astrojs/markdoc";
 
 import mdx from "@astrojs/mdx";
 
-// https://astro.build/config
+import astroExpressiveCode from "astro-expressive-code";
+
 export default defineConfig({
-  integrations: [markdoc({ allowHTML: true }), mdx()],
+  integrations: [
+    astroExpressiveCode(),
+    markdoc({ allowHTML: true }),
+    mdx()
+  ],
   site: "https://randomgeekery.org",
 });

@@ -1,0 +1,159 @@
+---
+# Settings for clean markdown on Random Geekery
+# See https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+#
+# Some rules override others, but I'm not sure which.
+default: True
+
+# MD001: heading-increment
+MD001: True
+
+# MD002: first-heading-h1
+# deprecated in favor of MD0041
+
+# MD003: heading-style
+MD003: atx
+
+# MD004: ul-style
+MD004: dash
+
+# MD005: list-indent
+MD005: True
+
+# MD006: ul-start-left
+# Deprecated?
+
+# MD007: ul-indent
+MD007: 2
+
+# MD008: THERE IS NO MD008
+
+# MD009: no-trailing-spaces
+MD009: False
+
+# MD010: no-hard-tabs
+MD010: False
+
+# MD011: no-reversed-links
+MD011: True
+
+# MD012: no-multiple-blanks
+MD012: False
+
+# MD013: Line length
+MD013: False
+
+# MD014: commands-show-output
+MD014: False
+
+# MD015: THERE IS NO MD015
+
+# MD016: THERE IS NO MD016
+
+# MD017: THERE IS NO MD017
+
+# MD018: no-missing-space-atx
+MD018: False
+
+# MD019: no-multiple-space-atx
+MD019: True
+
+# MD020: no-missing-space-closed-atx
+MD020: True
+
+# MD021: no-multiple-space-closed-atx
+MD021: True
+
+# MD022: blanks-around-headings
+MD022: True
+
+# MD023: heading-start-left
+MD023: True
+
+# MD024: no-duplicate-heading
+MD024: False
+
+# MD025: single-title
+MD025: False
+
+# MD026: no-trailing-punctuation
+MD026: False
+
+# MD027: no-multiple-space-blockquote
+MD027: True
+
+# MD028: no-blanks-blockquote
+MD028: False
+
+# MD029: ol-prefix
+MD029: True
+
+# MD030: list-marker-space
+MD030: False
+
+# MD031: blanks-around-fences
+MD031: False
+
+# MD032: blanks-around-lists
+MD032: False
+
+# MD033: no-inline-html
+MD033: False
+
+# MD034: no-bare-urls
+MD034: False
+
+# MD035: hr-style
+MD035:
+  style: consistent
+
+# MD036: no-emphasis-as-heading
+MD036: False
+
+# MD037: no-space-in-emphasis
+MD037: False
+
+# MD038: no-space-in-code
+MD038: False
+
+# MD039: no-space-in-links
+MD039: True
+
+# MD040: fenced-code-language
+MD040: False
+
+# MD041: First line in a file should be a top-level heading
+MD041: False
+
+# MD042: no-empty-links
+MD042: True
+
+# MD043: required-headings
+# Defines structure *and* content for headings
+MD043: []
+
+# MD044: proper-names
+MD044: []
+
+# MD045: no-alt-text
+MD045: True
+
+# MD046: code-block-style
+MD046: fenced
+
+# MD047: single-trailing-newline
+MD047: False
+
+# MD048: code-fence-style
+MD048:
+  style: consistent
+
+# MD049: emphasis-style
+MD049: False
+
+# MD050: strong-style
+MD050:
+  style: consistent
+
+# MD052: reference-links-images
+MD052: False

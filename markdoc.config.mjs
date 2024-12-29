@@ -1,13 +1,17 @@
 import { defineMarkdocConfig, component, nodes } from "@astrojs/markdoc/config";
-import shiki from "@astrojs/markdoc/shiki";
 
 export default defineMarkdocConfig({
-  extends: [
-    shiki({
-      theme: "github-dark",
-    }),
-  ],
   nodes: {
+    fence: {
+      attributes: {
+        ...nodes.fence.attributes,
+        title: {
+          type: String,
+          render: "title",
+        },
+      },
+      render: component("./src/components/MarkdocCodeBlock.astro"),
+    },
     image: {
       attributes: {
         caption: {
