@@ -25,13 +25,13 @@ the [Joplin][joplin] note-taking application, with help from [Raku][raku].
 
 I made one for writing:
 
-``` bash
+```bash
 joplin use Journal && joplin edit $(date --iso=minute)
 ```
 
 I made one for reading:
 
-``` bash
+```bash
 joplin use Journal \
   && raku -e '
     for qx{ joplin ls }.lines.sort {
@@ -63,7 +63,7 @@ awful.
 First things first.  I might change the name of my journal notebook.  You might
 want a daily diary rather than a giant stack of entries.
 
-``` raku
+```raku
 constant $notebook     = "Journal";
 constant $entry-window = "minute";
 ```
@@ -72,7 +72,7 @@ Focusing on daily journals? Set `$entry-window` to `"day"`.
 
 ### Adding an entry
 
-``` raku
+```raku
 sub add-entry() {
   my $timestamp = DateTime.now.truncated-to($entry-window);
   my $command = "joplin use $notebook && joplin edit $timestamp";
@@ -83,7 +83,7 @@ sub add-entry() {
 Raku's [DateTime][datetime] classes provide the gist of what we got with GNU Date.
 [`truncated-to`][truncated-to] rounds our current timestamp — [`now`][now] — down to the minute.
 
-``` console
+```console
 $ raku -e 'DateTime.now.say'
 2021-05-22T11:52:28.380996-07:00
 
@@ -93,7 +93,7 @@ $ raku -e 'DateTime.now.truncated-to("minute").say'
 
 It doesn't print exactly the same as `date`:
 
-``` console
+```console
 $ date --iso=minute
 2021-05-22T11:52-07:00
 ```
@@ -106,7 +106,7 @@ concerned about it at the moment.
 Well, we went and put the logic for adding an entry into a function.  We want
 to call that function at some point, right?
 
-``` raku
+```raku
 sub MAIN() {
   add-entry;
 }
@@ -119,7 +119,7 @@ though.
 
 If we run this as-is, it adds a new entry.
 
-``` console
+```console
 $ raku journal
 Note does not exist: "2021-05-22T12:18:00-07:00". Create it? (Y/n) y
 ...
@@ -136,7 +136,7 @@ The problem was reading the entries.
 Back in our one-liner, collecting entries and reading them got smushed
 together.  They're two distinct actions, though.
 
-``` raku
+```raku
 sub all-entries() {
   qqx{joplin use $notebook && joplin ls}.lines.sort;
 }
@@ -158,7 +158,7 @@ Nope!  Well — we *could*.  But we don't need to.  Raku has [multi-dispatch][]!
 
 We replace the initial `MAIN` definition with these:
 
-``` raku
+```raku
 multi sub MAIN("add") {   #= Add an entry
   add-entry;
 }
@@ -181,7 +181,7 @@ Where I got surprised?  Most of the tiny amount I've read out there for
 multiple dispatch talks about basing on types or pattern matching against
 variables.  You could absolutely do that with Raku.
 
-``` raku
+```raku
 multi sub MAIN(Str $action where { $action == "add" }) { ... }
 
 multi sub MAIN(Str $action where { $action == "read" }) { ... }
@@ -202,7 +202,7 @@ default path into the application!
 No worries.  Raku's special handling of the entry point sub shows us the
 accepted usage.
 
-``` console
+```console
 $ raku journal.raku
 Usage:
   journal.raku add -- Add an entry
@@ -215,7 +215,7 @@ the usage message displayed.
 Let's try them out.  We'll `add` an entry and then make sure it shows up when
 we `read` them.
 
-``` console
+```console
 $ raku journal.raku add
 Note does not exist: "2021-05-22T12:55:00-07:00". Create it? (Y/n)
 ...
@@ -242,7 +242,7 @@ means I can filter to a specific date — or year, month, hour, etc — by
 constructing a date fragment and grabbing each entry that starts with the
 fragment.
 
-``` raku
+```raku
 sub filtered-entries(Str $date-funnel) {
   all-entries.grep({ .starts-with($date-funnel) });
 }
@@ -251,7 +251,7 @@ sub filtered-entries(Str $date-funnel) {
 Getting today's entries then becomes a matter of extracting a `yyyy-mm-dd`
 string from the ever-so-helpful DateTime.
 
-``` raku
+```raku
 sub entries-for-today() {
   filtered-entries DateTime.now.yyyy-mm-dd
 }
@@ -280,7 +280,7 @@ multi sub MAIN("read") {  #= Read today's entries
 
 Does it work?  Is it fast?
 
-``` console
+```console
 $ time raku journal.raku read
 # 2021-05-22T08:12:00-07:00
 
@@ -411,7 +411,8 @@ Better stretch my legs and get back to the official task list after.
 
 ## The complete script
 
-``` raku
+```raku
+# journal.raku
 #!/usr/bin/env raku
 
 constant $notebook     = "Journal";

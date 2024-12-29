@@ -43,7 +43,7 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
     :root {
         --rg-font-prose: var(--font-geometric-humanist);
         --rg-font-mono: var(--font-monospace-code);
-        --rg-font-size: var(--font-size-fluid-1);
+        --rg-font-size: clamp(1rem, 1.75vw, 3rem);
         --rg-font-size-smaller: 0.8em;
 
         --rg-color-bg: var(--sand-2);
@@ -69,8 +69,9 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
     }
 
     main {
-        margin: 0 var(--size-8);
+      margin: 0 auto;
         padding: var(--size-3);
+        max-width: 72ch;
     }
 
     a {

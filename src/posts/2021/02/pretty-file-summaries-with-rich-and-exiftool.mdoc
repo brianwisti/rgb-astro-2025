@@ -13,9 +13,6 @@ posse:
 tags:
 - files
 - python
-- perlish
-- rich
-- exiftool
 - tools
 title: Pretty File Summaries with Rich and ExifTool
 ---
@@ -43,7 +40,7 @@ Rich and pyexiftool make Python an easy choice for this task.
 
 If you want to play along at home, make sure you have the dependencies.
 
-``` console
+```console
 $ brew install exiftool
 $ pip install pyexiftool rich typer
 ```
@@ -53,7 +50,7 @@ $ pip install pyexiftool rich typer
 {% note %}
 If you’re already a fan of Perl, consider [`cpanm`][cpanm] instead of [Homebrew][homebrew].
 
-``` console
+```console
 $ cpanm Image::ExifTool
 ```
 
@@ -69,13 +66,14 @@ Now you can use [Image::ExifTool][image-exiftool] in your own Perl projects.
 Even though I’m the only user, I still need to figure out how I plan to use it.
 At minimum?  I hand my script a filename.  It hands me metadata.
 
-``` text
+```text
 richexif FILENAME [OPTIONS]
 ```
 
 I can hook some [minimal][] Typer argument handling around that flow.
 
-```python{title="richexif.py"}
+```python
+# richexif.py
 #!/usr/bin/env python
 
 import logging
@@ -98,14 +96,14 @@ def main(filename: str):
 
 Can I run it?
 
-``` text
+```bash
 chmod 755 richexif.py
 ./richexif.py hoku-hopes-for-snacksjpg.jpg
 ```
 
 I can!  What happens if I use it wrong?
 
-``` text
+```console
 $ ./richexif.py
 Usage: richexif.py [OPTIONS] FILENAME
 Try 'richexif.py --help' for help.
