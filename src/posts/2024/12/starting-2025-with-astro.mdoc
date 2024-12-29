@@ -1,0 +1,267 @@
+---
+title: Starting 2025 With Astro
+description: I enjoy closing out the year with questionable judgment
+date: 2024-12-29T15:30:00-07:00
+categories:
+- post
+tags:
+- site
+- astro
+posse:
+- https://hackers.town/@randomgeek/113738527977391205
+- https://www.linkedin.com/posts/brianwisti_starting-2025-with-astro-activity-7279265952637050880-Gpjq
+---
+
+## What I did
+
+I just rebuilt my quarter-century blog with [Astro][astro]!
+Well.
+There's neglected corners and ideas I have not yet implemented.
+Enough of it works that I feel comfortable posting it anyways.
+It *is* a personal site.
+Perfect is the enemy of the "ehh, good enough."
+
+![under construction icon](/img/2024/Under_construction_icon-red.svg "We must imagine Sisyphus having fun with his Web site")
+
+<p class="attribution">
+"<a rel="noopener noreferrer" href="https://commons.wikimedia.org/w/index.php?curid=7514889">Under construction icon-red</a>" by AnonymousUnknown author is licensed under <a rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/3.0/?ref=openverse">CC BY 3.0</a>.
+</p>
+
+[astro]: https://astro.build
+
+## Why
+
+[Hugo][hugo] has been generating this site for nearly ten years.
+It's fast, flexible, and occasionally maddening.
+But every once in a while I need to stretch myself in new directions.
+It's been a couple years since [my last experiment][eleventy-2022], when I tried out [Eleventy][eleventy].
+
+[hugo]: https://gohugo.io
+[eleventy-2022]: /post/2022/01/starting-2022-with-eleventy/
+[eleventy]: https://11ty.dev
+
+This time around I want something still mostly static but with a clearly defined path to add dynamic behavior later should I want it.
+Also, components seem nice. So we're using Astro.
+
+## How
+
+Not a full playthrough, just highlights of integrations and dependencies.
+
+### Markdoc
+
+[Markdoc][markdoc] is basically a shortcode extension for Markdown.
+It supports named tags along with extending the behavior of core nodes.
+You know: links, blockquotes, fenced code blocks.
+
+[markdoc]: https://markdoc.dev
+
+It seems nifty, and for the most part it has been.
+I picked Markdoc to reduce cognitive load when translating from Hugo's shortcode-based templating.
+The nice part is that you can tie those shortcodes directly to Astro components.
+
+Say you have a `<Video />` component.
+
+```astro {% title="@components/Video.astro" %}
+---
+import { YouTube } from "astro-embed"
+
+interface Props {
+  id: string
+}
+
+const { id } = Astro.props
+---
+<YouTube {id} />
+
+<style>
+  lite-youtube {
+    margin: 1rem auto;
+  }
+</style>
+```
+
+You configure a Markdoc tag to render that component.
+
+```js {% title="markdoc.config.mjs" %}
+import { defineMarkdocConfig, component } from "@astrojs/markdoc/config";
+
+export default defineMarkdocConfig({
+  tags: {
+    video: {
+      render: component("./src/components/Video.astro"),
+      attributes: {
+        id: "string",
+      },
+    },
+  },
+};
+```
+
+Then use that tag in your Markdoc.
+
+```txt {% process=false title="starting-2025-with-astro.mdoc" %}
+Share the deep thoughts on your page.
+
+{% video id="1injh4-n1jY" /%}
+```
+
+Share the deep thoughts on your page.
+
+{% video id="1injh4-n1jY" /%}
+
+### MDX
+
+Astro only supports Markdoc in content collections.
+That meant adding [MDX][mdx] integration to support Markdown + components outside of posts.
+Maybe I should be using MDX instead of Markdoc?
+
+[mdx]: https://mdxjs.com
+
+### Expressive Code
+
+[Expressive Code][ec] provides syntax highlighting for many languages, with many niceties.
+You can give your code blocks a title.
+That's why I grabbed it.
+But it also provides a widget for copying code to the clipboard,
+distinct framing for code files vs shell interactions, line markers, and more.
+And "more" can go even further since it provides hooks for themes and plugins.
+
+[ec]: https://expressive-code.com
+
+### Honorable mentions
+
+- [Astro Breadcrumbs][astro-breadcrumbs] for those little trails back to the top of the site
+- [Astro Embed][astro-embed] for YouTube videos
+- [the Astro recipe for RSS feeds][astro-rss]; I need to load my own Markdown handler if I want full-content feeds?
+- [Vitest][vitest] and [@astrojs/check][astro-check] for automated quality checks; not much in my tests yet, but had to be ready for later
+
+[astro-embed]: https://astro-embed.netlify.app
+[astro-breadcrumbs]: https://docs.astro-breadcrumbs.kasimir.dev
+[astro-rss]: https://docs.astro.build/en/recipes/rss/
+[vitest]: https://vitest.dev
+[astro-check]: https://www.npmjs.com/package/@astrojs/check
+
+{% note %}
+Needed to override the version dependency for Vite or I'd get mysterious `[Object object]` errors when running `vitest`.
+
+```js {% title="package.json" %}
+{
+  // ...
+  "overrides": {
+    "vite": "6.0.2"
+  }
+}
+```
+
+It's a known issue, and depends on an upstream fix from the Vitest folks.
+This workaround comes from a [comment on GitHub][issue-fix].
+
+[issue-fix]: https://github.com/withastro/astro/issues/12662#issuecomment-2523630127
+{% /note %}
+
+## Initial impressions
+
+This isn't my first time playing with Astro, but it is the first time I've rebuilt the whole site with it.
+
+### What's been nice
+
+TypeScript for site-building logic is significantly more pleasant than using some template language for the task.
+
+Astro's documentation is better than most, in terms of what it covers, the density of useful information, and how it's presented.
+This encourages similar documentation practices for community integrations.
+
+It's nice to have access to NPM.
+Whatever problem I'm trying to solve, somebody has already thought halfway through it.
+And they published it with instructions on a pretty documentation site, too.
+For the Astro-specific stuff, at least.
+
+Astro has more explicit paths than something like Eleventy.
+That's both a pro and a con.
+It means you know where to go once you understand the hooks.
+It also means anything beyond that is unmapped territory.
+In Eleventy, since everybody's (basically) building their own trail, there's a lot more guidance on trail-building.
+
+Most of all, I enjoy component-based design.
+There's this whole layer of encapsulation I have missed on the design side of Web stuff.
+The styles for each component are right there next to the markup, but it's still CSS.
+
+{% note %}
+I know [Tailwind][tailwind] is popular these days, in largely the same circles that adored Bootstrap a decade ago.
+Not a fan, though.
+Oh I'll use Tailwind enthusiastically if you pay me, but on my own?
+It's easier to stick with CSS than to memorize a whole lot of class names and their variants.
+
+Sure, [Open Props][op] has a lot of names too.
+But I can easily confine them to one spot, and remove them when they're no longer helpful.
+
+```css
+:root {
+    --rg-font-prose: var(--font-geometric-humanist);
+    --rg-font-mono: var(--font-monospace-code);
+    --rg-font-size: clamp(1rem, 1.75vw, 3rem);
+    --rg-font-size-smaller: 0.8em;
+
+    --rg-color-bg: var(--sand-2);
+    --rg-color-fg: var(--sand-11);
+    --rg-color-accent: var(--sand-1);
+    --rg-color-line: var(--sand-5);
+    --rg-color-link: var(--lime-11);
+
+    --rg-border-radius: var(--radius-2);
+    --rg-border-radius-loose: var(--radius-3);
+}
+```
+
+But hey as I sit here post-publish and look at this thing on mobile, maybe I should try those class names after all.
+{% /note %}
+
+[tailwind]: https://tailwindcss.com
+[op]: https://open-props.style
+
+### What's been less nice
+
+Way too many workarounds.
+The integrations I tried shared a pattern of *looking* more polished than they actually were.
+A very "enterprise software" mental impression, that is.
+
+I'm being unfair.
+I shouldn't compare anything to enterprise software.
+The issue is like I mentioned with the Eleventy comparison:
+once you step off the golden path, the docs won't help you.
+You'll be searching community forums and site repos for some kind of clue.
+
+Markdoc is convenient, but I keep bumping into rough edges with its Astro integration.
+Markdoc itself does not support [Markdown definition lists][markdown-dl],
+a syntax to generation [HTML description lists][html-dl].
+This cramps my style.
+
+I can see a path where I swap out Markdoc for MDX and some custom Remark extensions.
+
+[markdown-dl]: https://geoffgraham.me/definitions-lists-in-markdown/
+[html-dl]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl
+
+### Overall
+
+Astro is pleasant to use even with its occasional sharp edges.
+I did spend an awful lot of time thinking "this bit's easier in Hugo / Eleventy / Nanoc."
+Maybe this is not for you if you already have a workflow that makes you happy.
+
+## What's next
+
+I want to make this old site shiny and fun to play with.
+Got all sorts of ideas.
+Dynamic features.
+Interactivity.
+Subscription popups.
+Okay no.
+Not subscription popups.
+
+Next I should work on the tests though.
+I had this whole suite of tests for the Hugo site.
+Stuff like linting Markdown, validating schemas, and checking internal links.
+I've started that here.
+Need to continue building those up, and expand them further.
+
+Probably worth doing a few writeups about.
+
+Feels good to be having fun with my site.
