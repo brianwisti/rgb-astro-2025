@@ -9,6 +9,7 @@ interface Post {
     date: Date
     tags: string[]
     categories: string[]
+    series: string[]
   };
   id: string
 }
@@ -22,6 +23,25 @@ export async function collectSiteCategoryMap(): Promise<SluggedTaxonomyMapping> 
   posts.forEach((post) => {
     post.data.categories.forEach((category) => {
       const slug = slugify(category)
+
+      if (!slugs.has(slug)) {
+        slugs.set(slug, [])
+      }
+
+      slugs.get(slug)?.push(post)
+    })
+  })
+
+  return slugs
+}
+
+export async function collectSiteSeriesMap(): Promise<SluggedTaxonomyMapping> {
+  const posts = await getCollection("posts")
+  const slugs = new Map<string, Post[]>
+
+  posts.forEach((post) => {
+    post.data.series.forEach((series) => {
+      const slug = slugify(series)
 
       if (!slugs.has(slug)) {
         slugs.set(slug, [])

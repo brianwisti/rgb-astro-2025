@@ -1,8 +1,8 @@
 ---
 import { collectSiteTagMap } from "@lib/TaxonomyHelpers"
 
-import PageLayout from "@layouts/PageLayout.astro";
-import TagLink from "@components/TagLink.astro"
+import PageLayout from "@layouts/PageLayout.astro"
+import PostCollectionSummary from "@components/PostCollectionSummary.astro"
 
 const slugs = await collectSiteTagMap()
 ---
@@ -14,9 +14,21 @@ const slugs = await collectSiteTagMap()
                 .sort()
                 .map((slug) => (
                     <li>
-                        <TagLink tag={slug} />({slugs.get(slug)?.length})
+                      <PostCollectionSummary href={`/tags/${slug}/`} text={slug} posts={slugs.get(slug)} />
                     </li>
                 ))
         }
     </ul>
 </PageLayout>
+
+<style>
+  ul {
+    margin-block: 1rem;
+    margin-inline: auto;
+    list-style: none;
+  }
+
+  li {
+    margin-block: .5em;
+  }
+</style>

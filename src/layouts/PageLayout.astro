@@ -1,11 +1,17 @@
 ---
-import "astro-breadcrumbs/breadcrumbs.css";
-import { Breadcrumbs } from "astro-breadcrumbs";
+import "astro-breadcrumbs/breadcrumbs.css"
+import { Breadcrumbs } from "astro-breadcrumbs"
 
-import Layout from "@layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro"
 import PostDescription from "@components/PostDescription.astro"
 
-const { title, description } = Astro.props;
+interface Props {
+  title?: string
+  description?: string
+}
+
+const { title, description } = Astro.props as Props
+console.log(Astro.props)
 ---
 
 <Layout {title} {description}>
@@ -16,6 +22,5 @@ const { title, description } = Astro.props;
         <h1>{title}</h1>
         {description ? <PostDescription {description} /> : "" }
     </header>
-
     <slot />
 </Layout>

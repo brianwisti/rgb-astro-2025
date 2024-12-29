@@ -4,7 +4,6 @@ import { Image } from "astro:assets"
 
 import Layout from '../layouts/Layout.astro'
 import PostListing from "@components/PostListing.astro"
-import TagLink from "@components/TagLink.astro"
 import avatarThumbnail from "@img/avatar-thumbnail.jpg"
 
 const socialLinks = [
@@ -46,7 +45,7 @@ const limit = 4
   </aside>
   <article>
     <p>Anyway, here's my blog and stuff.</p>
-    <PostListing {posts} {limit } />
+    <PostListing {posts} {limit} />
   </article>
 </Layout>
 

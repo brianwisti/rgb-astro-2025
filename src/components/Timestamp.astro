@@ -1,26 +1,36 @@
 ---
-import { DateTime } from "luxon";
+import { DateTime } from "luxon"
 
 type TimeStampInfo = {
     forHumans: string;
     forMachines: string;
-};
+}
 
 const generateTimeStampInfo = (date: Date): TimeStampInfo => {
     const dt = DateTime.fromJSDate(date);
+    const forHumans = dt.toISODate()
+    const forMachines = dt.toISO()
+
+    if (forHumans === null) {
+      throw new Error(`Date did not produce ISO Date: ${date}`)
+    }
+
+    if (forMachines === null) {
+      throw new Error(`Date did not produce ISO: ${date}`)
+    }
 
     return {
-        forHumans: dt.toISODate(),
-        forMachines: dt.toISO(),
-    };
-};
+      forHumans: forHumans,
+      forMachines: forMachines,
+    }
+}
 
 interface Props {
     date: Date;
 }
 
-const { date } = Astro.props;
-const timestamp = generateTimeStampInfo(date);
+const { date } = Astro.props as Props
+const timestamp = generateTimeStampInfo(date)
 ---
 
 <time class="dt-published" datetime={timestamp.forMachines}>

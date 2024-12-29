@@ -1,15 +1,17 @@
 ---
 import CategoryLink from "./CategoryLink.astro";
+import SeriesLink from "./SeriesLink.astro";
 import TagLink from "./TagLink.astro";
 import Timestamp from "./Timestamp.astro";
 
 interface Props {
-    date: Date;
-    categories: string[];
-    tags: string[];
+    date: Date
+    categories: string[]
+    tags: string[]
+    series: string[]
 }
 
-const { date, categories, tags } = Astro.props;
+const { date, categories, tags, series } = Astro.props;
 ---
 
 <div class="meta">
@@ -19,6 +21,7 @@ const { date, categories, tags } = Astro.props;
       <ul>
         {tags.map((tag) => <li><TagLink {tag} /></li>)}
       </ul>
+      {series.map((thisSeries) => <SeriesLink series={thisSeries} />)}
     </div>
 </div>
 

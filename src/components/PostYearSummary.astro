@@ -1,32 +1,12 @@
 ---
-interface Post {
-    data: {
-        title: string;
-        date: Date;
-    };
-    id: string;
-}
+import type { PostInterface } from "@lib/Post"
+import PostCollectionSummary from "@components/PostCollectionSummary.astro"
 
 interface Props {
     year: string;
-    posts: Post[] | undefined;
+    posts: PostInterface[] | undefined
 }
 
-const { year, posts } = Astro.props;
+const { year, posts } = Astro.props as Props
 ---
-
-<div>
-    <a href={`/post/${year}/`}>{year}</a>
-    <span>({posts?.length})</span>
-</div>
-
-<style type="text/scss">
-  div {
-    background-color: var(--rg-color-accent);
-    padding: 0.5rem;
-    border-radius: var(--rg-border-radius);
-    border: thin solid var(--rg-color-line);
-    display: flex;
-    justify-content: space-between;
-  }
-</style>
+<PostCollectionSummary href={`/post/${year}/`} text={year} {posts} />

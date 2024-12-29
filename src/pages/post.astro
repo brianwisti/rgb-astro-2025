@@ -2,23 +2,12 @@
 import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import PostYearSummary from "@components/PostYearSummary.astro";
+import type { PostInterface } from "@lib/Post";
 
-type Post = {
-    data: {
-        title: string;
-        date: Date;
-    };
-    id: string;
-};
-
-type Year = {
-    year: string;
-    posts: Post[];
-};
 
 async function getYears() {
     const posts = await getCollection("posts");
-    const years = new Map<string, Post[]>();
+    const years = new Map<string, PostInterface[]>();
 
     posts.forEach((post) => {
         const year = post.data.date.getFullYear().toString();

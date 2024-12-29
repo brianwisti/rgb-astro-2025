@@ -1,0 +1,26 @@
+---
+import type { PostInterface } from "@lib/Post"
+
+interface Props {
+    href: string
+    text: string
+    posts: PostInterface[] | undefined;
+}
+
+const { href, text, posts } = Astro.props as Props
+---
+<div>
+  <a {href}>{text}</a>
+  <span>({posts?.length})</span>
+</div>
+
+<style type="text/scss">
+  div {
+    background-color: var(--rg-color-accent);
+    padding: 0.5rem;
+    border-radius: var(--rg-border-radius);
+    border: thin solid var(--rg-color-line);
+    display: flex;
+    justify-content: space-between;
+  }
+</style>

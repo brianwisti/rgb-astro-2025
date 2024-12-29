@@ -13,6 +13,7 @@
     "test:lint": "markdownlint -c markdownlint.yml src/posts/**/*.mdoc"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/markdoc": "^0.12.4",
     "@astrojs/mdx": "^4.0.3",
     "@astrojs/rss": "^4.0.10",
@@ -20,10 +21,12 @@
     "astro-breadcrumbs": "^3.3.1",
     "luxon": "^3.5.0",
     "rimraf": "^6.0.1",
-    "sanitize-html": "^2.14.0"
+    "sanitize-html": "^2.14.0",
+    "typescript": "^5.7.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
+    "@types/luxon": "^3.4.2",
     "astro-embed": "^0.9.0",
     "fast-glob": "^3.3.2",
     "fast-xml-parser": "^4.5.1",

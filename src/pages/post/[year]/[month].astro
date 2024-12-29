@@ -3,24 +3,11 @@ import { getCollection } from "astro:content";
 
 import PageLayout from "@layouts/PageLayout.astro";
 import PostListing from "@components/PostListing.astro";
-
-type Post = {
-    data: {
-        title: string;
-        date: Date;
-    };
-    id: string;
-};
-
-type YearMonth = {
-    year: string;
-    month: string;
-    posts: Post[];
-};
+import type { PostInterface } from "@lib/Post";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
-    const monthlyPosts = new Map<string, Post[]>();
+    const monthlyPosts = new Map<string, PostInterface[]>();
 
     posts.forEach((post) => {
         const year = post.data.date.getFullYear().toString();
@@ -48,7 +35,7 @@ export async function getStaticPaths() {
 interface Props {
     year: string;
     month: string;
-    posts: Post[];
+    posts: PostInterface[];
 }
 
 const { year, month, posts } = Astro.props;

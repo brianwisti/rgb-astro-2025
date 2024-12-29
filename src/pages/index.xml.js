@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import rss, { pagesGlobToRssItems } from "@astrojs/rss";
+import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 
 function preparePost(post) {

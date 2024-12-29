@@ -1,29 +1,23 @@
 ---
-import PostSummary from "./PostSummary.astro";
-
-type Post = {
-    data: {
-        title: string;
-        date: Date;
-    };
-    id: string;
-};
+import PostSummary from "./PostSummary.astro"
+import type { PostInterface } from "@lib/Post.ts"
 
 interface Props {
-    posts: Post[] | undefined;
+    posts: PostInterface[] | undefined
+    limit?: number
 }
 
-const { posts, limit } = Astro.props;
+const { posts, limit } = Astro.props as Props
 let sortedPosts = posts?.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
 if (limit) {
-  sortedPosts = sortedPosts.slice(0, limit)
+  sortedPosts = sortedPosts?.slice(0, limit)
 }
 
 ---
 
 <section class="h-feed">
     {
-        sortedPosts.map((post) => <PostSummary post={post} />)
+        sortedPosts?.map((post) => <PostSummary post={post} />)
     }
 </section>

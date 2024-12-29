@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { date, categories, description, tags, cover_image, title } = post.data;
+const { date, categories, description, series, tags, cover_image, title } = post.data;
 const { Content } = await render(post);
 ---
 
@@ -28,7 +28,7 @@ const { Content } = await render(post);
         <header>
             {description ? <PostDescription {description} /> : ""}
             {cover_image ? <MarkdocImage src={cover_image} alt="" /> : ""}
-            <PostMetadata {date} {categories} {tags} />
+            <PostMetadata {date} {categories} {tags} {series} />
         </header>
         <Content />
     </article>

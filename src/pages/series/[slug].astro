@@ -1,12 +1,12 @@
 ---
-import { collectSiteTagMap } from "@lib/TaxonomyHelpers"
+import { collectSiteSeriesMap } from "@lib/TaxonomyHelpers"
 
-import PageLayout from "@layouts/PageLayout.astro"
-import PostListing from "@components/PostListing.astro"
+import PageLayout from "@layouts/PageLayout.astro";
+import PostListing from "@components/PostListing.astro";
 import type { PostInterface } from "@lib/Post"
 
 export async function getStaticPaths() {
-  const slugs = await collectSiteTagMap();
+  const slugs = await collectSiteSeriesMap();
 
   return Array.from(slugs.keys()).map((slug) => ({
       params: { slug },
@@ -20,7 +20,7 @@ interface Props {
 }
 
 const { slug, posts } = Astro.props as Props
-const title= `Tag ${slug}`
+const title = `Series ${slug}`
 ---
 
 <PageLayout {title}>

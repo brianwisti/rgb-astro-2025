@@ -1,0 +1,76 @@
+---
+import MenuLink from "@components/MenuLink.astro"
+
+const menuLinks = [
+  {
+    href: "/categories/",
+    text: "Categories",
+  },
+  { href: "/tags/", text: "Tags" },
+  { href: "/series/", text: "Series" },
+]
+---
+
+<footer>
+  <section>
+  <p>
+    This work is licensed under a
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      Creative Commons Attribution 4.0 International License
+    </a>.
+  </p>
+
+  <p>
+    Built with <a href="https://astro.build">Astro</a>.
+    Styled with <a href="https://open-props.style">Open Props</a>.
+  </p>
+
+  <p>
+  &copy; 2024 Brian Wisti. All rights reserved
+  </p>
+  </section>
+  <nav>
+    <ul>
+      {
+        menuLinks.map(({ href, text }) => (
+          <li>
+            <MenuLink {href}>{text}</MenuLink>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</footer>
+
+<style type="text/scss">
+  footer {
+    margin: 0 var(--size-8);
+    padding: var(--size-3);
+    color: var(--rg-color-line);
+    font-size: var(--rg-font-size-smaller);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  p {
+    margin: 0;
+    text-align: center;
+  }
+
+  nav {
+      display: flex;
+      justify-content: space-between;
+
+      ul {
+          display: flex;
+          justify-content: flex-end;
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+              margin-left: 1rem;
+          }
+      }
+  }
+</style>

@@ -1,13 +1,13 @@
 ---
-import { ClientRouter } from "astro:transitions"
-import SiteHeader from "../components/SiteHeader.astro"
+import SiteFooter from "@components/SiteFooter.astro"
+import SiteHeader from "@components/SiteHeader.astro"
 
 interface Props {
   title?: string
   description?: string
 }
 
-const { title, description } = Astro.props
+const { title, description } = Astro.props as Props
 const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
 ---
 
@@ -19,7 +19,6 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         <title>{pageTitle}</title>
-        <ClientRouter />
         <meta name="title" content={pageTitle} />
         {description ? <meta name="description" content={description} /> : "" }
     </head>
@@ -28,6 +27,7 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
         <main>
             <slot />
         </main>
+        <SiteFooter />
     </body>
 </html>
 

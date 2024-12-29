@@ -1,0 +1,13 @@
+---
+import TaxonomyLink from "./core/TaxonomyLink.astro";
+import { default as slugify } from "slug";
+
+interface Props {
+    series: string;
+}
+
+const { series } = Astro.props
+const slug = slugify(series)
+---
+
+<TaxonomyLink href={`/series/${slug}/`} classNames="series"><slot>{series}</slot></TaxonomyLink>

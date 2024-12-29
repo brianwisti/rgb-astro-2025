@@ -1,18 +1,9 @@
 ---
-import { collectSiteCategoryMap } from "@lib/TaxonomyHelpers";
+import { collectSiteCategoryMap } from "@lib/TaxonomyHelpers"
+import type { PostInterface } from "@lib/Post"
 
-import { getCollection } from "astro:content";
 import PageLayout from "@layouts/PageLayout.astro";
 import PostListing from "@components/PostListing.astro";
-
-type Post = {
-    data: {
-        title: string;
-        date: Date;
-        categories: string[];
-    };
-    id: string;
-};
 
 export async function getStaticPaths() {
   const slugs = await collectSiteCategoryMap();
@@ -22,6 +13,11 @@ export async function getStaticPaths() {
       params: { slug },
       props: { slug, posts: slugs.get(slug) },
   }));
+}
+
+interface Props {
+  slug: string
+  posts: PostInterface[]
 }
 
 const { slug, posts } = Astro.props;

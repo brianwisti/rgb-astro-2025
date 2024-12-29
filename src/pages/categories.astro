@@ -3,6 +3,7 @@ import { collectSiteCategoryMap } from "@lib/TaxonomyHelpers"
 
 import PageLayout from "@layouts/PageLayout.astro";
 import CategoryLink from "@components/CategoryLink.astro";
+import PostCollectionSummary from "@components/PostCollectionSummary.astro"
 
 const categories = await collectSiteCategoryMap();
 ---
@@ -14,10 +15,21 @@ const categories = await collectSiteCategoryMap();
                 .sort()
                 .map((category) => (
                     <li>
-                        <CategoryLink category={category} />(
-                        {categories.get(category)?.length})
+                      <PostCollectionSummary href={`/categories/${category}/`} text={category} posts={categories.get(category)} />
                     </li>
                 ))
         }
     </ul>
 </PageLayout>
+
+<style>
+  ul {
+    margin-block: 1rem;
+    margin-inline: auto;
+    list-style: none;
+  }
+
+  li {
+    margin-block: .5em;
+  }
+</style>

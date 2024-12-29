@@ -1,5 +1,5 @@
 import { glob } from "astro/loaders";
-import { z, defineCollection } from "astro:content";
+import { defineCollection } from "astro:content";
 
 import { PostSchema } from "@lib/Post";
 

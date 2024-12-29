@@ -2,24 +2,14 @@
 import MarkdocImage from "./MarkdocImage.astro"
 import PostDescription from "@components/PostDescription.astro"
 import PostMetadata from "./PostMetadata.astro"
-
-interface Post {
-    data: {
-        title: string
-        date: Date
-        tags: string[]
-        categories: string[]
-        cover_image?: string
-    };
-    id: string
-}
+import type { PostInterface } from "@lib/Post.ts"
 
 interface Props {
-    post: Post;
+    post: PostInterface;
 }
 
 const { post } = Astro.props
-const { title, date, tags, description, categories, cover_image } = post.data
+const { title, date, tags, description, categories, cover_image, series } = post.data
 // thumbnails
 const widths = [256]
 ---
@@ -43,7 +33,7 @@ const widths = [256]
         )
     }
     <footer>
-      <PostMetadata {date} {categories} {tags} />
+      <PostMetadata {date} {categories} {tags} {series} />
     </footer>
 </section>
 
