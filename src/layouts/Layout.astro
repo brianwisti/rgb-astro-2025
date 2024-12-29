@@ -14,13 +14,22 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
 <!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
         <title>{pageTitle}</title>
         <meta name="title" content={pageTitle} />
         {description ? <meta name="description" content={description} /> : "" }
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="robots" content="index,follow" />
+        <meta name="googlebot" content="index,follow" />
+        <meta name="author" content="Brian Wisti" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            href="/index.xml"
+            title="Random Geekery"/>
+        <link rel="stylesheet" href="https://unpkg.com/open-props"/>
     </head>
     <body>
         <SiteHeader />
@@ -70,8 +79,13 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
 
     main {
       margin: 0 auto;
-        padding: var(--size-3);
-        max-width: 72ch;
+      padding: var(--size-3);
+      max-width: 72ch;
+
+      @media(max-width: 800px) {
+        padding: var(--size-1);
+        max-width: 100%;
+      }
     }
 
     a {
@@ -136,7 +150,10 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
         padding: 1rem;
     }
 
-    .debug {
-      outline: thin red solid;
+    .attribution {
+      font-size: var(--rg-font-size-smaller);
+      color: var(--rg-color-line);
+      text-align: center;
     }
+
 </style>

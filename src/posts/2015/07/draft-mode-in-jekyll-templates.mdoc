@@ -38,7 +38,7 @@ skips analytics code when building drafts.
 
 Turns out that the [configuration documentation][] lists `show_drafts: null` down there in the default configuration. I only needed an `unless` block in my template.
 
-```handlebars {% process=false %}
+```liquid {% process=false %}
 {% unless site.show_drafts %}
   {% include analytics.html %}
 {% endunless %}

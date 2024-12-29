@@ -59,6 +59,10 @@ const widths = [256]
         footer {
           padding-inline: 1em;
         }
+
+        @media(max-width: 800px) {
+          display: block;
+        }
       }
 
       header {
@@ -91,6 +95,10 @@ const widths = [256]
           grid-row-end: footer;
           grid-column-start: main;
           grid-column-end: accent;
+        }
+
+        @media(max-width: 800px) {
+          display: none;
         }
       }
 

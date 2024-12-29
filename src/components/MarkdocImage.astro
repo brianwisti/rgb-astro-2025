@@ -7,14 +7,15 @@ interface Props {
     widths?: number[];
     sizes?: string;
     height?: number;
-    caption?: string;
+    title?: string;
 }
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/img/**/*.{jpeg,jpg,png,gif}",
+"/src/assets/img/**/*.{jpeg,jpg,png,gif,svg}",
 );
 
-const { src, alt, caption } = Astro.props as Props
+console.log(Astro.props)
+const { src, alt, title } = Astro.props as Props
 let assetPath = src.replace(/^[@\/]img/, "/src/assets/img");
 
 if (!images[assetPath]) {
@@ -46,7 +47,7 @@ if (!sizes && widths.length > 1) {
 
 <figure>
   <Image src={image.default} {alt} {widths} {sizes} />
-    {caption && <figcaption>{caption}</figcaption>}
+    {title && <figcaption>{title}</figcaption>}
 </figure>
 
 <style type="text/scss">
