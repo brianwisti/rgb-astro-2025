@@ -50,19 +50,20 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
     }
 
     :root {
-        --rg-font-prose: var(--font-geometric-humanist);
-        --rg-font-mono: var(--font-monospace-code);
-        --rg-font-size: clamp(1rem, 1.75vw, 3rem);
-        --rg-font-size-smaller: 0.8em;
+      color-scheme: light dark;
+      --rg-font-prose: var(--font-geometric-humanist);
+      --rg-font-mono: var(--font-monospace-code);
+      --rg-font-size: clamp(1rem, 1.75vw, 3rem);
+      --rg-font-size-smaller: 0.8em;
 
-        --rg-color-bg: var(--sand-2);
-        --rg-color-fg: var(--sand-11);
-        --rg-color-accent: var(--sand-1);
-        --rg-color-line: var(--sand-5);
-        --rg-color-link: var(--lime-11);
+      --rg-color-bg: light-dark(var(--sand-1), var(--sand-12));
+      --rg-color-fg: light-dark(var(--sand-11), var(--sand-0));
+      --rg-color-accent: light-dark(var(--sand-2), var(--sand-9));
+      --rg-color-line: light-dark(var(--sand-5), var(--sand-6));
+      --rg-color-link: light-dark(var(--lime-11), var(--lime-4));
 
-        --rg-border-radius: var(--radius-2);
-        --rg-border-radius-loose: var(--radius-3);
+      --rg-border-radius: var(--radius-2);
+      --rg-border-radius-loose: var(--radius-3);
     }
 
     html {
@@ -106,15 +107,16 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
     }
 
     aside {
-      background-color: var(--sand-1);
+      margin: 1rem;
+      background-color: var(--rg-color-accent);
       border-radius: var(--rg-border-radius-loose);
       border: thin solid var(--rg-color-line);
-      padding: 1rem;
+      padding: 0 1rem;
 
         header {
           margin: -1rem;
           font-size: var(--font-size-3);
-          margin-bottom: 0.5rem;
+          margin-block-end: 0.5rem;
           border-radius: var(--rg-border-radius-loose) var(--rg-border-radius-loose) 0 0;
           background-color: var(--rg-color-line);
           font-weight: bold;
