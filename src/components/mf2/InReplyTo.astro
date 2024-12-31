@@ -1,0 +1,23 @@
+<div class="u-in-reply-to h-cite">
+  <div class="attribution">
+    <slot name="attribution" />
+  </div>
+  <slot />
+</div>
+
+<style type="text/scss">
+  .u-in-reply-to {
+    background-color: var(--rg-color-accent);
+    border-radius: var(--rg-border-radius-loose);
+  }
+
+  .attribution {
+    text-align: left;
+    padding-inline-start: 1rem;
+    padding-block-start: 1rem;
+
+    &:after {
+      content: ":";
+    }
+  }
+</style>

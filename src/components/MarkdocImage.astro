@@ -14,7 +14,6 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 "/src/assets/img/**/*.{jpeg,jpg,png,gif,svg}",
 );
 
-console.log(Astro.props)
 const { src, alt, title } = Astro.props as Props
 let assetPath = src.replace(/^[@\/]img/, "/src/assets/img");
 

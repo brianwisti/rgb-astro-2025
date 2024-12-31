@@ -1,0 +1,8 @@
+---
+interface Props {
+  href: string
+}
+
+const { href } = Astro.props as Props
+---
+<a {href} class="u-category h-card"><slot /></a>

@@ -2,7 +2,6 @@
 import { defineConfig } from "astro/config"
 
 import astroExpressiveCode from "astro-expressive-code"
-import markdoc from "@astrojs/markdoc"
 import mdx from "@astrojs/mdx"
 import mdxDirective from "astro-mdx-directive"
 import {
@@ -17,6 +16,10 @@ const directives = {
       name: "note",
       path: "src/components/Note.astro",
     },
+    {
+      name: "quote",
+      path: "src/components/quote.astro",
+    },
   ],
   leaf: [],
   text: [],
@@ -25,7 +28,6 @@ const directives = {
 export default defineConfig({
   integrations: [
     astroExpressiveCode(),
-    markdoc({ allowHTML: true }),
     mdxDirective({ directives }),
     mdx()
   ],
