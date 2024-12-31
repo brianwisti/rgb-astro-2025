@@ -10,6 +10,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "clean": "rimraf dist",
+    "publish": "npm-run-all build test push",
     "push": "rsync --recursive --archive --update --verbose dist/ a2:public_html",
     "test": "vitest run tests/",
     "test:lint": "markdownlint -c markdownlint.yml src/posts/**/*.mdoc"
