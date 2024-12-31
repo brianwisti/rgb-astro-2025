@@ -47,7 +47,7 @@ $ pip install pyexiftool rich typer
 
 [Typer][typer] simplifies turning this random idea into a useful command line tool.
 
-:::note
+{% note %}
 If you’re already a fan of Perl, consider [`cpanm`][cpanm] instead of [Homebrew][homebrew].
 
 ```console
@@ -59,7 +59,7 @@ Now you can use [Image::ExifTool][image-exiftool] in your own Perl projects.
 [image-exiftool]: https://metacpan.org/pod/distribution/Image-ExifTool/lib/Image/ExifTool.pod
 [cpanm]: https://metacpan.org/pod/App::cpanminus
 [homebrew]: https://brew.sh
-:::
+{% /note %}
 
 ## Some scaffolding
 
@@ -158,13 +158,7 @@ def main(filename: str):
 
 And here’s what that looks like.
 
-:::note{title="2024-12-30"}
-MDX-in-Astro giving me grief about the multiline `pre` block I got down here.
-I'll wrap it like code so you can see the raw markup, and add a task to fix it someday.
-:::
-
-```html
-<pre><span style="font-weight: bold">&lbrace;</span>
+<pre><span style="font-weight: bold">{</span>
     <span style="color: #008000">'SourceFile'</span>: <span style="color: #008000">'hoku-hopes-for-snacks.jpg'</span>,
     <span style="color: #008000">'ExifTool:ExifToolVersion'</span>: <span style="color: #000080; font-weight: bold">12.15</span>,
     <span style="color: #008000">'File:FileName'</span>: <span style="color: #008000">'hoku-hopes-for-snacks.jpg'</span>,
@@ -186,21 +180,20 @@ I'll wrap it like code so you can see the raw markup, and add a task to fix it s
     <span style="color: #008000">'Composite:GPSPosition'</span>: <span style="color: #008000">'47.5750857997222 -122.386441'</span>,
     <span style="color: #008000">'Composite:HyperfocalDistance'</span>: <span style="color: #000080; font-weight: bold">2.48061927751922</span>,
     <span style="color: #008000">'Composite:LightValue'</span>: <span style="color: #000080; font-weight: bold">3.81378119121704</span>
-<span style="font-weight: bold">&rbrace;</span>
+<span style="font-weight: bold">}</span>
 </pre>
-```
 
 Holy crap that’s a lot.  Some of it could be considered sensitive information —
 unless you read my [`now`][now] page.  But it’s all there!  Even in the snipped
 version you can learn a lot.  Hello from my Windows partition in West Seattle
 during February of 2021!
 
-:::note{title="Tip"}
+{% note title="Tip" %}
 Uncomfortable sharing that much with every photo you upload?  You can scrub
 those tags right out.  [With ExifTool][with-exiftool], of course.
 
 [with-exiftool]: https://www.linux-magazine.com/Online/Blogs/Productivity-Sauce/Remove-EXIF-Metadata-from-Photos-with-exiftool
-:::
+{% /note %}
 
 But back to the other gripe about all this metadata.  It’s way too much for me
 to take in all at once.  I need some kind of filter!
@@ -239,15 +232,14 @@ gets us everything.
 
 Try it out!
 
-``` console
+```console
 $ ./richexif.py hoku-hopes-for-snacks.jpg --filter=Image
 ```
 
 Now that I’m not overwhelmed by the quantity of output, I’m a little
 underwhelmed by the quality.
 
-```html
-<pre class="rich"><span style="font-weight: bold">&;brace;</span>
+<pre class="rich"><span style="font-weight: bold">{</span>
     <span style="color: #008000">'File:ImageWidth'</span>: <span style="color: #000080; font-weight: bold">3672</span>,
     <span style="color: #008000">'File:ImageHeight'</span>: <span style="color: #000080; font-weight: bold">2066</span>,
     <span style="color: #008000">'EXIF:ImageWidth'</span>: <span style="color: #000080; font-weight: bold">4032</span>,
@@ -257,8 +249,7 @@ underwhelmed by the quality.
     <span style="color: #008000">'EXIF:ImageUniqueID'</span>: <span style="color: #008000">'J12LLKL00SM'</span>,
     <span style="color: #008000">'EXIF:ThumbnailImage'</span>: <span style="color: #008000">'(Binary data 6788 bytes, use -b option to extract)'</span>,
     <span style="color: #008000">'Composite:ImageSize'</span>: <span style="color: #008000">'3672 2066'</span>
-<span style="font-weight: bold">&rbrace;</span></pre>
-```
+<span style="font-weight: bold">}</span></pre>
 
 It’s nice.  Don’t get me wrong.  But all we’ve added to default `exiftool`
 behavior is some color.
@@ -286,11 +277,11 @@ def file_table(filename, metadata):
     return table
 ```
 
-:::note{title="Warning"}
+{% note title="Warning" %}
 Hey, don’t miss that `str(value)`!  Rich tables need strings, and take
 nothing for granted with the values you give it.  Numeric values won’t
 necessarily convert straight to strings without a little help.
-:::
+{% /note %}
 
 ```python
 def main(...):
@@ -310,7 +301,6 @@ What does our filtered view look like as a table?
 $ ./richexif.py hoku-hopes-for-snacksjpg.jpg --filter=Image
 ```
 
-```html
 <pre class="rich"><span style="font-style: italic">                        hoku-hopes-for-snacksjpg.jpg                         </span>
 ┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Field                </span>┃<span style="font-weight: bold"> Value                                              </span>┃
@@ -326,7 +316,6 @@ $ ./richexif.py hoku-hopes-for-snacksjpg.jpg --filter=Image
 │ Composite:ImageSize  │ 3672 2066                                          │
 └──────────────────────┴────────────────────────────────────────────────────┘
 </pre>
-```
 
 Pretty nifty.
 
@@ -419,7 +408,6 @@ Okay!  What do we have now?
 $ ./richexif.py hoku-hopes-for-snacks.jpg --filter=Image --display=tree
 ```
 
-```html
 <pre class="rich"><span style="font-weight: bold">hoku-hopes-for-snacks.jpg</span>
 ├── <span style="font-weight: bold">File</span>
 │   ├── <span style="font-style: italic">ImageWidth:</span> 3672
@@ -434,14 +422,8 @@ $ ./richexif.py hoku-hopes-for-snacks.jpg --filter=Image --display=tree
 └── <span style="font-weight: bold">Composite</span>
     └── <span style="font-style: italic">ImageSize:</span> 3672 2066
 </pre>
-```
 
 Oooooh.
-
-:::note{title="2024-12-30"}
-sigh.
-How unexpected corner is always very broken when I shift to a new SSG.
-:::
 
 Anyways, that’s what I wanted to show you.  Got plenty more ideas for mashing
 ExifTool and Rich together, as I’m sure you can imagine.

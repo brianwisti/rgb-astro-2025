@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config"
 
 import astroExpressiveCode from "astro-expressive-code"
+import markdoc from "@astrojs/markdoc";
 import mdx from "@astrojs/mdx"
 import mdxDirective from "astro-mdx-directive"
 import {
@@ -29,7 +30,8 @@ export default defineConfig({
   integrations: [
     astroExpressiveCode(),
     mdxDirective({ directives }),
-    mdx()
+    mdx(),
+    markdoc({ allowHTML: true }),
   ],
   markdown: {
     remarkPlugins: [remarkDefinitionList],

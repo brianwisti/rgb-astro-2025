@@ -10,7 +10,7 @@ type ParsedPost = {
   post: matter.GrayMatterFile<string>
 }
 
-const posts: ParsedPost[] = glob.sync("src/**/*.mdoc")
+const posts: ParsedPost[] = glob.sync("src/posts/**/*.{mdx,mdoc}")
   .map((path: string) => {
     return { path: path, post: matter.default(fs.readFileSync(path, "utf8")) }
   }
@@ -19,11 +19,11 @@ const posts: ParsedPost[] = glob.sync("src/**/*.mdoc")
 
 describe("Content", () => {
   test("every post is accounted for", () => {
-    const mdocCount = glob.sync("src/**/*.mdoc").length
-    console.log("mdocCount", mdocCount)
+    const postFileCount = glob.sync("src/posts/**/*.{mdx,mdoc}").length
+    console.log("postFileCount", postFileCount)
 
     expect(posts.length).toBeGreaterThan(0)
-    expect(posts.length).toBe(mdocCount)
+    expect(posts.length).toBe(postFileCount)
   })
 })
 
