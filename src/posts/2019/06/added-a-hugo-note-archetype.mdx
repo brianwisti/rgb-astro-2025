@@ -29,19 +29,21 @@ Continuing to work slow but sure on my [notes][] experiment. Today: a Hugo
 [ISO 8601]: https://en.wikipedia.org/wiki/ISO_8601
 [`dateFormat`]: https://gohugo.io/functions/dateformat
 
-    ---
-    date: "{{ dateFormat "2006-01-02T15:04:05-07:00" .Date }}"
-    hashtags:
-    -
-    ---
+```
+---
+date: "{{ dateFormat "2006-01-02T15:04:05-07:00" .Date }}"
+hashtags:
+-
+---
 
-    SAY SOMETHING
+SAY SOMETHING
+```
 
 And yeah, hashtags are related to but distinct from [tags][]. Basically,
 I have a particular protocol for tags and posts. I can be more informal
 with notes and hashtags. The silly name reminds me they're supposed to be fun.
 
-Working out the occasional overlap is a pending item in [Taskwarrior].
+Working out the occasional overlap is a pending item in [Taskwarrior][].
 
 [tags]: /tags
 [Taskwarrior]: /tags/taskwarrior

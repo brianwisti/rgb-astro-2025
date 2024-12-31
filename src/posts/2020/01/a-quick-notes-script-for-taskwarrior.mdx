@@ -17,12 +17,6 @@ title: A Quick Notes Script for Taskwarrior
 I need more than annotations for my [Taskwarrior](/tags/taskwarrior)
 tasks. Let’s write some [Python](/tags/python)!
 
-{% note %}
-I labeled this as part of the [Taskwarrior
-Babysteps](/series/taskwarrior-babysteps) series at first. Really this
-post is more about Python code than task management.
-{% /note %}
-
 People with blogs need to keep in mind that most people do not know how
 blogs work. A little bit of explanatory text can go a long way towards
 making your site easier to follow.
@@ -71,11 +65,13 @@ $ task 220 edit
 I want some way of adding and reviewing information about a particular
 task without cluttering my Taskwarrior reports.
 
-{% note %}
+:::note
+
 Honestly [org](/tags/org-mode) mode provides all this functionality and more.
 Someday I may even get comfortable enough to prefer it. But right now?
 Taskwarrior and shell tools are easier for me.
-{% /note %}
+
+:::
 
 ## What I need today
 
@@ -202,7 +198,7 @@ environment path. The rest of the function arguments will be handed to
 
 Sweet. It worked!
 
-{% note %}
+:::note
 Specifying the program twice confused me at first. Things clicked for me
 when I tried the `v` variant:
 
@@ -234,7 +230,7 @@ I won’t lie. This `exec*` stuff is easier to say in Perl:
 ```perl
 exec($ENV{EDITOR}, $notes_file);
 ```
-{% /note %}
+:::
 
 ## Generalize for any task
 
@@ -300,12 +296,12 @@ I would forget what task is involved unless I put *something*. So now
 the script adds the task description to a header line the first time a
 note is opened.
 
-{% note title="Warning" %}
+:::note{title="Warnings"}
 Remember to `flush` your filehandles before handing control over to
 external processes like [Vim](/tags/vim). Python takes care of files and
 buffers on its own schedule. Launching an external process interrupts
 Python’s schedule. So let Python know\!
-{% /note %}
+:::
 
 Also threw in some error checking after the first time I tried writing
 notes for a nonexistent task.

@@ -52,13 +52,13 @@ src/assets/style/
 ```
 
 
-{% note %}
+:::note
 [Structuring Eleventy Projects]: https://www.webstoemp.com/blog/eleventy-projects-structure/
 
 Generally, I have been following the site organization guidelines described in
 [Structuring Eleventy Projects][]. If I have some non-content file I need
 transformed — Sass, images, whatever — I put it under `src/assets`.
-{% /note %}
+:::
 
 [custom templates]: https://www.11ty.dev/docs/languages/custom/
 [skipping a template]: https://www.11ty.dev/docs/languages/custom/#skipping-a-template-from-inside-of-the-compile-function.
@@ -102,7 +102,7 @@ So what needs to go into `SassHandler.js`? Let's see.
 
 Time to open up the old text editor.
 
-```javascript{title="src/_11ty/handlers/SassHandler.js"}
+```javascript title="src/_11ty/handlers/SassHandler.js"
 // Handler for my Sass stylesheets
 
 // ==> Import libraries.
@@ -132,7 +132,7 @@ change in `_base.scss` means a change in `main.scss` which means a write to
 So I'll disable the `permalink` compile option and handle it myself with the
 appropriate libraries.
 
-```javascript{title="Import libraries" verbatim=false}
+```javascript title="Import libraries"
 const fs = require("fs-plus");
 const path = require("path");
 const sass = require("sass");
@@ -150,7 +150,7 @@ const sass = require("sass");
 
 I know exactly which files I want to read and write. Let's define those as constant.
 
-```javascript{title="Define input and output paths for sass" verbatim=false}
+```javascript title="Define input and output paths for sass"
 const curDir = process.cwd();
 const sassInputPath = path.join(cirDir, "src/assets/style/main.scss");
 const cssOutputPath = path.join(curDir, "dist/assets/style/main.css");
@@ -161,17 +161,17 @@ off permalinks for `scss` files, I need to be careful. I start this with being
 extremely specific and figuring out what I can relax later — assuming I decide
 that relaxing is what I want to do.
 
-{% note %}
+:::note
 Common sense suggests these should be defined in a config file somewhere. I'm
 still getting the hang of Eleventy, though. Common sense won't be an option for
 some time.
-{% /note %}
+:::
 
 I figure the easiest way to avoid extra recompilation is by watching the clock.
 If it hasn't been long enough since the last build, skip it. Five seconds is a
 completely arbitrary value for "long enough" but it seems to be working.
 
-```javascript{title="Set build time guard variables" verbatim=false}
+```javascript title="Set build time guard variables"
 let lastSassBuild = 0;     // valueOf last sass build
 const minimumWait = 5_000; // wait this many milliseconds before rebuilding
 ```
@@ -183,7 +183,7 @@ the number of milliseconds since 1970-01-01, which is a handy numeric value for
 simple comparison. If the difference between that and `lastSassBuild` is less
 than `minimumWait` milliseconds, we don't need to build.
 
-```javascript{title="Ensure we need to build the CSS" verbatim=false}
+```javascript title="Ensure we need to build the CSS"
 const now = new Date().valueOf();
 
 if (now - lastSassBuild <= minimumWait) {
@@ -194,7 +194,7 @@ if (now - lastSassBuild <= minimumWait) {
 What if we *do* need to build? Update `lastSassBuild` and log what's going on,
 since I enjoy a little feedback.
 
-```javascript{title="Remember and log this build" verbatim=false}
+```javascript title="Remember and log this build"
 lastSassBuild = now;
 const parsed = path.parse(inputPath);
 console.log(`[${now}] SassHandler: ${inputPath} changed`);
@@ -206,7 +206,7 @@ I still haven't learned enough JavaScript to know why, but when I use
 exception. Eventually I'll be forced to revisit that, but today is not that
 day.
 
-```javascript{title="Compile the Sass and write the CSS"}
+```javascript title="Compile the Sass and write the CSS"
 let result = sass.renderSync({
   file: sassFilePath,
 });

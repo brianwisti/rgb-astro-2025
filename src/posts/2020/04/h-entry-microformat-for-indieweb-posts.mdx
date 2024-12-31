@@ -31,7 +31,8 @@ describes shared content — blog posts and comments in particular, but
 you could expand it as far as you like. Want to generate a feed of git
 commits? You could use h-entry to describe a commit\!
 
-{% note title="But I want to try Webmentions!" %}
+:::note{title="But I want to try Webmentions!"}
+
 You totally can!
 
 I plan to examine [Webmention](https://indieweb.org/Webmention) — the
@@ -42,10 +43,10 @@ taking part — the h-cards — and where the discussions take place — the
 h-entries.
 
 But you don’t need to wait for me. There are fine tutorials out there to
-walk you through the process. <https://IndieWebify.me> in particular
+walk you through the process. [IndieWebify.my](https://IndieWebify.me) in particular
 tells you everything you need to know.
 
-{% /note %}
+:::
 
 ## Fine. Let’s get on with it
 
@@ -57,7 +58,7 @@ a while.
 I’m trying to move away from that though. Let’s give it a little
 structure.
 
-``` html
+```html
 <article class="h-entry">
   <header>
     ... metadata like title and tags ...
@@ -72,7 +73,7 @@ structure.
 ```
 
 Time to focus on putting useful metadata in the article header. Might as
-well expose some of the {{< tag "hugo" >}} templating as well.
+well expose some of the Hugo templating as well.
 
 ```html{title="layouts/_default/single.html"}
 {{ define "main" }}
@@ -164,7 +165,7 @@ I organize my Hugo content by [type][hugo-type] — currently
 with [categories][category-list] and [tags][tag-list]. The post should probably
 show each of those as a `p-category`.
 
-{% note title="2022-03-27" %}
+:::note{title="2022-03-27"}
 Now the main type is [blog post][blog-section]. Posts and notes are categories
 within the blog. All that timestamped stuff goes in one section with this
 version of the site. Category and tag are still `p-category` though.
@@ -175,7 +176,8 @@ version of the site. Category and tag are still `p-category` though.
 [post-category]: /category/post
 [category-list]: /category
 [tag-list]: /tags
-{% /note %}
+
+:::
 
 ``` html {% process=false %}
 {{- with .Type -}}
@@ -223,7 +225,7 @@ the microformats right?
 ## Examining my microformats locally
 
 I know I can [validate](https://indiewebify.me/validate-h-entry) my
-h-entry at IndieWebify or copy and paste to <https://microformats.io>,
+h-entry at IndieWebify or copy and paste to [microformats.io](https://microformats.io),
 but I want to look at this stuff from the shell. Preferably with a
 single command. *Ideally* with something I can stash in my
 [tasks.py](/post/2020/02/python-invoke/) file.
@@ -238,7 +240,7 @@ easier for me to read than JSON. Here’s what I came up with.
 I got carried away. This could have been its own post. Oh well. It’s
 like a two-for-one deal\!
 
-``` python
+```python
 import json
 import textwrap
 

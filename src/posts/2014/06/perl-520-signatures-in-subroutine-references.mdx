@@ -17,9 +17,8 @@ title: Perl 5.20 Signatures in Subroutine References
 [Perl][] 5.20 has experimental support for function signatures. That's good 
 news. I just thought to check if signatures can be used in subroutine 
 references. They can.
-<!--more-->
 
-~~~ perl
+```perl
 # Set a base set of features.
 use 5.20.0;
 
@@ -41,16 +40,16 @@ my $me = "Brian";
 
 hello( $me );
 $goodbye->( $me );
-~~~ 
+```
 
 It's a simple test. Just checking to see if I can maybe use this feature in 
 my own projects.
 
-~~~ console
+```console
 $ perl sig-test.pl
 Hello, Brian
 Goodbye, Brian
-~~~ 
+```
 
 [Pygments]: http://pygments.org/
 

@@ -52,11 +52,11 @@ I need to start a new session eventually, though.  Can’t go around refreshing
 my path like that every time I open a new terminal.  Though I suppose I could
 put this in PowerShell initialization.
 
-{% note %}
+:::note
 I know Git Bash is a thing, but I’m trying to learn Windows — not just paste a
 comforting layer of UNIX duct tape over everything.  *Said while writing a blog
 post from Vim on WSL 2.*
-{% /note %}
+:::
 
 *Anyways*, it looks like ``ssh-keygen`` is accessible via PowerShell.
 
@@ -115,7 +115,7 @@ answer][stackoverflow-answer] said, and it seems to be working.
 Over in my PowerShell init, I make sure the new modules are loaded, set some
 handy aliases for using my SSH keys, and start the SSH Agent.
 
-```powershell{title="Documents\PowerShell\profile.ps1"}
+```powershell title="Documents\PowerShell\profile.ps1"
 Import-Module posh-git Import-Module posh-sshell
 
 Set-Alias ssh-agent "$env:WinDir\System32\OpenSSH\ssh-agent.exe"
@@ -162,10 +162,9 @@ while working through the process that became this post:
 
 This is significant enough to highlight:
 
-{% note %}
-If you’re using the Windows OpenSSH server before the 2020 Fall Update, you
-may want to skip the `ssh-agent` bits.
-{% /note %}
+:::note
+If you’re using the Windows OpenSSH server before the 2020 Fall Update, you may want to skip the `ssh-agent` bits.
+:::
 
 But other than that, things are working pretty good. Learning is fun!
 

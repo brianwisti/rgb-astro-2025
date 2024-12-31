@@ -24,14 +24,14 @@ tags:
 title: Joplin CLI Batch Processing With Raku
 ---
 
-{% note %}
+:::note
 This sidetracks enough for three blog posts, mostly about [Raku][raku].  Sorry
 about that.  No time to make it shorter.  You know how it is.  There's a little
 [Joplin][joplin] stuff in here.
 
 [joplin]: https://joplinapp.org
 [raku]: https://rakulang.org
-{% /note %}
+:::
 
 This is embarrassing.  I fired up the Joplin [desktop app][desktop-app] this
 morning and it told me there was an update.  Makes sense.  I haven't loaded the
@@ -92,8 +92,7 @@ joplin batch <(raku -e 'qx{joplin ls}.lines.sort.map({ "cat $_" }).join("\n").sa
 
 We take advantage of a little shell magic to treat the output of another process as a file.
 
-Don't ask me to understand the shell magic.  In [GNU Bash][bash], `command
-<(stuff)` means something along the lines of "evaluate *stuff* and hand the
+Don't ask me to understand the shell magic.  In [GNU Bash][bash], `command <(stuff)` means something along the lines of "evaluate *stuff* and hand the
 output of that evaluation to `command` as if it was a file."
 
 It's all a little inside-out and twisty.  It might help if we break up the
@@ -127,13 +126,13 @@ One and a half seconds for a formatted display of every journal entry.  Not
 bad, considering that I'm running on [WSL][wsl].  Plus I don't really know
 one-liners, Raku, or Joplin.
 
-{% note %}
+:::note
 The documentation for `joplin ls` mentions a `--sort` flag, but as of v1.8.1 I
 got no difference when using `joplin ls --sort title`. Didn't see a mention of
 the specific issue, so I overcame my shyness and filed [#5004][bug-5004].
 
 [bug-5004]: https://github.com/laurent22/joplin/issues/5004
-{% /note %}
+:::
 
 ## Fix the script
 
@@ -169,10 +168,10 @@ display today's lone entry, and over 30 seconds to display all 40 journal
 entries.  Every new entry slows the whole thing down, because every new entry
 means a new call to ``joplin``.
 
-{% note %}
+:::note
 I don't jot *that* many notes in a day. Some of that's from reorganizing my
 Joplin notebooks, putting daily journals in with the quick entries.
-{% /note %}
+:::
 
 I tried mimicking the shell magic but couldn't figure out how in the time I
 allowed myself.  This isn't work code where you have to get things just so.
@@ -229,8 +228,7 @@ had before.  Now we find any *line* containing a lone ISO-8601 timestamp, and
 convert it to a top-level Markdown header.  The `:g` flag tells `.subst` to
 replace every occurrence.
 
-{% note title="`^..$` vs `^^..$$`" %}
-
+:::note{title="`^..$` vs `^^..$$`"}
 Regular expressions in other languages treat `^` and `$` differently
 depending on whether you're applying the expression in a single-line or
 multiple-line context. Raku's [anchors][] treat every expression as multi-line.
@@ -257,8 +255,7 @@ So what if my Raku notebook only has this one page with this one diagram.
 It's a good diagram.  Very professional.  High quality learning aid.
 
 [anchors]: https://docs.raku.org/language/regexes#Anchors
-
-{% /note %}
+:::
 
 Those few lines don't change anything for me as a user.  Maybe the speed?
 
@@ -311,7 +308,7 @@ sub read-entries(@entries) {
 }
 ```
 
-{% note title="Space is insignificant in regular expressions" %}
+:::note{title="Space is insignificant in regular expressions"}
 Did you catch that?  Raku ignores whitespace in regular expressions unless you
 say otherwise with [`:sigspace`][sigspace].  Means you can make a regex easier
 to read.  This wasn't *much* easier to read, but at least we can tell where the
@@ -324,11 +321,11 @@ having [XRegExp][xregexp] installed and using `'x'`.
 
 [sigspace]: https://docs.raku.org/language/regexes#Sigspace
 [xregexp]: https://xregexp.com
-{% /note %}
+:::
 
 …and try it out.
 
-``` text
+```text
 $ time jj today
 ...
 real    0m2.502s
@@ -364,7 +361,7 @@ Speaking of trivia…
 
 I need to do something about this.
 
-``` raku
+```raku
 qqx{ ... }.subst(/^^ (<[\dT:\-]>+) $$/, { "# $0" }, :g);
 ```
 
@@ -499,12 +496,12 @@ expect a chunk to appear.  To this day I can't remember the exact syntax for
 quantifiers in old-school regular expressions.  But I can remember the number
 4.
 
-{% note %}
+:::note
 This regex is wrong for verifying real dates. It's not wrong enough to
 worry about today. I'm identifying header lines, not validating forms. But
 if some day I decide to enforce zero-padded months from `01` to `12`, I
 know exactly which block to edit.
-{% /note %}
+:::
 
 Looks like *clock time* gets saved as *hours*, *minutes*, and *seconds*.  In
 the interest of time, we'll oversimplify those too.
@@ -558,7 +555,7 @@ The potential really starts to sink in for me.
 And this is just me composing regex objects.  Eventually I'm going to try
 grammars and then look out world!
 
-{% note title="but why?" %}
+:::note{title="but why?"}
 This may all seem a little ridiculous, and for this use case — parsing my own
 entry titles — it is.  So why am I going through all this work? Aside from it
 being fun, of course.
@@ -572,7 +569,7 @@ to the infamous density of 1990s regexen.
 We should absolutely use that opportunity and encourage new languages to
 steal *these* regular expressions rather than the stuff that impressed us
 twenty years ago.
-{% /note %}
+:::
 
 ### Ship it!
 
@@ -586,7 +583,7 @@ readable. And most important of all, I had fun.
 Includes a couple more steps into composition that I didn't feel merited extra
 blog post paragraphs.
 
-``` raku
+```raku
 #!/usr/bin/env raku
 
 use File::Temp;

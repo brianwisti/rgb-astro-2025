@@ -64,12 +64,12 @@ $ date --iso=minute
 
 I plan to make frequent small notes, so `minute` feels like a good choice.
 
-{% note title="use Journal?" %}
+:::note{title="use Journal?"}
 Yes, this came up.  Had the Joplin terminal app open in one terminal while I
 added a journal entry in another terminal.  Terminal app did some sort of
 state maintenance thing.  Next thing I know I'm adding journal entries to
 "Nerd Notes."
-{% /note %}
+:::
 
 Since it doesn't exist, `joplin` will ask for confirmation before creating
 it.
@@ -125,6 +125,13 @@ Markdown — Joplin's default format — for rich display in a terminal.  It can
 even run as a standalone application.  I take advantage of that here to get a
 pretty view of my Joplin entries:
 
+:::note{title="2024-12-30"}
+MDX-in-Astro keeps biting me for all the old Rich HTML export.
+For now I wrap the output in a `pre` block.
+At least you can see the generated markup.
+:::
+
+```html
 <pre class="rich">╔══════════════════════════════════════════════════════════════════════════════╗
 ║                            <span style="font-weight: bold">2021-05-20T08:26-07:00</span>                            ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -171,6 +178,7 @@ the easy copy buffer.
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span> <span style="color: #f92672; text-decoration-color: #f92672; background-color: #272822; font-weight: bold">$ </span><span style="color: #f8f8f2; text-decoration-color: #f8f8f2; background-color: #272822">my-command | xclip -sel clip</span><span style="background-color: #272822">                                              </span> <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">│</span>
 <span style="color: #7f7f7f; text-decoration-color: #7f7f7f">└──────────────────────────────────────────────────────────────────────────────┘</span>
 </pre>
+```
 
 You can also use [Glow][glow] if you want a standalone Markdown pretty printer.
 It works.  Rich is already part of my toolkit, so I'll keep using it.
@@ -248,7 +256,7 @@ title.  It makes quick one-line notes easier.
 But it also means if *I* want that first line to look significant, I need to do
 something with this:
 
-```language
+```text
 2021-05-20T08:26-07:00
 ```
 
@@ -296,11 +304,11 @@ jread() {
 Then again, maybe not.  This should probably be a script.  Check back in a few
 days.
 
-{% note title="Oooh a cliffhanger!" %}
+:::note{title="Oooh a cliffhanger!"}
 I have a working script already.  What I don't have much of is unallocated
 time.  But hopefully yes!  Soon.  I did some cool stuff with `multi MAIN`
 in Raku that I'm desperate to show off.
-{% /note %}
+:::
 
 [joplin]: https://joplinapp.org
 [bujo]: https://bulletjournal.com/

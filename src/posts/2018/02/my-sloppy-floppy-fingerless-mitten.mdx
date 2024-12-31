@@ -19,7 +19,6 @@ title: My Sloppy Floppy Fingerless Mitten
 
 I knit a fingerless mitten. Mistakes were made. I also figured out some stuff about Hugo Page Bundles and
 image processing.
-<!--more-->
 
 I modified a mitten pattern from [Knitter's Handy Book of Patterns][]. The book's template approach works
 for me. I adjusted the pattern for fingerless mittens — my preference.
@@ -58,12 +57,14 @@ content and its images correctly.
 Hugo can use Page Resources now. Instead of a single file, your post becomes a directory, with
 `index.md` for the content itself.
 
-    content
-    +-> craft
-      +-> 2018
-        +-> my-sloppy-floppy-fingerless-mitten
-          +-> index.md
-          +-> cover.jpg
+```
+content
++-> craft
+  +-> 2018
+    +-> my-sloppy-floppy-fingerless-mitten
+      +-> index.md
+      +-> cover.jpg
+```
 
 ### Templates
 
@@ -75,24 +76,25 @@ and as a thumbnail in summary pages. I named the image `cover.jpg`.
 If I have a cover image, Hugo's [image processing][] creates a version of the image 800 pixels wide. Display this image,
 along with a link to the original.
 
-
-    {{- $description := .Title -}}
-    {{- $coverImage := .Page.Resources.GetMatch "cover*" -}}
-    {{- if $coverImage -}}
-      {{- $image := $coverImage.Resize "800x" -}}
-      <figure>
-        <img src="{{ $image.RelPermalink }}" alt="{{ $description }}"
-             height="{{ $image.Height }}" width="{{ $image.Width }}">
-        <figcaption>
-          {{ $description }}<br>
-          <a href="{{ $coverImage.RelPermalink }}" target="_blank">
-            (see full size in new window)
-          </a>
-        </figcaption>
-      </figure>
-    {{- else -}}
-      legacy cover image handling
-    {{- end -}}
+```
+{{- $description := .Title -}}
+{{- $coverImage := .Page.Resources.GetMatch "cover*" -}}
+{{- if $coverImage -}}
+  {{- $image := $coverImage.Resize "800x" -}}
+  <figure>
+    <img src="{{ $image.RelPermalink }}" alt="{{ $description }}"
+          height="{{ $image.Height }}" width="{{ $image.Width }}">
+    <figcaption>
+      {{ $description }}<br>
+      <a href="{{ $coverImage.RelPermalink }}" target="_blank">
+        (see full size in new window)
+      </a>
+    </figcaption>
+  </figure>
+{{- else -}}
+  legacy cover image handling
+{{- end -}}
+```
 
 #### Thumbnail
 
@@ -101,20 +103,22 @@ the original's most interesting part. The thumbnail is presented along with a li
 
 [smart crop]: https://gohugo.io/content-management/image-processing/#smart-cropping-of-images
 
-    {{ $title := .Title }}
-    {{- $coverImage := .Page.Resources.GetMatch "cover*" -}}
-    {{- if $coverImage -}}
-      {{- $thumbnail := $coverImage.Fill "128x128" -}}
-      <a href="{{ .Permalink }}" title="{{ $title }}">
-        <img class="summary-thumbnail"
-             src="{{ $thumbnail.RelPermalink }}"
-             alt="{{ $title }}"
-             height="{{ $thumbnail.Height }}"
-             width="{{ $thumbnail.Width }}">
-      </a>
-    {{- else -}}
-      legacy thumbnail handling
-    {{- end -}}
+```
+{{ $title := .Title }}
+{{- $coverImage := .Page.Resources.GetMatch "cover*" -}}
+{{- if $coverImage -}}
+  {{- $thumbnail := $coverImage.Fill "128x128" -}}
+  <a href="{{ .Permalink }}" title="{{ $title }}">
+    <img class="summary-thumbnail"
+          src="{{ $thumbnail.RelPermalink }}"
+          alt="{{ $title }}"
+          height="{{ $thumbnail.Height }}"
+          width="{{ $thumbnail.Width }}">
+  </a>
+{{- else -}}
+  legacy thumbnail handling
+{{- end -}}
+```
 
 ### Conclusion
 

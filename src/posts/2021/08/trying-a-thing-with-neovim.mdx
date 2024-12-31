@@ -42,14 +42,14 @@ fault. reStructuredText is not their focus.
 
 Still — why not format it ahead of time?
 
-{% note title="answer" %}
+:::note{title="answer"}
 Because it took a lot of work to figure this out? And most folks are
 perfectly happy with Markdown? And bloggers who prefer reStructuredText are
 probably using [Pelican][pelican] or [Nikola][nikola]?
 
 [pelican]: https://blog.getpelican.com/
 [nikola]: https://getnikola.com/
-{% /note %}
+:::
 
 Shush you.
 
@@ -68,12 +68,9 @@ ignoreFiles = ['\.rst\.txt$']
 ```
 
 This way `hugo server --navigateToChanged` behaves how we expect.
-
-{% note %}
 I tried setting `ignoreFiles = ['\.rst$']` but as far as I could tell,
 Hugo ignored my request to ignore the file. Looks like I'm sticking with
 `.rst.txt` for now.
-{% /note %}
 
 With the code down below in my Neovim python3 — that's *python3* not
 *python* — rplugin folder, and remote plugins updated, I write
@@ -86,7 +83,7 @@ site templates nice and quick.
 
 #### The Code
 
-```python{title="~/.config/nvim/rplugin/python3/rstbuild_hugo.py"}
+```python title="~/.config/nvim/rplugin/python3/rstbuild_hugo.py"
 """Give my reStructuredText posts in Hugo a little boost."""
 
 import locale
@@ -128,9 +125,9 @@ class RSTBuildHugo:
 Lord knows this code ain't perfect. This post is its main test. Who knows what
 bugs and improvements will come later?
 
-{% note %}
+:::note
 You will, if you skim the Updates at the end.
-{% /note %}
+:::
 
 If you grab a copy for your own nefarious plans — a similar template could get
 you fast Asciidoctor transforms as well — just remember a couple things:

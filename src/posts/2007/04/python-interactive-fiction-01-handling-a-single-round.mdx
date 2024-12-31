@@ -18,7 +18,6 @@ title: Python Interactive Fiction - 01 Handling a Single Round
 
 I think the next step is to write the code for a single round of the game. We'll 
 limit ourselves to Scene 1 to stay focussed.
-<!--more-->
 
 ### Presenting a Scene to the user
 
@@ -740,9 +739,9 @@ Make a selection: ^CTraceback (most recent call last):
 NameError: name 'choice' is not defined
 ```
 
-{% note title="Warning" %}
+::note{title="Warning"}
 Please don't explore this with other types of bad input. You could end up with a Python process that won't quit unless youforce it to quit from your task / process manager.
-{% /note %}
+:::
 
 The problem is that the original exception was a `KeyboardInterrupt`. We don't 
 see that here, because we referred to `choice` which isn't defined until the 

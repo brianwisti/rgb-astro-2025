@@ -30,7 +30,7 @@ Nikola is a static site generator written in [Python][].
 Its [features][] support a flexible workflow while still providing a solid blogging experience "out of the box."
 You can extend that flexibility further via plugins.
 
-[Cleaning]: /note/2019/12/removing-mmark-has-me-grumbly/
+[Cleaning]: /post/2019/12/removing-mmark-has-me-grumbly/
 [deprecated]: https://gohugo.io/news/0.60.0-relnotes/
 [mmark]: https://mmark.miek.nl/
 
@@ -144,12 +144,12 @@ The `auto` command instructs Nikola to serve your site, refreshing
 whenever you save a change. With the `--browser` flag, it also opens a
 new browser tab to your development site.
 
-{% note %}
+:::note
 Unless you’re in tmux, in which case it depends on how your desktop and
 tmux are configured. I had to run `nikola auto --browser` from a
 separate terminal tab in Linux Cinnamon to get the browser action. I’ll
 look up how to fix that eventually.
-{% /note %}
+:::
 
 `http://127.0.0.1:8000` shows a basically empty front page. Nikola
 filled in the templates for the default theme with values from

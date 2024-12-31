@@ -33,10 +33,12 @@ context, rather than just reimplement them with different syntax.
 So why would you want to learn REBOL? Because REBOL makes it
 frighteningly easy to create programs that accomplish complex tasks. For
 example, here’s one way you can download the HTML source of a Web page –
-for example <https://randomgeekery.org/> – and view it in a text editing
+for example https://randomgeekery.org/ – and view it in a text editing
 area with REBOL/View:
 
-    >> view layout [ area 800x600 read https://randomgeekery.org ]
+```
+>> view layout [ area 800x600 read https://randomgeekery.org ]
+```
 
 This impresses me to no end. Maybe you’re not so impressed by it, but
 that’s okay. I’m happy, and that’s what I care about most.
@@ -59,7 +61,7 @@ of the 40+ supported platforms.
 #### Installation on Windows
 
 - Download the archived installer for your platform from
-  - <http://www.rebol.com/download.html>
+  - http://www.rebol.com/download.html
 - Unpack the installer, if necessary
 - Run the installer
 - Follow the installation wizard until you have installed the version
@@ -97,7 +99,7 @@ depending on what you need and what is available for your platform.
 
 #### REBOL/Core
 
-> <http://www.rebol.com/prod-core.html>
+> http://www.rebol.com/prod-core.html
 
 REBOL/Core covers the vital language features, including all the
 [datatypes](/post/2004/12/rebol-datatypes/) which make the language so
@@ -109,14 +111,14 @@ just trying out an obscure bit of code on a bored Thursday evening.
 
 Find out if REBOL/Core has been released for your platform at this URL:
 
-> <http://rebol.com/platforms.html>
+> http://rebol.com/platforms.html
 
 REBOL/Core will probably do fine for most hobbyists, but you might want
 to look on if you enjoy pointy clicky GUI environments as much as I do.
 
 #### REBOL/View
 
-> <http://www.rebol.com/prod-view.html>
+> http://www.rebol.com/prod-view.html
 
 View is the cool one, in my opinion. It adds an impressive GUI library
 to Core, making it immediately useful for a broad range of applications.
@@ -130,7 +132,7 @@ What’s a floppy disk? I thought I told you to stop bothering me, kid.
 
 Find out if REBOL/View has been released for your platform at this URL:
 
-> <http://rebol.com/view-platforms.html>
+> http://rebol.com/view-platforms.html
 
 #### REBOL/SDK and REBOL/Command
 
@@ -309,39 +311,41 @@ a script you want to share with the world:
 
 Of course, you could always provide more information if you want.
 
-    REBOL [
-        Title: "Hello User Example Script"
-        Date: 24-Feb-2009
-        Name: 'Hello-User
+```
+REBOL [
+    Title: "Hello User Example Script"
+    Date: 24-Feb-2009
+    Name: 'Hello-User
 
-        Version: 1.0.2
-        File: %hello.r
-        Home: http://randomgeekery.org/tags/rebol/
+    Version: 1.0.2
+    File: %hello.r
+    Home: http://randomgeekery.org/tags/rebol/
 
-        Author: "Brian Wisti"
-        Owner: "Brian Wisti"
-        Rights: "Copyright (C) 2017 Brian Wisti"
+    Author: "Brian Wisti"
+    Owner: "Brian Wisti"
+    Rights: "Copyright (C) 2017 Brian Wisti"
 
-        Needs: [] ; Needs nothing beyond REBOL/Core
-        Tabs: 4
+    Needs: [] ; Needs nothing beyond REBOL/Core
+    Tabs: 4
 
-        Purpose: {
-            This program is a simple script to demonstrate usage of
-            REBOL and warm you up for trying more complex tasks.
-        }
+    Purpose: {
+        This program is a simple script to demonstrate usage of
+        REBOL and warm you up for trying more complex tasks.
+    }
 
-        History: {
-            1.0.0 [22-Dec-2004 "Wrote the code"]
-            1.0.1 [23-Dec-2004 "Finished writing the header for the code"]
-            1.0.2 [24-Feb-2009 "Re-examined for site update"]
-            1.0.3 [09-Apr-2017 "Adjusted for site relocation"]
-        }
+    History: {
+        1.0.0 [22-Dec-2004 "Wrote the code"]
+        1.0.1 [23-Dec-2004 "Finished writing the header for the code"]
+        1.0.2 [24-Feb-2009 "Re-examined for site update"]
+        1.0.3 [09-Apr-2017 "Adjusted for site relocation"]
+    }
 
-        Language: 'English
-    ]
+    Language: 'English
+]
 
-    name: ask "Please enter your name: "
-    print ["Hello" name "- good to see you!"]
+name: ask "Please enter your name: "
+print ["Hello" name "- good to see you!"]
+```
 
 Just try to keep the size of the script header appropriate for the size
 of your script. A full script header might be overkill for a script with
@@ -432,7 +436,7 @@ considering that the REBOL community is fairly small. RT keeps the
 official manuals available for free, and there are loads of script
 libraries and how-to guides written by the users themselves.
 
-> <http://www.rebol.com/docs.html>
+> http://www.rebol.com/docs.html
 
 *P.S.:* What, you want me to tell you how to quit REBOL? Why would you
 ever want to do that? Oh, okay. The command to quit from the REBOL

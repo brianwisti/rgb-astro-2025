@@ -46,37 +46,43 @@ The `.param` directive is used at the start of a subroutine to indicate
 that the subroutine will accept a parameter and place it in the named
 variable.
 
-    # example-04-01.pir
+```
+# example-04-01.pir
 
-    .sub 'main' :main
-        .param pmc argv
-    .end
+.sub 'main' :main
+    .param pmc argv
+.end
+```
 
 `argv` is a [ResizableStringArray](http://docs.parrot.org/parrot/latest/html/src/pmc/resizablestringarray.pmc.html):
 an ordered collection of strings.
 
 We can use the `elements` opcode to find out how many arguments were passed to the file.
 
-    # example-04-02.pir
+```
+# example-04-02.pir
 
-    .sub 'main' :main
-        .param pmc argv
-        .local int argument_count
-        .local string description
+.sub 'main' :main
+    .param pmc argv
+    .local int argument_count
+    .local string description
 
-        argument_count = elements argv
-        description = "I was called with "
-        $S0 = argument_count
-        description .= $S0
-        description .= " arguments"
+    argument_count = elements argv
+    description = "I was called with "
+    $S0 = argument_count
+    description .= $S0
+    description .= " arguments"
 
-        say description
-    .end
+    say description
+.end
+```
 
 Try it out.
 
-    $ parrot example-04-02.pir hey there
-    I was called with 3 arguments
+```console
+$ parrot example-04-02.pir hey there
+I was called with 3 arguments
+```
 
 Three? Let's look at the arguments individually and see if we can figure this out.
 
@@ -86,25 +92,27 @@ The `shift` opcode lets us pull the first item from an array. This shrinks
 the `argv` array by one as it shifts the rest of its contents over to fill
 the empty space, but it's not a concern for us right now.
 
-    # example-04-03.pir
+```
+# example-04-03.pir
 
-    .sub 'main' :main
-        .param pmc argv
-        .local int argument_count
-        .local string this_argument
-        .local string description
+.sub 'main' :main
+    .param pmc argv
+    .local int argument_count
+    .local string this_argument
+    .local string description
 
-      GET_ARG:
-        argument_count = argv
-        if argument_count <= 0 goto END
-        this_argument = shift argv
-        description = "This argument: " . this_argument
-        say description
-        goto GET_ARG
+  GET_ARG:
+    argument_count = argv
+    if argument_count <= 0 goto END
+    this_argument = shift argv
+    description = "This argument: " . this_argument
+    say description
+    goto GET_ARG
 
-      END:
+  END:
 
-    .end
+.end
+```
 
 We can use this code to look at our program arguments one at a time.
 
@@ -121,41 +129,43 @@ especially in some lower level languages. I should have remembered.
 Let's take what we've learned about handling the command line and apply it to
 our hypotenuse calculator.
 
-    # example-04-04.pir
+```
+# example-04-04.pir
 
-    .sub 'main' :main
-        .param pmc argv
-        .local int argument_count
-        .local string program_name
-        .local num a
-        .local num b
-        .local num c
-        .local num a_squared
-        .local num b_squared
-        .local num c_squared
-        .local string error_message
+.sub 'main' :main
+    .param pmc argv
+    .local int argument_count
+    .local string program_name
+    .local num a
+    .local num b
+    .local num c
+    .local num a_squared
+    .local num b_squared
+    .local num c_squared
+    .local string error_message
 
-        program_name = shift argv
-        argument_count = elements argv
-        if argument_count != 2 goto BAD_ARG_COUNT
-        a = shift argv
-        b = shift argv
-        a_squared = a * a
-        b_squared = b * b
-        say a_squared
-        say b_squared
-        c_squared = a_squared + b_squared
-        c = sqrt c_squared
-        say c
-        goto END
+    program_name = shift argv
+    argument_count = elements argv
+    if argument_count != 2 goto BAD_ARG_COUNT
+    a = shift argv
+    b = shift argv
+    a_squared = a * a
+    b_squared = b * b
+    say a_squared
+    say b_squared
+    c_squared = a_squared + b_squared
+    c = sqrt c_squared
+    say c
+    goto END
 
-      BAD_ARG_COUNT:
-        error_message = "Exactly two arguments required"
-        say error_message
-        goto END
+  BAD_ARG_COUNT:
+    error_message = "Exactly two arguments required"
+    say error_message
+    goto END
 
-      END:
-    .end
+  END:
+.end
+```
 
 First we shift the first item off of `argv` because we know for sure that it's
 going to be the program name. Then we check to make sure that the user has
@@ -167,23 +177,29 @@ hypotenuse.
 
 Oh yeah - sooner or later you're going to see this error message from Parrot:
 
-    error:imcc:syntax error, unexpected '=', expecting '(' ('=')
-            in file 'example-04-04.pir' line 24
+```
+error:imcc:syntax error, unexpected '=', expecting '(' ('=')
+        in file 'example-04-04.pir' line 24
+```
 
 What did line 24 look like?
 
-    c_squared = a_squared + b_squared
+```
+c_squared = a_squared + b_squared
+```
 
 It toook me a while to realize that I had never
 declared `.local num c_squared`. Unfortunately, Parrot's error messages aren't
 quite as descriptive as Perl's. Perl has had a lot more time to figure out how
 to gently explain a user's error to him, though.
 
-    bash-3.2$ parrot example-04-04.pir 12 23
-    144
-    529
-    25.9422435421457
-    bash-3.2$
+```
+bash-3.2$ parrot example-04-04.pir 12 23
+144
+529
+25.9422435421457
+bash-3.2$
+```
 
 That worked. 
     

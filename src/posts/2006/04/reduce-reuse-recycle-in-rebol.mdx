@@ -18,7 +18,6 @@ never did get around to refining it, but it stands here as a rambling
 testament of - well, as a testament of my ability to ramble.  I might end up 
 refining it later, or I might not. I just didn't want the thoughts to 
 disappear in air as thoughts are sometimes known to do.
-<!--more-->
 
 ## My Baffling Issue
 
@@ -59,18 +58,20 @@ and evaluates every expression in that series. When it's done, it hands you a
 new list consisting of the results of those evaluations. It's easier to show 
 than explain:
 
-    >> example: [
-    [    2 + 3
-    [    4 * 6
-    [    4 / 2
-    [    ]
-    == [
-        2 + 3
-        4 * 6
-        4 / 2
-      ]
-    >> reduce example
-    == [5 24 2]
+```
+>> example: [
+[    2 + 3
+[    4 * 6
+[    4 / 2
+[    ]
+== [
+    2 + 3
+    4 * 6
+    4 / 2
+  ]
+>> reduce example
+== [5 24 2]
+```
 
 It gets more interesting when your expressions are a little more interesting, 
 but I'm keeping it simple so I don't get distracted.
@@ -83,13 +84,17 @@ values before doing this other thing."
 
 `form` takes a value and returns a stringified version of the value.
 
-    >> form example
-    == "2 + 3 4 * 6 4 / 2"
+```
+>> form example
+== "2 + 3 4 * 6 4 / 2"
+```
 
 Now that we know what `reduce` does, we have a good idea what to expect out of `reform`.
 
-    >> reform example
-    == "5 24 2"
+```
+>> reform example
+== "5 24 2"
+```
 
 It will `reduce` the series, and then `form` a string from the values in the 
 new series.
@@ -104,14 +109,18 @@ the series, and then glue the results tightly into a string. Sounds a little
 bit like `form`, doesn't it? Unlike `form`, `join` will not provide spaces in 
 between the values.
 
-    >> join 3 + 2 example
-    == "55242"
+```
+>> join 3 + 2 example
+== "55242"
+```
 
 `rejoin` effectively does the same thing, but it doesn't need the first value. 
 You can `rejoin` your series directly.
 
-    >> rejoin example
-    == "5242"
+```
+>> rejoin example
+== "5242"
+```
 
 ## `remold`
 
@@ -119,46 +128,56 @@ You can `rejoin` your series directly.
 Rebol can evaluate later. Pretty handy for generating code while the program
 is running!
 
-    >> mold example
-    == {[
-          2 + 3
-          4 * 6
-          4 / 2
-    ]}
+```
+>> mold example
+== {[
+      2 + 3
+      4 * 6
+      4 / 2
+]}
+```
 
 `remold` will `reduce` the argument and then `mold` the results.
 
-    >> remold example
-    == "[5 24 2]"
+```
+>> remold example
+== "[5 24 2]"
+```
 
 ## `repend`
 
-    >> append example [2 + 3]
-    == [
-        2 + 3
-        4 * 6
-        4 / 2 2 + 3
-    ]
+```
+>> append example [2 + 3]
+== [
+    2 + 3
+    4 * 6
+    4 / 2 2 + 3
+]
+```
 
 Be careful, `append` actually does append the value to your original series. 
 You may want to work on a `copy` if you want to leave your original series alone.
 
-    >> append copy example [2 + 3]
-    == [ 2 + 3 
-         4 * 6 
-         4 / 2 
-         2 + 3
-    ]
-    >> example
-    == [2 + 3 4 * 6 4 / 2]
+```
+>> append copy example [2 + 3]
+== [ 2 + 3 
+      4 * 6 
+      4 / 2 
+      2 + 3
+]
+>> example
+== [2 + 3 4 * 6 4 / 2]
+```
 
 Let's look at `repend` now that we've got the `append` warning out of the way. 
 Easy enough. `repend` will `reduce` the extra value before appending. I 
 haven't gotten far enough along to see why this is better or even different 
 from just appending the raw expression:
 
-    >> append copy example 2 + 3
-    == [2 + 3 4 * 6 4 / 2 5]
+```
+>> append copy example 2 + 3
+== [2 + 3 4 * 6 4 / 2 5]
+```
 
 I do feel a little smarter than I did 20 minutes ago, though. If nothing else, 
 I feel good.

@@ -16,12 +16,10 @@ tags:
 - programming
 title: Learning a little elisp
 ---
-{% note %}
 Excuse me while I share a sleep-deprived ramble from last night through about
 five lines of [Emacs Lisp][elisp].
 
 [elisp]: https://www.gnu.org/software/emacs/manual/html%5Fnode/eintr/index.html
-{% /note %}
 
 There's [tons][] of [detailed][] information about Emacs LISP — aka Emacs Lisp,
 elisp, ELisp, and "oh my god they love parentheses" — out there.  I just want
@@ -113,11 +111,11 @@ up online.  Emacs comes with notes.
 - hit [[ENTER]]
 - Learn things!
 
-{% note %}
+:::note
 Doom uses <kbd>SPC h f</kbd> to fetch function descriptions.  Oh hey, while you’re
 at it try <kbd>SPC h d h</kbd> for general Doom help, or <kbd>SPC h d m</kbd> for help with
 a specific mode!
-{% /note %}
+:::
 
 ### ELisp in Org Babel
 
@@ -129,7 +127,7 @@ And, of course, really handy for blogging about ELisp.
 
 [config]: /config
 
-{% note %}
+:::note
 Configuration of Org and Babel is traditionally an elaborate ritual.  In
 Doom, it’s enough for this post to enable `org`.
 
@@ -144,7 +142,7 @@ Okay, I added `+hugo` since I’m using `ox-hugo` to integrate with my workflow.
 And `+roam` because [org-roam][] is kinda cool.  But not relevant for today.
 
 [org-roam]: https://www.orgroam.com/
-{% /note %}
+:::
 
 I need a code block written in a language that Babel knows.  It should not
 surprise us that Babel knows ELisp.
@@ -157,9 +155,9 @@ surprise us that Babel knows ELisp.
 
 I press <kbd>C-c C-c</kbd> with *point* over the code block.
 
-{% note %}
+:::note
 Or <kbd>ENTER</kbd> in Doom.
-{% /note %}
+:::
 
 Suddenly: a `#+RESULTS:` block!
 

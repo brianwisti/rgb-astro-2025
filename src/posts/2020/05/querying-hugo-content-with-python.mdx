@@ -23,11 +23,13 @@ tags:
 title: Querying Hugo Content With Python
 ---
 
-{% note title="2020-11-09" %}
+:::note{title="2020-11-09"}
+
 Used my [Raku tangles][raku-tangles] to touch up the code and make a downloadable link. I want to tidy it so bad, but I’d need to rewrite large chunks of this post. But hey it’s there and it works. Have fun!
 
 [raku-tangles]: /post/2020/07/tangling-code-from-hugo-content-with-raku/
-{% /note %}
+
+:::
 
 ## The plan
 
@@ -47,7 +49,7 @@ Schmidt][frew].  See, he wrote an interesting post about his Hugo / Unix / Vim
 
 `q` is ridiculously fast and convenient if you know the query you want to ask.
 
-``` console
+```console
 $ q --sql 'select count(1) from articles where title like "%perl%"'
 22
 $ q --sql 'select count(1) from articles where title like "%python%"'
@@ -57,7 +59,7 @@ $ q --sql 'select count(1) from articles where title like "%python%"'
 Is your query too awkward to comfortably type on a command line? Put it in a
 shell script, like fREW’s `tag-count` example.
 
-``` bash{title="tag-count"}
+```bash title="tag-count"
 #!/bin/bash
 
 exec scripts/q \
@@ -93,7 +95,7 @@ automatically announcing new posts.
 I’m thinking about adding more tables to improve [IndieWeb][indieweb] integration. But
 to be honest, my creation has grown unwieldy. And *slow*.
 
-``` console
+```console
 $ time query 'select date, title from articles order by date'
 ⋮
 Skinny Lines and Flat Colors                             |2020-05-02T21:11:00-07:00
@@ -106,7 +108,7 @@ query 'select title, published_at from contents order by published_at'  \
 
 Compared to the original Perl script?
 
-``` console
+```console
 $ time q --sql 'select date, title from articles where date is not null is not null order by date'
 ⋮
 2020-05-02T21:11:00-07:00    Skinny Lines and Flat Colors
@@ -138,7 +140,7 @@ understand data but not necessarily databases.
 And although it’s slower than `q` for SQL queries, it’s much closer than what I
 came up with!
 
-``` console
+```console
 $ time sqlite-utils site.db 'select publishDate, title from entries order by publishDate' --table
 ⋮
 2020-05-03T04:11:00+00:00  Skinny Lines and Flat Colors
@@ -167,7 +169,7 @@ all`][hugo-list-all] prints summaries of all your main content entries, as
 comma-separated text. Python’s standard [subprocess][] and [csv][] are all I
 need to turn that into something useful.
 
-``` python
+```python
 import csv
 import subprocess
 
@@ -183,7 +185,7 @@ def list_hugo_content():
 [csv.DictReader][csv-dictreader] gives me a collection of manageable
 dictionaries.
 
-``` python
+```python
 {
     'date': '2020-04-28T01:36:54-07:00',
     'draft': 'false',
@@ -200,7 +202,7 @@ That’s useful for a high level overview of [that post][that-post] , but I want
 more. I want tags, categories, aliases, etc. I keep those details as
 [YAML][yaml] text in content [front matter][front-matter].
 
-``` yaml
+```yaml
 title: From Dotfiles to Org File
 uuid: f03e5f2f-70a8-4988-92cd-595c8e3fdc97
 description: at 1:30am they're all good ideas
@@ -223,7 +225,7 @@ announcements:
 [PyYAML][pyyaml] moves quick when powered by [libYAML][libyaml].  So I make
 sure I have both installed on my Manjaro machine.
 
-``` console
+```console
 $ pamac install libyaml
 $ pip install pyyaml
 ```
@@ -231,12 +233,12 @@ $ pip install pyyaml
 I can’t think of a pretty way to get at an entry’s front matter, so let’s just
 get it out of the way.
 
-{% note %}
+:::note
 It’s not worth rewriting a whole blog post just yet, but lately I use
 [python-frontmatter][] for tasks like this.
 
 [python-frontmatter]: https://github.com/eyeseast/python-frontmatter
-{% /note %}
+:::
 
 ```python
 import yaml
@@ -266,14 +268,14 @@ Okay, now to mash entry and relevant front matter bits together. I prefer
 $ pip install arrow
 ```
 
-```python{title="Import entry dependencies" verbatim=false}
+```python title="Import entry dependencies"
 from collections import namedtuple
 import os
 
 import arrow
 ```
 
-```python{title="Prepare entry" verbatim=false}
+```python title="Prepare entry"
 SiteEntry = namedtuple("SiteEntry", ["entry", "tags", "announcements", "aliases"])
 
 def prepare_entry(entry):
@@ -316,7 +318,7 @@ I got everything tidy and pretty. We’re ready for the database.
 
 ### Loading the data
 
-``` console
+```console
 $ pip install sqlite-utils
 ```
 
@@ -327,11 +329,11 @@ created when you insert something.
 
 I think we called that "autovivification" in Perl. It’s nice.
 
-``` python{title="import sqlite-utils" verbatim=false}
+```python title="import sqlite-utils"
 from sqlite_utils import Database
 ```
 
-``` python{title="build databse" verbatim=false}
+```python title="build databse"
 DB_NAME =  "site.db"
 
 def build_db():
@@ -371,7 +373,7 @@ def build_db():
 All that works makes `build_db` a convenenient starting point for
 `build-db.py`.
 
-``` python{title="define script execution" verbatim=false}
+```python title="define script execution"
 if __name__ == "__main__":
     build_db()
 ```
@@ -380,7 +382,7 @@ I *could* specify an in-memory database, but no. For the moment I’ll settle on
 creating a database file. That way I can more easily play with the
 `sqlite-utils` command line interface.
 
-``` console
+```console
 $ sqlite-utils tables site.db --counts --json-cols | python -m json.tool
 [
     {
@@ -409,7 +411,7 @@ I’m content. But I’m also curious. What does my site metadata look like in D
 I don’t have any great insights here. I just wanted to look at the pretty
 tables. Played with [metadata][] and checked out the results.
 
-``` console
+```console
 $ pip install datasette
 ⋮
 $ datasette serve --metadata datasette.json site.db

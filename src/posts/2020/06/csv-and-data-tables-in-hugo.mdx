@@ -21,7 +21,7 @@ tags:
 title: CSV and Data Tables in Hugo
 ---
 
-{% note title="TL;DR:" %}
+::note{title="TL;DR:"}
 Use [Hugo][hugo]’s [`transform.Unmarshal`][transform-unmarshal] to turn strings
 into data structures, which you can feed into a table template. But sometimes
 [`split`][split] makes more sense.
@@ -29,7 +29,7 @@ into data structures, which you can feed into a table template. But sometimes
 [hugo]: https://gohugo.io
 [transform-unmarshal]: https://gohugo.io/functions/transform.unmarshal/
 [split]: https://gohugo.io/functions/split/
-{% /note %}
+:::
 
 I figured out how to write Hugo [shortcodes][hugo-shortcodes] to generate
 [tables][html-table] from [CSV][csv] and other formats. Didn’t even occur to me
@@ -52,7 +52,7 @@ post of mine about [elscreen][elscreen]:
 
 [elscreen]: /post/2017/01/elscreen/
 
-``` markdown
+```markdown
 Function            | Keys    | Description
 --------------------|---------|-------------------------------------
 `elscreen-create`   | `C-z c` | Create a new screen and switch to it.
@@ -86,12 +86,12 @@ command line. I may want to copy and paste something into a table for a blog
 post every once in a while.
 
 A `csv-table` shortcode could contain any CSV data. Maybe something from the
-[Awesome Public Datasets][apd]? Nah, I’ll just use my <https://plausible.io>
+[Awesome Public Datasets][apd]? Nah, I’ll just use my [Plausible](https://plausible.io)
 visitor count for the last week.
 
 [apd]: https://github.com/awesomedata/awesome-public-datasets
 
-``` html {% process=false %}
+```csv
 {{</* csv-table */>}}
 Date,Visitors
 2020-05-28,66
@@ -118,7 +118,7 @@ turn into a table by iterating through everything with [`range`][hugo-range].
 
 [hugo-range]: https://gohugo.io/functions/range/
 
-``` html{title="layouts/shortcodes/csv-table.html"} {% process=false %}
+```html title="layouts/shortcodes/csv-table.html"
 {{</* code file="layouts/shortcodes/csv-table.html" */>}}
 {{ $rows := .Inner | transform.Unmarshal }}
 
@@ -151,7 +151,7 @@ I’ll add a parameter for the caption. Maybe another parameter indicating
 whether to expect a header row, since the first row of CSV doesn’t *always*
 contain column names.
 
-``` html {% process=false %}
+```html
 {{</* csv-table caption="Site visitors, 2020-05-28 to 2020-06-04" header=true */>}}
 Date,Visitors
 ...
@@ -160,7 +160,7 @@ Date,Visitors
 
 Now that I know how I want to use the shortcode, it’s time to implement the details.
 
-``` html{title="layouts/shortcodes/csv/table.html"} {% process=false %}
+```html title="layouts/shortcodes/csv/table.html"
 {{ $caption := .Get "caption" }}
 {{ $useHeaderRow := .Get "header" }}
 {{ $rows := .Inner | transform.Unmarshal }}
@@ -223,7 +223,7 @@ objects.
 Suppose I extracted details for the US and a couple neighbors from
 [COVID19API](https://covid19api.com/).
 
-```html {% process=false %}
+```js {% process=false %}
 {{</* data-table */>}}
 {
   "caption": "COVID-19 updates for 6 Jun 2020",
@@ -281,7 +281,7 @@ Suppose I extracted details for the US and a couple neighbors from
 The logic looks similar to `csv-table`, with adjustments for data format
 differences.
 
-```html{title="layouts/shortcodes/data-table.html"} {% process=false %}
+```html title="layouts/shortcodes/data-table.html"
 {{ $table := .Inner | transform.Unmarshal }}
 
 <table>
@@ -346,7 +346,7 @@ want?
 
 Maybe something line-oriented?
 
-``` html {% process=false %}
+```text
 {{</* list-table caption="Common `elscreen` commands" header=true */>}}
 Function
 Keys
@@ -382,7 +382,7 @@ I like it. Easy to write, easy to read, and easy to parse with
 [`trim`](https://gohugo.io/functions/trim/) a leading newline because of how
 `.Inner` gets handed off, but that’s the only wrinkle so far.
 
-``` text{title="layouts/shortcodes/list-table.html"} {% process=false %}
+```text title="layouts/shortcodes/list-table.html"
 {{ $caption := .Get "caption" }}
 {{ $useHeaderRow := .Get "header" }}
 {{ $rows := split (trim .Inner "\n") "\n\n" }}

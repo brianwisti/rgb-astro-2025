@@ -29,7 +29,7 @@ I didn't think to try them out for labeling code until just now, though.
 This [comment][pamubay-comment] from Hugo Discourse user pamubay got me started.
 My template builds directly on theirs.
 
-```html{title="layouts/_default/render-codeblock.html"}
+```html title="layouts/_default/render-codeblock.html"
 {{- $isVerbatim := true -}}
 {{- if isset .Attributes "verbatim" -}}
   {{- $isVerbatim = .Attributes.verbatim -}}
@@ -65,7 +65,7 @@ illustrations.
 
 My render hook looks for two attributes, `title` and `verbatim`. These attributes are added after the language identifier for the fenced code block.
 
-````markdown{title="Titled code block" verbatim=false}
+````markdown title="Titled code block"
 ```html{title="layouts/_default/render-codeblock.html"}
 ````
 
@@ -78,7 +78,7 @@ those in monospace. So it makes sense to have code block captions as verbatim by
 default. So the `verbatim` flag only matters if I set it to false, such as for
 explanatory captions.
 
-````markdown{title="non-verbatim code block title" verbatim=false}
+````markdown title="non-verbatim code block title"
 ```markdown{title="Titled code block" verbatim=false}
 ````
 

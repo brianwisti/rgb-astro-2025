@@ -88,7 +88,7 @@ Babel used to be an extension to Org, but it’s been a core part of the
 framework for a bit now. Thing is, Babel is powerful and a little
 dangerous. You need to give it permission.
 
-```lisp title="~/.emacs"
+```lisp{title="~/.emacs"}
 (use-package org
   :ensure org-plus-contrib
   :defer t
@@ -114,13 +114,13 @@ extracting any code it finds. It also means I need to ensure that my
 code blocks don’t request any dangerous actions. Leave this setting
 enabled if smart matters more to you than annoying.
 
-{% note title="2020-05-09 Correction" %}
+:::note{title="2020-05-09 Correction"}
 The Babel settings I added are for code *extraction*, not code
 evaluation. Babel extracts anything you want. [Code
 evaluation](https://orgmode.org/manual/Evaluating-Code-Blocks.html#Evaluating-Code-Blocks)
 is a different feature, and not needed for this post. Skip my
 `:custom` and `:config` items if you’re just tangling.
-{% /note %}
+:::
 
 Zamboni’s booklet provides directions for automatic export on save, but
 I’m still new to this. I’ll stick with manually triggering extraction

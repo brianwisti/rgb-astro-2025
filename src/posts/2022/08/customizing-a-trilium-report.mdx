@@ -9,7 +9,6 @@ description: In which I frolic with a note system that lets me use SQL
 draft: false
 posse:
 - https://hackers.town/@randomgeek/108794247029275591
-- https://twitter.com/brianwisti/status/1557066276811329536
 tags:
 - second-brain
 - trilium-notes
@@ -21,8 +20,6 @@ Been exploring [Trilium][trilium] for notes. One thing I'll say is the nerdy fea
 to my existing skills.
 
 [trilium]: https://github.com/zadam/trilium
-
-<!--more-->
 
 See, each note system has some way — or a plugin providing some way — to query
 information about your collected notes. Logseq [uses][lq-queries] Datascript, which is uh Lisp-ish?
@@ -82,10 +79,10 @@ ORDER BY countNotDeleted desc
 | Biography template | 4 | 0 |
 | Book template | 1 | 0 |
 
-{% note %}
+:::note
 I renamed the Trilium demo's included *People template* to *Biography template*
 for clarity here.
-{% /note %}
+:::
 
 I duplicated *Note type count*, pasted my new query, then adjusted the layout
 JS to reflect the tweaked query.

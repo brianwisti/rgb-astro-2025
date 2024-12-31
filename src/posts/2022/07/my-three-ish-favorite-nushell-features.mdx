@@ -20,8 +20,6 @@ Might as well start learning it.
 
 [nushell]: https://www.nushell.sh
 
-<!--more-->
-
 Today I use Nushell for one of my favorite learning tasks: examining my site. I made a throwaway one-liner when setting up [Nushell on Windows][nushell-windows-post]. I want to try again, and think through the process a little more this time.
 
 [nushell-windows-post]: /post/2022/04/trying-nushell-on-windows/
@@ -107,12 +105,12 @@ help commands | where category =~ formats
 
 ![a table of commands in the "formats" category](@img/2022/format-commands.png "`to md`? Interesting!")
 
-{% note %}
+:::note
 I bet the Perl devs perked up seeing that `=~`. Yes it's a regular expression! But it's almost definitely not a Perl regular expression. I haven't gone past literal substring matches yet, and the Nushell [regex documentation][nu-regex] page is basically a placeholder. I can only suggest you follow their suggestion to read the Rust [regex crate][regex-crate] documentation and figure out the differences yourself.
 
 [nu-regex]: https://www.nushell.sh/book/regular_expressions.html#regular-expressions
 [regex-crate]: https://docs.rs/regex/latest/regex/
-{% /note %}
+:::
 
 ### Viewing only select columns with `select`
 
@@ -223,7 +221,9 @@ That `published-at` column contains the result of running a block of commands. I
 hugo list all | from csv | insert published-at { |it| ... }
 ```
 
-Nushell blocks look and work a bit like {{< tag "ruby" >}} blocks. That means they also work similar to lambdas in {{< tag "python" >}} and anonymous functions in other langauges — cosmetic and shell-specific details aside.
+Nushell blocks look and work a bit like Ruby blocks.
+That means they also work similar to lambdas in Python and anonymous functions in other languages —
+cosmetic and shell-specific details aside.
 
 The block returns a column with dates for every value in my table's `publishDate` column.
 
@@ -237,13 +237,13 @@ The block returns a column with dates for every value in my table's `publishDate
 
 Nushell uses the shell-like pattern of prefixing variable names with `$` when we reference them.
 
-{% note title="Where did the parentheses come from?" %}
+:::note{title="Where did the parentheses come from?"}
 That's how Nushell does multi-line one-liners.
 
 See, my one-liner's getting a little long. Over in other shells, I'd be pulling out a backslash '\\' to indicate line continuation. But Nushell is expression-oriented. Ending a line with a backslash is just an error. So we turn the whole thing into a subexpression by wrapping it in parentheses. Nushell treats the evaluated result as a single expression, however many lines it takes to get there.
 
 Yes, fine. I _should_ be thinking about scripts at this point. I may get to those eventually. Until then I use parentheses to create a multiline subexpression.
-{% /note %}
+:::
 
 Where were we? Oh right. I have a table with more columns than I care about.
 

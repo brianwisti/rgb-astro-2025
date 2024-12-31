@@ -16,15 +16,16 @@ tags:
 - marginalia
 title: coolnamehere Content Update
 ---
+import TagLink from "@components/TagLink.astro"
 
-I got bored of the old {{< tag "coolnamehere" >}} pages
+I got bored of the old coolnamehere pages
 effectively sitting outside of the site because of the way
 [Jekyll](http://jekyllrb.com) — and pretty much every other static
 blogging system — treats pages as secondary to posts. It makes sense,
 anyways. Once you stop bikeshedding about where to put content in your
 elaborate directory structure, it gets easier to add stuff.
 
-So with a bit of {{< tag "ruby" >}}code, some time attempting to
+So with a bit of Ruby code, some time attempting to
 correct publishing dates on [archive.org](http://archive.org), scrubbing
 repeatedly over internal links with
 [linkchecker](http://wummel.github.io/linkchecker/), and heavy usage of
@@ -32,8 +33,7 @@ the
 [jekyll-pageless-redirects](https://github.com/nquinlan/jekyll-pageless-redirects)
 plugin, the important content of the site has a consistent presentation.
 
-Check {{< tag "coolnamehere" >}} to satisfy
-your historic curiosity.
+Check <TagLink tag="coolnamehere" /> to satisfy your historic curiosity.
 
 And *of course* there are still going to be issues with that old
 content.

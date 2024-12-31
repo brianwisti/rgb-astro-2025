@@ -19,12 +19,12 @@ are a couple of options, but I will focus on Rakudo Star. Rakudo Star is
 a distribution which includes some important libraries and an excellent
 book.
 
-{% note %}
+:::note
 Rakudo is released every month, so some of my details about version
 numbers may be a little off. I will do my best to stay caught up.
 Fortunately, my Babysteps are so basic that new releases have little
 effect on their value.
-{% /note %}
+:::
 
 The easiest way to install Rakudo Star depends on your operating
 system. Specifically, it depends on whether you're using Microsoft
@@ -86,7 +86,7 @@ make install
 Of course, there's no point installing Rakudo to a custom directory if
 your shell can't find it. Add a couple lines to your `.bashrc`.
 
-```bash{title=".bashrc"}
+```bash title=".bashrc"
 export RAKUDO_HOME=$HOME/rakudo
 export PATH=$RAKUDO_HOME/bin:$PATH
 ```
@@ -111,7 +111,7 @@ Now that we know Rakudo is installed, let's take a look at what it gets us.
 [parrot-babysteps]: /post/2009/07/parrot-babysteps/
 
 Obviously, you get [Rakudo][rakudo]. But Rakudo is built on top of the Parrot
-virtual machine, so you also get a fresh copy of {{< tag "parrot" >}}. You can
+virtual machine, so you also get a fresh copy of Parrot. You can
 learn more about coding directly to the virtual machine at the [Parrot
 Babysteps][parrot-babysteps]. And you also get NQP, which is sort of a
 stripped-down version of Rakudo that makes writing new languages in Parrot a
@@ -199,7 +199,6 @@ Hello, Brian - good to see you!
 
 ## What Now?
 
-{% note title="2021-08-21" %}
-I guess we'll never know; plenty of fun to be had with Raku
-though!
-{% /note %}
+:::note{title="2021-08-21"}
+I guess we'll never know; plenty of fun to be had with Raku though!
+:::

@@ -50,7 +50,7 @@ account on [one][mine] of many. You can find one suitable for your tastes at
 [Mastodon instances][instances].
 
 
-{% note %}
+:::note
 If you don't already know Mastodon, think of it as island versions of
 [Twitter][twitter].  Each instance has its own practices and policies depending
 on who runs it, so it's very much a "hanging out at a friend's house"
@@ -60,7 +60,7 @@ It's fun. You should try it out maybe. You can even host your own instance if
 you're hard-core into DIY.
 
 [twitter]: https://twitter.com
-{% /note %}
+:::
 
 ### Registering your application
 
@@ -92,7 +92,7 @@ from mastodon import Mastodon
 from rich.pretty import pprint
 ```
 
-{% note %}
+:::note
 Spoiler alert: yes I'll be using [Rich][rich] and [dataclasses][dataclasses]
 along with Mastodon.py.  Nothing fancy planned with Rich today. It's just part
 of my regular toolkit.
@@ -106,7 +106,7 @@ pip install --upgrade rich mastodon
 
 [dataclasses]: https://docs.python.org/3/library/dataclasses.html
 [rich]: https://rich.readthedocs.io/en/stable/index.html
-{% /note %}
+:::
 
 [direnv]: https://direnv.net
 
@@ -167,11 +167,10 @@ if __name__ == "__main__":
     pprint(app)
 ```
 
-<pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">App</span><span style="font-weight: bold">(</span><span style="color: #808000; text-decoration-color: #808000">mastodon</span>=<span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">mastodon.Mastodon.Mastodon</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7ff14f1e8850</span><span style="font-weight: bold">&gt;)</span>
-</pre>
+<pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">App</span><span style="font-weight: bold">(</span><span style="color: #808000; text-decoration-color: #808000">mastodon</span>=<span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">mastodon.Mastodon.Mastodon</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7ff14f1e8850</span><span style="font-weight: bold">&gt;)</span></pre>
 
 
-{% note title="Exporting Rich output" %}
+:::note{title="Exporting Rich output"}
 My code doesn't look *exactly* like what I've shared here. I take advantage
 of Rich's export features to simplify sharing program output.
 
@@ -197,7 +196,7 @@ After `app` does its thing, I export any output as formatted HTML, where I can
 edit as needed and insert here.
 
 [console]: https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console
-{% /note %}
+:::note
 
 So anyways, we verified that our connection works. Let's take a look at what
 that connection provides.
@@ -221,8 +220,7 @@ else:
     sys.exit(1)
 ```
 
-<pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
-</pre>
+<pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span></pre>
 
 
 #### Instance details
@@ -239,10 +237,10 @@ few to make a decent summary. Oh hey, and let's cache that dictionary to disk
 so I'm not making a fresh API query every time I check this post while I'm
 writing it.
 
-{% note %}
+:::note
 Be considerate about server resources for Mastodon. Most instances are run as
 personal projects. There's no need for us to run up their AWS bill.
-{% /note %}
+:::
 
 ```python
 def stored(func: Callable) -> Dict[str, Any]:
@@ -306,6 +304,11 @@ if __name__ == "__main__":
     pprint(app.instance_summary())
 ```
 
+:::note{title="2024-12-40"}
+MDX-in-Astro causing grief with `pre` blocks.
+:::
+
+```html
 <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
 stored.inner for instance
 Calling instance
@@ -317,6 +320,7 @@ Writing data to instance.json
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   </span><span style="color: #008000; text-decoration-color: #008000">'contact_account'</span>: <span style="color: #008000; text-decoration-color: #008000">'The_Gibson'</span>
 <span style="font-weight: bold">}</span>
 </pre>
+```
 
 ### Reading the timelines
 
@@ -369,6 +373,7 @@ if __name__ == "__main__":
     pprint(app.timeline_summary(), max_string=80)
 ```
 
+```html
 <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">Connection instance is <span style="color: #008000; text-decoration-color: #008000">healthy</span>
 stored.inner for instance
 Loading data from instance.json
@@ -395,6 +400,7 @@ Writing data to timeline_public.json
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   </span><span style="font-weight: bold">}</span>
 <span style="font-weight: bold">]</span>
 </pre>
+```
 
 Nice. Looks like `content` is in HTML format. Need to remember that if I ever
 make a more interesting Mastodon client.

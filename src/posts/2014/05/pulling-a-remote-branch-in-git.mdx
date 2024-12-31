@@ -14,10 +14,10 @@ tags:
 title: Pulling a Remote Branch In Git
 ---
 
-*TL;DR?* `git branch -r` to list remote branches. `git checkout
---track -b <local-branch> <remote>/<branch>` to check your branch
-out.
-<!--more-->
+:::note{title="TL;DR:"}
+`git branch -r` to list remote branches.
+`git checkout --track -b <local-branch> <remote>/<branch>` to check your branch out.
+:::
 
 Because I know I'll forget it if I don't write it down now.
 
@@ -32,25 +32,25 @@ one machine. The `-u` flag (or `--set-upstream` for the verbose)
 creates a tracking reference upstream, so that the remote
 repository remembers the branch.
 
-~~~ console
+```console
 $ git branch
 master
 * oh-hai
 $ git push -u origin oh-hai
-~~~ 
+```
 
 ## On Another Machine
 
 Now that I've created the tracking reference upstream, I can pull
 it down from the other machine.
 
-~~~ console
+```console
 $ git branch
 * master
 $ git branch -r
 origin/master
 origin/oh-hai
 $ git checkout --track -b oh-hai origin/oh-hai
-~~~ 
+```
 
 Hope I didn't forget anything. I'll find out soon enough.

@@ -66,10 +66,10 @@ Something like this:
 	- Enhanced content blocks (tasks, quotes, flashcards, headers, queries, diagrams, etc...)
 ```
 
-{% note %}
+:::note
 I use the `heading` property rather than Markdown header markers. That way a
 section header looks like a level one header when I zoom into that section.
-{% /note %}
+:::
 
 Because I only have a couple dozen plugins installed and I'm only working with
 local data, I won't worry about optimizing performance. I can set up everything
@@ -215,13 +215,13 @@ Now we can go back to a regular table view.
 
 | title             | url                                                  | description                                                                             | is-disabled | is-theme |
 |-------------------|------------------------------------------------------|-----------------------------------------------------------------------------------------|-------------|----------|
-| Agenda            | <https://github.comhaydenull/logseq-plugin-agenda>   | An agenda manager plugin for logseq                                                     | true        | false    |
-| Awesome Content   | <https://github.comyoyurec/logseq-awesome-content>   | Enhanced content blocks (tasks, quotes, flashcards, headers, queries, diagrams, etc...) | false       | false    |
-| Awesome Links     | <https://github.comyoyurec/logseq-awesome-links>     | Favicons for external links, page icons for internal                                    | false       | false    |
+| Agenda            |  https://github.comhaydenull/logseq-plugin-agenda    | An agenda manager plugin for logseq                                                     | true        | false    |
+| Awesome Content   |  https://github.comyoyurec/logseq-awesome-content    | Enhanced content blocks (tasks, quotes, flashcards, headers, queries, diagrams, etc...) | false       | false    |
+| Awesome Links     |  https://github.comyoyurec/logseq-awesome-links      | Favicons for external links, page icons for internal                                    | false       | false    |
 | ..                | ..                                                   | ..                                                                                      | ...         | ...      |
-| Split block       | <https://github.comhyrijk/logseq-plugin-split-block> | Splitting multi-line text into blocks                                                   | false       | false    |
-| Tags              | <https://github.comgidongkwon/logseq-plugin-tags>    | A plugin that lets you find and search all of your #tags.                               | false       | false    |
-| Get webpage title | <https://github.compaulkinlan/logseq-webpage-title>  | A neat little tool to fetch the title of a link and wrap it in markdown syntax.         | false       | false    |
+| Split block       |  https://github.comhyrijk/logseq-plugin-split-block  | Splitting multi-line text into blocks                                                   | false       | false    |
+| Tags              |  https://github.comgidongkwon/logseq-plugin-tags     | A plugin that lets you find and search all of your #tags.                               | false       | false    |
+| Get webpage title |  https://github.compaulkinlan/logseq-webpage-title   | A neat little tool to fetch the title of a link and wrap it in markdown syntax.         | false       | false    |
 
 How about the summary string `block` column? I'll need to throw a few tabs and
 newlines in there for the Logseq page structure I already have in mind. In
@@ -313,7 +313,7 @@ $page_text | save --force $page_file
 
 We set the `--force` flag on [save](https://www.nushell.sh/commands/docs/save.html) , otherwise it won't update an existing file.
 
-## Is It Fast Enough? {#is-it-fast-enough}
+## Is It Fast Enough?
 
 ```text
 nu ❯ timeit { nu plugin_page.nu }

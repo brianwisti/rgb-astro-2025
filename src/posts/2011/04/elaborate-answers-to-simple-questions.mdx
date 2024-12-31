@@ -12,6 +12,7 @@ tags:
 - blogspot
 title: Elaborate Answers To Simple Questions
 ---
+import Quote from "@components/Quote.astro"
 
 Use `string` methods instead of importing `string`. Build email messages
 with the standard [email](http://docs.python.org.library.email.html)
@@ -20,7 +21,7 @@ library.
 I saw an email last night from somebody with a simple
 [Python](http://python.org) question.
 
-{% quote %}
+<Quote>
 Hi,
 
 … I have some issues in my python program. I have installed python27
@@ -31,7 +32,7 @@ Please help me out
 
 My program:
 
-``` python
+```python
 #!python
 import sys
 #import C:\Python27\Lib\string
@@ -61,7 +62,7 @@ AttributeError: 'module' object has no attribute 'join'
 ```
 
 …
-{% /quote %}
+</Quote>
 
 For some reason, I do not get any error when I try to run her code with
 Python 2.7.1 on Windows XP. That’s okay, though. I can still help a
@@ -74,7 +75,7 @@ separator)`, you could use `separator.join(items)`. That’s considered
 the standard way to join a list of items into a single string these
 days.
 
-``` python
+```python
 Subject = "Testmail"
 To = "yeahright@nonotreallyawebsiteihope.com"
 From = "yeahright@nonotreallyawebsiteihope.com"

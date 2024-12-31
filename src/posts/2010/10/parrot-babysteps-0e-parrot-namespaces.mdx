@@ -99,29 +99,34 @@ The `.namespace` directive is used to tell Parrot that the following code
 belongs in a particular namespace. Its argument is a hash index specifying the
 name.
 
-    .namespace ['SpaceTrade']
+```
+.namespace ['SpaceTrade']
+```
 
 Use a complex key to indicate a nested namespace.
 
-    .namespace ['SpaceTrade';'Shell']
+```
+.namespace ['SpaceTrade';'Shell']
+```
 
 All of the code after the `.namespace` directive gets filed in the namespace
 associated with the key you handed to it. This lasts until you declare a new
 namespace.
 
 It's time to try it out in `spacetrade.pir`. All of the code written so far is
-for the shell, so I can probably get away with putting my `.namespace`
-  directive at the top of the file.
+for the shell, so I can probably get away with putting my `.namespace` directive at the top of the file.
 
-    # example-0e-01/lib/spacetrade.pir
-    .namespace ['SpaceTrade';'Shell']
+```
+# example-0e-01/lib/spacetrade.pir
+.namespace ['SpaceTrade';'Shell']
 
-    .sub 'main' :main
-        run_shell()
-    .end
+.sub 'main' :main
+    run_shell()
+.end
 
-    .sub run_shell
-        # ...
+.sub run_shell
+    # ...
+```
 
 Why do I say "SpaceTrade::Shell" rather than `['SpaceTrade';'Shell']` when
 talking about my namespace in this article? That is mainly because I am lazy.
@@ -129,17 +134,19 @@ My fingers do not enjoy typing out all the characters to say
 `['SpaceTrace';'Shell']`, so I want to use a shorthand. "SpaceTrade::Shell"
 mimics a convention used by some Parrot programmers when talking about
 namespaces. It is a convention derived from the way that namespaces - or
-"packages" - are declared in {{< tag "perl" >}}, which is another language of
+"packages" - are declared in Perl, which is another language of
 choice for many Parrot developers. I will switch to another convention if I see
 one that is both widely used and easy to type.
 
 Back to SpaceTrade. I run `setup.pir test` out of curiosity.
 
-    $ parrot setup.pir test
-    t/01-shell-metacommands.t .. ok
-    All tests successful.
-    Files=1, Tests=6,  0.015 wallclock secs
-    Result: PASS
+```
+$ parrot setup.pir test
+t/01-shell-metacommands.t .. ok
+All tests successful.
+Files=1, Tests=6,  0.015 wallclock secs
+Result: PASS
+```
 
 The tests pass, which is kind of cool. But *why* do they pass, if I have
 defined a namespace in `spacetrade.pir`? The tests should complain about
@@ -161,38 +168,44 @@ to prepare for that clutter.
 To specify that you are going back to the default namespace, hand an empty key
 to the `.namespace` directive.
 
-    .namespace [ ]
+```
+.namespace [ ]
+```
 
 I understand the idea here. The default namespace is no namespace at all, so it
 gets an empty key. Let's put that line in `01-shell-metacommands.pir`.
 
-    # example-0e-02/t/01-shell-metacommands.pir
+```
+# example-0e-02/t/01-shell-metacommands.pir
 
-    .include 'lib/spacetrade.pir'
+.include 'lib/spacetrade.pir'
 
-    .namespace [ ]
+.namespace [ ]
 
-    .sub 'main' :main
-        .include 'test_more.pir'
-        # ...
+.sub 'main' :main
+    .include 'test_more.pir'
+    # ...
+```
 
 What happens if I run the tests now?
 
-    $ parrot setup.pir test
-    t/01-shell-metacommands.t .. Dubious, test returned 1
-    Failed 6/6 subtests
+```
+$ parrot setup.pir test
+t/01-shell-metacommands.t .. Dubious, test returned 1
+Failed 6/6 subtests
 
-    Test Summary Report
-    -------------------
-    t/01-shell-metacommands.t (Tests: 0 Failed: 0)
-      Non-zero exit status: 1
-      Parse errors: Unknown TAP token: "Could not find sub register_default_commands"
-                    Unknown TAP token: "current instr.: 'main' pc 275 (t/01-shell-metacommands.t:14)"
-    Bad plan.  You planned 6 tests but ran 0.
-    Files=1, Tests=0,  0.014 wallclock secs
-    Result: FAIL
-    test fails
-    current instr.: 'setup' pc 829 (runtime/parrot/library/distutils.pir:379)
+Test Summary Report
+-------------------
+t/01-shell-metacommands.t (Tests: 0 Failed: 0)
+  Non-zero exit status: 1
+  Parse errors: Unknown TAP token: "Could not find sub register_default_commands"
+                Unknown TAP token: "current instr.: 'main' pc 275 (t/01-shell-metacommands.t:14)"
+Bad plan.  You planned 6 tests but ran 0.
+Files=1, Tests=0,  0.014 wallclock secs
+Result: FAIL
+test fails
+current instr.: 'setup' pc 829 (runtime/parrot/library/distutils.pir:379)
+```
 
 This is the error I was expecting to see initially, so I am happy. I suppose I could have put that 
 `.namespace [ ]` directive at the end of `spacetrade.pir` - Parrot does not have any rules about where to end one
@@ -208,68 +221,74 @@ allows us to grab a variable from another namespace. We used it in to grab the
 `chomp` subroutine from the String::Utils namespace. Let's use `get_global` to
 make the tested subroutines available.
 
-    # example-0e-03/t/01-shell-metacommands.t
-    .include 'lib/spacetrade.pir'
+```
+# example-0e-03/t/01-shell-metacommands.t
+.include 'lib/spacetrade.pir'
 
-    .namespace [ ]
+.namespace [ ]
 
-    .sub 'main' :main
-        .include 'test_more.pir'
+.sub 'main' :main
+    .include 'test_more.pir'
 
-        plan(6)
+    plan(6)
 
-        .local pmc    register_default_commands
-        .local pmc    evaluate_command
-        .local pmc    register_command
-        .local pmc    commands
-        .local string expected
-        .local string output
+    .local pmc    register_default_commands
+    .local pmc    evaluate_command
+    .local pmc    register_command
+    .local pmc    commands
+    .local string expected
+    .local string output
 
-        register_default_commands = get_global ['SpaceTrade';'Shell'], 'register_default_commands'
-        evaluate_command = get_global ['SpaceTrade';'Shell'], 'evaluate_command'
-        register_command = get_global ['SpaceTrade';'Shell'], 'register_command'
+    register_default_commands = get_global ['SpaceTrade';'Shell'], 'register_default_commands'
+    evaluate_command = get_global ['SpaceTrade';'Shell'], 'evaluate_command'
+    register_command = get_global ['SpaceTrade';'Shell'], 'register_command'
 
-        commands = register_default_commands()
+    commands = register_default_commands()
 
-        # ...
+    # ...
+```
 
 As we can see, that's *almost* good enough.
 
-    1..6
-    ok 1 - :help should be a registered default command
-    ok 2 - :quit should be a registered default command that returns an empty string
-    ok 3 - :help should reflect registered commands
-    not ok 4 - User command ":dude" should result in string "Dude!"
-    # Have: Invalid command: :dude points to nonexistent sub say_dude
-    # Want: Dude!
-    ok 5 - Shell should warn about unknown commands
-    ok 6 - Shell should warn about invalid commands
+```
+1..6
+ok 1 - :help should be a registered default command
+ok 2 - :quit should be a registered default command that returns an empty string
+ok 3 - :help should reflect registered commands
+not ok 4 - User command ":dude" should result in string "Dude!"
+# Have: Invalid command: :dude points to nonexistent sub say_dude
+# Want: Dude!
+ok 5 - Shell should warn about unknown commands
+ok 6 - Shell should warn about invalid commands
+```
 
 Up until now we have been using subroutine names when registering commands, but
 that is not going to work anymore. SpaceTrade no longer knows exactly where it
 should look for the subroutines with those names. Instead of names, let's try
 using the subroutines themselves.
 
-    # example-0e-04/lib/spacetrade.pir
-    .sub register_command
-        .param pmc    commands
-        .param string name
-        .param pmc    code
-        .param string explanation
+```
+# example-0e-04/lib/spacetrade.pir
+.sub register_command
+    .param pmc    commands
+    .param string name
+    .param pmc    code
+    .param string explanation
 
-        .local pmc    command
-        .local pmc    callback
+    .local pmc    command
+    .local pmc    callback
 
-        command = new 'Hash'
-        command['code'] = code
-        command['explanation'] = explanation
+    command = new 'Hash'
+    command['code'] = code
+    command['explanation'] = explanation
 
-        commands[name] = command
-        goto RETURN_COMMANDS
+    commands[name] = command
+    goto RETURN_COMMANDS
 
-      RETURN_COMMANDS:
-        .return(commands)
-    .end
+  RETURN_COMMANDS:
+    .return(commands)
+.end
+```
 
 `register_command` doesn't look a lot different. The names have changed to show
 what is going on, but we are still just building a Hash of commands and relying
@@ -277,41 +296,43 @@ on `evaluate_command` to sort out any problems.
 
 Naturally, that means `evaluate_command` is where the changes become obvious.
 
-    # example-0e-04/lib/spacetrade.pir
-    .sub evaluate_command
-        .param pmc    commands
-        .param string name
+```
+# example-0e-04/lib/spacetrade.pir
+.sub evaluate_command
+    .param pmc    commands
+    .param string name
 
-        .local int    has_command
-        .local pmc    command_info
-        .local pmc    code
-        .local int    is_invokable
-        .local pmc    command_sub
-        .local string output
+    .local int    has_command
+    .local pmc    command_info
+    .local pmc    code
+    .local int    is_invokable
+    .local pmc    command_sub
+    .local string output
 
-        has_command = exists commands[name]
-        unless has_command goto UNKNOWN_COMMAND
+    has_command = exists commands[name]
+    unless has_command goto UNKNOWN_COMMAND
 
-        command_sub = commands[name;'code']
-        if_null command_sub, INVALID_COMMAND
+    command_sub = commands[name;'code']
+    if_null command_sub, INVALID_COMMAND
 
-        is_invokable = does command_sub, 'invokable'
-        unless is_invokable goto INVALID_COMMAND
+    is_invokable = does command_sub, 'invokable'
+    unless is_invokable goto INVALID_COMMAND
 
-        output = command_sub(commands)
-        goto RETURN_OUTPUT
+    output = command_sub(commands)
+    goto RETURN_OUTPUT
 
-      UNKNOWN_COMMAND:
-        output = "Unknown command: " . name
-        goto RETURN_OUTPUT
+  UNKNOWN_COMMAND:
+    output = "Unknown command: " . name
+    goto RETURN_OUTPUT
 
-      INVALID_COMMAND:
-        output = "Invalid command: " . name
-        output .= " does not point to a valid subroutine"
+  INVALID_COMMAND:
+    output = "Invalid command: " . name
+    output .= " does not point to a valid subroutine"
 
-      RETURN_OUTPUT:
-        .return(output)
-    .end
+  RETURN_OUTPUT:
+    .return(output)
+.end
+```
 
 We do a few simple checks when somebody tries to evaluate a command.
 
@@ -331,20 +352,22 @@ We should make one more change before heading over to the tests.
 `register_default_commands` needs to adjust to the new way of registering
 commands.
 
-    # example-0e-04/lib/spacetrade.pir
-    .sub register_default_commands
-        .local pmc commands
-        .local pmc help_command
-        .local pmc quit_command
+```
+# example-0e-04/lib/spacetrade.pir
+.sub register_default_commands
+    .local pmc commands
+    .local pmc help_command
+    .local pmc quit_command
 
-        commands = new 'Hash'
-        help_command = get_global 'default_help'
-        quit_command = get_global 'default_quit'
-        commands = register_command(commands, ':help', help_command, 'This view')
-        commands = register_command(commands, ':quit', quit_command, 'Exit the shell')
+    commands = new 'Hash'
+    help_command = get_global 'default_help'
+    quit_command = get_global 'default_quit'
+    commands = register_command(commands, ':help', help_command, 'This view')
+    commands = register_command(commands, ':quit', quit_command, 'Exit the shell')
 
-        .return(commands)
-    .end
+    .return(commands)
+.end
+```
 
 If you don't explicitly hand a namespace to `get_global`, it will use whatever
 namespace it's called from. In this case, that is the SpaceTrade::Shell
@@ -354,17 +377,21 @@ We have to change the tests themselves now. There is actually only one test
 that needs to be changed. Look in `01-shell-metacommands.t` for the line that
 registers the `:dude` command.
 
-    # example-0e-03/t/01-shell-metacommands.t
-    # ...
-    commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
+```
+# example-0e-03/t/01-shell-metacommands.t
+# ...
+commands = register_command(commands, ':dude', 'say_dude', 'Say "Dude!"')
+```
 
 Instead of handing a string, create a PMC to hold the `say_dude` subroutine and
 had *that* to `register_command`.
 
-    # example-0e-04/t/01-shell-metacommands.t
-    .local pmc my_sub
-    my_sub = get_global 'say_dude'
-    commands = register_command(commands, ':dude', my_sub, 'Say "Dude!"')
+```
+# example-0e-04/t/01-shell-metacommands.t
+.local pmc my_sub
+my_sub = get_global 'say_dude'
+commands = register_command(commands, ':dude', my_sub, 'Say "Dude!"')
+```
 
 Once again, we're using `get_global` to grab from the current namespace, which
 is the default namespace now.

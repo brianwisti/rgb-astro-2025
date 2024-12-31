@@ -13,10 +13,11 @@ tags:
 title: Pretty Recursive Grep
 ---
 
-[ack]: http://beyondgrep.com
-*TL;DR* Set `GREP_OPTIONS='-RI --color=auto'`. Or install [ack][].
-<!--more-->
+:::note{title="TL;DR:"}
+Set `GREP_OPTIONS='-RI --color=auto'`. Or install [ack][].
+:::
 
+[ack]: http://beyondgrep.com
 [GNU grep]: http://www.gnu.org/software/grep/
 
 I'm looking for TODO entries in source code on a machine that does not have
@@ -34,29 +35,29 @@ happy.
 
 That leaves me with this invocation.
 
-~~~ console
+```console
 $ grep --recursive --binary-file=without-match --color=auto 'TODO' .
-~~~ 
+```
 
 Or maybe the short form would be easier.
 
-~~~ console
-$ rgrep -I --color=auto 'TODO' .
-~~~ 
+```bash
+rgrep -I --color=auto 'TODO' .
+```
 
 [environment variables]: http://www.gnu.org/software/grep/manual/html_node/Environment-Variables.html
 
 Probably smartest to look at what [environment variables][] I could set
 up in order to skip remembering this stuff at all.
 
-~~~ bash
+```bash
 export GREP_OPTIONS='-RI --color=auto'
-~~~ 
+```
 
 Pop that in my `.bashrc` and I'm set.
 
-~~~ console
-$ grep 'TODO' .
-~~~ 
+```console
+grep 'TODO' .
+```
 
 All right. Back to work.

@@ -27,12 +27,12 @@ Got it?
 Okay, good.
 Now that we’ve settled this little detail, let’s move on.
 
-{% note %}
+:::note
 I should mention that if all you want is a command-line printout of your battery information on Linux,
 you can get that with the command `acpi -b`.
 Still, reinventing wheels can be fun.
 Why not give this a shot?
-{% /note %}
+:::
 
 ## The Raw Materials
 
@@ -42,10 +42,8 @@ Linux follows this ideal by keeping system information in a number of files in t
 I could probably find everything I might want to know about the system in that directory,
 but let’s just focus on the directories which contain battery information.
 
-{% note %}
 Ubuntu keeps the files in `/proc/`, but other distros may keep the files in other locations, such as `/var/proc/`.
 Poke around on your own system to find out the specifics for your distribution.
-{% /note %}
 
 ```
 >> read %/proc/acpi/battery/
@@ -115,7 +113,7 @@ Now that we’ve seen what the raw information looks like, let’s work on makin
 
 ## Beginning the Script
 
-```rebol
+```
 #!/usr/local/bin/rebol -qs
 
 REBOL [
@@ -168,7 +166,7 @@ I’d like to get at the information in this file as a hash:
 a dictionary datatype where values on the right are tied to keys on the left.
 Let’s use Parse and split along the colon character, like so.
 
-```rebol
+```
 #!/usr/local/bin/rebol -qs
 
 REBOL [
@@ -267,7 +265,7 @@ present -- yes
 How do I strip the leading whitespace in Rebol?
 I know there’s a "right" way, but for now I just want to get those spaces out of there.
 
-```rebol
+```
 #!/usr/local/bin/rebol -qs
 
 REBOL [
@@ -328,7 +326,7 @@ Good circulation is important, after all.
 Let’s refactor before we move on.
 I like to have my code as clean as I know how to make it each step of the way.
 
-```rebol
+```
 #!/usr/local/bin/rebol -qs
 
 REBOL [
@@ -398,7 +396,7 @@ This should be the easiest step.
 All we need to do is check the value of the "present" key.
 Should be no problem at all.
 
-```rebol
+```
 ; Print out what we have so far for debugging purposes.
 foreach [ name info ] batteries [
     if "yes" = select info "present" [
@@ -415,7 +413,7 @@ foreach [ name info ] batteries [
 We are now officially out of the "print out what we have for debugging purposes" stage.
 From here on, we will be creating the output we expect to see.
 
-```rebol
+```
 foreach [ name info ] batteries [
     if "yes" = select info "present" [
         charging-state: select info "charging state"
@@ -444,7 +442,7 @@ A full battery has 100%, and an empty battery has 0%.
 Seems easy enough, but we don’t have the total capacity listed in the state file.
 To get this information, we will need to look at the `info` file.
 
-```rebol
+```
 foreach [ name info ] batteries [
     if "yes" = select info "present" [
         charging-state: select info "charging state"
@@ -489,7 +487,7 @@ I will just show you the end result of the refactoring, but these are the ideas 
 
 And here’s the refactoring.
 
-```rebol
+```
 #!/usr/local/bin/rebol -s
 
 REBOL [ ]
@@ -570,7 +568,7 @@ Let’s move on, shall we?
 
 In order to calculate the time remaining before the battery runs out, we need to get the remaining charge and the rate that we’re using it up.
 
-```rebol
+```
         ...
         print battery-text
         print select info "remaining capacity"
@@ -601,7 +599,7 @@ Oh, right.
 Here’s the finished version of the utility.
 Took me a couple of hours, but a lot of that was me learning the basics of `parse`.
 
-```rebol
+```
 #!/usr/local/bin/rebol -s
 
 REBOL [

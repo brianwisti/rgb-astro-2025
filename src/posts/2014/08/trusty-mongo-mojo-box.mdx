@@ -19,11 +19,11 @@ tags:
 title: Trusty Mongo Mojo Box
 ---
 
-{% note title="TL;DR:" %}
+:::note{title="TL;DR:"}
 Install Vagrant & VirtualBox. `mkdir my-box && cd my-box && vagrant init
 brianwisti/trusty-mongo-mojo`. Be aware that this is my first packaged
 Vagrant box, and it is probably not great.
-{% /note %}
+:::
 
 ## Motivation
 
@@ -257,7 +257,7 @@ Of course I can. The Vagrant docs provide some
 [guidelines](http://docs.vagrantup.com/v2/boxes/base.html) for creating
 a new box for packaging.
 
-{% note title="Warning" %}
+:::note{title="Warning"}
 There is a warning in the packaging documentation that looks serious.
 
 > **Advanced topic\!** Creating a base box can be a time consuming and
@@ -268,7 +268,7 @@ There is a warning in the packaging documentation that looks serious.
 Blah, blah, blah. If I listened to every warning, I wouldn’t know what
 my hair smells like when it’s on fire. *You* may want to be more
 careful, though.
-{% /note %}
+:::
 
 The Vagrant [package command](http://docs.vagrantup.com/v2/cli/package.html) takes your
 virtual machine and wraps it up into a single box file that you can

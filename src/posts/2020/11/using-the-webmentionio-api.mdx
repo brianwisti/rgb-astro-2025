@@ -45,7 +45,7 @@ up.
 
 I’ll use [HTTPie][httpie] for my little exploration.  I like the way it works.
 
-``` sh
+```sh
 pip install httpie
 ```
 
@@ -54,7 +54,7 @@ pip install httpie
 We mainly care about the mentions endpoint.  Hand it your domain and API token,
 and it will send you the 20 most recent responses for your site.
 
-``` sh
+```sh
 http get https://webmention.io/api/mentions.jf2 \
   domain==randomgeekery.org \
   token==$WEBMENTION_KEY
@@ -63,14 +63,14 @@ http get https://webmention.io/api/mentions.jf2 \
 HTTPie’s double-equals `==` syntax means "make a query string," so I end up
 with something like this::
 
-``` text
+```text
 https://webmention.io/api/mentions.jf2?domain=randomgeekery.org&token=xxxxx
 ```
 
 When `http` fetches that URL, I get back a [JF2][jf2] feed that looks something
 like this.
 
-``` json
+```json
 {
     "children": [
         {
@@ -113,11 +113,11 @@ reacting to.  That’s kind of important.  Most recently, Twitter user
 [@junkw][junkw] retweeted my announcement about [adding a note from Org
 mode][adding-a-note-from-org-mode].
 
-{% note %}
+:::note
 There’s also a `.json` endpoint for every feed that presents a different
 structure for mentions.  I prefer it, because it contains fewer `wm-*`
 fields.  But the documentation uses JF2, so that’s what I’ll do.
-{% /note %}
+:::
 
 ### Checking for new reactions
 
@@ -125,7 +125,7 @@ Maybe I’m checking again later and only want to see the *new* reactions.  I
 request mentions received since the value of the `wm-received` field in the
 last entry I have.
 
-``` bash
+```bash
 http get https://webmention.io/api/mentions.jf2 \
   domain==randomgeekery.org \
   token==$WEBMENTION_KEY \
@@ -152,14 +152,14 @@ forward.
 
 Rather than the default `sort-dir` of `down`, I specify `up`.
 
-``` bash
+```bash
 http get https://webmention.io/api/mentions.jf2 \
   domain==randomgeekery.org \
   token==$WEBMENTION_KEY \
   sort-dir==up
 ```
 
-``` json
+```json
 {
     "children": [
         {
@@ -195,13 +195,13 @@ Aww, my first site reply. From [@hercynium][hercynium].
 I only get 20 results by default, though.  Here.  Let’s make [jq][] show us.
 Here’s a default page.
 
-``` bash
+```bash
 http get https://webmention.io/api/mentions.jf2 \
   domain==randomgeekery.org token==$WEBMENTION_KEY sort-dir==up \
   | jq '.children | length'
 ```
 
-``` text
+```text
 20
 ```
 
@@ -210,33 +210,33 @@ http get https://webmention.io/api/mentions.jf2 \
 I can specify how many responses I want in each response with the `per-page`
 parameter.  With `per-page` set to 100, I get a hundred entries.
 
-``` bash
+```bash
 http get https://webmention.io/api/mentions.jf2 \
   domain==randomgeekery.org token==$WEBMENTION_KEY per-page==100 \
   | jq '.children | length'
 ```
 
-``` text
+```text
 100
 ```
 
 Of course, if there aren’t a hundred entries to fill the page, I only get
 what’s available.
 
-``` bash
+```bash
 http get https://webmention.io/api/mentions.jf2 \
   domain==randomgeekery.org token==$WEBMENTION_KEY since=="2020-10-26T04:07:20Z" per-page=100 \
   | jq '.children | length'
 ```
 
-``` text
+```text
 0
 ```
 
 The `page` parameter — which starts at zero — lets me step through the feed
 in batches.
 
-``` bash
+```bash
 http get https://webmention.io/api/mentions.jf2 \
   domain==randomgeekery.org \
   token==$WEBMENTION_KEY \
@@ -244,7 +244,7 @@ http get https://webmention.io/api/mentions.jf2 \
   page==1
 ```
 
-``` json
+```json
 {
     "children": [
         {
@@ -283,12 +283,12 @@ conversation from my site.  Or I will once I’m done fixing everything.
 
 I could get a JF2 feed for specific URLs on my site if I was so inclined.
 
-``` bash
+```bash
 http get https://webmention.io/api/mentions.jf2 \
   target==https://randomgeekery.org
 ```
 
-``` json
+```json
 {
     "children": [
         {
@@ -328,7 +328,7 @@ before I try something dangerous.
 The [Requests][requests] library for [Python][python] can help me build one
 list of Webmentions.
 
-```python{title="rebuild-mentions-feed.py"}
+```python title="rebuild-mentions-feed.py"
 import json
 import os
 import time
@@ -378,7 +378,7 @@ if __name__ == "__main__":
     rebuild_full_feed(domain, token, target_file)
 ```
 
-``` console
+```console
 $ python rebuild-mentions-feed.py
 Added 100 entries
 Added 100 entries

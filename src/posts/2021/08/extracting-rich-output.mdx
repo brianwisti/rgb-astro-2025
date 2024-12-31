@@ -24,18 +24,18 @@ run my code and paste its output into whatever draft I'm editing.
 
 So I'll figure that one out now.
 
-{% note title="2021-08-25 Update" %}
+:::note{title="2021-08-25"}
 I initially posted a version of this post using [BeautifulSoup][bs4] for HTML
 extraction. Then Rich creator [Will McGugan][will-mcgugan] pointed out that I could get
 what I need from Rich itself!
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Great write up!<br><br>You may be able to skip the Beautiful Soup step with the following:<br><br>console.export_html(code_format=&quot;&lt;pre style=&quot;font-family:Menlo,&#39;DejaVu Sans Mono&#39;,consolas,&#39;Courier New&#39;,monospace&quot;&gt;{code}&lt;/pre&gt;&quot;)</p>&mdash; Will McGugan (@willmcgugan) <a href="https://twitter.com/willmcgugan/status/1430452309536956421?ref_src=twsrc%5Etfw">August 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Great write up!<br /><br />You may be able to skip the Beautiful Soup step with the following:<br /><br />console.export_html(code_format=&quot;&lt;pre style=&quot;font-family:Menlo,&#39;DejaVu Sans Mono&#39;,consolas,&#39;Courier New&#39;,monospace&quot;&gt;&lbrace;code&rbrace;&lt;/pre&gt;&quot;)</p>&mdash; Will McGugan (@willmcgugan) <a href="https://twitter.com/willmcgugan/status/1430452309536956421?ref_src=twsrc%5Etfw">August 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Yeah let's do that instead. Much less to remember.
 
 [will-mcgugan]: https://www.willmcgugan.com/
 [bs4]: https://www.crummy.com/software/BeautifulSoup/
-{% /note %}
+:::
 
 ## What are we printing?
 
@@ -141,10 +141,10 @@ I don't see anything on my screen, of course, because I piped everything to
 column is right-aligned. The title is centered. But it loses some of the finer
 formatting bits: bold, italicization, color.
 
-{% note %}
+:::note
 Also? This renders great on Chrome-based browsers and weird on Firefox.  There
 are definite limitations to just copying and pasting from the terminal.
-{% /note %}
+:::
 
 Let's pull that clipboard management into the script with Al Sweigart's
 [Pyperclip][pyperclip] library.
@@ -203,7 +203,7 @@ Let me answer that question by pasting the contents of my clipboard:
 └─────────────────────────────────────────────────────────┴──────────┘
 ```
 
-<!-- markdownlint-disable-next-line MD053 -->
+/* markdownlint-disable-next-line MD053 */
 [escape-codes]: https://en.wikipedia.org/wiki/ANSI_escape_code
 
 Uh. Oops? `console` captured *exactly* what it would have printed, including
@@ -213,11 +213,11 @@ Rich supports [exporting][console-export] output beyond a raw dump, though.
 
 ## Let Rich get you some HTML
 
-{% note %}
+:::note
 For safety reasons, most Markdown converters must be explicitly configured to
 allow raw HTML through. Check the documentation of your converter or blogging
 tools to see if and how you need to do that.
-{% /note %}
+:::
 
 A Console created with the `record` option enabled remembers everything it
 prints. You can get export your copy at any point. The
@@ -306,5 +306,5 @@ blogging or information sharing.
 [pyperclip]: https://pypi.org/project/pyperclip/
 [capture]: https://rich.readthedocs.io/en/stable/console.html#capturing-output
 [console]: https://rich.readthedocs.io/en/stable/reference/console.html
-<!-- markdownlint-disable-next-line MD053 -->
+/* markdownlint-disable-next-line MD053 */
 [console-export]: https://rich.readthedocs.io/en/stable/console.html#exporting

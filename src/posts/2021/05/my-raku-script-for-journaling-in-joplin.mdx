@@ -257,18 +257,18 @@ sub entries-for-today() {
 }
 ```
 
-{% note title="2021-05-24" %}
+:::note{title="2021-05-24"}
 [@b2gills][b2gills] mentioned that I could also use [`Date.today`][date-today]
 here!
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Why didn&#39;t you use Date.​today?<br><br>If you had a coercive parameter, you wouldn&#39;t even need to do anything more than Date.​today.<br><br> sub filtered-entries(Str(Date) $​date-funnel) {…}<br><br> sub entries-for-today() {<br> filtered-entries Date.​today<br> }</p>&mdash; Brad Gilbert (@b2gills) <a href="https://twitter.com/b2gills/status/1397038905405452296?ref_src=twsrc%5Etfw">May 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Why didn&#39;t you use Date.today?<br /><br />If you had a coercive parameter, you wouldn&#39;t even need to do anything more than Date.today.<br /><br /> sub filtered-entries(Str(Date) $date-funnel) &lbrace;…&rbrace;<br /><br /> sub entries-for-today() &;brace;<br /> filtered-entries Date.today<br /> &rbrace;</p>&mdash; Brad Gilbert (@b2gills) <a href="https://twitter.com/b2gills/status/1397038905405452296?ref_src=twsrc%5Etfw">May 25, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 I haven't messed with [parameter coercion][parameter-coercion] yet, but that
 looks like it will come in handy.
 
 [b2gills]: https://twitter.com/b2gills
 [parameter-coercion]: https://docs.raku.org/syntax/Coercion%20type
-{% /note %}
+:::
 
 Need to touch up my reading `MAIN` definition, though.
 
@@ -371,6 +371,7 @@ Maybe they do. Maybe they don't. *I* love screenshots.
 Honestly?  I'm not going to worry about it right now.  Piping to [Rich][rich]
 or [Glow][glow] suffices when I want it pretty.
 
+```html
 <pre class="rich">╔══════════════════════════════════════════════════════════════════════════════╗
 ║                          <span style="font-weight: bold">2021-05-22T08:12:00-07:00</span>                           ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -408,6 +409,7 @@ joys of hyperfocus.
 
 Better stretch my legs and get back to the official task list after.
 </pre>
+```
 
 ## The complete script
 

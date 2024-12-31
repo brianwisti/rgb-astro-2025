@@ -17,9 +17,6 @@ Having a fun day fiddling with the [Templater][templater] plugin for
 [obsidian]: https://obsidian.md
 [templater]: https://silentvoid13.github.io/Templater/
 
-<!--more-->
-
-
 ![journal page showing attemps at automaticing link creation](/img/2022/2022-05-30-obsidian.png)
 
 Here's the template code I have at the moment, if that's the sort of thing that
@@ -34,7 +31,7 @@ optional topic, creates the file, and inserts a link wherever my cursor is.
 
 With syntax highlighting, since inside the `<%* ... %>` it's just JavaScript.
 
-```js{title="jot-insert.md"}
+```js title="jot-insert.md"
 <%*
 // Jot title is a Zettel timestamp and optional topic
 const timestamp = tp.date.now("YYYYMMDDhhmm");
@@ -73,7 +70,7 @@ topic when invoking `jot-insert.md`, that will be used as the display title.
 Without syntax highlighting. Markdown, YAML, and JavaScript all mixed in
 --- can Hugo / Chroma even do that?
 
-```text{title="jot-new.md"}
+```text title="jot-new.md"
 ---
 <%*
 const fileTitle = tp.file.title;

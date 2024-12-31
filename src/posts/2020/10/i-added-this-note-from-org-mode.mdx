@@ -17,7 +17,7 @@ Trying an experiment with setting up a [capture template](https://orgmode.org/ma
 
 I built up the [ox-hugo capture sample](https://ox-hugo.scripter.co/doc/org-capture-setup/) to get my preferred `SECTION/YEAR/MONTH/STUB` folder layout.
 
-```elisp
+```lisp
 (defun org-hugo-note-capture-template ()
   "Returns `org-capture' template string for new site note."
   (let* ((title (read-from-minibuffer "Title: "))
@@ -38,7 +38,7 @@ I built up the [ox-hugo capture sample](https://ox-hugo.scripter.co/doc/org-capt
 
 Then the important bits of my capture template…
 
-```elisp
+```lisp
 (use-package org
   :custom
   (org-capture-templates

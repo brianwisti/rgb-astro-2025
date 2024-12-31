@@ -12,12 +12,12 @@ tags:
 title: Testing Justfile Recipe Arguments
 ---
 
-{% note title="TL;DR:" %}
-```justfile
+:::note{title="TL;DR:"}
+```text
 add TITLE:
   bundle exec ruby _scripts/add-post --title '{{ TITLE }}'
 ```
-{% /note %}
+:::
 
 Time to fiddle with my site setup some more.
 
@@ -53,14 +53,14 @@ bundle exec ruby _scripts/add-post --title 'Testing Justfile Recipe Arguments'
 [just]: https://just.systems
 
 I don't have to figure out the slug, but it's still rather tedious.
-I use {just}[just] to simplify those tedious site tasks.
+I use [just][just] to simplify those tedious site tasks.
 Putting the repeated bits of this invocation in a recipe — that's what `just` calls tasks —
 would cut down on the tedium.
 What about the title?
 Started thinking about TTY::Toolkit interactive prompts.
 Maybe some other time, because `just` lets you specify arguments for a recipe.
 
-```justfile
+```text
 add TITLE:
   bundle exec ruby _scripts/add-post --title '{{ TITLE }}'
 ```
@@ -76,7 +76,7 @@ And here we are!
 I use a couple other Ruby scripts.
 Might as well refactor that `bundle exec ruby`.
 
-```justfile
+```text
 ruby := 'bundle exec ruby'
 
 add TITLE:

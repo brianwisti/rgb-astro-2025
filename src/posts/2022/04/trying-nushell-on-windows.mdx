@@ -15,9 +15,9 @@ tags:
 title: Trying Nushell on Windows
 ---
 
-{% note title="The important bit" %}
+:::note{title="The important bit"}
 Jack — one of the cats — has recovered from whatever was bothering him with a little help from vet drugs. Thank goodness for that! Now I can get back to puttering.
-{% /note %}
+:::
 
 I have been puttering a little here and there with [Nushell][nu-home], a command line shell in the spirit of Bash, Zsh, and Fish. It's different from any of the above, though. It starts from the same "let me run my commands" starting point,
 but data handling, filtering, and transformation are core to Nu's functionality.
@@ -212,7 +212,7 @@ That's pretty much it! I'm good to go explore the world of Nushell on Windows.
 
 ## Sure but why
 
-Well, now that I have all this set up along with a local checkout of the site's current {{< tag "hugo" >}} iteration, I can play with Hugo's article listing.
+Well, now that I have all this set up along with a local checkout of the site's current Hugo iteration, I can play with Hugo's article listing.
 
 ```
 ❯ hugo list all | from csv | select title publishDate draft | sort-by -r publishDate | first 5

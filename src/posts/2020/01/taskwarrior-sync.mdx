@@ -16,11 +16,11 @@ tags:
 title: Taskwarrior Sync
 ---
 
-{% note title="TL;DR:" %}
+:::note{title="TL;DR:"}
 Set up an account at [Freecinc](https://freecinc.com) or
 [inthe.AM](https://inthe.am) to synchronize
 [Taskwarrior](https://taskwarrior.org) tasks across all the machines\!
-{% /note %}
+:::
 
 ## The problem
 
@@ -34,7 +34,7 @@ different machine: laptop, work computer, whatever.
 How do you get at your carefully maintained task list from another
 machine?
 
-{% note title="Why not just use your phone?" %}
+:::note{title="Why not just use your phone?"}
 Well, the mobile Taskwarrior experience is not great. There are a couple
 Android apps, but they lack the polish of other mobile task managers. So
 far I haven’t seen anything for iOS except a couple seemingly abandoned
@@ -44,7 +44,7 @@ a mobile terminal emulator like [Termux](https://termux.com/).
 
 Me? Mostly I take notes when out and about. Sometimes those notes become
 tasks when I’m in front of a computer.
-{% /note %}
+:::
 
 ## A solution: taskservers
 
@@ -198,7 +198,7 @@ $ crontab -e
 ```
 
 Hourly should suffice. The
-<https://crontab.guru/#0_*>*\**\*\_\*\[crontab guru\] says "hourly"
+[crontab guru](https://crontab.guru/#0_*****_*) says "hourly"
 would look like this:
 
 ```

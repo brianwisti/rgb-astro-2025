@@ -39,7 +39,7 @@ Right now I lean on my `_default` layouts for all content. The
 
 [template-list]: https://gohugo.io/templates/list/
 
-``` handlebars
+```handlebars
 = content main
   h1 {{ .Title }}
   ul.post-list
@@ -48,12 +48,12 @@ Right now I lean on my `_default` layouts for all content. The
     {{ end }}
 ```
 
-{% note title="2022-03-27 Update" %}
+:::note{title="2022-03-27 Update"}
 I used Hugo's support for Ace templates on my site back when writing this post.
 That support's been removed since then, but the logic holds well enough. The
 important stuff is in the `{{ … }}` blocks, so try not to get too distracted by
 Ace.
-{% /note %}
+:::
 
 Hugo gives the template a title and a collection of pages —
 along with numerous other [variables](https://gohugo.io/templates/variables/),
@@ -143,7 +143,7 @@ year: 2016
 
 This is going to be tedious. Let’s not do this manually, okay?
 
-Here comes the {{< tag "perl" >}}.
+Here comes the Perl.
 
 ### Automate The Frontmatter
 

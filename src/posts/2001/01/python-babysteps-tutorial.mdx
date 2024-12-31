@@ -14,11 +14,10 @@ tags:
 - coolnamehere
 title: Python Babysteps Tutorial
 ---
-
-{% note %}
+:::note
 This is my original Python Babysteps tutorial, which has existed in more
 or less the same form since 2001. There's better stuff out there now.
-{% /note %}
+:::
 
 ## Introduction
 
@@ -59,14 +58,14 @@ Before you can *use* Python, you need to *get* Python.
 
 ### Which Version of Python?
 
-{% note %}
+:::note
 You can also try Python 3, but this tutorial is just going to discuss
 2.6. Why is that? I prefer people use the latest version of Python.
 People who are using this tutorial in the context of a classroom
 probably aren’t going to have 3.0 as their default yet. There are enough
 differences between 2.6 and 3.0 that I’ll probably need a distinct
 Python 3 section on coolnamehere.
-{% /note %}
+:::
 
 There are a few versions of Python available for download:
 
@@ -97,13 +96,13 @@ Windows-friendly tools, ActivePython may be the best choice for business
 users. It’s the version that I’m using for testing the tutorial in
 Linux, so maybe that has some bearing on your decision.
 
-{% note %}
+:::note
 PythonWin is still available to you as part of the
 [win32all](http://starship.python.net/crew/mhammond/win32/) package, but
 you need to download and install it separately from your Python
 distribution. ActiveState Python for Linux includes IDLE, so I will be
 getting my Python from them for this article.
-{% /note %}
+:::
 
 Python 2.6, on the other hand, is the "official" version. It comes with
 a standard set of tools which are available on every platform that
@@ -128,7 +127,9 @@ just install ActivePython and get to work.
 
 The latest ActivePython downloads are available from
 
-> <http://downloads.activestate.com/ActivePython/releases/>
+:::quote
+http://downloads.activestate.com/ActivePython/releases/
+:::
 
 Open up a terminal after your download finishes and move to the
 directory that is holding the archive. Use `sudo` to run the
@@ -190,13 +191,13 @@ run the installer, click "Next" until done).
 You can always find links to download the latest version of Python at
 the Python site itself:
 
-> <http://www.python.org/download>
+> http://www.python.org/download
 
 Somewhere around the top of the page is a link to the latest version.
 Look for the first version that doesn’t have "alpha", "beta", or
 "release candidate" in its name. Follow that link, which is currently:
 
-> <http://python.org/ftp/python/2.6.1/python-2.6.1.msi>
+> http://python.org/ftp/python/2.6.1/python-2.6.1.msi
 
 Recently, the kind folks who run the [python.org](https://python.org)
 site have started making links to the latest Windows Python download
@@ -276,7 +277,7 @@ run your own Python programs with ease.
 
 You can find documentation for IDLE at:
 
-> <https://docs.python.org/2/library/idle.html>
+> https://docs.python.org/2/library/idle.html
 
 It’s a pretty standard and dry user manual, but should hold answers to
 any questions you might come up with for the details of using IDLE.
@@ -473,13 +474,13 @@ easier to sort everything out.
 I like to start every one of my scripts off with a quick header to
 describe the purpose of the program. Here is the rough template:
 
-{% note %}
+:::note
 [Docstrings](https://www.python.org/dev/peps/pep-0257/) would actually
 be better for script headers, but:
 
 1.  I haven’t described those yet
 2.  I needed an excuse to show you what comments look like.
-{% /note %}
+:::
 
 ```python
 # filename
@@ -616,13 +617,9 @@ BeginnersGuide](https://wiki.python.org/moin/BeginnersGuide).
 
 I have a few favorites of my own.
 
-- The Official Python Tutorial
-  - <http://docs.python.org/tutorial/>
-  - <http://docs.python.org/py3k/tutorial/index.html>
-- Dive Into Python
-  <http://www.diveintopython.net/>
-- How To Think Like a Computer Scientist In Python
-  <http://openbookproject.net/thinkcs/python/english2e/>
+- [The Official Python Tutorial](http://docs.python.org/tutorial/)
+- [Dive Into Python](http://www.diveintopython.net/)
+- [How To Think Like a Computer Scientist In Python](http://openbookproject.net/thinkcs/python/english2e/)
 
 ### Quick Reference: Using IDLE
 

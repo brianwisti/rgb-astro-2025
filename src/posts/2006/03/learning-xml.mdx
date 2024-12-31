@@ -19,7 +19,6 @@ years, but the core language is still pretty easy to get started in. Because it
 is a markup language rather than a programming language, there aren't as many 
 new concepts to learn. If you've learned HTML in the past, then XML will be 
 familiar.
-<!--more-->
 
 I usually try to scatter my "Learning" sections across several pages, so that 
 each major idea can get its own space. XML is different, though. Core XML 
@@ -28,8 +27,7 @@ out in one page. Let's see if that will happen.
 
 ## What You Need
 
-[text editor]: /tags/editors/
-A [text editor][] is all you need to get started in 
+A text editor is all you need to get started in 
 XML. However, you will probably want to look at your XML as something besides 
 markup. The best solution for that would be a Web browser that understands 
 XML. Both Internet Explorer and [Mozilla 
@@ -42,7 +40,7 @@ very strong.
 A simple XML document is indeed very simple. All you need is a prolog and a 
 root element.
 
-``` xml
+```xml
 <?xml version="1.0" ?>
 <greeting>Hello, World!</greeting>
 ```
@@ -52,11 +50,11 @@ of that prolog to recognize an XML file. Later, you may learn how to add
 information in the prolog, providing details like character set. For now, just 
 starting every XML document out with that line is good enough.
 
-<aside>
+:::note
 Browser, parser, interpreter, whatever. It's a piece of software that will 
 look at your XML file and need to be reassured that is in fact looking at an 
 XML file.
-</aside>
+:::
 
 The document itself consists of the *root element*. If you've ever written 
 HTML, then this "element" business will be no problem for you. `<html>` is the 

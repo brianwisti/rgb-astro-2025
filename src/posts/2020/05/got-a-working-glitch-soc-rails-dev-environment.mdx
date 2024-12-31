@@ -149,11 +149,13 @@ info Visit https://yarnpkg.com/en/docs/cli/install for documentation about this 
 At some point I should [enable][] automatic `nvm use`.  Meanwhile I’ll just
 install.
 
-{% note %}
+:::note
+
 Or maybe I could play with [Volta][volta].  Not today. Maybe later.
 
 [volta]: https://volta.sh/
-{% /note %}
+
+:::
 
 ```console
 $ nvm install
@@ -181,7 +183,7 @@ least one step of my installation process match the documentation.
 
 I use [direnv][], so I can add the path locally.
 
-```sh{title=".envrc"}
+```sh title=".envrc"
 PATH_add "bin"
 ```
 
@@ -258,7 +260,7 @@ Mastodon tickets.
 The problem?  [Webpacker][webpacker] doesn’t compile assets for the test
 environment, because [CircleCI][circleci] already does that.
 
-```yaml{title=".config/webpacker.yml"}
+```yaml title=".config/webpacker.yml"
 test:
   <<: *default
 

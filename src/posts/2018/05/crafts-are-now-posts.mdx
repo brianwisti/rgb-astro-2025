@@ -22,8 +22,6 @@ I turned the craft section into a [Craft][] category — then a tag years later.
 [Drawing][], [Knitting][], and [Crochet][] became tags. The rest of this post
 is just notes about that.
 
-<!--more-->
-
 ## Why?
 
 I want to improve the organization of my site content.
@@ -41,10 +39,10 @@ During my attempts to get [Disqus][] working here, I changed the [permalink][] c
 blog-like — `/:year/:month/:day/:title` — scrubbing section out of the permalink as I slowly admitted to
 myself there was little to distinguish crafts and posts.
 
-{% note %}
+:::note
 I finally abandoned Disqus — and Google Analytics — to prevent anyone tracking
 my site visitors. I was GDPR compliant before it was cool!
-{% /note %}
+:::
 
 I complete the last step of this process today: transforming craft content into post content, and updating
 site configuration to handle this change.
@@ -89,7 +87,7 @@ find the markdown content files. This means I do not need to install extra libra
 [core library]: http://ruby-doc.org/stdlib-2.5.1/libdoc/yaml/rdoc/YAML.html
 [Find.find]: http://ruby-doc.org/stdlib-2.5.1/libdoc/find/rdoc/Find.html#method-c-find
 
-``` ruby{title="migrate-craft.rb"}
+```ruby title="migrate-craft.rb"
 require 'find'
 require 'yaml'
 
@@ -147,7 +145,7 @@ Really, that's all the Ruby we need. The rest is dealing with git and other deta
 I must specify that "craft" is an active category, since some categories represent archives that I do not want
 on the main navigation menu.
 
-``` json{title="config.json"}
+```json title="config.json"
   "Params": {
     "activeCategories": [
       "craft",

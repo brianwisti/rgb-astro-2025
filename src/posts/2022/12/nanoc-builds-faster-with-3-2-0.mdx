@@ -13,6 +13,7 @@ tags:
 - nanoc
 title: Nanoc builds sites faster with 3.2.0
 ---
+import Quote from "@components/Quote.astro"
 
 [ruby-32]: https://www.ruby-lang.org/en/news/2022/12/25/ruby-3-2-0-released/
 [nanoc]: https://nanoc.app
@@ -24,11 +25,11 @@ YJIT][benchmarking].
 One bit of feedback he got was that YJIT --- the now official Just In Time
 compiler --- kicks in for frequently called methods:
 
-{% quote
+<Quote
   from="Noah Gibbs"
-  cite="https://ruby.social/@codefolio/109573860732354569" %}
+  cite="https://ruby.social/@codefolio/109573860732354569">
 By default, YJIT optimises a method on the 30th time you call it.
-{% /quote %}
+</Quote>
 
 Well hey.
 The [Nanoc][nanoc] iteration of my site has a few hundred pages.

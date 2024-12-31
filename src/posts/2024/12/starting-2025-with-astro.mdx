@@ -11,6 +11,7 @@ posse:
 - https://hackers.town/@randomgeek/113738527977391205
 - https://www.linkedin.com/posts/brianwisti_starting-2025-with-astro-activity-7279265952637050880-Gpjq
 ---
+import Video from "@components/Video.astro"
 
 ## What I did
 
@@ -21,7 +22,7 @@ Enough of it works that I feel comfortable posting it anyways.
 It *is* a personal site.
 Perfect is the enemy of the "ehh, good enough."
 
-![under construction icon](/img/2024/Under_construction_icon-red.svg "We must imagine Sisyphus having fun with his Web site")
+![under construction icon](@img/2024/Under_construction_icon-red.svg "We must imagine Sisyphus having fun with his Web site")
 
 <p class="attribution">
 "<a rel="noopener noreferrer" href="https://commons.wikimedia.org/w/index.php?curid=7514889">Under construction icon-red</a>" by AnonymousUnknown author is licensed under <a rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/3.0/?ref=openverse">CC BY 3.0</a>.
@@ -107,7 +108,7 @@ Share the deep thoughts on your page.
 
 Share the deep thoughts on your page.
 
-{% video id="1injh4-n1jY" /%}
+<Video id="1injh4-n1jY" />
 
 ### MDX
 
@@ -141,7 +142,7 @@ And "more" can go even further since it provides hooks for themes and plugins.
 [vitest]: https://vitest.dev
 [astro-check]: https://www.npmjs.com/package/@astrojs/check
 
-{% note %}
+:::note
 Needed to override the version dependency for Vite or I'd get mysterious `[Object object]` errors when running `vitest`.
 
 ```js {% title="package.json" %}
@@ -157,7 +158,7 @@ It's a known issue, and depends on an upstream fix from the Vitest folks.
 This workaround comes from a [comment on GitHub][issue-fix].
 
 [issue-fix]: https://github.com/withastro/astro/issues/12662#issuecomment-2523630127
-{% /note %}
+:::
 
 ## Initial impressions
 
@@ -188,7 +189,7 @@ Most of all, I enjoy component-based design.
 There's this whole layer of encapsulation I have missed on the design side of Web stuff.
 The styles for each component are right there next to the markup, but it's still CSS.
 
-{% note %}
+:::note
 I know [Tailwind][tailwind] is popular these days, in largely the same circles that adored Bootstrap a decade ago.
 Not a fan, though.
 Oh I'll use Tailwind enthusiastically if you pay me, but on my own?
@@ -216,7 +217,7 @@ But I can easily confine them to one spot, and remove them when they're no longe
 ```
 
 But hey as I sit here post-publish and look at this thing on mobile, maybe I should try those class names after all.
-{% /note %}
+:::
 
 [tailwind]: https://tailwindcss.com
 [op]: https://open-props.style

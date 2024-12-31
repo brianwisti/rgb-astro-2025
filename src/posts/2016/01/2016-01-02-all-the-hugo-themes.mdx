@@ -24,7 +24,7 @@ explore the [themes repository][hugo-themes]. So I wrote some [Python][python].
 [hugo-themes]: https://themes.gohugo.io
 [python]: https://python.org
 
-{% note title="Updates" %}
+:::note{title="Updates"}
 
 2016-01-04
 : Added instructions for installing dependencies with Homebrew, and
@@ -35,7 +35,7 @@ explore the [themes repository][hugo-themes]. So I wrote some [Python][python].
 : My checkout of the themes repository was out of date. I refreshed it
   this morning, resulting in a new GIF.
 
-{% /note %}
+:::
 
 If you followed the [Hugo
 Quickstart](https://gohugo.io/overview/quickstart/) then you probably
@@ -88,7 +88,7 @@ $ pip3 install splinter
 
 All right - that’s out of the way. Now for some code.
 
-```python{title="show-themes.py"}
+```python title="show-themes.py"
 #!/usr/bin/env python3
 
 import os
@@ -205,7 +205,7 @@ good idea anyways.
 ![Pixyll theme screenshot](@img/2016/chrome-pixyll-medium.png
   "[Pixyll](https://themes.gohugo.io/pixyll) theme")
 
-The themes seemed a little confused by my {{< tag "craft" >}} section. Some
+The themes seemed a little confused by my craft section. Some
 ignored craft projects completely. Others integrated them with posts on the
 `index.html` listing. Most at least provided a menu link to the section. And
 yes, the theme `README` would likely remove my confusion.

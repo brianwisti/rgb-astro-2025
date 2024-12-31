@@ -8,6 +8,7 @@ tags:
 - snapshot
 title: Snapshot – I Hate Daylight Savings Time
 ---
+import Bookmark from "@components/Bookmark.astro"
 
 ## Jots
 
@@ -17,32 +18,32 @@ Job search continues, with me getting excited about one or two opportunities tha
 
 ## Bookmarks
 
-{% bookmark
+<Bookmark
   href="https://www.sleepfoundation.org/sleep-news/latest-updates-daylight-saving-time-legislation-change"
-  title="Latest Updates: Daylight Saving Time in 2024" %}
+  title="Latest Updates: Daylight Saving Time in 2024">
 looks like I'll be updating my microwave and my sleep schedule twice annually for the foreseeable future
-{% /bookmark %}
+</Bookmark>
 
-{% bookmark
+<Bookmark
   href="https://gleam.run/news/gleam-version-1/"
-  title="Gleam version 1 – Gleam" %}
+  title="Gleam version 1 – Gleam">
 A new type-safe language on the Erlang runtime; loads of fun to play with, though its standard library is *not* 1.0 yet
-{% /bookmark %}
+</Bookmark>
 
-{% bookmark
+<Bookmark
   href="https://doingweeknotes.com"
-  title="Doing weeknotes" %}
+  title="Doing weeknotes">
 these snapshot posts are weeknotes, give or take; here's a long writeup on the concept in a few contexts
-{% /bookmark %}
+</Bookmark>
 
-{% bookmark
-href="https://www.lukas-barth.net/blog/sqlite-duckdb-benchmark/"
-title="Benchmarking DuckDB vs SQLite for Simple Queries | Lukas Barth" %}
+<Bookmark
+  href="https://www.lukas-barth.net/blog/sqlite-duckdb-benchmark/"
+  title="Benchmarking DuckDB vs SQLite for Simple Queries | Lukas Barth">
 SQLite serves my needs well, but I'm curious about when I might use [DuckDB](https://duckdb.org); seems to work best in OLAP situations where your data is already prepped and you might reach for Pandas or similar
-{% /bookmark %}
+</Bookmark>
 
-{% bookmark
+<Bookmark
   href="https://pluralistic.net/2024/03/04/greater-corporate-fuckward-theory/#counterintuit-ive"
-  title="Pluralistic: The real problem with anonymity (04 Mar 2024) – Pluralistic: Daily links from Cory Doctorow" %}
+  title="Pluralistic: The real problem with anonymity (04 Mar 2024) – Pluralistic: Daily links from Cory Doctorow">
 opens with debunking The Greater Internet Fuckwad Theory, a popular concept from the "on the Internet nobody knows you're a dog" era which posits people are mean online because anonymity lets them avoid accountability; Doctorow then highlights the anonymous corporate bullies that have shaped our modern dystopia
-{% /bookmark %}
+</Bookmark>

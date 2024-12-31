@@ -23,7 +23,7 @@ tags:
 title: Letting Ruby build Asciidoctor files for Hugo
 ---
 
-{% note title="TL;DR:" %}
+:::note{title="TL;DR:"}
 Normal people: don't do any of this.  The whole post is me compensating for
 making Hugo do things it's not good at.
 
@@ -43,7 +43,7 @@ has a [plugin][] to directly transform `adoc` content.  You have options!
 [nikola]: https://getnikola.com/
 [gatsby]: https://www.gatsbyjs.org/
 [plugin]: https://www.gatsbyjs.org/packages/gatsby-transformer-asciidoc/?=asciidoctor
-{% /note %}
+:::
 
 ## Asciidoctor?
 
@@ -66,11 +66,11 @@ you tack some front matter onto it.
 I enjoy the flexibility.  And that bit about supporting HTML as an authoring
 language is about to come in real handy.
 
-{% note %}
+:::note
 go-org is nice, but [`ox-hugo`][ox-hugo] excels if you want Hugo support
 tightly integrated with Org mode.
 [ox-hugo]: https://ox-hugo.scripter.co/
-{% /note %}
+:::
 
 ## So what’s the problem?
 
@@ -140,7 +140,7 @@ on its own.
 All right.  Let’s try this with roughly the same arguments Hugo does with
 [external helpers][external-helpers].
 
-``` ruby{title="build-adoc"}
+```ruby title="build-adoc"
 require "fileutils"
 
 require "asciidoctor"
@@ -299,7 +299,7 @@ BUILD_DIR = "content"
 
 Since Asciidoctor finishes so promptly, I’ll run it every time I build the site.
 
-``` Makefile{title="Makefile"}
+```make title="Makefile"
 .PHONY: adoc build
 adoc:
     ruby scripts/build-adoc
@@ -317,7 +317,7 @@ site now? Let’s find out.
 
 Every `adoc` file gets processed in the first run.
 
-``` text
+```console
 $ time make build
 # every adoc file is converted
 ...
@@ -347,7 +347,7 @@ Less than three seconds. I like that time more than 15-18 seconds.
 I went to a bit of trouble to only process updated `adoc` files.
 Does it help?
 
-``` text
+```console
 $ time make build
 ruby scripts/build-adoc
 Converting adoc/draft/letting-ruby-build-asciidoctor-files-for-hugo/index.adoc
@@ -385,7 +385,7 @@ So at first, Asciidoctor wasn’t highlighting code samples. I had
 Rather than add preprocessor logic to ensure that the document header gets
 processed, I specified the same attributes for *every* file converted:
 
-``` ruby
+```ruby
 # ...
 Asciidoctor.convert_file filename, to_file: target_file,
   header_footer: false, safe: true, mkdirs: true,
@@ -398,7 +398,7 @@ Asciidoctor.convert_file filename, to_file: target_file,
 
 All good now, right?
 
-``` text
+```console
 Rebuild failed:
 "/home/random/Sites/rgb-hugo/content/post/2015/07/making-a-jekyll-collection/index.html:223:53": got closing shortcode, but none is open
 ```
@@ -449,20 +449,20 @@ class Rouge::Formatters::HTML
 end
 ```
 
-{% note title="What about the shortcodes I want to keep?" %}
+:::note{title="What about the shortcodes I want to keep?"}
 This is just general advice to make Asciidoctor and Hugo play nice with each other.
 You don’t need to rebuild your entire site flow to use this information.
 
 Say I’ve got a shortcode for displaying images as figures.
 
-``` text
-{{​< show-figure image="cover.png" description="Taskwarrior edit view" >}}
+```text
+{{< show-figure image="cover.png" description="Taskwarrior edit view" >}}
 ```
 
 Asciidoctor transforms unsafe characters into HTML entities.
 
 ```html
-{{​< show-figure image="cover.png" description="Taskwarrior edit view" >}}
+{{< show-figure image="cover.png" description="Taskwarrior edit view" >}}
 ```
 
 And it looks kind of embarrassing.
@@ -471,8 +471,8 @@ And it looks kind of embarrassing.
 
 The solution? Wrap that shortcode in a [passthrough macro][passthrough-macro].
 
-``` adoc
-pass:[{{​< show-figure image="cover.png" description="Taskwarrior edit view" >}}]
+```adoc
+pass:[{{< show-figure image="cover.png" description="Taskwarrior edit view" >}}]
 ```
 
 ![correct shortcode](@img/2020/correct-shortcode.png "using a passthrough macro")
@@ -480,13 +480,13 @@ pass:[{{​< show-figure image="cover.png" description="Taskwarrior edit view" >
 Much better.
 
 [passthrough-macro]: https://asciidoctor.org/docs/user-manual/#pass-macros
-{% /note %}
+:::
 
 ### *Now* what do we have?
 
 I’m not sure. Let’s find out with a typical `build all`.
 
-``` text
+```console
 $ time make all
 ruby scripts/build-adoc
 Converting adoc/draft/letting-ruby-build-asciidoctor-files-for-hugo/index.adoc
@@ -531,11 +531,13 @@ for `rst` files.
 
 I like it for now. Keeps me from getting bored.
 
-{% note %}
+:::note
+
 But — and this is a big but — I couldn’t recommend this approach for normal
 people with things to do. Site generation now has more moving parts, which I
 must test and maintain if I want to share the least little note_.
-{% /note %}
+
+:::
 
 ## What now?
 

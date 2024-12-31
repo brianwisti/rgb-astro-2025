@@ -14,7 +14,7 @@ tags:
 - coolnamehere
 title: Drawing Celtic Knotwork
 ---
-{% note title="2020-08-01" %}
+:::note{title="2020-08-01"}
 [Raku tangling post]: /post/2020/07/tangling-code-from-hugo-content-with-raku/
 
 Ye gods. 15,000 words?
@@ -25,7 +25,7 @@ read it!
 
 I touched up what I could without destroying the flow, but things would look
 much different if I wrote this post today.
-{% /note %}
+:::
 
 Thanks to everybody for the positive feedback on the first MIRE. I still have
 your attention, so I’ll move on to my next exercise. This one is a little more
@@ -249,11 +249,11 @@ can. So I’m going with the bitmap idea. The tile images in the Sloss book are
 provided in different sizes. Let’s go with 9x9. It’s small and manageable without
 being too small to see.
 
-{% note title="2021-08-21" %}
+:::note{title="2021-08-21"}
 Unless it's 2021, when you have a big monitor and old eyes.
 
 *squints and continues editing*
-{% /note %}
+:::
 
 **`knotwork/tile.rb`**
 
@@ -784,7 +784,7 @@ end
 
 Yeah, that works. Let’s move on.
 
-{% note %}
+:::note
 Wait. This is me from a few days in the future, editing this page.
 KnotworkPanel’s initializer kinda bugs me. It’s fine for what it does, but how’s
 the average person supposed to know that `KnotworkPanel.new(1,2)` actually
@@ -799,7 +799,7 @@ For now, just remember that the dimensions sent to the initializer don’t inclu
 the bordering tiles. So if you want a 5x5 panel, you’ll have to call
 `KnotworkPanel.new(3, 3)`. Man, that’s ugly. Let’s make fixing that an exercise
 at the end of the article, okay?
-{% /note %}
+:::
 
 ### Creating an Image of the KnotworkPanel
 
@@ -844,9 +844,9 @@ class KnotworkPanel
 end
 ```
 
-{% note title="2020-08-01" %}
+:::note{title="2020-08-01"}
 Looks like I skipped tests for `Knotwork#to_image` as well. And wasn't I saying something about "image" being one of the nouns that should be a class? Whatever happened to that?
-{% /note %}
+:::
 
 Time to make an image.
 
@@ -927,9 +927,9 @@ $ ruby knotworkpanel.rb --rows 2
 
 ![4x4 panel](@img/2004/panel-4x4.png)
 
-{% note %}
+:::note
 Me from the immediate future says "See? This is what I was talking about. You say "2 rows" and you get a 4x4 square? How do you think people are going to react? Man, I need more coffee."
-{% /note %}
+:::
 
 Ignoring me from the future for today, let’s see what happens when we try to
 make a nice *big* KnotworkPanel.
@@ -942,11 +942,11 @@ Hmm … took a few seconds this time. If I cared about performance, I might go i
 and see where this could be tightened up. I don’t care about performance today,
 though. I care about results. And the results aren’t too bad.
 
-{% note title="2021-08-21" %}
+:::note{title="2021-08-21"}
 oh god my eyes. The knots are so tiny on a modern monitor, and there are so many of them. I pulled the link to the big panel out of the main text so it won't catch anybody unawares. If you have any visually-triggered issues maybe don't click.
 
 [you have been warned](/img/2004/panel-100x75.png)
-{% /note %}
+:::
 
 ### Cleaning Up
 

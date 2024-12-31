@@ -33,9 +33,9 @@ Not that there’s anything wrong with that.
 But I want to try a more unified approach. I also decided that 2020 is
 my year of [Python](/tags/python).
 
-{% note %}
+:::note
 Don’t hold me to that "year of Python" thing. I get distracted.
-{% /note %}
+:::
 
 I could use the [Invoke](https://www.pyinvoke.org/) tool created by
 [Jeff Forcier](http://bitprophet.org/) for this unified approach.
@@ -135,10 +135,9 @@ This list could be more helpful, though. We know what the `hello` task
 does because I wrote it a few minutes ago. What about in a few months,
 when I have dozens of tasks?
 
-{% note %}
-Trust me. In a few months I will have dozens of tasks. Maybe in a few
-hours.
-{% /note %}
+:::note
+Trust me. In a few months I will have dozens of tasks. Maybe in a few hours.
+:::
 
 Add a docstring!
 
@@ -299,10 +298,9 @@ And that’s why I prefer explicit invocations. But if you must know:
 Thankfully Invoke supports another useful feature of Make: requesting
 more than one task at a time.
 
-{% note %}
-Took me years to learn `make build && make test && make install` could
-be said `make build test install`
-{% /note %}
+:::note
+Took me years to learn `make build && make test && make install` could be said `make build test install`
+:::
 
 Let’s add a setup task.
 
@@ -342,9 +340,9 @@ The decorator takes `pre` as a list of task names. Invoke calls each of
 these pre-tasks in order — using their default options if any — before
 calling the specified task.
 
-{% note %}
+:::note
 Make sure your pre-tasks have been defined *before* listing them in `pre`!
-{% /note %}
+:::
 
 ```
 $ invoke hello

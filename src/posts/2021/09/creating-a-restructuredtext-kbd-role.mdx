@@ -20,7 +20,7 @@ Today's the day I learn how to create custom roles in reStructuredText.
 There's already [documentation][role-docs] on how to do this. I'm just applying
 it for my specific case.
 
-{% note title="Setup" %}
+:::note{title="Setup"}
 [plugin-post]: /post/2021/08/trying-a-thing-with-neovim/
 [invoke]: https://www.pyinvoke.org
 
@@ -40,7 +40,7 @@ For experimentation, I copied the build code from my [Neovim rst
 plugin][plugin-post] into the site's [Invoke][invoke] task file. Easier than
 updating remote plugins and restarting the editor with every change.
 
-```python{title="tasks.py"}
+```python title="tasks.py"
 """Site generation tasks for randomgeekery.org"""
 
 import locale
@@ -92,7 +92,7 @@ $ inv content/draft/creating-a-restructuredtext-kbd-role/index.rst.txt
 ```
 
 Some variation of this is bound to work for you.
-{% /note %}
+:::
 
 Let's get started!
 
@@ -123,7 +123,7 @@ It assumes any interpreted text is `:title-reference:` — that is, it reference
 the title of a book, movie, song, or other publication.  The [`cite`][cite]
 element is a perfectly reasonable choice for that.
 
-But what if you aren't specifically talking about a title? {{< term "Roles" >}}
+But what if you aren't specifically talking about a title? *Roles*
 provide an explicit label for your interpreted text.
 
 ```rst
@@ -282,17 +282,16 @@ def role_reference_tag(
 roles.register_canonical_role('tag', role_reference_tag)
 ```
 
-{% note %}
+:::note
 I thought about putting the `#` in CSS, but not every `p-category` is a
 tag. I can always change my mind later, maybe make a distinct `tag` CSS
 class.
-{% /note %}
+:::
 
 It looks similar to `:term:`, except because I'm referencing something I use a
 `reference` node and give it a link to that tag's page as `refuri`.  The
-`p-category` class is a {{< tag "microformats" >}} thing for {{< tag "indieweb"
->}}. I also decided to prefix my tag text with the traditional octothorpe used
->to mark tags out in the wild.
+`p-category` class is microformts2 thing for the IndieWeb.
+I also decided to prefix my tag text with the traditional octothorpe used to mark tags out in the wild.
 
 ```rst
 :tag:`microformats`
