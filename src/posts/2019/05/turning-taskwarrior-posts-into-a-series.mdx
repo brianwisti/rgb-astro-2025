@@ -1,7 +1,6 @@
 ---
 aliases:
 - /2019/05/12/turning-taskwarrior-posts-into-a-series/
-- /post/2019/05/turning-taskwarrior-posts-into-a-series/
 categories:
 - post
 cover_image: /img/2019/cover-turning-taskwarrior-posts-into-a-series.jpg
@@ -9,12 +8,8 @@ date: 2019-05-12 00:00:00-07:00
 description: There's a new taxonomy for posts that are written in a particular order!
 posse:
 - https://hackers.town/@randomgeek/102082058493417205
-- https://twitter.com/brianwisti/status/1127486161340063745
 tags:
-- taskwarrior
 - hugo
-- site
-- tools
 title: Turning Taskwarrior Posts Into a Series
 ---
 
@@ -33,9 +28,7 @@ Even though Hugo pays attention to `series` for internal templates, it
 doesn’t count it towards taxonomies. So let’s add an entry for it in
 site config.
 
-**`config.toml`**
-
-```toml
+```toml title="config.toml"
 [taxonomies]
   # ...
   series = "series"
@@ -70,9 +63,7 @@ link?
 others, I’d prefer the listing present its posts in chronological order.
 I’ll add a template for series listings.
 
-**`layouts/series/series.html`**
-
-```
+```text title="layouts/series/series.html"
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
   {{- .Content -}}
@@ -90,9 +81,7 @@ I’ll add a template for series listings.
 And while I’m at it, how about an introduction to the series?
 
 
-**`content/series/taskwarrior-babysteps/_index.md`**
-
-```markdown
+```markdown title="content/series/taskwarrior-babysteps/_index.md"
 ---
 title: Taskwarrior Babysteps
 ---
@@ -115,9 +104,7 @@ That works for now. I can tighten it up later.
 Next I want posts to link back to their series main page. I already have
 a partial for content metadata so I can add it there.
 
-**`layouts/partials/meta.html`**
-
-```
+```text title="layouts/partials/meta.html"
 ⋮
 {{ range .Params.series }}
   <p>Part of the <a class="p-category" href="{{ "series" | absURL }}{{ . | urlize }}/">{{ title . }}</a> series
@@ -131,9 +118,7 @@ Famous last words. After floundering for a bit, I ended up grabbing a
 [solution](https://discourse.gohugo.io/t/generating-series-navigation/16837)
 from the Hugo community forums and adjusting it for my tastes.
 
-**`layouts/partials/series-details.html`**
-
-```
+```text title="layouts/partials/series-details.html"
 {{- if .Params.series -}}
   <section class="meta-series">
   {{- $name := index .Params.series 0 -}}

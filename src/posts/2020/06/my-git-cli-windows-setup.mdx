@@ -8,12 +8,10 @@ description: This was mostly an excuse to get better with PowerShell
 draft: false
 posse:
 - https://hackers.town/@randomgeek/104369116448743323
-- https://twitter.com/brianwisti/status/1273858010335580162
 tags:
 - windows
 - git
 - powershell
-- tools
 title: My Git CLI Windows setup
 ---
 
@@ -28,20 +26,20 @@ server for key management, since it’s already available on my system.
 [winget][] knows about several Git-related packages, so my installation command
 needs to be specific.
 
-``` text
+```text
 winget install –exact Git.Git
 ```
 
 The installation puts Git’s `cmd` folder onto `$env:Path`, but PowerShell
 won’t see that until I refresh the variable.
 
-``` powershell
+```powershell
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 ```
 
 And there it is!
 
-``` text
+```text
 PS > $env:path -split ";"
 C:\Windows\system32
 ⋮
@@ -60,7 +58,7 @@ post from Vim on WSL 2.*
 
 *Anyways*, it looks like ``ssh-keygen`` is accessible via PowerShell.
 
-``` text
+```text
 PS > ssh-keygen -t rsa -b 4096 -C "brianwisti@pobox.com"
 Generating public/private rsa key pair.
 Enter file in which to save the key (C:\Users\brian/.ssh/id_rsa):
@@ -69,7 +67,7 @@ Enter file in which to save the key (C:\Users\brian/.ssh/id_rsa):
 I add an SSH key with the details from `C:/Users/brian/.ssh/id_rsa.pub`, and
 check out a repo.
 
-``` text
+```text
 PS > git clone ssh://git@git.hackers.town:2222/randomgeek/random-geekery-blog.git
 Cloning into 'random-geekery-blog'...
 ```
@@ -82,11 +80,11 @@ though.
 For starters, I enjoy a pretty shell prompt with version control details.
 Let’s install the [beta release][beta-release] of [posh-git][].
 
-``` powershell
+```powershell
 Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force
 ```
 
-``` text
+```text
 PS C:\Users\brian\Projects\random-geekery-blog> Import-Module posh-git
 
 ~\Projects\random-geekery-blog [trunk ≡]>
@@ -101,7 +99,7 @@ control server.  Need to get some sort of `ssh-agent` working.
 
 Looks like [posh-sshell][] can help with that?
 
-``` powershell
+```powershell
 Install-Module posh-sshell -Scope CurrentUser
 Get-Service -Name ssh-agent | Set-Service -StartupType Manual
 ```
@@ -128,7 +126,7 @@ Knowing me I’ll eventually generate this from my [orgconfig][].
 
 After starting a new session, everything seems successful.
 
-``` text
+```text
 ~\Projects> ssh-add
 ~\Projects> git clone git@github.com:brianwisti/dotfiles.git
 Cloning into 'dotfiles'...
@@ -147,7 +145,7 @@ Resolving deltas: 100% (571/571), done.
 
 Did you see this bit?
 
-``` text
+```text
 Warning: Permanently added 'github.com,140.82.112.4' (RSA) to the list of known hosts.
 warning: agent returned different signature type ssh-rsa (expected rsa-sha2-512)
 ```

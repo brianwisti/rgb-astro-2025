@@ -10,46 +10,49 @@ posse:
 - https://twitter.com/brianwisti/status/1258962728649134090
 tags:
 - indieweb
-- data
-- i-fixed-it
-- before-i-pushed-it
-- yay-for-tests
+- now
 title: Debugging My Site With a Little Help From My Friends
 ---
+import Quote from "@components/Quote.astro"
 
-[what the heck]: /note/2020/03/passing-tests-is-now-required-to-push/
+<Quote from="Me, a couple months ago">
 
-> It’s probably redundant to test HTML structure for my pages, but [what the heck][].
->
-> -- <cite>Me, a couple months ago</cite>
+It's probably redundant to test HTML structure for my pages, but [what the heck][note-tests].
 
-[every webmention]: /note/2020/04/yay-i-added-mentions-and-replies/
+</Quote>
 
-> There’s no rule, but *obviously* [every webmention][] to my site will have
-> full author info including photo.
->
-> -- <cite>Me, a few weeks ago</cite>
 
-[Datasette dashboard]: /note/2020/05/datasette-sure-is-nifty/
+<Quote from="Me, a few weeks ago">
 
-> Look honey I added Webmentions to my [Datasette dashboard][]!
->
-> -- <cite>Me, this morning</cite>
+There's no rule, but *obviously* [every webmention][wm-note] to my site will have full author info including photo.
 
-[mention]: /note/2020/05/pondering-my-indieweb-guinea-pig/
+</Quote>
 
-> Sweet, jmac liked my [mention][]!  Wait why are tests failing? Maybe check
-> the dashboard?
->
-> -- <cite>Me, an hour ago</cite>
+[note-tests]: /post/2020/03/passing-tests-is-now-required-to-push/
+[wm-note]: /post/2020/04/yay-i-added-mentions-and-replies/
 
-> I fixed it!
->
-> -- <cite>Me, a few minutes ago</cite>
+<Quote from="Me, this morning">
 
-[Jason McIntosh]: https://jmac.org
+Look honey I added Webmentions to my [Datasette dashboard][datasette-note]!
+
+[datasette-note]: /post/2020/05/datasette-sure-is-nifty/
+</Quote>
+
+
+<Quote from="Me, an hour ago">
+
+Sweet, jmac liked my [mention][note-mention]!  Wait why are tests failing? Maybe check the dashboard?
+
+[note-mention]: /post/2020/05/pondering-my-indieweb-guinea-pig/
+</Quote>
+
+<Quote from="Me, a few minutes ago">
+I fixed it!
+</Quote>
+
+[jmac]: https://jmac.org
 
 The fix is reasonable defaults for response author info. I got other
 fixes in mind, including a default "card" for anonymous response
 authors. Also, inferring author info from source site. Thanks for the
-help and the ideas, [Jason McIntosh][]!
+help and the ideas, [Jason McIntosh][jmac]!

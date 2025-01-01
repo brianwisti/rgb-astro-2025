@@ -8,12 +8,10 @@ description: Don't get impressed yet
 draft: false
 posse:
 - https://hackers.town/@randomgeek/105410183905946454
-- https://twitter.com/brianwisti/status/1340486548199002119
 tags:
-- elisp
+- lisp
 - emacs
-- org-mode
-- programming
+- org
 title: Learning a little elisp
 ---
 Excuse me while I share a sleep-deprived ramble from last night through about
@@ -51,7 +49,7 @@ lately.
 
 I looked up "Hello World in ELisp" and found something like this.
 
-``` elisp
+```lisp
 (message "Hey World!")
 ```
 
@@ -147,7 +145,7 @@ And `+roam` because [org-roam][] is kinda cool.  But not relevant for today.
 I need a code block written in a language that Babel knows.  It should not
 surprise us that Babel knows ELisp.
 
-``` text
+```text
 #+begin_src elisp
 (message "Hey World!")
 #+end_src
@@ -161,14 +159,14 @@ Or <kbd>ENTER</kbd> in Doom.
 
 Suddenly: a `#+RESULTS:` block!
 
-``` text
+```text
 #+RESULTS:
 : Hey World!
 ```
 
 I can also write my ELisp inline:
 
-``` text
+```text
 src_elisp{(sqrt (* 37 37))}, right?
 ```
 
@@ -187,7 +185,7 @@ much whatever. I’ll use lowercase letters and a hyphen.
 
 Looks like `format` can smush it into a string for `message`.
 
-```elisp
+```lisp
 (setq my-name "Brian")
   (message
    (format "hello %s" my-name))
@@ -196,42 +194,42 @@ Looks like `format` can smush it into a string for `message`.
 `format` does its work and hands the result back to `message`, which displays
 the result.
 
-``` text
+```text
 hello Brian
 ```
 
 Thing is, now `my-name` is floating around forever what with being a global
 variable.
 
-```elisp
+```lisp
 (message my-name)
 ```
 
-``` text
+```text
 Brian
 ```
 
 What if I used a local variable instead?
 
-```elisp
+```lisp
 (let ((new-name "Whozzomongo"))
      (message new-name))
 ```
 
-``` text
+```text
 Whozzomongo
 ```
 
 But back out here it doesn’t exist.
 
-``` elisp
+```lisp
 (new-name)
 ```
 
 You don’t see anything out here, but when I tried to <kbd>C-c C-c</kbd> that, Emacs
 complained:
 
-``` text
+```text
 Symbol’s function definition is void: new-name
 ```
 
@@ -247,20 +245,20 @@ How to get them from the user?
 [Xah Lee][xah-lee] gives a nice rundown on how to get user input.
 `read-string` is the one I want.
 
-``` elisp
+```lisp
 (read-string "What's your name? ")
 ```
 
 `read-string` returns whatever I answer.
 
-``` text
+```text
 Waffle Smasher The Magnificent Pineapple
 ```
 
 Let’s make a question prompt.  The inside-out approach of nested evaluation
 confuses me a bit, so I’ll happily let Emacs indent things however it wants.
 
-``` elisp
+```lisp
 (message
  (let
      ((question "What's your name?")
@@ -269,7 +267,7 @@ confuses me a bit, so I’ll happily let Emacs indent things however it wants.
            (read-string (format "%s " question)))))
 ```
 
-``` text
+```text
 Go to bed, Dude!
 ```
 
@@ -288,7 +286,7 @@ doesn’t exist.  Still.  I shouldn’t make this a habit.
 I wasn’t planning on looking at functions today, but I’m more than halfway
 there already.
 
-``` elisp
+```lisp
 (defun ask-and-respond (question-for-user our-response)
   "Ask the user a question and show them a response."
   (interactive)
@@ -300,7 +298,7 @@ there already.
 Use the [defun][] macro to *define functions*.
 It’s similar enough to function definitions in other languages.
 
-``` elisp
+```lisp
 (defun NAME (ARGUMENTS…)
   "A docstring"
   THE CODE)
@@ -313,11 +311,11 @@ Other than *that* it’s similar enough to function definitions in other languag
 
 I already know how to call a function.
 
-``` elisp
+```lisp
 (ask-and-respond "What's your name?" "Goodnight, %s!")
 ```
 
-``` text
+```text
 Goodnight, Brian!
 ```
 

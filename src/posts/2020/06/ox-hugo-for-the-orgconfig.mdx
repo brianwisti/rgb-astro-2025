@@ -1,6 +1,4 @@
 ---
-aliases:
-- /post/2020/06/ox-hugo-for-the-orgconfig/
 categories:
 - post
 cover_image: /img/2020/cover-ox-hugo-for-the-orgconfig.png
@@ -8,10 +6,9 @@ date: 2020-06-27 00:00:00-07:00
 description: Putting a couple how-to details down for easy searching later
 draft: false
 tags:
-- orgconfig
-- orgmode
-- site
-- tools
+- config
+- org
+- emacs
 title: Ox Hugo for the Orgconfig
 ---
 
@@ -33,7 +30,7 @@ This week my favorite Emacs flavor is [Doom Emacs][doom-emacs].  Their [org
 module][org-module] supports `ox-hugo` as an option, so enabling that option in
 my init should do the trick — after a `doom sync` of course.
 
-``` elisp
+```lisp
 (doom!
  ⋮
  :lang
@@ -42,7 +39,7 @@ my init should do the trick — after a `doom sync` of course.
 
 Off in the depths of my `~/org/` folder, I create a new `config.org`.
 
-``` org
+```text
 #+title: My Orgconfig
 #+hugo_base_dir: ~/Sites/random-geekery-blog/
 #+hugo_section: config
@@ -60,7 +57,7 @@ great for this case, that’s for sure.
 Each top-level section will be a page in `/config/`.
 I show *which* page in the subtree’s `:properties:`.
 
-``` org
+```text
 + Emacs config
 :properties:
 :export_description: Be kinda weird if I didn't manage that one in Org, yes?
@@ -81,7 +78,7 @@ Since I’m showing off [Babel][babel]’s ability to tangle, I want to show the
 tangle references.  `:noweb no-export` tells Babel to tangle when evaluating
 the block, but *not* when exporting.
 
-``` org
+```text
 #+name: zsh/base-variables
 #+begin_src text :noweb no-export
 <<zsh/set-base-path>>

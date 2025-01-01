@@ -6,16 +6,13 @@ categories:
 - post
 cover_image: /img/2019/cover-weighing-files-with-python.png
 date: 2019-06-01 00:00:00-07:00
-description: I want to optimize this site's file sizes, but first I should see if
-  I need to.
+description: |
+  I want to optimize this site's file sizes, but first I should see if I need to.
 posse:
 - https://hackers.town/@randomgeek/102199106551447993
-- https://twitter.com/brianwisti/status/1134977256684761089
 tags:
 - python
-- site
 - files
-- programming
 title: Weighing Files With Python
 ---
 
@@ -536,9 +533,7 @@ looking at, and SiteWeight will make another download table for media
 files. It still uses file extensions, but with a smarter list than what
 I could build.
 
-**`weight-with-media.py`**
-
-```python
+```python title="weight-with-media.py"
 # ...
 import mimetypes
 

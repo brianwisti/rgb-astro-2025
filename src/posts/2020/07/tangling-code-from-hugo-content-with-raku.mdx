@@ -13,11 +13,8 @@ posse:
 - https://twitter.com/brianwisti/status/1281087955398991874
 tags:
 - raku-lang
-- literateprogramming
-- files
+- literate-programming
 - hugo
-- sortof
-- programming
 title: Tangling code from Hugo content with Raku
 ---
 
@@ -607,12 +604,9 @@ pulling in *any* libraries.
 
 My tangle script is no competition for Org mode's Babel.
 
-- it needs more error checking
-  - circular fragment references
-  - unreachable files (path, permissions)
+- it needs more error checking for things like circular fragment references and unreachable files (path, permissions)
 - smart handling of whitespace and indentation to keep Python from becoming a chore
-- rendering fragment names in such a way that syntax highlighters can do something pretty with them
-  - especially when writing code in a language that [Chroma][chroma] has heard of
+- rendering fragment names in such a way that syntax highlighters can do something pretty with them, especially when writing code in a language that [Chroma][chroma] has heard of
 - hidden blocks
 - code evaluation and display of results
 

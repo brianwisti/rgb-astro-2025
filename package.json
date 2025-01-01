@@ -12,10 +12,11 @@
     "clean": "rimraf dist",
     "publish": "npm-run-all build test push",
     "push": "rsync --recursive --archive --update --verbose dist/ a2:public_html",
-    "test": "vitest run tests/",
-    "test:lint": "markdownlint -c markdownlint.yml src/posts/**/*.mdoc"
+    "test": "vitest run",
+    "test:lint": "markdownlint -c .markdownlint.yml src/posts/**/*.{mdx,mdoc}"
   },
   "dependencies": {
+    "-": "^0.0.1",
     "@astrojs/check": "^0.9.4",
     "@astrojs/markdoc": "^0.12.4",
     "@astrojs/mdx": "^4.0.3",
@@ -31,12 +32,15 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
+    "@types/js-yaml": "^4.0.9",
     "@types/luxon": "^3.4.2",
     "astro-embed": "^0.9.0",
     "astro-mdx-directive": "^1.0.0",
     "fast-glob": "^3.3.2",
     "fast-xml-parser": "^4.5.1",
     "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "markdownlint": "^0.37.3",
     "markdownlint-cli": "^0.43.0",
     "md-front-matter": "^1.0.4",
     "remark-definition-list": "^2.0.0",

@@ -1,7 +1,6 @@
 ---
 aliases:
 - /2019/12/01/installing-emacs-documentation-on-pop_os/
-- /post/2019/12/installing-emacs-documentation-on-pop-os/
 categories:
 - post
 cover_caption: Emacs Info (zoomed with `text-scale-adjust`)
@@ -11,12 +10,9 @@ description: Apt spells "emacs core docs" as "emacs-common-non-dfsg".
 draft: false
 posse:
 - https://hackers.town/@randomgeek/103234200410596678
-- https://twitter.com/brianwisti/status/1201223206339776512
 tags:
 - emacs
 - linux
-- info
-- tools
 title: Installing Emacs Documentation on POP!_os
 ---
 
@@ -27,7 +23,9 @@ management? Trying to find the built-in documentation so you can read it
 without going online? Install
 [`emacs-common-non-dfsg`](https://packages.debian.org/jessie/emacs24-common-non-dfsg).
 
-    $ sudo apt install emacs-common-non-dfsg
+```bash
+sudo apt install emacs-common-non-dfsg
+```
 
 It’s a license thing. The [GNU Project](https://www.gnu.org/)
 distributes the core

@@ -52,11 +52,15 @@ install it. I went the easy way and just used my system package managers.
 
 That's `apt-get` on [Ubuntu](http://www.ubuntu.com) Linux:
 
-    $ sudo apt-get install elinks
+```
+$ sudo apt-get install elinks
+```
 
 Or [MacPorts](http://www.macports.org/) on OS X:
 
-    $ sudo port install elinks
+```
+$ sudo port install elinks
+```
 
 [Cygwin]: /post/2004/07/cygwin
 
@@ -69,14 +73,15 @@ I do know that ELinks is available in [Cygwin][].
 The easiest way to test if smart prefixes are enabled is by trying to use
 one that's already been defined. Try opening the following URL in ELinks:
 
-    g Modern::Perl
+```
+g Modern::Perl
+```
 
 The resulting page should look something like [this](http://www.google.com/search?q=Modern%3a%3aPerl&btnG=Google+Search).
 Follow these steps if that is not the case:
 
 * Enter `o` to open the Options Manager
-* Open Protocols / URI Rewriting / Enable Smart Prefixes
-** Use the space bar to expand the tree as you go.
+* Open Protocols / URI Rewriting / Enable Smart Prefixes; use the space bar to expand the tree as you go.
 * Select `[Edit]`
 * Make sure the text field is set to `1`.
 * Select `[OK]`
@@ -89,8 +94,7 @@ On to the CPAN shortcuts.
 ### Adding a Smart Prefix
 
 * Enter `o` to open the Options Manager
-* Open Protocols / URI Rewriting / Smart Prefixes
-  * Use the space bar to expand the tree as you go.
+* Open Protocols / URI Rewriting / Smart Prefixes; use the space bar to expand the tree as you go.
 * Select `[Add]`
 * Enter the name of the smart prefix, then select `[OK]`
 * Select `[Edit]`

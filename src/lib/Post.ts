@@ -5,6 +5,7 @@ export const PostSchema = z.object({
   date: z.date(),
   categories: z.array(z.string()),
   tags: z.array(z.string()).default([]),
+  uses: z.array(z.string()).optional(),
   series: z.array(z.string()).default([]),
   description: z.string().optional(),
   cover_image: z.string().optional(),

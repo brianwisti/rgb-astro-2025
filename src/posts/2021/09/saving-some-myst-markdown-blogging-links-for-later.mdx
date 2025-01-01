@@ -7,14 +7,12 @@ draft: false
 posse:
 - https://hackers.town/@randomgeek/106869016960143724
 tags:
-- markdown
+- bookmarks
 - python
 - javascript
-- plugins
-- distractions
-- tools
 title: Saving some MyST Markdown blogging links for later
 ---
+import Quote from "@components/Quote.astro"
 
 Got distracted by a note from [@choldgraf][choldgraf] about [MyST][myst], a Markdown flavor
 aimed at technical writing, in a [Twitter conversation][tweet-thread] that was not
@@ -39,11 +37,14 @@ The question I almost tweeted:
 
 My answer:
 
-> Why yes there are! A quick search found these, and there are doubtless
-> other resources.
->
-> - [markdown-it-myst][] for the `.js` blogs
-> - A [myst Nikola plugin][myst-nikola-plugin] for the `.py` blogs
+<Quote>
+
+Why yes there are! A quick search found these, and there are doubtless other resources.
+
+- [markdown-it-myst][] for the `.js` blogs
+- A [myst Nikola plugin][myst-nikola-plugin] for the `.py` blogs
+
+</Quote>
 
 Could probably even use it in Hugo if I make another
 [neovim plugin][neovim-plugin] for `.md.txt` files.

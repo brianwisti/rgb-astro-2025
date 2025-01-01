@@ -176,26 +176,27 @@ favorite Unix editors. Reasonable assumptions tend to break down around me, thou
 If you're not using Vim on Windows, you can just move on to the next section. As for the rest of us,
 let's get to it.
 
-1. Take your browser to the [editor](https://github.com/parrot/parrot/tree/RELEASE_3_0_0/editor) directory for the latest stable Parrot release.
-1. Download the files that are important for Vim support:
-   * `filetype_parrot.vim`
-   * `indent_pir.vim`
-   * `pasm.vim`
-   * `pmc.vim`
-   * `pir_vim.in`
-   * `skeleton.pir`
-1. Create a `vimfiles` directory in your home folder if you don't already have one.
-1. Using [README.pod](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/editor/README.pod) as your guide, move the support files into your `vimfiles` directory:
-   * `filetype_parrot.vim` → `vimfiles\ftdetect\filetype_parrot.vim`
-   * `indent_pir.vim` → `vimfiles\indent\pir.vim`
-   * `pasm.vim` → `vimfiles\syntax\pasm.vim`
-   * `pmc.vim` → `vimfiles\syntax\pmc.vim`
-   * `pir_vim.in` → `vimfiles\syntax\pir.vim`
-   * `skeleton.pir` → `vimfiles\skeleton.pir`
-1. Open `vimfiles\ftdetect\filetype_parrot.vim` and execute the following:
-   * `:4s/\.vim/vimfiles`
-   * Or yeah, you can move to where it says `.vim` and manually replace that
-     with `vimfiles` if that's how you like to do things.
+Take your browser to the [editor](https://github.com/parrot/parrot/tree/RELEASE_3_0_0/editor) directory for the latest stable Parrot release.
+Download the files that are important for Vim support:
+
+* `filetype_parrot.vim`
+* `indent_pir.vim`
+* `pasm.vim`
+* `pmc.vim`
+* `pir_vim.in`
+* `skeleton.pir`
+
+Create a `vimfiles` directory in your home folder if you don't already have one.
+Using [README.pod](https://github.com/parrot/parrot/blob/RELEASE_3_0_0/editor/README.pod) as your guide, move the support files into your `vimfiles` directory:
+
+* `filetype_parrot.vim` → `vimfiles\ftdetect\filetype_parrot.vim`
+* `indent_pir.vim` → `vimfiles\indent\pir.vim`
+* `pasm.vim` → `vimfiles\syntax\pasm.vim`
+* `pmc.vim` → `vimfiles\syntax\pmc.vim`
+* `pir_vim.in` → `vimfiles\syntax\pir.vim`
+* `skeleton.pir` → `vimfiles\skeleton.pir`
+
+Open `vimfiles\ftdetect\filetype_parrot.vim` and execute the following: `:4s/\.vim/vimfiles`
 
 The steps may be a little more involved than just "click and run", but it's worth it for me. I *like* having Vim support.
 

@@ -6,22 +6,25 @@ categories:
 date: 2020-07-13 08:30:19-07:00
 posse:
 - https://hackers.town/@randomgeek/104507362193241964
-- https://twitter.com/brianwisti/status/1282705944393244672
 tags:
 - quotes
 - software-architecture
-- show-me-the-tables
-- old-reference-is-old
 title: Fred Brooks was right
 ---
+import Quote from "@components/Quote.astro"
 
-[The Mythical Man-Month]: https://archive.org/details/MythicalManMonth
+[The Mythical Man-Month]: 
 
-> Show me your flowcharts and conceal your tables, and I shall continue to be
-> mystified. Show me your tables, and I won't usually need your flowcharts;
-> they'll be obvious.
->
-> -- <cite>Fred Brooks, [The Mythical Man-Month][]</cite>
+<Quote
+  from="Fred Brooks"
+  title="The Mythical Man-Month"
+  cite="https://archive.org/details/MythicalManMonth">
+
+Show me your flowcharts and conceal your tables, and I shall continue to be
+mystified. Show me your tables, and I won't usually need your flowcharts;
+they'll be obvious.
+
+</Quote>
 
 That line's been in my head since yesterday for boring work reasons. The
 important part is thank goodness for SQL files. The ones I can understand,

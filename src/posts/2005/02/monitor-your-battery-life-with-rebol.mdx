@@ -3,7 +3,6 @@ aliases:
 - /coolnamehere/2005/02/28_monitor-your-battery-life.html
 - /post/2005/monitor-your-battery-life/
 - /2005/02/28/monitor-your-battery-life-with-rebol/
-- /post/2005/02/monitor-your-battery-life-with-rebol/
 categories:
 - post
 date: 2005-02-28 00:00:00-08:00
@@ -382,13 +381,10 @@ present voltage -- 12540 mV
 Now let’s take this raw data and turn it into output that I can actually do something with.
 To do that, we need to decide what information we care about and what we don’t.
 
-* I don’t care about batteries I don’t have.
-  Don’t show them to me.
+* I don’t care about batteries I don’t have. Don’t show them to me.
 * I care about whether the computer is plugged in or not.
-* I can’t convert remaining capacity of total capacity in my head.
-  Just show me a percentage remaining.
-* I *certainly* can’t convert present rate and remaining capacity.
-  Show me a time value instead.
+* I can’t convert remaining capacity of total capacity in my head. Just show me a percentage remaining.
+* I *certainly* can’t convert present rate and remaining capacity. Show me a time value instead.
 
 #### Don’t Show Batteries I Don’t Have
 
@@ -479,11 +475,9 @@ Or at least something *ugly*.
 I should consider refactoring again before I move on to the next step.
 I will just show you the end result of the refactoring, but these are the ideas that guided me as I looked at my code:
 
-* Go ahead and read all the data files. It’s not like memory is an issue for an app like this.
-  * Don’t forget to look for duplicate keys when assembling the hash.
+* Go ahead and read all the data files. It’s not like memory is an issue for an app like this. Don’t forget to look for duplicate keys when assembling the hash.
 * Remove duplication where possible.
-* Only use `print` once for each battery.
-  Narrowing down the sources of output can make debugging and reading easier.
+* Only use `print` once for each battery. Narrowing down the sources of output can make debugging and reading easier.
 
 And here’s the refactoring.
 
@@ -718,15 +712,6 @@ Still - get Parse out of the way, and creating useful applications in REBOL sudd
 There are a number of different things you could do to enhance or refine this script.
 Here are a couple of ideas.
 
-* This script is *not* portable.
-  It assumes that you have the same file setup as my HP notebook running Ubuntu 8.10.
-  Any differences brought on by different distributions or operating systems are unaccounted for.
-  You might want to alter the script to look in the right places for your machine.
-* The script is *not* robust.
-  What happens if there’s a zero in the wrong place, or ACPI can’t figure out how what the rate of discharge is?
-  I don’t know, but it’s probably not something good.
-  You might want to make it more robust by checking for possible errors.
-* Hey, what about writing this as a View application?
-  Yeah, you could make a cute little picture of a battery that empties out as the remaining power drops.
-  Why stop there? You could implement a whole system monitor, like [gkrellm](http://gkrellm.net/).
-  That might be fun.
+* This script is *not* portable. It assumes that you have the same file setup as my HP notebook running Ubuntu 8.10. Any differences brought on by different distributions or operating systems are unaccounted for. You might want to alter the script to look in the right places for your machine.
+* The script is *not* robust. What happens if there’s a zero in the wrong place, or ACPI can’t figure out how what the rate of discharge is? I don’t know, but it’s probably not something good. You might want to make it more robust by checking for possible errors.
+* Hey, what about writing this as a View application? Yeah, you could make a cute little picture of a battery that empties out as the remaining power drops. Why stop there? You could implement a whole system monitor, like [gkrellm](http://gkrellm.net/). That might be fun.

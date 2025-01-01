@@ -9,6 +9,8 @@ tags:
 - community-support
 title: '[2022-07-17 Sun 12:41] Better than a gist'
 ---
+import Bookmark from "@components/Bookmark.astro"
+import Quote from "@components/Quote.astro"
 
 If you aren't sure about the new 988 suicide prevention hotline, here are
 some other numbers you can call in the US, via Twitter.
@@ -17,31 +19,51 @@ I wanted to share a tweet with alternate national hotlines, but there was no
 alt text for screenreaders — and the text from the image has a bit too much
 text for a tweet. So here's the list, reformatted and with links added by me.
 
-- [Trans Lifeline][trans-lifeline]
-  - [(877) 565-8860](tel:8775658860)
-  - 24/7
-- [THRIVE][thrive-lifeline]
-  - text message line at [(313) 662-8209](sms:3136628209&body=THRIVE)
-  - 24/7
-- [Promise Resource Network][promise-network]
-  - [(833) 390-7728](tel:8333907728)
-  - 24/7 
-- [Project Return Peer Support Network][project-return]
-  - English & Spanish Language: [(888) 448-9777](tel:8884489777)
-  - hours are Monday through Friday 2:30 PM to 10:00 PM and Saturday and Sunday 10:00 AM to 6:00 PM 
-- [Wildflower Alliance Peer Support Line][wildflower-alliance]
-  - [(888) 407-4515](tel:8884074515)
-  - hours are 7pm to 9pm Monday through Thursday and 7pm-10pm Friday
+<Bookmark href="https://translifeline.org" title="Trans Lifeline">
 
-[trans-lifeline]: https://translifeline.org
-[thrive-lifeline]: https://thrivelifeline.org
-[promise-network]: https://promiseresourcenetwork.org
-[project-return]: https://prpsn.org/home-peer-support-network.html
-[wildflower-alliance]: https://wildfloweralliance.org
+- [(877) 565-8860](tel:8775658860)
+- 24/7
+
+</Bookmark>
+
+<Bookmark href="https://thrivelifeline.org" title="THRIVE">
+
+- text message line at [(313) 662-8209](sms:3136628209&body=THRIVE)
+- 24/7
+
+</Bookmark>
+
+<Bookmark href="https://promisresourcenetwork.org" title="Promise Resource Network">
+
+- [(833) 390-7728](tel:8333907728)
+- 24/7 
+
+</Bookmark>
+
+<Bookmark 
+  href="https://prpsn.org/home-peer-support-network.html"
+  title="Project Return Peer Support Network">
+
+- English & Spanish Language: [(888) 448-9777](tel:8884489777)
+- hours are Monday through Friday 2:30 PM to 10:00 PM and Saturday and Sunday 10:00 AM to 6:00 PM 
+
+</Bookmark>
+
+<Bookmark
+  href="https://wildfloweralliance.org"
+  title="Wildflower Alliance Peer Support Line">
+
+- [(888) 407-4515](tel:8884074515)
+- hours are 7pm to 9pm Monday through Thursday and 7pm-10pm Friday
+
+</Bookmark>
+
 
 :::note{title="2024-12-30"}
+
 There was a tweet I wanted to quote, but I can no longer reach it.
 Twitter has changed quite a bit since 2022.
+
 :::
 
 The image accompanying the tweet lists alternative numbers to call, which I
@@ -59,30 +81,38 @@ So I looked for the official responses in the [SAMHSA 988 FAQ][988-faq].
 
 [988-faq]: https://www.samhsa.gov/find-help/988/faqs
 
-> **If I contact the Lifeline for help, will I be hosptialized?**
->
-> All Lifeline crisis centers adhere to the Lifeline’s Imminent Risk Policy,
-> which means that crisis center staff work through active engagement to
-> provide support and assistance for people at risk in the least restrictive
-> setting possible. In fact, most contacts with the Lifeline are resolved by
-> the Lifeline itself, by chat or phone, in a manner that does not require
-> additional immediate intervention.
+<Quote>
+  
+**If I contact the Lifeline for help, will I be hosptialized?**
+
+All Lifeline crisis centers adhere to the Lifeline’s Imminent Risk Policy,
+which means that crisis center staff work through active engagement to
+provide support and assistance for people at risk in the least restrictive
+setting possible. In fact, most contacts with the Lifeline are resolved by
+the Lifeline itself, by chat or phone, in a manner that does not require
+additional immediate intervention.
+
+</Quote>
 
 The attentive reader will note that this answer is not a "no."
 
 The other concern relates to privacy concerns for callers.
 
-> **Will geolocation services be enacted?**
->
-> Currently, the Lifeline automatically routes calls by area code to the
-> nearest crisis center (unlike 911, which uses geolocation). As part of the
-> 2020 Designation Act, the Federal Communications Commission submitted a
-> report examining the feasibility and cost of including an automatic
-> dispatchable location that would be conveyed with a 988 call. Within that
-> report, the FCC recommended that Congress require that a multi-stakeholder
-> group be convened to further examine the key issues and collaborate on
-> potential next steps. The FCC held a 988 Geolocation Forum in May 2022 and
-> the agency is actively analyzing the information gathered during that forum.
+<Quote>
+
+**Will geolocation services be enacted?**
+
+Currently, the Lifeline automatically routes calls by area code to the
+nearest crisis center (unlike 911, which uses geolocation). As part of the
+2020 Designation Act, the Federal Communications Commission submitted a
+report examining the feasibility and cost of including an automatic
+dispatchable location that would be conveyed with a 988 call. Within that
+report, the FCC recommended that Congress require that a multi-stakeholder
+group be convened to further examine the key issues and collaborate on
+potential next steps. The FCC held a 988 Geolocation Forum in May 2022 and
+the agency is actively analyzing the information gathered during that forum.
+
+</Quote>
 
 And this sounds a lot to me like "not yet."
 

@@ -111,28 +111,37 @@ continue  exec      import    pass      yield
 def       finally   in        print
 ```
 
+:::note
+
 Here are a few guidelines to follow when deciding on a variable name:
 
-- Identifiers starting with `_` are treated differently by Python, so
-  avoid them until you know what they’re for.
-- Use descriptive names rather than abbreviations or inside jokes.
-  When you are naming a variable that holds the radius of a circle, it
-  is usually better to use `radius` than `r` or `halfway_there`
-- Use a name that indicates what the variable will be used for.
-  `radius` is much better than `fnord` for describing the radius of a
-  circle. Plus, "fnord" breaks the "no inside jokes" guideline.
-- Find a balance between names that are too long or too short.
-  - *Too short* would be `n`
-  - *Too long* might be
-    `name_of_my_favorite_customer_in_walla_walla_washington`
-  - *Just right* might be `name` or `customer_name`
-- It is common practice to use all upper case letters for identifiers
-  that describe constants — variables which will not be changing their
-  values. Since pi will always have the value 3.1415926 — or so — you
-  would use an identifier of `PI` for this variable.
-- It’s okay to bend the guidelines in favor of common terms. If you
-  are writing code to figure out the distance between two points, then
-  `x1`, `y1`, `x2`, and `y2` are perfectly sensible identifiers.
+Identifiers starting with `_` are treated differently by Python, so
+avoid them until you know what they’re for.
+
+Use descriptive names rather than abbreviations or inside jokes.
+When you are naming a variable that holds the radius of a circle, it
+is usually better to use `radius` than `r` or `halfway_there`
+
+Use a name that indicates what the variable will be used for.
+`radius` is much better than `fnord` for describing the radius of a
+circle. Plus, "fnord" breaks the "no inside jokes" guideline.
+
+Find a balance between names that are too long or too short.
+
+- *Too short* would be `n`
+- *Too long* might be `name_of_my_favorite_customer_in_walla_walla_washington`
+- *Just right* might be `name` or `customer_name`
+
+It is common practice to use all upper case letters for identifiers
+that describe constants — variables which will not be changing their
+values. Since pi will always have the value 3.1415926 — or so — you
+would use an identifier of `PI` for this variable.
+
+It’s okay to bend the guidelines in favor of common terms. If you
+are writing code to figure out the distance between two points, then
+`x1`, `y1`, `x2`, and `y2` are perfectly sensible identifiers.
+
+:::
 
 There are two popular approaches to devising longer names (the ones that
 consist of two or more words pasted together). In the first, the two

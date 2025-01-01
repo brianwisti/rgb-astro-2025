@@ -12,7 +12,7 @@ tags:
 title: Running Dart Code
 ---
 
-I haven't played with [Dart](https://dart.dev) since – oh, I don't know, 2013 or so. It was nice, but nothing felt compelling compared to the languages I already used. I stopped hearing about Dart when I stopped using Google+.
+I haven't played with [Dart](https://dart.dev) since -- oh, I don't know, 2013 or so. It was nice, but nothing felt compelling compared to the languages I already used. I stopped hearing about Dart when I stopped using Google+.
 
 Nowadays, Dart is a bit more interesting.
 
@@ -20,7 +20,7 @@ The language itself has evolved, of course. So have all the other languages. Wha
 
 That's pretty dang cool.
 
-I want to look at the Dart language itself – figure out how to use it for basic command line applications before I confuse myself with multi-platform GUI development.
+I want to look at the Dart language itself -- figure out how to use it for basic command line applications before I confuse myself with multi-platform GUI development.
 
 ## Writing a Dart script
 
@@ -72,7 +72,7 @@ Info: Compiling with sound null safety
 Generated: /Users/random/Projects/dart/running_dart_code/script/greet_me.exe
 ```
 
-Dart's executable compilation adds an `.exe`​ extension to the output file regardless of platforn by default. That extension doesn't matter to macOS or Linux – a filename is just a filename on those platforms – but I dislike seeing a `.exe`​ anywhere but on Windows.
+Dart's executable compilation adds an `.exe`​ extension to the output file regardless of platforn by default. That extension doesn't matter to macOS or Linux -- a filename is just a filename on those platforms -- but I dislike seeing a `.exe`​ anywhere but on Windows.
 
 ```console
 $ dart compile exe greet_me.dart -o greet_me
@@ -102,9 +102,9 @@ Dart cannot cross-compile for other platforms yet. Compiling an executable on Wi
 | `jit-snapshot`|just-in-time snapshot with hot reloading|no|no|
 | `aot-snapshot`|ahead-of-time snapshot|no|no|
 | `kernel`      |intermediate representation of code|no|yes|
-| `js`          |JavaScript [^1]|yes|yes|
+| `js`          |JavaScript |yes|yes|
 
- [^1]: use [webdev](https://dart.dev/tools/webdev) instead for JS targets
+ use [webdev](https://dart.dev/tools/webdev) instead for JS targets
 
 Oh, and trivia: `dart run greet_me.dart` compiles a JIT snapshot in the background and runs that.
 :::

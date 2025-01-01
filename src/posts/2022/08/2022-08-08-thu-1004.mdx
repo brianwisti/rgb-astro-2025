@@ -18,16 +18,9 @@ I tried visually replacing a few [Logseq][logseq] tags with icons in CSS. It wor
 
 [logseq]: https://logseq.com
 
-How'd I do it? Here I'll just paste from my journal note figuring out the first
-one. I'm sure I'll revisit this tonight after taking care of the day's
-business.
+How'd I do it? Inspired by Obsidian's [Alternate Checkboxes](https://publish.obsidian.md/hub/02+-+Community+Expansions/02.05+All+Community+Expansions/CSS+Snippets/Alternate+Checkboxes+(SlRvb)) CSS snippet, I started with a tag like `#idea` and looked at the element structure in the dev console:
 
-- #idea Thinking about custom tag icons for logseq
-  - #warning under construction #warning
-  - Inspired by Obsidian [Alternate Checkboxes](https://publish.obsidian.md/hub/02+-+Community+Expansions/02.05+All+Community+Expansions/CSS+Snippets/Alternate+Checkboxes+(SlRvb)) CSS snippet
-  - Here's what `#idea` looks like in the dev console:
-
-``` html
+```html
 <div
     class=""
     style="display: inline;"
@@ -39,13 +32,10 @@ business.
         class="tag">#idea</a></div>
 ```
 
-- #question how do my installed plugins change the structure?
-  - I don't think I currently have any plugins that alter element attributes
-- Set up [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) #bookmark to match
-  - `a.tag[data-ref="idea"]`
-  - Hide the displayed tag by making it tiny
 
-``` css
+Set up [CSS Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors) based on the `data-ref` attribute. For styling, I wanted to hide the text and replace it with an icon.
+
+```css
 a.tag[data-ref="idea"] {
 border: none;
 font-size: 0;
@@ -54,11 +44,11 @@ font-size: 0;
 
 Append an icon with the font size we started at
 
-``` css
+```css
 a.tag[data-ref="idea"]:after {
     content: "💡";
     font-size: initial;
 }
 ```
 
-as-is, this has accessibility issues and `font-size: initial` won't work with headings. Also, to do it right I should be encoding the icon
+as-is, this has accessibility issues and `font-size: initial` won't work with headings. Also, to do it right I should be encoding the icon. But for a quick hack, this is fine.

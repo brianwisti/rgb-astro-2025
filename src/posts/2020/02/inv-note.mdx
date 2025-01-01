@@ -3,32 +3,35 @@ aliases:
 - /note/2020/36/inv-note/
 - /note/2020/02/inv-note/
 categories:
-- note
+- gallery
 cover_caption: I drew this with [Amaziograph](https://amaziograph.com/)
 cover_image: /img/2020/cover-inv-note.jpg
 date: 2020-02-05 07:54:39-08:00
 posse:
 - https://hackers.town/@randomgeek/103607162408116784
-- https://twitter.com/brianwisti/status/1225095517694242818
 tags:
 - site
 - pyinvoke
 - drawing
-- amaziograph
-- fun
 title: inv note
+uses:
+- amaziograph
 ---
 
+```console
 $ inv note --title='inv note'
+```
 
 Don’t mind me. I’m just trying an experiment with using
 [Invoke](https://docs.pyinvoke.org) for my site workflow instead of
 [Make](https://www.gnu.org/software/make/).
 
-    $ inv serve
-    SHOW_INFO=1 hugo server --buildDrafts --bind 0.0.0.0 --navigateToChanged
-    ...
-    Press Ctrl+C to stop
+```console
+$ inv serve
+SHOW_INFO=1 hugo server --buildDrafts --bind 0.0.0.0 --navigateToChanged
+...
+Press Ctrl+C to stop
+```
 
 But that’s boring on its own. Here. Have a drawing.
 
@@ -36,4 +39,7 @@ I’ll probably make a proper blog post about Invoke later. Meanwhile,
 checkout the docs on [Getting
 started](https://docs.pyinvoke.org/en/stable/getting-started.html).
 
-    $ inv publish
+```console
+$ inv publish
+```
+
