@@ -45,6 +45,7 @@
     "md-front-matter": "^1.0.4",
     "remark-definition-list": "^2.0.0",
     "remark-directive": "^3.0.0",
+    "remark-smartypants": "^3.0.2",
     "sass": "^1.83.0",
     "slug": "^10.0.0",
     "tiny-decode": "^0.1.3",

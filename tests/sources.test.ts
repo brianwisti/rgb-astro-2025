@@ -22,7 +22,7 @@ const posts: ParsedPost[] = glob.sync("src/posts/**/*.{mdx,mdoc}")
 
 const markdownlintConfig = readConfig(".markdownlint.yml", [load])
 
-describe.each(posts)("$path", ({ path, post}) => {
+describe.each(posts)("$path", ({ post }) => {
   test("frontmatter is valid PostSchema", () => {
     const validation = PostSchema.safeParse(post.data)
 

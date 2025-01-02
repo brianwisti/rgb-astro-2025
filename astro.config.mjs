@@ -9,6 +9,7 @@ import {
   remarkDefinitionList,
   defListHastHandlers,
 } from "remark-definition-list"
+import smartypants from "remark-smartypants"
 
 /** @type {import("astro-mdx-directive").DirectiveComponentList} */
 const directives = {
@@ -34,7 +35,7 @@ export default defineConfig({
     markdoc({ allowHTML: true }),
   ],
   markdown: {
-    remarkPlugins: [remarkDefinitionList],
+    remarkPlugins: [remarkDefinitionList, smartypants],
     remarkRehype: { handlers: defListHastHandlers },
   },
   site: "https://randomgeekery.org",

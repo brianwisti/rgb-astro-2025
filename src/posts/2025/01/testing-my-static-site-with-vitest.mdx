@@ -1,0 +1,548 @@
+---
+title: Testing My Static Site with Vitest
+description: I'll start with frontmatter schema and markdownlint
+date: 2025-01-01 20:45:00 -07:00
+draft: false
+categories:
+- post
+tags:
+- testing
+- javascript
+- ssg
+posse:
+- https://hackers.town/@randomgeek/113756747261978686
+- https://www.linkedin.com/posts/brianwisti_testing-my-static-site-with-vitest-activity-7280432032097169408-hLvH
+---
+
+## What
+
+I built my blog with [Astro][astro].
+Let's use [Vitest][vitest] to do some basic quality checks for it.
+
+[astro]: https://astro.build
+[vitest]: https://vitest.dev
+
+### What we aren't doing
+
+I'm not trying to catch every possible issue.
+I'm not trying to automate the entire process, or work testing into my CI/CD pipeline.
+This is me, at me laptop, making sure my blog is in good shape before an update goes live.
+
+If you care about CI/CD integration or end-to-end testing, you probably already have a defined workflow.
+Take what you need from this post, and adapt it to your needs.
+
+## Why
+
+A small site can get away with manual testing.
+I write a post, probably enabling live preview via `npm run dev`.
+Does it look right?
+I check it in the browser.
+Do the links work?
+*click click*
+All good.
+Easy peasy.
+
+But as the site grows, it becomes harder to track your changes.
+Random Geekery has been growing steadily since late 2000.
+There are over 500 posts.
+I move pages around, and forget to make sure incoming links still work.
+Old sites die, and their links break.
+I change a page's source format, and forget to check for artifacts of the old format.
+
+Even a small site can benefit from automated tests, checking things that are tedious to examine manually.
+Is my RSS feed valid?
+Does it include the right posts?
+Is the site accessible?
+
+Be careful, though.
+Automated tests are excellent for catching many kinds of errors, and especially regressions.
+But it's not *quite* the same as having a QA team for your site.
+Always check what you can manually.
+And there's stuff you just won't think of on your own.
+Make sure there's some way for visitors to let you know if something's amiss.
+Encourage them to do so.
+Thank them when they do.
+And where you can, put in an automated test to catch that issue next time.
+
+## Who Do I Think You Are
+
+I assume you're familiar with static site generators and automated testing, though not necessarily in combination.
+You're comfortable with TypeScript --
+probably more comfortable than I am, all things considered.
+You already know that [SSG is for putterers][ssg-putterers],
+so you're not afraid to write some support code around your site.
+
+[ssg-putterers]: /post/2020/09/ssg-is-for-putterers/
+
+## How
+
+I won't get into the task of defining automated testing, test frameworks, or TDD.
+Vitest is a test runner for JavaScript.
+You write tests in TypeScript, and Vitest runs them.
+
+:::note
+I use Vitest because Random Geekery's Astro iteration is a skill-building project.
+I want to get more practice doing things in the JavaScript world.
+But all of these ideas should apply to any test framework in any language, for any static site generator.
+
+I know this because the Hugo iteration of my blog has a test suite run by [Pytest][pytest].
+Today builds on what I learned from that experience in.
+It moves past it a bit too, since there were some things I never got around to testing before.
+:::
+
+[pytest]: https://pytest.org
+
+Automated testing for a statically generated site basically boils down to validating input and verifying output.
+
+Check your source content.
+Is it well-formed, with well-formatted content and consistent frontmatter?
+
+Check your generated site.
+Do links work?
+Is it accessible?
+Does your RSS feed describe the posts you think it should?
+How does it render on mobile devices?
+Any dynamic features?
+How do they work if someone's got JavaScript disabled?
+
+The generated site can be an endless list of test cases if you let it.
+I *really* don't want to think about that today.
+Instead I focus on testing source files, including metadata and basic content checks.
+And stick with posts.
+This way there is no need to worry about different testing rules for different site sections.
+
+### Setup
+
+I know ahead of time that I should examine every content file under `src/posts`.
+That gives me an idea what dependencies I need.
+
+- Vitest obviously, since that's the test runner I'm using
+- [fast-glob][fast-glob] helps me find all the content source files
+- [gray-matter][gray-matter] can parse the frontmatter in each content file
+
+[fast-glob]: https://www.npmjs.com/package/fast-glob
+[gray-matter]: https://www.npmjs.com/package/gray-matter
+
+```bash
+npm install -D vitest fast-glob gray-matter
+```
+
+:::note{title="Vitest 2.1.x and Astro"}
+As of this exact moment, there is an upstream bug with recent Vitest versions.
+You run your tests with the latest version and instead of tests you get an `[Object object]` error.
+
+Overriding Vitest's Vite dependency per [this issue comment][vitest-vite-issue] works around the [underlying issue][astro-vitest-issue], which should be resolved with the release of Vitest 3.
+
+You can probably skip all this if your project uses Vitest 3 or later.
+
+```json title="package.json"
+{
+  "devDependencies": {
+    "vitest": "^2.1.8"
+  },
+  "overrides": {
+    "vite": "6.0.2"
+  }
+}
+```
+
+[astro-vitest-issue]: https://github.com/withastro/astro/issues/12662#issuecomment-2523630127
+[vitest-vite-issue]: https://github.com/vitest-dev/vitest/issues/6992
+:::
+
+Now we can just follow the official guidance on [using Vitest with Astro][astro-vitest].
+
+[astro-vitest]: https://docs.astro.build/en/guides/testing/#vitest
+
+```ts
+// vitest.config.ts
+/// <reference types="vitest" />
+import { getViteConfig } from "astro/config"
+
+export default getViteConfig({
+    test: {},
+});
+```
+
+### Load Content Files
+
+Building my own content collection up front lets me multiple tests against the same data without rereading it each time.
+
+```ts
+//sources.test.ts
+import fs from "node:fs"
+import glob from "fast-glob"
+import * as matter from "gray-matter"
+
+type ParsedPost = {
+  path: string
+  post: matter.GrayMatterFile<string>
+}
+
+const posts: ParsedPost[] = glob.sync("src/posts/**/*.{mdx,mdoc}")
+  .map((path: string) => {
+    return { path: path, post: matter.default(fs.readFileSync(path, "utf8")) }
+  }
+)
+```
+
+I like to define things with some kind of type or interface.
+Lets me feel like I know what I'm doing.
+
+
+### Review Metadata
+
+
+Astro content collections already support schemas via [Zod][zod].
+The tutorial guidelines put that schema in `src/content.config.ts`.
+I use a separate library file, since I need that schema in a few contexts --
+testing, for example.
+
+[zod]: https://zod.dev
+
+```ts
+// /src/lib/Post.ts
+import { z } from "astro:content"
+
+export const PostSchema = z.object({
+  title: z.string(),
+  date: z.date(),
+  categories: z.array(z.string()),
+  tags: z.array(z.string()).default([]),
+  series: z.array(z.string()).default([]),
+  description: z.string().optional(),
+  cover_image: z.string().optional(),
+});
+```
+
+My initial test makes sure that the frontmatter of every post checks out with the Zod schema.
+
+```ts
+// sources.test.ts
+import { describe, expect, test } from "vitest"
+import { PostSchema } from "@lib/Post.ts"
+
+describe.each(posts)("$path", ({ post }) => {
+  test("frontmatter is valid PostSchema", () => {
+    const validation = PostSchema.safeParse(post.data)
+
+    expect(validation.error).toBeUndefined()
+  })
+})
+```
+
+Running tests in a [`describe.each()`][describe-each] block is how Vitest does [test parametrization][parametrize] --
+or [table-driven tests][test-tables] for the Go folks.
+Test runner goes through the assertions once for each item in a fixture collection.
+I name each iteration for the file being examined, so I know exactly what files fail which test.
+
+[describe-each]: https://www.the-koi.com/projects/parameterized-data-driven-tests-in-vitest-example/
+[parametrize]: https://docs.pytest.org/en/stable/how-to/parametrize.html
+[test-tables]: https://go.dev/wiki/TableDrivenTests
+
+At first blush, this sounds like an extra step.
+Astro's schema validation is part of why I chose it for this iteration in the first place.
+Its `build` and `check` tasks both validate your frontmatter against your schema.
+Unfortunately these tasks fail with an error as soon as a single file has an issue.
+Inconvenient when you add a required field to your posts.
+I want to check all the files at once, and get a single report with all the issues.
+
+Okay yes I admit: it *is* an extra step.
+But for my workflow it is a necessary one.
+
+Now for actually invoking the test runner.
+Vitest's default `watch` functionality is nice, but I'm usually running these tests as one step in a larger process.
+I'll use `run`, which runs the tests once and exits.
+
+```json title="package.json"
+{
+  "scripts": {
+    "test": "vitest run"
+  }
+}
+```
+
+Since this is not my first time running these tests, they all pass.
+
+```console
+$ npm test
+ Test Files  1 passed (1)
+      Tests  662 passed (662)
+   Start at  12:22:53
+   Duration  623ms (transform 116ms, setup 0ms, collect 264ms, tests 49ms, environment 0ms, prepare 37ms)
+```
+
+What does a failed test look like?
+Let's remove this post's title from frontmatter and run the tests again.
+
+```text
+ FAIL  tests/sources.test.ts > 'src/posts/2025/01/testing-static-site…' > frontmatter is valid PostSchema
+AssertionError: expected ZodError: [
+  {
+    "code": "invalid_type… { …(3) } to be undefined
+
+- Expected:
+undefined
+
++ Received:
+[ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "title"
+    ],
+    "message": "Required"
+  }
+]]
+
+ ❯ tests/sources.test.ts:24:30
+     22|
+     23|     // expect(validation.success).toBe(true)
+     24|     expect(validation.error).toBeUndefined()
+       |                              ^
+     25|   })
+     26| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 661 passed (662)
+   Start at  12:27:05
+   Duration  691ms (transform 116ms, setup 0ms, collect 338ms, tests 46ms, environment 0ms, prepare 47ms)
+```
+
+There's our fail indication and the contents of the error object that we expected to be undefined.
+Let me put that title back and we can move on.
+
+### Validate Source Content
+
+I may get into details of the content like grammar and word choices at some point.
+Not right now.
+All I care about right now is its rough shape and conformance to markdown standards.
+
+[Markdownlint][markdownlint] checks markdown files for common issues.
+It's not foolproof -- the focus is on CommonMark and GitHub-Flavored Markdown --
+and not as effective with MDX, but it catches inconsistencies I might not notice in Neovim.
+Thos inconsistencies can cause rendering issues as one Markdown handler or another tries to interpret the content.
+
+You might not need to lint markdown beyond whatever support your editor provides.
+I am always experimenting with extensions, variations, and entirely new formats.
+I need that extra check.
+
+[markdownlint]: https://github.com/DavidAnson/markdownlint?tab=readme-ov-file#configuration
+
+I had an existing [markdownlint configuration][markdownlint-yml] for my Hugo iteration.
+Installing [js-yaml][js-yaml] for YAML support so I can use that config as-is.
+
+[markdownlint-yml]: https://github.com/brianwisti/rgb-astro-2025/blob/main/.markdownlint.yml
+[js-yaml]: https://www.npmjs.com/package/js-yaml
+
+```bash
+npm i -D markdownlint js-yaml @types/js-yaml
+```
+
+```ts
+import * as matter from "gray-matter"
+import { load } from "js-yaml"
+import { lint, readConfig } from "markdownlint/sync"
+
+const markdownlintConfig = readConfig(".markdownlint.yml", [load])
+```
+
+Defining `markdownlintConfig` as a global doesn't make any difference in performance for testing my site.
+I checked.
+It's there for my own cognitive ease.
+I will turn a value to a constant any time I can.
+
+Anyways, the test.
+
+```ts
+describe.each(posts)("$path", ({ post }) => {
+  // ...
+
+  test("content is consistent Markdown", () => {
+    const { content } = post
+    const result = lint({
+      strings: { content },
+      config: markdownlintConfig,
+    })
+
+    expect(result.toString()).toBe("")
+  })
+})
+```
+
+And an interesting fragment of the report.
+
+```text
+ FAIL  tests/sources.test.ts > 'src/posts/2009/09/parrot-babysteps-04…' > content is consistent Markdown
+AssertionError: expected 'content: 102: MD046/code-block-style …' to be '' // Object.is equality
+
+- Expected
++ Received
+
++ content: 102: MD046/code-block-style Code block style [Expected: fenced; Actual: indented]
+
+ ❯ tests/sources.test.ts:38:31
+     36|     })
+     37|
+     38|     expect(result.toString()).toBe("")
+       |                               ^
+     39|   })
+     40| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/23]⎯
+
+ Test Files  1 failed (1)
+      Tests  23 failed | 1301 passed (1324)
+   Start at  16:16:42
+   Duration  3.43s (transform 133ms, setup 0ms, collect 457ms, tests 2.62s, environment 0ms, prepare 46ms)
+```
+
+Vitest groups failures by error. 
+There are about a dozen `FAIL` lines above this describing Markdownlint complaints about indented code blocks.
+
+Okay.
+So why would I care about this?
+
+Some markdown parsers treat indented code as regular paragraphs of text.
+Alternately, if this is the behaviour *you* expect:
+some markdown parsers treat indented code as preformatted text.
+
+Hugo's markdown parser supports the latter approach.
+Indented text is code.
+Astro's default markdown parser uses the former.
+Indented text is text.
+Those old posts will look strange if I don't fix them.
+Honestly, I won't think to fix them if I don't run an automated linter regularly.
+
+:::note
+Sometimes the Markdownlint messages are a little weird.
+
+```text
+ FAIL  tests/sources.test.ts > 'src/posts/2023/01/running-dart-code.m…' > content is consistent Markdown
+Assertion: expected `startBufferIndex` to be `0`
+
+- Expected
++ Received
+
+- true
++ false
+```
+
+
+Apparently this behavior is related to development vs production versions of micromark used by Markdownlint.
+I already fixed up the files enough that I'm not going to worry about it.
+[See this comment by David Anson][markdownlint-issue] if you want some insight and fixes.
+
+[markdownlint-issue]: https://github.com/DavidAnson/markdownlint/issues/1441#issuecomment-2542810761
+
+:::
+
+### Tag cleanup
+
+I'm almost done with this first pass at checking my Astro post sources.
+But there's one more thing I want to address.
+
+There are too many tags on my site.
+458 tags is too many.
+They no longer help in any meaningful way.
+Some of my sillier posts have half a dozen tags.
+It messes with preview card rendering.
+
+![tags bleeding out of a preview card's visual regiion](@img/2025/post-preview.png "The sorry tag bleeding out is a nice touch though")
+
+I should go through and carefully evaluate those tags.
+That would be a big task.
+I can ease future me's work load, and fix the layout problem, by enforcing a tag limit for posts.
+
+```ts
+const tagLimit = 3
+
+describe.each(posts)
+  // ...
+  test("not too many tags", () => {
+    const tags = post.data.tags
+
+    expect(tags).toBeInstanceOf(Array)
+    expect(tags.length).toBeLessThanOrEqual(tagLimit)
+  })
+```
+
+A couple hours later, and almost two hundred tags fewer...
+
+```
+ Test Files  1 passed (1)
+      Tests  1986 passed (1986)
+   Start at  18:44:50
+   Duration  3.21s (transform 113ms, setup 0ms, collect 310ms, tests 2.58s, environment 0ms, prepare 43ms)
+```
+
+## Wrapping Up
+
+The tests I've shown today look for the sort of problems that don't normally recur.
+Once fixed, site sources usually stay fixed.
+So they can feel frivolous.
+
+I'll keep them in there, though.
+They assure a baseline of consistency, and warn me when I'm wandering off the path I made for myself.
+They'll also come in handy when I decide on some change: updating the schema, getting stricter about what my markdown lists should look like, and stuff like that.
+
+But the truly useful tests are when we start verifying output: links, accessibility, and generated feeds.
+I didn't do much with those in the Hugo iteration's tests.
+Let me work on this stuff and get back to you.
+
+Meanwhile, `sources.test.ts` with all the bits I talked about today in their proper arrangement.
+
+```ts title="sources.tests.ts"
+import fs from "node:fs"
+import glob from "fast-glob"
+import * as matter from "gray-matter"
+import { load } from "js-yaml"
+import { lint, readConfig } from "markdownlint/sync"
+import { describe, expect, test } from "vitest"
+
+import { PostSchema } from "@lib/Post.ts"
+
+type ParsedPost = {
+  path: string
+  post: matter.GrayMatterFile<string>
+}
+
+const tagLimit = 3
+
+const posts: ParsedPost[] = glob.sync("src/posts/**/*.{mdx,mdoc}")
+  .map((path: string) => {
+    return { path: path, post: matter.default(fs.readFileSync(path, "utf8")) }
+  }
+)
+
+const markdownlintConfig = readConfig(".markdownlint.yml", [load])
+
+describe.each(posts)("$path", ({ post }) => {
+  test("frontmatter is valid PostSchema", () => {
+    const validation = PostSchema.safeParse(post.data)
+
+    expect(validation.error).toBeUndefined()
+  })
+
+  test("content is consistent Markdown", () => {
+    const { content } = post
+    const result = lint({
+      strings: { content },
+      config: markdownlintConfig,
+    })
+
+    expect(result.toString()).toBe("")
+  })
+
+  test("not too many tags", () => {
+    const tags = post.data.tags
+
+    expect(tags).toBeInstanceOf(Array)
+    expect(tags.length).toBeLessThanOrEqual(tagLimit)
+  })
+})
+```
