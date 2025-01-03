@@ -8,7 +8,6 @@ description: I got to know the Python `invoke` task runner a little better.
 draft: false
 tags:
 - python
-- site
 - hugo
 title: Python Invoke
 ---
@@ -28,14 +27,14 @@ Not that there’s anything wrong with that.
 ## A solution: Invoke
 
 But I want to try a more unified approach. I also decided that 2020 is
-my year of [Python](/tags/python).
+my year of Python.
 
 :::note
 Don’t hold me to that "year of Python" thing. I get distracted.
 :::
 
 I could use the [Invoke](https://www.pyinvoke.org/) tool created by
-[Jeff Forcier](http://bitprophet.org/) for this unified approach.
+[Jeff Forcier](https://bitprophet.org/) for this unified approach.
 
 Invoke gives you a task runner and support library for managing those
 tasks. It works a bit like Make, except that you define tasks with
@@ -80,7 +79,7 @@ Thought I’d mention it in case you saw similar issues.
 
 Tasks are defined in a `tasks.py` file. Seems reasonable so far. Import
 the [task
-decorator](http://docs.pyinvoke.org/en/stable/api/tasks.html#invoke.tasks.task)
+decorator](https://docs.pyinvoke.org/en/stable/api/tasks.html#invoke.tasks.task)
 to use Invoke’s powers.
 
 ```python
@@ -102,7 +101,7 @@ decoration, `hello` is just another function. That’s great for adding
 support logic, but not so much for "Hello World."
 
 The `c` argument is Invoke’s
-[context](http://docs.pyinvoke.org/en/stable/api/context.html). We’ll
+[context](https://docs.pyinvoke.org/en/stable/api/context.html). We’ll
 get to that. The thing to remember for now is that every task gets
 called with context as its first argument.
 
@@ -171,7 +170,7 @@ good documentation habit.
 
 Your task is a Python function. Add arguments to your function and
 you’ve added
-[parameters](http://docs.pyinvoke.org/en/stable/getting-started.html#task-parameters)
+[parameters](https://docs.pyinvoke.org/en/stable/getting-started.html#task-parameters)
 to the task.
 
 ```python
@@ -349,7 +348,7 @@ Hello, world!
 
 Pre-tasks can be chained: if `setup` had its own dependencies, they
 would be called before `setup`. Invoke’s documentation on [how tasks
-run](http://docs.pyinvoke.org/en/stable/concepts/invoking-tasks.html#how-tasks-run)
+run](https://docs.pyinvoke.org/en/stable/concepts/invoking-tasks.html#how-tasks-run)
 explains task dependencies much better than I could.
 
 #### Setting the default task
@@ -469,10 +468,10 @@ def server(c):
 ```
 
 We’re finally using the
-[context](http://docs.pyinvoke.org/en/stable/api/context.html) object\!
+[context](https://docs.pyinvoke.org/en/stable/api/context.html) object\!
 Invoke’s context holds details about the environment our tasks run in.
 Most important for today, they give us a way to
-[run](http://docs.pyinvoke.org/en/stable/api/context.html#invoke.context.Context.run)
+[run](https://docs.pyinvoke.org/en/stable/api/context.html#invoke.context.Context.run)
 shell commands.
 
 ```
@@ -501,7 +500,7 @@ Press Ctrl+C to stop
 ```
 
 Technically a
-[Runner](http://docs.pyinvoke.org/en/stable/api/runners.html#invoke.runners.Runner)
+[Runner](https://docs.pyinvoke.org/en/stable/api/runners.html#invoke.runners.Runner)
 subclass takes care of running the shell command. We don’t have to care
 about that though. We can pass a command string to `c.run` and let *it*
 care.

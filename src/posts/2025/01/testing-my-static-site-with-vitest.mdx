@@ -26,7 +26,7 @@ Let's use [Vitest][vitest] to do some basic quality checks for it.
 
 I'm not trying to catch every possible issue.
 I'm not trying to automate the entire process, or work testing into my CI/CD pipeline.
-This is me, at me laptop, making sure my blog is in good shape before an update goes live.
+This is me, at my laptop, making sure my blog is in good shape before an update goes live.
 
 If you care about CI/CD integration or end-to-end testing, you probably already have a defined workflow.
 Take what you need from this post, and adapt it to your needs.
@@ -325,7 +325,7 @@ All I care about right now is its rough shape and conformance to markdown standa
 [Markdownlint][markdownlint] checks markdown files for common issues.
 It's not foolproof -- the focus is on CommonMark and GitHub-Flavored Markdown --
 and not as effective with MDX, but it catches inconsistencies I might not notice in Neovim.
-Thos inconsistencies can cause rendering issues as one Markdown handler or another tries to interpret the content.
+Those inconsistencies can cause rendering issues as one Markdown handler or another tries to interpret the content.
 
 You might not need to lint markdown beyond whatever support your editor provides.
 I am always experimenting with extensions, variations, and entirely new formats.
@@ -456,7 +456,7 @@ It messes with preview card rendering.
 
 I should go through and carefully evaluate those tags.
 That would be a big task.
-I can ease future me's work load, and fix the layout problem, by enforcing a tag limit for posts.
+I can ease future me's work load and fix the layout problem by enforcing a tag limit for posts.
 
 ```ts
 const tagLimit = 3
@@ -492,7 +492,7 @@ They'll also come in handy when I decide on some change: updating the schema, ge
 
 But the truly useful tests are when we start verifying output: links, accessibility, and generated feeds.
 I didn't do much with those in the Hugo iteration's tests.
-Let me work on this stuff and get back to you.
+Let me work on it and get back to you.
 
 Meanwhile, `sources.test.ts` with all the bits I talked about today in their proper arrangement.
 

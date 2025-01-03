@@ -7,15 +7,15 @@ categories:
 date: 2020-03-21 19:06:00-07:00
 posse:
 - https://hackers.town/@randomgeek/103864261442692092
-- https://twitter.com/brianwisti/status/1241547163039039488
 tags:
 - site
 - helpful-hint
 title: Every Post Has a UUID
 ---
 
-Gave them all a Universally Unique Identifer, per
-[RFC 4122](http://www.faqs.org/rfcs/rfc4122.html).
+Gave them all a Universally Unique Identifer, per [RFC 4122][rfc-4122].
+
+[rfc-4122]: https://datatracker.ietf.org/doc/html/rfc4122
 
 Should simplify rearranging the site sources. Helpful hint: don’t rely
 on filenames as unique content identifiers for your workflow. Oh sure
@@ -23,5 +23,5 @@ they work fine 80% of the time, but that last 20% is a doozy.
 
 I used Python’s [uuid](https://docs.python.org/3/library/uuid.html)
 library. There’s also the
-[uuidgen](http://bigdatums.net/2016/10/01/generate-uuid-linux/) command
+[uuidgen](https://bigdatums.net/2016/10/01/generate-uuid-linux/) command
 if I switch away from a Python workflow.
