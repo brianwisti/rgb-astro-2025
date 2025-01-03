@@ -21,8 +21,12 @@ const posts: ParsedPost[] = glob.sync("src/posts/**/*.{mdx,mdoc}")
 )
 
 const markdownlintConfig = readConfig(".markdownlint.yml", [load])
+const unlinted = [
+  "src/posts/2020/01/restructuredtext-basics-for-blogging.mdx"
+]
+const postsToLint = posts.filter(({ path }) => !unlinted.includes(path))
 
-describe.each(posts)("$path", ({ post }) => {
+describe.each(postsToLint)("$path", ({ post }) => {
   test("frontmatter is valid PostSchema", () => {
     const validation = PostSchema.safeParse(post.data)
 

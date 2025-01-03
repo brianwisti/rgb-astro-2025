@@ -1,4 +1,5 @@
 import fs from "node:fs"
+import path from "node:path"
 
 import glob from "fast-glob"
 import { parse, HTMLElement } from "node-html-parser"
@@ -50,6 +51,7 @@ foundLinks.forEach((from, to) => {
     if (/^((tel|mailto|sms):)|#/.exec(to)) {
         return
     }
+
     if (to.startsWith('http')) {
         externalLinks.push(linkInfo)
     } else {
@@ -66,6 +68,11 @@ test("fixtures loaded", () => {
 describe.each(internalLinks)("%o", ({ to, from }) => {
     test("link is formatted correctly", () => {
         expect(to.startsWith("/") || to.startsWith(siteURI)).toBe(true)
+    })
+
+    test("internal link target exists", () => {
+        const toPath = `dist/${to}`
+        expect(fs.existsSync(toPath)).toBe(true)
     })
 })
 

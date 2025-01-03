@@ -261,13 +261,12 @@ This is what I came up with, more or less.
 1. When this [comment][] is removed, Hugo will [warn][] me about aliases not
    associated with my content.
 
-[old link]: /post/2020/05/setting-up-raku-with-rakudobrew/
 [pagination]: https://gohugo.io/templates/pagination/
 
 It works with some tweaking.  Hugo [pagination][] relies on aliases to setup
 `page/1` redirects.  Those pagination links aren’t associated with a Page, and
 an extra click with those would be annoying.  But in the end I have a
-non-refreshing informational page at the [old link][] for page aliases, and an
+non-refreshing informational page at the old link for page aliases, and an
 auto-refreshing page with context for pagination aliases.
 
 Build gets much noisier with that `warnf` in place.
