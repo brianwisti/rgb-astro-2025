@@ -13,7 +13,7 @@
     "publish": "npm-run-all build test push",
     "push": "rsync --recursive --archive --update --verbose dist/ a2:public_html",
     "test": "vitest run",
-    "test:lint": "markdownlint -c .markdownlint.yml src/posts/**/*.{mdx,mdoc}"
+    "test:site": "npm-run-all build test"
   },
   "dependencies": {
     "-": "^0.0.1",
@@ -43,6 +43,7 @@
     "markdownlint": "^0.37.3",
     "markdownlint-cli": "^0.43.0",
     "md-front-matter": "^1.0.4",
+    "node-html-parser": "^7.0.1",
     "remark-definition-list": "^2.0.0",
     "remark-directive": "^3.0.0",
     "remark-smartypants": "^3.0.2",

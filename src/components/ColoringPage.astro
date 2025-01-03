@@ -1,22 +1,62 @@
 ---
-// currently hard-coded with values for /post/2020/12/something-new-to-color/
+import path from "node:path"
+
+import type { ImageMetadata } from "astro"
+import { Image } from "astro:assets"
+
+interface Props {
+  base: string
+  format?: string
+}
+
+const images = import.meta.glob<{ default: ImageMetadata}>("@img/**/*.{jpg,png}")
+
+const { base, format } = Astro.props as Props
+const imageFormat = format || "jpg"
+const lineworkPath = `/src/assets/img/${base}-linework.${imageFormat}`
+const thumbnailPath = `/src/assets/img/${base}-linework-96x96.${imageFormat}`
+const linework = await images[lineworkPath]()
+const thumbnail = images[thumbnailPath]()
+const filename = path.basename(lineworkPath)
 ---
 <div class="image-link">
   <div class="image-link-preview">
-    <a href="@img/2020/2020-12-15-linework.jpg">
-      <img src="@img/2020/2020-12-15-linework-96x96.jpg" alt="thumbnail of linked image" />
+    <a href={linework.default.src}>
+      <Image src={thumbnail} alt="thumbnail of linked image" height="96" width="96" />
     </a>
   </div>
   <div class="image-link-details">
     <ul>
       <li>
-        <a href="@img/2020/2020-12-15-linework.jpg">
-          <tt>2020-12-15-linework.jpg</tt>
+        <a href={linework.default.src}>
+          <tt>{filename}</tt>
         </a>
       </li>
-      <li>image/jpeg</li>
-      <li>1050 pixels wide, 1050 pixels high</li>
+      <li>format: {linework.default.format}</li>
+      <li>{linework.default.width} pixels wide, {linework.default.height} pixels high</li>
       <li>Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Attribution 4.0 International (CC BY 4.0)</a></li>
     </ul>
   </div>
 </div>
+
+<style>
+  .image-link {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 1em;
+    margin-bottom: 1em;
+  }
+
+  .image-link-details {
+    padding: 0;
+  }
+
+  .image-link-details ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .image-link-details li {
+    margin: 0;
+  }
