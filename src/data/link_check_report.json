@@ -1,0 +1,320 @@
+{
+  "lastChecked": 1736033238307,
+  "results": [
+    {
+      "lastChecked": 1736033236877,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/",
+        "from": [
+          "/",
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236877,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/about/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236877,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236877,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/now/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236877,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/follow/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033238102,
+      "result": 200,
+      "link": {
+        "to": "https://pronoun.is/he",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/drawing/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/knitting/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033237721,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.threadless.com/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033237866,
+      "result": 200,
+      "link": {
+        "to": "https://www.designbyhumans.com/shop/randomgeek/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033237672,
+      "result": 200,
+      "link": {
+        "to": "https://t.me/RandomGeek",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033237293,
+      "result": 200,
+      "link": {
+        "to": "https://hackers.town/@randomgeek",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033237822,
+      "result": 200,
+      "link": {
+        "to": "https://liberapay.com/randomgeek",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033238306,
+      "result": 200,
+      "link": {
+        "to": "https://linkedin.com/in/brianwisti",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2025/01/testing-my-static-site-with-vitest/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/categories/post/",
+        "from": [
+          "/",
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/testing/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/javascript/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/ssg/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2024/12/starting-2025-with-astro/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/site/",
+        "from": [
+          "/",
+          "/",
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/astro/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2024/12/site-style-tweaks/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/categories/note/",
+        "from": [
+          "/",
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236912,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2024/11/blog-reset/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033237545,
+      "result": 200,
+      "link": {
+        "to": "http://creativecommons.org/licenses/by/4.0/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033237414,
+      "result": 200,
+      "link": {
+        "to": "https://astro.build/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033237436,
+      "result": 200,
+      "link": {
+        "to": "https://open-props.style/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236914,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/categories/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236914,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/",
+        "from": [
+          "/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736033236914,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/",
+        "from": [
+          "/"
+        ]
+      }
+    }
+  ]
+}

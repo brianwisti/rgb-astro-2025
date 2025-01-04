@@ -18,20 +18,14 @@ title: Tooting with Python
 
 ## What?
 
-[mastodon]: https://joinmastodon.org
-
-Let's set up a [Mastodon][mastodon] application with Python to read and post
+Let's set up a [Mastodon](https://joinmastodon.org) application with Python to read and post
 toots.
 
 ### How?
 
-[python]: https://python.org
-[second-best]: https://twitter.com/glyph/status/1426414435275448324
-[mastodon-py]: https://mastodonpy.readthedocs.io/en/stable/
-
-[Python][python] is the [second best][second-best] tool for any job in 2021,
+[Python](https://python.org) is the [second best](https://twitter.com/glyph/status/1426414435275448324) tool for any job in 2021,
 which makes it an excellent glue language.  I've been centering my site
-workflow around it. That means the [Mastodon.py][mastodon-py] library, which I
+workflow around it. That means the [Mastodon.py](https://mastodonpy.readthedocs.io/en/stable/) library, which I
 have dabbled with once or twice before.
 
 ### Why?
@@ -42,24 +36,18 @@ of *that* is making sure I remember how to automate posting to Mastodon.
 
 ## Ok fine; get on with it
 
-[mine]: https://hackers.town/@randomgeek
-[instances]: https://instances.social
-
-Course, you're going to need an account at a Mastodon instance.  I have my
-account on [one][mine] of many. You can find one suitable for your tastes at
-[Mastodon instances][instances].
-
+Course, you're going to need an account at a Mastodon instance.
+I have my account on [one](https://hackers.town/@randomgeek) of many.
+You can [find a Mastodon instance](https://joinmastodon.org) fit for your tastes..
 
 {% note %}
 If you don't already know Mastodon, think of it as island versions of
-[Twitter][twitter].  Each instance has its own practices and policies depending
+[Twitter](https://twitter.com).  Each instance has its own practices and policies depending
 on who runs it, so it's very much a "hanging out at a friend's house"
 experience. Lots more details, but much more than I feel like covering.
 
 It's fun. You should try it out maybe. You can even host your own instance if
 you're hard-core into DIY.
-
-[twitter]: https://twitter.com
 {% /note %}
 
 ### Registering your application
@@ -90,7 +78,7 @@ from rich.pretty import pprint
 ```
 
 {% note %}
-Spoiler alert: yes I'll be using [Rich][rich] and [dataclasses][dataclasses]
+Spoiler alert: yes I'll be using [Rich](https://rich.readthedocs.io/en/stable/index.html) and [dataclasses](https://docs.python.org/3/library/dataclasses.html)
 along with Mastodon.py.  Nothing fancy planned with Rich today. It's just part
 of my regular toolkit.
 
@@ -100,15 +88,10 @@ need to install the others::
 ```bash
 pip install --upgrade rich mastodon
 ```
-
-[dataclasses]: https://docs.python.org/3/library/dataclasses.html
-[rich]: https://rich.readthedocs.io/en/stable/index.html
 {% /note %}
 
-[direnv]: https://direnv.net
-
 The Mastodon instance developer panel gives me the details I need to connect. I
-set them as workspace environment variables with [direnv][direnv] out of habit,
+set them as workspace environment variables with [direnv](https://direnv.net) out of habit,
 but you could just as easily hard-code them in Python or define in a config
 file of your own.
 
@@ -118,7 +101,6 @@ CLIENT_KEY = os.environ.get("CLIENT_KEY")
 CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
 ```
-
 
 From my first few attempts writing this post, I know I'll want a class to
 organize views for the connection.
@@ -164,8 +146,7 @@ if __name__ == "__main__":
     pprint(app)
 ```
 
-<pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">App</span><span style="font-weight: bold">(</span><span style="color: #808000; text-decoration-color: #808000">mastodon</span>=<span style="font-weight: bold">&lt;</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">mastodon.Mastodon.Mastodon</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7ff14f1e8850</span><span style="font-weight: bold">&gt;)</span></pre>
-
+<pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="color: #800080; text-decoration-color: #800080; font-weight: bold">App</span><span style="font-weight: bold">(</span><span style="color: #808000; text-decoration-color: #808000">mastodon</span>=<span style="font-weight: bold"><</span><span style="color: #ff00ff; text-decoration-color: #ff00ff; font-weight: bold">mastodon.Mastodon.Mastodon</span><span style="color: #000000; text-decoration-color: #000000"> object at </span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0x7ff14f1e8850</span><span style="font-weight: bold">>)</span></pre>
 
 {% note title="Exporting Rich output" %}
 My code doesn't look *exactly* like what I've shared here. I take advantage
@@ -182,18 +163,13 @@ if __name__ == "__main__":
     rich.get_console().save_html("output.html", inline_styles=True)
 ```
 
-The extra bits change two aspects of Rich's default [Console][console] behavior:
+The extra bits change two aspects of Rich's default [Console](https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console) behavior:
 
-- record output so it can be exported by `save_text` or `save_html`
-  and I can add it here in my post
-- set console width to 80, simplifying display of exported output within
-  the confines of a Web page
+- record output so it can be exported by `save_text` or `save_html` and I can add it here in my post
+- set console width to 80, simplifying display of exported output within the confines of a Web page
 
 After `app` does its thing, I export any output as formatted HTML, where I can
 edit as needed and insert here.
-
-[console]: https://rich.readthedocs.io/en/stable/reference/console.html#rich.console.Console
-
 {% /note %}
 
 So anyways, we verified that our connection works. Let's take a look at what
@@ -201,12 +177,8 @@ that connection provides.
 
 ### The instance
 
-[reading-instance]: https://mastodonpy.readthedocs.io/en/stable/#reading-data-instances
-[instance-health]: https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.instance_health
-
-Mastodon.py provides methods specifically for [reading instance
-details][reading-instance]. For example, [`instance_health`][instance-health]
-tells of if a quick health check succeeded.
+Mastodon.py provides methods specifically for [reading instance details](https://mastodonpy.readthedocs.io/en/stable/#reading-data-instances).
+For example, [`instance_health`](https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.instance_health) tells of if a quick health check succeeded.
 
 ```python
 app = App.connect()
@@ -222,12 +194,9 @@ else:
 
 #### Instance details
 
-[mastodon-instance]: https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.instance
-[instance-dict]: https://mastodonpy.readthedocs.io/en/stable/#instance-dicts
-
 Most of the querying methods return a dictionary or a list of dictionaries.
-[`Mastodon.instance`][mastodon-instance] returns an [instance
-dict][instance-dict].
+[`Mastodon.instance`](https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.instance) returns an [instance
+dict](https://mastodonpy.readthedocs.io/en/stable/#instance-dicts).
 
 I don't feel like showing every item in that dictionary, though. Let's pick a
 few to make a decent summary. Oh hey, and let's cache that dictionary to disk
@@ -315,12 +284,9 @@ Writing data to instance.json
 
 ### Reading the timelines
 
-[timeline-methods]: https://mastodonpy.readthedocs.io/en/stable/#reading-data-timelines
-[timeline-public]: https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.timeline_public
-
-Mastodon's [timeline methods][timeline-methods] provide different views of
+Mastodon's [timeline methods](https://mastodonpy.readthedocs.io/en/stable/#reading-data-timelines) provide different views of
 recent post activity, both public and private.  To simplify demonstration on
-this public blog post, I'll stick to [`timeline_public`][timeline-public].
+this public blog post, I'll stick to [`timeline_public`](https://mastodonpy.readthedocs.io/en/stable/#mastodon.Mastodon.timeline_public).
 
 ```python
 class App:
@@ -329,9 +295,7 @@ class App:
         return self.mastodon.timeline_public()
 ```
 
-[toot-dict]: https://mastodonpy.readthedocs.io/en/stable/#toot-dicts
-
-The [toot dict][toot-dict] also contains far more information than I need, so
+The [toot dict](https://mastodonpy.readthedocs.io/en/stable/#toot-dicts) also contains far more information than I need, so
 let's summarize those like with instances.
 
 ```python
@@ -381,12 +345,12 @@ Writing data to timeline_public.json
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   </span><span style="font-weight: bold">{</span>
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   │   </span><span style="color: #008000; text-decoration-color: #008000">'date'</span>: <span style="color: #008000; text-decoration-color: #008000">'2021-08-15 22:24:35+00:00'</span>,
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   │   </span><span style="color: #008000; text-decoration-color: #008000">'author'</span>: <span style="color: #008000; text-decoration-color: #008000">'Endless Screaming'</span>,
-<span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   │   </span><span style="color: #008000; text-decoration-color: #008000">'content'</span>: <span style="color: #008000; text-decoration-color: #008000">'&lt;p&gt;AAAAAAAAAAAAAAAAAAAAH&lt;/p&gt;'</span>
+<span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   │   </span><span style="color: #008000; text-decoration-color: #008000">'content'</span>: <span style="color: #008000; text-decoration-color: #008000">'<p>AAAAAAAAAAAAAAAAAAAAH</p>'</span>
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   </span><span style="font-weight: bold">}</span>,
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   </span><span style="font-weight: bold">{</span>
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   │   </span><span style="color: #008000; text-decoration-color: #008000">'date'</span>: <span style="color: #008000; text-decoration-color: #008000">'2021-08-15 22:24:43.531000+00:00'</span>,
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   │   </span><span style="color: #008000; text-decoration-color: #008000">'author'</span>: <span style="color: #008000; text-decoration-color: #008000">'Lynne'</span>,
-<span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   │   </span><span style="color: #008000; text-decoration-color: #008000">'content'</span>: <span style="color: #008000; text-decoration-color: #008000">'&lt;p&gt;This just touched a single topic that I’ve never heard being brought up anywh'</span>+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">97</span>
+<span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   │   </span><span style="color: #008000; text-decoration-color: #008000">'content'</span>: <span style="color: #008000; text-decoration-color: #008000">'<p>This just touched a single topic that I’ve never heard being brought up anywh'</span>+<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">97</span>
 <span style="color: #7fbf7f; text-decoration-color: #7fbf7f">│   </span><span style="font-weight: bold">}</span>
 <span style="font-weight: bold">]</span>
 </pre>
@@ -398,9 +362,7 @@ But I'm ready to start tooting.
 
 ### Writing
 
-[write-methods]: https://mastodonpy.readthedocs.io/en/stable/#writing-data-statuses
-
-Mastodon [write methods][write-methods] let us add toots, polls, replies,
+Mastodon [write methods](https://mastodonpy.readthedocs.io/en/stable/#writing-data-statuses) let us add toots, polls, replies,
 reblogs, faves. All that good stuff.
 
 Let's stick with your basic toot for now.
