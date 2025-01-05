@@ -85,7 +85,8 @@ type CheckedLink = {
 }
 
 function checkLocalLink(link: LinkInfo): CheckedLink {
-    const localPath = `dist/${link.to.pathname.replace(/^\//, "")}/index.html`
+    const asFile = link.to.pathname.replace(/^\//, "").replace(/\/$/, "/index.html")
+    const localPath = "dist/" + asFile
 
     return {
         lastChecked: Date.now(),

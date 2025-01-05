@@ -13,7 +13,7 @@
     "publish": "npm-run-all build:prod test push",
     "push": "rsync --recursive --archive --update --verbose dist/ a2:public_html",
     "test": "vitest run",
-    "test:site": "npm-run-all build test"
+    "test:site": "npm-run-all build:prod test"
   },
   "dependencies": {
     "-": "^0.0.1",

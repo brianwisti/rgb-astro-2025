@@ -1,54 +1,107 @@
 {
-  "lastChecked": 1736042848332,
+  "lastChecked": 1736051326909,
   "results": [
     {
-      "lastChecked": 1736042848331,
+      "lastChecked": 1736051326907,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/",
         "from": [
           "/",
-          "/"
+          "/",
+          "/about/",
+          "/about/",
+          "/categories/",
+          "/categories/",
+          "/follow/",
+          "/follow/",
+          "/neighborhood/",
+          "/neighborhood/",
+          "/now/",
+          "/now/",
+          "/post/",
+          "/post/",
+          "/series/",
+          "/series/",
+          "/tags/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848331,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/about/",
         "from": [
-          "/"
+          "/",
+          "/about/",
+          "/about/",
+          "/categories/",
+          "/follow/",
+          "/neighborhood/",
+          "/now/",
+          "/post/",
+          "/series/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848331,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/",
         "from": [
-          "/"
+          "/",
+          "/about/",
+          "/categories/",
+          "/follow/",
+          "/neighborhood/",
+          "/now/",
+          "/post/",
+          "/post/",
+          "/series/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848331,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/now/",
         "from": [
-          "/"
+          "/",
+          "/about/",
+          "/categories/",
+          "/follow/",
+          "/neighborhood/",
+          "/now/",
+          "/now/",
+          "/post/",
+          "/series/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848331,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/follow/",
         "from": [
-          "/"
+          "/",
+          "/about/",
+          "/categories/",
+          "/follow/",
+          "/follow/",
+          "/neighborhood/",
+          "/now/",
+          "/now/",
+          "/post/",
+          "/series/",
+          "/tags/"
         ]
       }
     },
@@ -63,22 +116,24 @@
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/drawing/",
         "from": [
-          "/"
+          "/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/knitting/",
         "from": [
-          "/"
+          "/",
+          "/tags/"
         ]
       }
     },
@@ -145,7 +200,7 @@
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/2025/01/testing-my-static-site-with-vitest/",
@@ -155,48 +210,52 @@
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/categories/post/",
         "from": [
           "/",
-          "/"
+          "/",
+          "/categories/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/testing/",
         "from": [
-          "/"
+          "/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/javascript/",
         "from": [
-          "/"
+          "/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/ssg/",
         "from": [
-          "/"
+          "/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/2024/12/starting-2025-with-astro/",
@@ -206,29 +265,31 @@
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/site/",
         "from": [
           "/",
           "/",
-          "/"
+          "/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/astro/",
         "from": [
-          "/"
+          "/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/2024/12/site-style-tweaks/",
@@ -238,18 +299,19 @@
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/categories/note/",
         "from": [
           "/",
-          "/"
+          "/",
+          "/categories/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/2024/11/blog-reset/",
@@ -289,32 +351,3351 @@
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/categories/",
         "from": [
-          "/"
+          "/",
+          "/about/",
+          "/categories/",
+          "/categories/",
+          "/follow/",
+          "/neighborhood/",
+          "/now/",
+          "/post/",
+          "/series/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/",
         "from": [
-          "/"
+          "/",
+          "/about/",
+          "/categories/",
+          "/follow/",
+          "/neighborhood/",
+          "/now/",
+          "/post/",
+          "/series/",
+          "/tags/",
+          "/tags/"
         ]
       }
     },
     {
-      "lastChecked": 1736042848332,
+      "lastChecked": 1736051326908,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/series/",
         "from": [
-          "/"
+          "/",
+          "/about/",
+          "/categories/",
+          "/follow/",
+          "/neighborhood/",
+          "/now/",
+          "/post/",
+          "/series/",
+          "/series/",
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/categories/gallery/",
+        "from": [
+          "/categories/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175375,
+      "result": 200,
+      "link": {
+        "to": "https://en.wikipedia.org/wiki/RSS",
+        "from": [
+          "/follow/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175485,
+      "result": 200,
+      "link": {
+        "to": "https://feedly.com/",
+        "from": [
+          "/follow/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048830441,
+      "result": 403,
+      "error": "disallowed by robots.txt",
+      "link": {
+        "to": "https://gitlab.com/news-flash/news_flash_gtk",
+        "from": [
+          "/follow/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175396,
+      "result": 200,
+      "link": {
+        "to": "https://netnewswire.com/",
+        "from": [
+          "/follow/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/index.xml",
+        "from": [
+          "/follow/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/neighborhood/",
+        "from": [
+          "/neighborhood/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175407,
+      "result": 200,
+      "link": {
+        "to": "https://sive.rs/nowff",
+        "from": [
+          "/now/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175574,
+      "result": 200,
+      "link": {
+        "to": "https://sive.rs/",
+        "from": [
+          "/now/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175408,
+      "result": 200,
+      "link": {
+        "to": "https://nownownow.com/p/2ugf",
+        "from": [
+          "/now/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175562,
+      "result": 200,
+      "link": {
+        "to": "https://nownownow.com/",
+        "from": [
+          "/now/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175498,
+      "result": 200,
+      "link": {
+        "to": "https://en.wikipedia.org/wiki/Webring",
+        "from": [
+          "/now/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175368,
+      "result": 200,
+      "link": {
+        "to": "https://www.visittucson.org/",
+        "from": [
+          "/now/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175377,
+      "result": 200,
+      "link": {
+        "to": "https://hackers.town/@IamMrsGeek/",
+        "from": [
+          "/now/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736048175323,
+      "result": 403,
+      "error": "disallowed by robots.txt",
+      "link": {
+        "to": "https://www.linkedin.com/in/brianwisti",
+        "from": [
+          "/now/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2025/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2024/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2023/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2022/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2021/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2020/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2019/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2018/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2017/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2016/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2015/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2014/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2013/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2012/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2011/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2010/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2009/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2008/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2007/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2006/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2005/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2004/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2003/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2002/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2001/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/post/2000/",
+        "from": [
+          "/post/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/fixing-my-webmentions/",
+        "from": [
+          "/series/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/journaling-in-joplin-with-raku/",
+        "from": [
+          "/series/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/parrot-babysteps/",
+        "from": [
+          "/series/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/python-blogger-refresh/",
+        "from": [
+          "/series/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/python-interactive-fiction/",
+        "from": [
+          "/series/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/rebol-babysteps/",
+        "from": [
+          "/series/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/sauntering/",
+        "from": [
+          "/series/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/taskwarrior-babysteps/",
+        "from": [
+          "/series/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/series/the-reply-perl-repl/",
+        "from": [
+          "/series/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/43-things/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/a-foolish-consistency/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/accessibility/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/accidental-renaissance/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/adhd/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/amigurumi/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/amplenote/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/and-other-delusions/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/applescript/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/art/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/asciidoctor/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/astro-dot-build/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/atom-editor/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/awesomewm/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/babblings/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/bad-idea/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/bedtime-drawing/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/benchmarking/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/blogger/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/blogging/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/blogspot/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/book/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/bookmarks/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/books/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/bowie/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/browser-testing/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/buy-me/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/cabin-fever/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/cats/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/celtic/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/chainsaws-everywhere/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/chunky-bacon/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/cinnamon/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/color-me/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/community/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/community-support/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/config/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/coolnamehere/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/covid-lockdown-nights/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/craft/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/crochet/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/crystal/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/css/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/csv/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/culture/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/cuteness/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/damstack/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/dart/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/data/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/dendron/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/did-i-make-a-buzzword-yet/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/disqus/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/distractions/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/diy/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/editors/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/elaborate-solutions-to-imaginary-problems/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/electron/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/eleventy/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/elisp/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/elscreen/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/emacs/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/exiftool/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/experiment/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/experiments/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/exploring/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/files/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/food/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/found-online/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/fun/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/games/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/gaming/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326908,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/gatsbyjs/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/gist/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/git/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/glove/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/gloves/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/glue-languages-stick-with-you/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/go/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/good-idea/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/google-apps-script/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/got-lost-in-history-links/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/graffiti/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/grooming/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/hat/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/hawaii/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/health/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/helpful-hint/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/history/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/hugo/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/hyperscript/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/i-fixed-it/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/i-like-my-mess/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/i-made-something/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/indieweb/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/infinite-painter/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/interactive-fiction/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/internet-history/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/it-keeps-me-out-of-trouble/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/it-s-art/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/it-s-been-84-years/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/itunes/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/java/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/jekyll/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/joplin/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/julialang/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/just/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/keyboard/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/kitties/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/kitty/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/learn/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/learning-is-fun/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/legal/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/licensing/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/life/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/life-doesn-t-have-to-be-hard/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/limit-theory/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/linea-sketch/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/link/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/links/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/linux/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/lisp/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/listen/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/literate-programming/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/llm/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/logseq/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/look/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/look-i-added-source-links/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/look-ma-i-made-a-clickbait-title/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/look-what-i-can-do/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/lua/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/mac-os/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/macos/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/marginalia/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/markdown/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/mastodon/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/memories/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/mental-health/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/microformats/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/microsoft/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/mojolicious/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/mom/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/monetize-the-hobbies-but-not-too-much/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/money/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/mongodb/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/mood/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/moved-in/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/movie/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/movies/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/music/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/my-brand/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/my-computer/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/my-knowledge-garden/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/nanoc/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/neovim/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/neurodiversity/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/nikola/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/node-js/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/notes/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/now/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/now-it-s-real/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/now-playing/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/nushell/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/obsidian/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/okay-maybe-two/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/okay-not-their-exact-phrasing/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/ooh-a-sparkly/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/oops/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/org/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/org-config/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/org-mode/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/orgconfig/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/orgmode/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/os-x/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/package-manager/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/packages/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/pagetemplate/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/panda-geekery/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/pandoc/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/parrot/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/perl/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/perl6/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/personal/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/philosophy/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/php/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/pic/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/planet-crafter/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/podcast/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/posse/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/powershell/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/procreate/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/programming/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/psa/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/public-service-announcement/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/pyinvoke/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/python/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/quagmire/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/quotes/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/rails/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/raku-lang/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/read/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/reading/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/rebol/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/recipe/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/remember-this-for-me/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/respect-the-command-line/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/rich/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/right-tool-for-the-right-job/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/rss/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/rst/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/ruby/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/rust/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/rust-lang/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/s3/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/sauntering/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/scarf/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/screenshot/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/scss/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/seattle/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/second-brain/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/security/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/seen/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/self-hosting/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/serious-pony/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/shell/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/shortcodes/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/sitejs/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/siyuan/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/sketch-club/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/smeghead/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/snapshot/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/so-pretty/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/socks/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/software-architecture/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/space/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/spent-too-long-posting-this/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/spring-cleaning-for-websites/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/sqlite/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/statamic/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/sublime-text/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/surprise/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/suse/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/symmetry/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/tasks/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/taskwarrior/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/text/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/the-internet/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/the-internet-is-an-alien-life-form/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/the-old-ways-die-hard/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/til/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/tmux/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/tools/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/toread/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/trilium-notes/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/try-it-and-see/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/tumblelog/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/typescript/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/unix/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/vacation/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/vagrant/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/vegas/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/vest/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/vim/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/virtualization/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/vs-code/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/vscode/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/watch/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/watching/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/web/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/whatever/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/whinging/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/windows/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/with-my-sweetheart/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/wordpress/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/work/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/work-trip/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/workflow/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/wsl/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/xml/",
+        "from": [
+          "/tags/"
+        ]
+      }
+    },
+    {
+      "lastChecked": 1736051326909,
+      "result": 200,
+      "link": {
+        "to": "https://randomgeekery.org/tags/zentangle/",
+        "from": [
+          "/tags/"
         ]
       }
     }
