@@ -3,6 +3,7 @@ import { URL } from "node:url"
 
 import glob from "fast-glob"
 import { parse, HTMLElement } from "node-html-parser"
+import RobotsParser from "robots-parser"
 
 const SAVED_REPORT_PATH = "src/data/link_check_report.json"
 const SITE_URL = "https://randomgeekery.org"
@@ -123,6 +124,7 @@ async function checkExternalLink(link: LinkInfo): Promise<CheckedLink> {
     return result
 }
 
+
 export type LinkCheckReport = {
     lastChecked: number
     results: CheckedLink[]
@@ -196,6 +198,23 @@ export async function GenerateLinkCheckReport(pages: Page[]): Promise<LinkCheckR
     const lastReport = loadReport()
     const currentReport = EmptyLinkCheckReport()
     const links = collectSiteLinks(pages)
+    const domains = new Set(links.map((link) => link.to.origin))
+
+    const domainRules = await Promise.all(
+        Array.from(domains).map(async (domain) => {
+            const getReq = await fetch(`${domain}/robots.txt`, { method: "GET", signal: AbortSignal.timeout(REQUEST_TIMEOUT) })
+
+            if (!getReq.ok) {
+                console.error(`Error fetching ${domain}/robots.txt: ${getReq.status}`)
+                return { domain, robots: RobotsParser(`${domain}/robots.txt`, "") }
+            }
+
+            const body = await getReq.text()
+
+            const robots = RobotsParser(`${domain}/robots.txt`, body)
+            return { domain, robots }
+        }))
+
     const results = await Promise.all(links.map(async (link) => {
         if (link.to.origin === SITE_URL) {
             return checkLocalLink(link)
@@ -205,6 +224,27 @@ export async function GenerateLinkCheckReport(pages: Page[]): Promise<LinkCheckR
 
         if (cached && cached.lastChecked > cacheLimit) {
             return cached
+        }
+
+        const domainRulesForLink = domainRules.find((entry) => entry.domain === link.to.origin)
+        if (domainRulesForLink) {
+            if (domainRulesForLink.robots.isDisallowed(link.to.href, "node-fetch/1.0")) {
+                return {
+                    lastChecked: Date.now(),
+                    result: 403,
+                    error: "disallowed by robots.txt",
+                    link
+                }
+            }
+        }
+
+        if (domainRulesForLink && !domainRulesForLink.robots.isAllowed(link.to.href, "node-fetch/1.0")) {
+            console.log(`Skipping ${link.to.href} due to robots.txt`)
+            return {
+                lastChecked: Date.now(),
+                result: 403,
+                link
+            }
         }
 
         return await checkExternalLink(link)

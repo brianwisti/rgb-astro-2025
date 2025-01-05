@@ -3,11 +3,18 @@ import { describe, test, expect } from "vitest"
 
 import { GenerateLinkCheckReport, LoadPages, partitionLinks } from "@lib/LinkChecker"
 
+// Their robots.txt says they don't want to be scraped
+const knownDisallowedHosts = [
+    "https://linkedin.com",
+    "https://randomgeekery.threadless.com",
+]
+
 const pages = LoadPages()
     .filter((page) => page.permalink == "/")
 
 const lastReport = await GenerateLinkCheckReport(pages)
 const [internalLinks, externalLinks] = partitionLinks(lastReport)
+const allowedExternalLinks = externalLinks.filter((link) => !knownDisallowedHosts.includes(link.link.to.origin))
 
 test("fixtures loaded", () => {
     expect(pages.length).toBe(1)
@@ -26,7 +33,7 @@ describe.each(internalLinks)("$link.to.pathname", ({ link, result }) => {
     })
 })
 
-describe.each(externalLinks)("$link.to.href", ({ link, result, error }) => {
+describe.each(allowedExternalLinks)("$link.to.href", ({ link, result, error }) => {
     test("link was requested without error", () => {
         expect(error).toBeUndefined()
     })
