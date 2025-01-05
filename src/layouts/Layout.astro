@@ -9,6 +9,7 @@ interface Props {
 
 const { title, description } = Astro.props as Props
 const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
+const isProd = import.meta.env.PROD
 ---
 
 <!doctype html>
@@ -38,6 +39,9 @@ const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
             <slot />
         </main>
         <SiteFooter />
+        {isProd ?
+          <script data-goatcounter="https://randomgeekery.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+          : "" }
     </body>
 </html>
 
