@@ -143,10 +143,6 @@ function findLinkInReport(report: LinkCheckReport, link: LinkInfo): CheckedLink 
 
 function loadReport(): LinkCheckReport {
     const reviver = (key: string, value: any) => {
-        if (key === "lastChecked") {
-            return new Date(value)
-        }
-
         if (key === "link") {
             return {
                 to: new URL(value.to),
@@ -175,10 +171,6 @@ export function partitionLinks(report: LinkCheckReport): [CheckedLink[], Checked
 
 function saveReport(report: LinkCheckReport) {
     const replacer = (key: string, value: any) => {
-        if (key === "lastChecked" && value instanceof Date) {
-            return value.getTime()
-        }
-
         if (key === "link") {
             return {
                 to: value.to.href,
@@ -223,6 +215,7 @@ export async function GenerateLinkCheckReport(pages: Page[]): Promise<LinkCheckR
         const cached = findLinkInReport(lastReport, link)
 
         if (cached && cached.lastChecked > cacheLimit) {
+            console.log(`Using cached result for ${link.to.href}`)
             return cached
         }
 
@@ -235,15 +228,6 @@ export async function GenerateLinkCheckReport(pages: Page[]): Promise<LinkCheckR
                     error: "disallowed by robots.txt",
                     link
                 }
-            }
-        }
-
-        if (domainRulesForLink && !domainRulesForLink.robots.isAllowed(link.to.href, "node-fetch/1.0")) {
-            console.log(`Skipping ${link.to.href} due to robots.txt`)
-            return {
-                lastChecked: Date.now(),
-                result: 403,
-                link
             }
         }
 

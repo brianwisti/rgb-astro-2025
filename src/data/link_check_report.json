@@ -1,8 +1,8 @@
 {
-  "lastChecked": 1736039411667,
+  "lastChecked": 1736042848332,
   "results": [
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848331,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/",
@@ -13,7 +13,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848331,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/about/",
@@ -23,7 +23,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848331,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/",
@@ -33,7 +33,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848331,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/now/",
@@ -43,7 +43,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848331,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/follow/",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:14.767Z",
+      "lastChecked": 1736042807436,
       "result": 200,
       "link": {
         "to": "https://pronoun.is/he",
@@ -63,7 +63,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/drawing/",
@@ -73,7 +73,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/knitting/",
@@ -83,7 +83,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:13.863Z",
+      "lastChecked": 1736042806553,
       "result": 403,
       "error": "disallowed by robots.txt",
       "link": {
@@ -94,7 +94,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:13.929Z",
+      "lastChecked": 1736042807323,
       "result": 200,
       "link": {
         "to": "https://www.designbyhumans.com/shop/randomgeek/",
@@ -104,7 +104,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:14.416Z",
+      "lastChecked": 1736042807103,
       "result": 200,
       "link": {
         "to": "https://t.me/RandomGeek",
@@ -114,7 +114,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:13.927Z",
+      "lastChecked": 1736042806604,
       "result": 200,
       "link": {
         "to": "https://hackers.town/@randomgeek",
@@ -124,7 +124,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:14.431Z",
+      "lastChecked": 1736042807101,
       "result": 200,
       "link": {
         "to": "https://liberapay.com/randomgeek",
@@ -134,7 +134,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:13.870Z",
+      "lastChecked": 1736042806554,
       "result": 403,
       "error": "disallowed by robots.txt",
       "link": {
@@ -145,7 +145,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/2025/01/testing-my-static-site-with-vitest/",
@@ -155,7 +155,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/categories/post/",
@@ -166,7 +166,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/testing/",
@@ -176,7 +176,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/javascript/",
@@ -186,7 +186,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/ssg/",
@@ -196,7 +196,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/2024/12/starting-2025-with-astro/",
@@ -206,7 +206,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/site/",
@@ -218,7 +218,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/astro/",
@@ -228,7 +228,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/2024/12/site-style-tweaks/",
@@ -238,7 +238,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/categories/note/",
@@ -249,7 +249,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/post/2024/11/blog-reset/",
@@ -259,7 +259,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:14.099Z",
+      "lastChecked": 1736042806797,
       "result": 200,
       "link": {
         "to": "http://creativecommons.org/licenses/by/4.0/",
@@ -269,7 +269,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:13.925Z",
+      "lastChecked": 1736042806609,
       "result": 200,
       "link": {
         "to": "https://astro.build/",
@@ -279,7 +279,7 @@
       }
     },
     {
-      "lastChecked": "2025-01-05T01:05:13.900Z",
+      "lastChecked": 1736042806581,
       "result": 200,
       "link": {
         "to": "https://open-props.style/",
@@ -289,7 +289,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/categories/",
@@ -299,7 +299,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/tags/",
@@ -309,7 +309,7 @@
       }
     },
     {
-      "lastChecked": 1736039411667,
+      "lastChecked": 1736042848332,
       "result": 200,
       "link": {
         "to": "https://randomgeekery.org/series/",
