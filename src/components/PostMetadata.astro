@@ -1,8 +1,9 @@
 ---
-import CategoryLink from "./CategoryLink.astro";
-import SeriesLink from "./SeriesLink.astro";
-import TagLink from "./TagLink.astro";
-import Timestamp from "./Timestamp.astro";
+import CategoryLink from "./CategoryLink.astro"
+import SeriesLink from "./SeriesLink.astro"
+import TagLink from "./TagLink.astro"
+import Timestamp from "./Timestamp.astro"
+import UsesLink from "@components/UsesLink.astro"
 
 interface Props {
     date: Date
@@ -11,7 +12,8 @@ interface Props {
     series: string[]
 }
 
-const { date, categories, tags, series } = Astro.props;
+const { data } = Astro.props
+const { date, categories, tags, series, uses } = data
 ---
 
 <div class="meta">
@@ -21,6 +23,9 @@ const { date, categories, tags, series } = Astro.props;
       <ul>
         {tags.map((tag) => <li><TagLink {tag} /></li>)}
       </ul>
+      {uses
+        ? <ul> {uses.map((used) => <li><UsesLink {used} /></li>)} </ul>
+        : "" }
       {series.map((thisSeries) => <SeriesLink series={thisSeries} />)}
     </div>
 </div>

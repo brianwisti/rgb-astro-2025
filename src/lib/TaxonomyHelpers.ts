@@ -10,6 +10,7 @@ interface Post {
     tags: string[]
     categories: string[]
     series: string[]
+    uses: string[]
   };
   id: string
 }
@@ -65,6 +66,34 @@ export async function collectSiteTagMap(): Promise<SluggedTaxonomyMapping> {
     for (let j = 0; j < tags.length; j++) {
       const tag = tags[j]
       const slug = slugify(tag)
+
+      if (!slugs.has(slug)) {
+        slugs.set(slug, [])
+      }
+
+      slugs.get(slug)?.push(post)
+    }
+  }
+
+  return slugs
+}
+
+export async function collectSiteUsesMap(): Promise<SluggedTaxonomyMapping> {
+  const posts = await getCollection("posts")
+  const slugs = new Map<string, Post[]>
+
+  for (let i = 0; i < posts.length; i++) {
+    const post = posts[i]
+    const entries = post.data.uses
+
+    if (!entries) {
+      continue
+    }
+
+    for (let j = 0; j < entries.length; j++) {
+      const entry = entries[j]
+      console.log(`uses: ${entry}`)
+      const slug = slugify(entry)
 
       if (!slugs.has(slug)) {
         slugs.set(slug, [])

@@ -1,0 +1,43 @@
+---
+import PostCollectionSummary from "@components/PostCollectionSummary.astro"
+import type { SluggedTaxonomyMapping } from "@lib/TaxonomyHelpers"
+
+interface Props {
+  slugs: SluggedTaxonomyMapping
+  base: string
+}
+
+const { slugs, base } = Astro.props as Props
+---
+<div>
+  <ul>
+      {
+          Array.from(slugs.keys())
+              .sort()
+              .map((slug) => (
+                  <li>
+                    <PostCollectionSummary href={`/${base}/${slug}/`} text={slug} posts={slugs.get(slug)} />
+                  </li>
+              ))
+      }
+  </ul>
+</div>
+
+<style>
+  div {
+    border-top: thin solid var(--rg-color-line);
+  }
+
+  ul {
+    max-width: 75%;
+    margin-block: 0;
+    margin-inline: auto;
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-block: .5em;
+    margin-inline: 0;
+  }
+</style>

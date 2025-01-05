@@ -1,0 +1,9 @@
+---
+import { collectSiteUsesMap } from "@lib/TaxonomyHelpers"
+
+import TaxonomyListing from "@components/TaxonomyListing.astro"
+
+const slugs = await collectSiteUsesMap()
+const base = "uses"
+---
+<TaxonomyListing {slugs} {base} />

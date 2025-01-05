@@ -5,7 +5,7 @@ export const PostSchema = z.object({
   date: z.date(),
   categories: z.array(z.string()),
   tags: z.array(z.string()).default([]),
-  uses: z.array(z.string()).optional(),
+  uses: z.array(z.string()).default([]),
   series: z.array(z.string()).default([]),
   description: z.string().optional(),
   cover_image: z.string().optional(),
@@ -18,6 +18,7 @@ export interface PostInterface {
         description?: string
         tags: string[]
         categories: string[]
+        uses: string[]
         series: string[]
         cover_image?: string
     };

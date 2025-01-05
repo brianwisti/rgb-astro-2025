@@ -9,7 +9,8 @@ interface Props {
 }
 
 const { post } = Astro.props
-const { title, date, tags, description, categories, cover_image, series } = post.data
+const { data } = post
+const { title, description, cover_image } = data
 // thumbnails
 const widths = [256]
 ---
@@ -33,7 +34,7 @@ const widths = [256]
         )
     }
     <footer>
-      <PostMetadata {date} {categories} {tags} {series} />
+      <PostMetadata {data} />
     </footer>
 </section>
 

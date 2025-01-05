@@ -1,0 +1,9 @@
+---
+import { collectSiteTagMap } from "@lib/TaxonomyHelpers"
+
+import TaxonomyListing from "@components/TaxonomyListing.astro"
+
+const slugs = await collectSiteTagMap()
+const base = "tags"
+---
+<TaxonomyListing {slugs} {base} />

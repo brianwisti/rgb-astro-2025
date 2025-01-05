@@ -1,0 +1,27 @@
+---
+import { collectSiteUsesMap } from "@lib/TaxonomyHelpers"
+
+import PageLayout from "@layouts/PageLayout.astro"
+import PostListing from "@components/PostListing.astro"
+import type { PostInterface } from "@lib/Post"
+
+export async function getStaticPaths() {
+  const slugs = await collectSiteUsesMap();
+
+  return Array.from(slugs.keys()).map((slug) => ({
+      params: { slug },
+      props: { slug, posts: slugs.get(slug) },
+  }));
+}
+
+interface Props {
+  slug: string
+  posts: PostInterface[]
+}
+
+const { slug, posts } = Astro.props as Props
+const title= `Uses ${slug}`
+---
+<PageLayout {title}>
+  <PostListing post={posts} />
+</PageLayout>

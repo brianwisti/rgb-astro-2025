@@ -1,0 +1,11 @@
+---
+import TaxonomyLink from "./core/TaxonomyLink.astro"
+
+interface Props {
+    used: string
+}
+
+const { used } = Astro.props as Props
+---
+
+<TaxonomyLink href={`/uses/${used}/`} classNames="uses"><slot>{used}</slot></TaxonomyLink>
