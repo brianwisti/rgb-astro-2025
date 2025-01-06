@@ -21,8 +21,13 @@ const posts: ParsedPost[] = glob.sync("src/posts/**/*.{mdx,mdoc}")
 )
 
 const markdownlintConfig = readConfig(".markdownlint.yml", [load])
+
 const unlinted = [
   "src/posts/2020/01/restructuredtext-basics-for-blogging.mdx"
+]
+
+const shouldBeUses = [
+  "hugo",
 ]
 const postsToLint = posts.filter(({ path }) => !unlinted.includes(path))
 
@@ -49,6 +54,12 @@ describe.each(postsToLint)("$path", ({ post }) => {
     expect(tags).toBeInstanceOf(Array)
     expect(tags.length).toBeLessThanOrEqual(tagLimit)
   })
+
+  test("no tags that should be under 'uses'", () => {
+    const intersection = post.data.tags.filter((tag: string) => shouldBeUses.includes(tag))
+    expect(intersection).toHaveLength(0)
+  })
+
 })
 
 

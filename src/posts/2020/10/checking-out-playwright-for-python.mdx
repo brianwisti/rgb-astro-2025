@@ -6,22 +6,24 @@ categories:
 date: 2020-10-13 00:24:11-07:00
 posse:
 - https://hackers.town/@randomgeek/105026330465855930
-- https://twitter.com/brianwisti/status/1315919976247762945
 tags:
-- python
 - browser-testing
+uses:
+- python
 title: Checking out Playwright for Python
 ---
+import Quote from "@components/Quote.astro"
 
-[Announcing Playwright for Python: Reliable end-to-end testing for the web]: https://devblogs.microsoft.com/python/announcing-playwright-for-python-reliable-end-to-end-testing-for-the-web/
+<Quote
+  title="Announcing Playwright for Python: Reliable end-to-end testing for the web"
+  cite="https://devblogs.microsoft.com/python/announcing-playwright-for-python-reliable-end-to-end-testing-for-the-web/">
 
+While automation is important, end-to-end tests are prone to being slow and
+flaky. To fix this, we released Playwright in JavaScript earlier this year and
+have enabled thousands of developers and testers to be successful at end-to-end
+testing. Today, we’re bringing the same capabilities to Python.
 
-> While automation is important, end-to-end tests are prone to being slow and
-> flaky. To fix this, we released Playwright in JavaScript earlier this year and
-> have enabled thousands of developers and testers to be successful at end-to-end
-> testing. Today, we’re bringing the same capabilities to Python.
->
-> -- <cite>[Announcing Playwright for Python: Reliable end-to-end testing for the web][]</cite>
+</Quote>
 
 [Playwright]: https://playwright.dev
 
@@ -33,8 +35,7 @@ Nicer than Selenium, anyways.
 
 BRB rewriting all my browser tests.
 
-<div class="admonition">
-<p class="admonition-title">Addendum</p>
+:::note{title="Addendum"}
 
 Yeah I know.
 
@@ -43,4 +44,4 @@ Yeah I know.
 My webmentions are all messed up.
 Working on it, in my copious free time.
 
-</div>
+:::
