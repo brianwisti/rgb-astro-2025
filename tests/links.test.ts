@@ -5,15 +5,20 @@ import { GenerateLinkCheckReport, LoadPages, partitionLinks } from "@lib/LinkChe
 
 // Their robots.txt says they don't want to be scraped
 const knownDisallowedHosts = [
-    "https://gitlab.com",
-    "https://linkedin.com",
-    "https://www.linkedin.com",
-    "https://randomgeekery.threadless.com",
+  "https://commons.wikimedia.org",
+  "https://github.com",
+  "https://gitlab.com",
+  "https://linkedin.com",
+  "https://www.linkedin.com",
+  "https://randomgeekery.threadless.com",
+  "https://weblog.anniegreens.lol",
 ]
 
 const pageFilter = /^\/([a-z]+\/)?$/
+const postFilter = /^\/post\/202[45]\//
+
 const pages = LoadPages()
-    .filter((page) => pageFilter.exec(page.permalink))
+    .filter((page) => pageFilter.exec(page.permalink) || postFilter.exec(page.permalink))
 
 const lastReport = await GenerateLinkCheckReport(pages)
 const [internalLinks, externalLinks] = partitionLinks(lastReport)
