@@ -1,48 +1,53 @@
-# Astro Starter Kit: Basics
+# Random Geekery Blog in Astro for 2025
 
-```sh
-npm create astro@latest -- --template basics
-```
+an iteration of the [Random Geekery][rgb] blog built with [Astro][astro]
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+[rgb]: https://randomgeekery.org
+[astro]: https://astro.build
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Integrations
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- [astro-expressive-code][a-ec] for very fancy syntax highlighting from [Expressive Code][ec]
+- [@astrojs/mdx][a-mdx] for components in Markdown documents and someday maybe proper [MDX][mdx] fanciness
+- [astro-mdx-directive][a-mdx-d] to let Astro components handle (nearly) vanilla Markdown syntax, mostly for asides
+- [@astrojs/sitemap][a-sitemap] to make the search engines happier
+- [@astrojs/markdoc][a-mdoc] for a few posts with sufficiently complex raw HTML to confuse MDX
 
-## 🚀 Project Structure
+[a-ec]: https://github.com/expressive-code/expressive-code/blob/main/packages/astro-expressive-code/README.md
+[ec]: https://expressive-code.com
+[a-mdx]: https://docs.astro.build/en/guides/integrations-guide/mdx/
+[mdx]: https://mdxjs.com
+[a-mdx-d]: https://github.com/tetracalibers/astro-mdx-directive
+[a-sitemap]: https://docs.astro.build/en/guides/integrations-guide/sitemap/
+[a-mdoc]: https://docs.astro.build/en/guides/integrations-guide/markdoc/ 
 
-Inside of your Astro project, you'll see the following folders and files:
+## Non-integration Astro extensions
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- [@astrojs/rss][a-rss] to make old bloggers happier by generating an RSS feed
+- [astro-breadcrumbs][a-bc] for those nice links back to the top of my site
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+[a-bc]: https://docs.astro-breadcrumbs.kasimir.dev
+[a-rss]: https://docs.astro.build/en/recipes/rss/
 
-## 🧞 Commands
+## Markdown extensions
 
-All commands are run from the root of the project, from a terminal:
+To cover what astro-mdx-directive can't.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- [remark-definition-list][rmd] to support Markdown definition list syntax
+- [remark-smarty-pants][rsp] for some common typographical niceties like em-dash
 
-## 👀 Want to learn more?
+[rmd]: https://www.npmjs.com/package/remark-definition-list
+[rsp]: https://www.npmjs.com/package/remark-smartypants
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Quality Checks
+
+Got some stuff in there to ensure consistent formatting and valid links.
+Honestly "valid links" is a work in progress.
+But at least I'll know if I any of my newer links start to rot!
+
+- [vitest][vitest] runs the tests and provides the assertions
+- [markdownlint][mdl] ensures my Markdown looks consistent with [my Markdownlint config][mdl-yml]
+
+[vitest]: https://vitest.dev
+[mdl]: https://github.com/markdownlint/markdownlint
+[mdl-yml]: ./.markdownlint.yml
