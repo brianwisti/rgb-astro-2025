@@ -6,6 +6,8 @@ import { GenerateLinkCheckReport, LoadPages, partitionLinks } from "@lib/LinkChe
 // Their robots.txt says they don't want to be scraped
 const knownDisallowedHosts = [
   "https://commons.wikimedia.org",
+  "https://discord.com",
+  "https://dropbox.com", // HTTP 429 actually
   "https://github.com",
   "https://gitlab.com",
   "https://linkedin.com",
