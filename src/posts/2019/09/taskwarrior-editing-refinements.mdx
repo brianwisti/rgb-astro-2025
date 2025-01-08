@@ -1,31 +1,29 @@
 ---
 aliases:
-- /2019/09/05/taskwarrior-editing-refinements/
-- /post/2019/09/taskwarrior-editing-refinements/
+  - /2019/09/05/taskwarrior-editing-refinements/
 categories:
-- post
+  - post
 cover_image: /img/2019/cover-taskwarrior-editing-refinements.png
 date: 2019-09-05 00:00:00-07:00
 description: In which I mention more ways to edit Taskwarrior tasks
 posse:
-- https://hackers.town/@randomgeek/102744038346579949
-- https://twitter.com/brianwisti/status/1169853116612628481
+  - https://hackers.town/@randomgeek/102744038346579949
 series:
-- Taskwarrior Babysteps
+  - Taskwarrior Babysteps
 tags:
-- taskwarrior
-- tools
+  - tools
+uses:
+  - taskwarrior
 title: Taskwarrior Editing Refinements
 ---
 
-<aside class="admonition tldr">
-  <p class="admonition-title">tl;dr</p>
+:::note{title="TL;DR:"}
 
 `edit` and `append` give additional ways to update your
 [Taskwarrior](https://taskwarrior.org) tasks. `undo` is there for the
 errors you catch quickly.
 
-</aside>
+:::
 
 I mentioned `modify` early on, and it works. But it’s real easy to make
 silly mistakes. Time to talk about a couple extra
@@ -37,25 +35,24 @@ impact of little daily blunders.
 So let’s say I got a [book](https://www.twoscoopspress.com/) for
 work-related learning. I create a task.
 
-    $ task add 'Read "Two Scoops of Django"'
-    Created task 201
+```
+$ task add 'Read "Two Scoops of Django"'
+Created task 201
+```
 
 Oh wait, this a learning task, so I should add the `+learn` tag. I’ll
 use `modify` to add the forgotten tag.
 
-    $ task 201 modify +learn
-    $ task 201 ls
+```
+$ task 201 modify +learn
+$ task 201 ls
 
-    ID  Tags  Description
-    201 learn Read "Two Scoops of Django"
-
-<aside class="admonition note">
-  <p class="admonition-title">Note</p>
+ID  Tags  Description
+201 learn Read "Two Scoops of Django"
+```
 
 `task ls` shows a condensed report with the most important details of
 filtered tasks. Very useful for quick summaries and blog posts.
-
-</aside>
 
 So far so good, right? As long as there’s no confusion about what you’re
 changing, `modify` does the right thing. But a typo? A typo can rewrite
@@ -66,11 +63,13 @@ forget that the syntax is `project:WorkSkills`?
 
 It happens. Frequently. Judge me all you want.
 
-    $ task 201 modify project WorkSkills
-    $ task 201 ls
+```
+$ task 201 modify project WorkSkills
+$ task 201 ls
 
-    ID  Tags  Description
-    201 learn project WorkSkills
+ID  Tags  Description
+201 learn project WorkSkills
+```
 
 Oops.
 
@@ -81,28 +80,32 @@ Fortunately I caught it quick, so I can fix my mistake with `undo`.
 `task undo` reverts the last change you made, and can keep going back
 through your history one change at a time.
 
-    $ task undo
+```
+$ task undo
 
-    The last modification was made 9/3/2019
+The last modification was made 9/3/2019
 
-                 Prior Values                          Current Values
-    description  Read "Two Scoops of Django"           project WorkSkills
-    entry        2019-09-03                            2019-09-03
-    modified     2019-09-03                            2019-09-03
-    status       pending                               pending
-    tags         learn                                 learn
-    uuid         2b9a18c6-e5cd-47e1-a5b1-b1ea9e076369  2b9a18c6-e5cd-47e1-a5b1-b1ea9e076369
+              Prior Values                          Current Values
+description  Read "Two Scoops of Django"           project WorkSkills
+entry        2019-09-03                            2019-09-03
+modified     2019-09-03                            2019-09-03
+status       pending                               pending
+tags         learn                                 learn
+uuid         2b9a18c6-e5cd-47e1-a5b1-b1ea9e076369  2b9a18c6-e5cd-47e1-a5b1-b1ea9e076369
 
-    The undo command is not reversible.  Are you sure you want to revert to the previous state? (yes/no) yes
-    Modified task reverted.
+The undo command is not reversible.  Are you sure you want to revert to the previous state? (yes/no) yes
+Modified task reverted.
+```
 
 Taskwarrior tells me what values will be affected by an `undo`, which I
 find helpful. Yes, I want to restore previous state.
 
-    $ task 201 ls
+```
+$ task 201 ls
 
-    ID  Tags  Description
-    201 learn Read "Two Scoops of Django"
+ID  Tags  Description
+201 learn Read "Two Scoops of Django"
+```
 
 Whew. All better.
 
@@ -122,22 +125,23 @@ the current description by `append`.
 Here’s the same project story as before, but with `append` instead of
 `modify`.
 
-    $ task 201 append project WorkSkills
-    $ task 201 ls
+```
+$ task 201 append project WorkSkills
+$ task 201 ls
 
-    ID  Tags  Description
-    201 learn Read "Two Scoops of Django" project WorkSkills
+ID  Tags  Description
+201 learn Read "Two Scoops of Django" project WorkSkills
+```
 
 I still made my mistake, but at least I can find the task by its
 original description.
 
-<aside class="admonition note">
-  <p class="admonition-title">Note</p>
+:::note
 
 `prepend` also exists, and is useful much the same way append is. Which
 you use is a matter of preference.
 
-</aside>
+:::
 
 But what about bigger changes? Or what about when I change the
 description and don’t notice until a couple weeks later?
@@ -159,10 +163,12 @@ Taskwarrior applies my changes.
 
 See?
 
-    $ task 201 ls
+```
+$ task 201 ls
 
-    ID  Project    Tags  Description
-    201 WorkSkills learn Read "Two Scoops of Django"
+ID  Project    Tags  Description
+201 WorkSkills learn Read "Two Scoops of Django"
+```
 
 I feel better now. I’ve been wanting to mention these commands in the
 series for a while now. Since February 2018, according to my task list.

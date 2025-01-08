@@ -1,16 +1,16 @@
 ---
 aliases:
-- /coolnamehere/2007/10/29_jruby.html
-- /post/2007/jruby/
-- /2007/10/29/jruby/
-- /post/2007/10/jruby/
+  - /coolnamehere/2007/10/29_jruby.html
+  - /post/2007/jruby/
+  - /2007/10/29/jruby/
 categories:
-- post
+  - post
 date: 2007-10-29 00:00:00-07:00
 tags:
-- ruby
-- java
-- coolnamehere
+  - coolnamehere
+uses:
+  - ruby
+  - java
 title: JRuby
 ---
 
@@ -41,10 +41,12 @@ Supporting [Ruby Gems](http://rubygems.org) means that we can install
 from the standard Ruby repositories. I need to put this folder at a
 sensible location on my system, and then put that location on my path.
 
-    $ sudo mv jruby-1.2.0RC1/ /opt/jruby
-    $ export PATH=/opt/jruby/bin:$PATH
-    $ which jirb
-    /opt/jruby/bin/jirb
+```console
+$ sudo mv jruby-1.2.0RC1/ /opt/jruby
+$ export PATH=/opt/jruby/bin:$PATH
+$ which jirb
+/opt/jruby/bin/jirb
+```
 
 I got that right, so I can safely add the `export PATH` line to my
 `$HOME/.bash_profile` when I feel like it.
@@ -70,18 +72,21 @@ Accessories.
 I want to make sure the Java interface works, so I’ll fire up the jirb
 shell —
 
-    $ jirb
+```
+$ jirb
+```
 
 — and test with a quick Swing "Hello World" dialog borrowing from the
 [Hello World
 Repository](http://www.roesler-ac.de/wolfram/hello.htm#Java-Swing).
 
-    irb(main):001:0> include_class('javax.swing.JOptionPane')
-    => ["javax.swing.JOptionPane"]
-    irb(main):002:0> JOptionPane.showMessageDialog(nil, "Hello World!")
-    => nil
+```
+irb(main):001:0> include_class('javax.swing.JOptionPane')
+=> ["javax.swing.JOptionPane"]
+irb(main):002:0> JOptionPane.showMessageDialog(nil, "Hello World!")
+=> nil
+```
 
 ![JRuby "Hello World"](@img/2007/jruby-hello.png)
 
-That popped up a simple "Ok" style dialog box with the message "Hello
-World\!".
+That popped up a simple "Ok" style dialog box with the message "Hello World\!".

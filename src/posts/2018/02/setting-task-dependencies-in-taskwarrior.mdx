@@ -1,19 +1,20 @@
 ---
 aliases:
-- /2018/02/19/setting-task-dependencies-in-taskwarrior/
+  - /2018/02/19/setting-task-dependencies-in-taskwarrior/
 categories:
-- post
+  - post
 cover_image: /img/2018/cover-setting-task-dependencies-in-taskwarrior.png
 date: 2018-02-19 00:00:00-08:00
 description: |
     I'm not done reading a book until I finish the exercises. Taskwarrior  can help me remember.
 draft: false
 series:
-- Taskwarrior Babysteps
+  - Taskwarrior Babysteps
 tags:
-- second-brain
+  - second-brain
+  - learn
 uses:
-- taskwarrior
+  - taskwarrior
 title: Setting Task Dependencies in Taskwarrior
 ---
 
@@ -21,17 +22,19 @@ I recently realized I could track my reading in
 [Taskwarrior](https://taskwarrior.org/), since I use it to track so many
 other things.
 
-    $ task +readlist
+```
+$ task +readlist
 
-    ID Age   P Tag                    Description                        Urg
-    67 22h   H community readlist     Forge Your Future with Open Source  6.9
-    70 29min M fiction readlist       Binti                               4.8
-    71 21min M health readlist        Emmerich Keto Guide                 4.8
-    74 16min   health readlist reread The Healthy Programmer                1
-    63 6d      dev readlist           Practical Data Science with R      0.93
-    72 19min   dev readlist           Think Stats                         0.9
-    73 17min   dev readlist           Understanding Computation           0.9
-    75 16min   home readlist          Sink Reflections                    0.9
+ID Age   P Tag                    Description                        Urg
+67 22h   H community readlist     Forge Your Future with Open Source  6.9
+70 29min M fiction readlist       Binti                               4.8
+71 21min M health readlist        Emmerich Keto Guide                 4.8
+74 16min   health readlist reread The Healthy Programmer                1
+63 6d      dev readlist           Practical Data Science with R      0.93
+72 19min   dev readlist           Think Stats                         0.9
+73 17min   dev readlist           Understanding Computation           0.9
+75 16min   home readlist          Sink Reflections                    0.9
+```
 
 I use [Priority][priority] to show what I’m reading right now. The highest
 priority goes to the book which I intend to finish next.
