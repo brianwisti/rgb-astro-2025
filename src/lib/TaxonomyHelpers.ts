@@ -86,13 +86,14 @@ export async function collectSiteUsesMap(): Promise<SluggedTaxonomyMapping> {
     const post = posts[i]
     const entries = post.data.uses
 
-    if (!entries) {
+    if (entries === undefined) {
+      console.error(`Undefined 'uses' in: ${post.id}`)
       continue
     }
 
     for (let j = 0; j < entries.length; j++) {
       const entry = entries[j]
-      console.log(`uses: ${entry}`)
+      console.log(`uses: ${post.id} -> ${entry}`)
       const slug = slugify(entry)
 
       if (!slugs.has(slug)) {
