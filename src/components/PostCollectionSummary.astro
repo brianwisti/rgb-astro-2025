@@ -1,4 +1,5 @@
 ---
+import CategoryCount from "@components/CategoryCount.astro"
 import type { PostInterface } from "@lib/Post"
 
 interface Props {
@@ -7,11 +8,26 @@ interface Props {
     posts: PostInterface[] | undefined;
 }
 
+function groupPostsByCategories(posts: PostInterface[]): Map<string, PostInterface[]> {
+    const categories = new Map<string, PostInterface[]>()
+    posts.forEach((post) => {
+      for (const category of post.data.categories) {
+        if (!categories.has(category)) {
+            categories.set(category, [])
+        }
+        categories.get(category)?.push(post)
+      }
+    })
+    return categories
+}
+
+const knownCategories = ["note", "gallery", "post", ]
 const { href, text, posts } = Astro.props as Props
+const categories = groupPostsByCategories(posts || [])
 ---
 <div>
   <a {href}>{text}</a>
-  <span>({posts?.length})</span>
+    {knownCategories.map((category) => <CategoryCount {category} count={categories.get(category)?.length || 0} />)}
 </div>
 
 <style type="text/scss">
@@ -22,5 +38,8 @@ const { href, text, posts } = Astro.props as Props
     border: thin solid var(--rg-color-line);
     display: flex;
     justify-content: space-between;
+  }
+  a {
+      flex-grow: 2;
   }
 </style>

@@ -1,0 +1,32 @@
+---
+interface Props {
+  category: string;
+  count: number;
+}
+
+const { category, count } = Astro.props as Props
+const containerClass = count ? "category-count" : "category-count empty"
+---
+<span class={containerClass}>
+    <span>{category}</span>
+    <span class="count">{count || 0}</span>
+</span>
+
+<style type="text/scss">
+span {
+    font-size: var(--rg-font-size-smaller);
+
+    &.count {
+        text-align: center;
+    }
+}
+.category-count {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin: 0 0.5rem;
+
+  &.empty {
+      opacity: 0.3;
+  }
+}
+</style>
