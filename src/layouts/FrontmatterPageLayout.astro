@@ -1,16 +1,14 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro"
+import type { PostData } from "@lib/Post"
+
 
 interface Props {
-    frontmatter: {
-        title: string
-        description: string
-    }
+    frontmatter: PostData
 }
 
 const { frontmatter } = Astro.props as Props
-const { title, description } = frontmatter
 ---
-<PageLayout {title} {description}>
+<PageLayout data={frontmatter}>
     <slot />
 </PageLayout>

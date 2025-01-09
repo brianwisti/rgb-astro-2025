@@ -12,18 +12,20 @@ export const PostSchema = z.object({
   cover_image: z.string().optional(),
 });
 
+export interface PostData {
+  title: string
+  date: Date
+  description?: string
+  tags: string[]
+  categories: string[]
+  uses: string[]
+  series: string[]
+  cover_image?: string
+  aliases?: string[]
+}
+
 export interface PostInterface {
-    data: {
-        title: string
-        date: Date
-        description?: string
-        tags: string[]
-        categories: string[]
-        uses: string[]
-        series: string[]
-        cover_image?: string
-        aliases?: string[]
-    };
+  data: PostData
     id: string
 }
 

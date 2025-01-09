@@ -1,10 +1,7 @@
 ---
-import MarkdocImage from "@components/MarkdocImage.astro"
-import PostDescription from "@components/PostDescription.astro"
-import PageLayout from "@layouts/PageLayout.astro"
-import PostMetadata from "@components/PostMetadata.astro"
-
 import { getCollection, render } from "astro:content";
+
+import PostLayout from "@layouts/PostLayout.astro"
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts")
@@ -20,17 +17,8 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props
 const { data } = post
-const { title, cover_image, description } = data
 const { Content } = await render(post)
 ---
-
-<PageLayout {title}>
-    <article>
-        <header>
-            {description ? <PostDescription {description} /> : ""}
-            {cover_image ? <MarkdocImage src={cover_image} alt="" /> : ""}
-            <PostMetadata {data} />
-        </header>
-        <Content />
-    </article>
-</PageLayout>
+<PostLayout {data}>
+  <Content />
+</PostLayout>

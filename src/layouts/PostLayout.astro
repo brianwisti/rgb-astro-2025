@@ -1,0 +1,25 @@
+---
+import MarkdocImage from "@components/MarkdocImage.astro"
+import PageLayout from "@layouts/PageLayout.astro"
+import PostDescription from "@components/PostDescription.astro"
+import PostMetadata from "@components/PostMetadata.astro"
+
+import type { PostData } from "@lib/Post"
+
+interface Props {
+  data: PostData
+}
+
+const { data  } = Astro.props as Props
+const { title, cover_image, description } = data
+---
+<PageLayout {data}>
+    <article>
+        <header>
+            {description ? <PostDescription {description} /> : ""}
+            {cover_image ? <MarkdocImage src={cover_image} alt="" /> : ""}
+            <PostMetadata {data} />
+        </header>
+        <slot />
+    </article>
+</PageLayout>

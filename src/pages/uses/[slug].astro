@@ -23,8 +23,10 @@ interface Props {
 }
 
 const { slug, posts } = Astro.props as Props
-const title= `Uses ${slug}`
+const data = {
+  title: `Uses ${slug}`,
+}
 ---
-<PageLayout {title}>
+<PageLayout {data} />
   <PostListing {posts} />
 </PageLayout>

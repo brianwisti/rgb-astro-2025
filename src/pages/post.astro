@@ -21,11 +21,13 @@ async function getYears() {
 }
 
 const years = await getYears()
-const title = "Posts"
-const description = "Pretty much everything I put on this site, in chronological order"
+const data = {
+  title: "Posts",
+  description: "pretty much everything I put on this site, in chronological order",
+}
 ---
 
-<PageLayout {title} {description}>
+<PageLayout {data}>
   <ul>
     {
       Array.from(years.keys())

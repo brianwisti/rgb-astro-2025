@@ -5,11 +5,13 @@ import PageLayout from "@layouts/PageLayout.astro"
 import PostCollectionSummary from "@components/PostCollectionSummary.astro"
 
 const slugs = await collectSiteSeriesMap()
-const title = "Series"
-const description = "Collections of posts that build on each other, sometimes on purpose."
+const data = {
+  title: "Series",
+  description: "collections of posts that build on each other, sometimes on purpose",
+}
 ---
 
-<PageLayout {title} {description}>
+<PageLayout {data}>
   <ul>
     {
       Array.from(slugs.keys())

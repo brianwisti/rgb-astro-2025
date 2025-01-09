@@ -1,108 +1,54 @@
 // Functions for loading and sorting taxonomies
 
-import { getCollection } from "astro:content";
-import { default as slugify } from "slug";
+import { getCollection } from "astro:content"
+import { default as slugify } from "slug"
+import type { PostInterface } from "./Post"
 
-interface Post {
-  data: {
-    title: string
-    date: Date
-    tags: string[]
-    categories: string[]
-    series: string[]
-    uses: string[]
-  };
-  id: string
-}
+type SluggedTaxonomyMapping = Map<string, PostInterface[]>
+type StringArrayKeys<T> = {
+  [K in keyof T]: T[K] extends string[] ? K : never
+}[keyof T]
+type TaxonomyType = StringArrayKeys<PostInterface["data"]>
+type TaxonomyMap = Promise<SluggedTaxonomyMapping>
 
-type SluggedTaxonomyMapping = Map<string, Post[]>
-
-export async function collectSiteCategoryMap(): Promise<SluggedTaxonomyMapping> {
+async function collectSiteTaxonomyMap(taxonomyType: TaxonomyType): TaxonomyMap {
   const posts = await getCollection("posts")
-  const slugs = new Map<string, Post[]>
+  const slugs = new Map<string, PostInterface[]>()
 
   posts.forEach((post) => {
-    post.data.categories.forEach((category) => {
-      const slug = slugify(category)
+    const taxonomyEntries = post.data[taxonomyType]
+
+    if (!taxonomyEntries) {
+      console.error(`Post ${post.id} is missing a ${taxonomyType} field`)
+      return
+    }
+
+    taxonomyEntries.forEach((taxonomy) => {
+      const slug = slugify(taxonomy)
 
       if (!slugs.has(slug)) {
         slugs.set(slug, [])
       }
 
-      slugs.get(slug)?.push(post)
+      slugs.get(slug)!.push(post)
     })
   })
 
   return slugs
 }
 
-export async function collectSiteSeriesMap(): Promise<SluggedTaxonomyMapping> {
-  const posts = await getCollection("posts")
-  const slugs = new Map<string, Post[]>
-
-  posts.forEach((post) => {
-    post.data.series.forEach((series) => {
-      const slug = slugify(series)
-
-      if (!slugs.has(slug)) {
-        slugs.set(slug, [])
-      }
-
-      slugs.get(slug)?.push(post)
-    })
-  })
-
-  return slugs
+export async function collectSiteCategoryMap(): TaxonomyMap {
+  return collectSiteTaxonomyMap("categories")
 }
 
-export async function collectSiteTagMap(): Promise<SluggedTaxonomyMapping> {
-  const posts = await getCollection("posts")
-  const slugs = new Map<string, Post[]>
-
-  for (let i = 0; i < posts.length; i++) {
-    const post = posts[i]
-    const tags = post.data.tags
-
-    for (let j = 0; j < tags.length; j++) {
-      const tag = tags[j]
-      const slug = slugify(tag)
-
-      if (!slugs.has(slug)) {
-        slugs.set(slug, [])
-      }
-
-      slugs.get(slug)?.push(post)
-    }
-  }
-
-  return slugs
+export async function collectSiteSeriesMap(): TaxonomyMap {
+  return collectSiteTaxonomyMap("series")
 }
 
-export async function collectSiteUsesMap(): Promise<SluggedTaxonomyMapping> {
-  const posts = await getCollection("posts")
-  const slugs = new Map<string, Post[]>
+export async function collectSiteTagMap(): TaxonomyMap {
+  return collectSiteTaxonomyMap("tags")
+}
 
-  for (let i = 0; i < posts.length; i++) {
-    const post = posts[i]
-    const entries = post.data.uses
-
-    if (entries === undefined) {
-      console.error(`Undefined 'uses' in: ${post.id}`)
-      continue
-    }
-
-    for (let j = 0; j < entries.length; j++) {
-      const entry = entries[j]
-      console.log(`uses: ${post.id} -> ${entry}`)
-      const slug = slugify(entry)
-
-      if (!slugs.has(slug)) {
-        slugs.set(slug, [])
-      }
-
-      slugs.get(slug)?.push(post)
-    }
-  }
-
-  return slugs
+export async function collectSiteUsesMap(): TaxonomyMap {
+  return collectSiteTaxonomyMap("uses")
 }

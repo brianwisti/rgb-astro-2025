@@ -14,9 +14,12 @@ const socialLinks = [
 ]
 const posts = await getCollection("posts")
 const limit = 4
+const data = {
+  title: "Home",
+}
 ---
 
-<Layout title="Home">
+<Layout {data} >
   <aside class="h-card">
     <header>
       <a class="u-url u-uid" href="https://randomgeekery.org">

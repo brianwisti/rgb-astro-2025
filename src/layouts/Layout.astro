@@ -1,13 +1,14 @@
 ---
 import SiteFooter from "@components/SiteFooter.astro"
 import SiteHeader from "@components/SiteHeader.astro"
+import type { PostData } from "@lib/Post";
 
 interface Props {
-  title?: string
-  description?: string
+  data: PostData
 }
 
-const { title, description } = Astro.props as Props
+const { data } = Astro.props as Props
+const { title, description } = data
 const pageTitle = title ? `${title} : Random Geekery` : "Random Geekery"
 const isProd = import.meta.env.PROD
 ---

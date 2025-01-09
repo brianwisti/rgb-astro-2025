@@ -39,8 +39,11 @@ interface Props {
 }
 
 const { year, month, posts } = Astro.props;
+const data = {
+  title: `Posts from ${year} / ${month}`,
+}
 ---
 
-<PageLayout title={`Posts from ${year} / ${month}`}>
-    <PostListing posts={posts} />
+<PageLayout {data}>
+    <PostListing {posts} />
 </PageLayout>

@@ -7,7 +7,6 @@ import PostListing from "@components/PostListing.astro";
 
 export async function getStaticPaths() {
   const slugs = await collectSiteCategoryMap();
-  console.log(slugs.keys());
 
   return Array.from(slugs.keys()).map((slug) => ({
       params: { slug },
@@ -21,8 +20,11 @@ interface Props {
 }
 
 const { slug, posts } = Astro.props;
+const data = {
+  title: slug,
+}
 ---
 
-<PageLayout title={slug}>
-    <PostListing posts={posts} />
+<PageLayout {data}>
+    <PostListing {posts} />
 </PageLayout>
