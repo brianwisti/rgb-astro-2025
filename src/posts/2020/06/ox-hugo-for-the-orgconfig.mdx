@@ -31,7 +31,7 @@ This week my favorite Emacs flavor is [Doom Emacs][doom-emacs].  Their [org
 module][org-module] supports `ox-hugo` as an option, so enabling that option in
 my init should do the trick — after a `doom sync` of course.
 
-```lisp
+```elisp
 (doom!
  ⋮
  :lang
@@ -40,7 +40,7 @@ my init should do the trick — after a `doom sync` of course.
 
 Off in the depths of my `~/org/` folder, I create a new `config.org`.
 
-```text
+```org title="config.org"
 #+title: My Orgconfig
 #+hugo_base_dir: ~/Sites/random-geekery-blog/
 #+hugo_section: config
@@ -58,7 +58,7 @@ great for this case, that’s for sure.
 Each top-level section will be a page in `/config/`.
 I show *which* page in the subtree’s `:properties:`.
 
-```text
+```org
 + Emacs config
 :properties:
 :export_description: Be kinda weird if I didn't manage that one in Org, yes?
@@ -79,7 +79,7 @@ Since I’m showing off [Babel][babel]’s ability to tangle, I want to show the
 tangle references.  `:noweb no-export` tells Babel to tangle when evaluating
 the block, but *not* when exporting.
 
-```text
+```org
 #+name: zsh/base-variables
 #+begin_src text :noweb no-export
 <<zsh/set-base-path>>
@@ -94,8 +94,8 @@ bits, so for the moment I default to calling my mostly-tangled blocks "text".
 
 I also create a subtree for the section `_index.md`.
 
-``` org
-+ My personal orgconfig
+```org
+* My personal orgconfig
 :properties:
 :export_file_name: _index
 :end:

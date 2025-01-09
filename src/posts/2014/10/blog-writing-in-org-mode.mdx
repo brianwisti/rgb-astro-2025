@@ -8,6 +8,8 @@ categories:
 date: 2014-10-21 00:00:00-07:00
 description: An experiment with using Org mode to write Jekyll blog posts.
 tags:
+  - ssg
+uses:
   - emacs
   - org
   - jekyll
@@ -76,7 +78,7 @@ handling to get exported correctly by Org mode. The most straightforward
 thing is to use the suggestion from the instructions mentioned earlier.
 Put your front matter in a HTML block right at the top of the file.
 
-``` org
+```org
 #+BEGIN_HTML
 ---
 title: Blog Writing in Org Mode
@@ -96,7 +98,7 @@ HTML and other output needs to be placed correctly within the Jekyll
 layout conventions. A proper `org-publish-project-alist` will take care
 of this.
 
-``` elisp
+```elisp
 (setq org-publish-project-alist
       '(
         ("org-randomgeekery"
@@ -171,14 +173,13 @@ Awkward, but it works. It worked at least once, anyways. Should manually
 remove the original `_draft` file until I know what I’m doing a little
 more.
 
-<aside class="admonition warning">
-<p class="admonition-title">Warning</p>
+:::note{title="Warning"}
 
 See that Lisp I wrote? It’s probably wrong in some horrible way. It’s
 the most complex Elisp I’ve ever managed. Look at it for interesting
 ideas, but please don’t just copy and paste.
 
-</aside>
+:::
 
 ## Followup
 

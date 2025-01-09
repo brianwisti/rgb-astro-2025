@@ -71,7 +71,7 @@ structure.
 Time to focus on putting useful metadata in the article header. Might as
 well expose some of the Hugo templating as well.
 
-```html{title="layouts/_default/single.html"}
+```html title="layouts/_default/single.html"
 {{ define "main" }}
   <article class="h-entry">
     <header>
@@ -101,7 +101,7 @@ I’ll put both in a
 [`time`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time)
 element.
 
-```html{title="layouts/post/article-header.html"}
+```html title="layouts/post/article-header.html"
   <time class="dt-published"
     datetime="{{ .Format $.Site.Params.TimestampForm }}">
   <a class="u-url" href="{{ .Permalink }}">
@@ -175,7 +175,7 @@ version of the site. Category and tag are still `p-category` though.
 
 :::
 
-``` html {% process=false %}
+``` html
 {{- with .Type -}}
   <br>
   <a class="p-category"
@@ -208,7 +208,7 @@ should almost definitely be `u-photo`. There’s a **lot** of image
 processing with it though. To make a long story short — *too
 late!* — I’ll just show the microformat-specific addition.
 
-```text {% process=false %}
+```text
 <img {{ if $isCover }}class="u-photo"{{ end }}
 ```
 

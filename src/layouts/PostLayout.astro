@@ -16,7 +16,6 @@ const { title, cover_image, description } = data
 <PageLayout {data}>
     <article>
         <header>
-            {description ? <PostDescription {description} /> : ""}
             {cover_image ? <MarkdocImage src={cover_image} alt="" /> : ""}
             <PostMetadata {data} />
         </header>

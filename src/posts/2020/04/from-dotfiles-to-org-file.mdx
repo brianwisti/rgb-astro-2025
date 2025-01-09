@@ -85,7 +85,7 @@ Babel used to be an extension to Org, but it’s been a core part of the
 framework for a bit now. Thing is, Babel is powerful and a little
 dangerous. You need to give it permission.
 
-```lisp title="~/.emacs"
+```elisp title="~/.emacs"
 (use-package org
   :ensure org-plus-contrib
   :defer t
@@ -235,8 +235,10 @@ source /home/random/.config/broot/launcher/bash/br
 Okay now to finish getting the rest of my zsh config. Oh, and put
 `config.org` in version control.
 
-**Emacs code extraction key bindings**
+:::note{title="Emacs code extraction key bindings"}
 
-| Key         | Function           | Action                                                |
-| ----------- | ------------------ | ----------------------------------------------------- |
-| `C-c C-v t` | `org-babel-tangle` | Extract and write code blocks in the current Org file |
+| Key         | Function           | Action                                            |
+| ----------- | ------------------ | ------------------------------------------------- |
+| `C-c C-v t` | `org-babel-tangle` | Extract and write code blocks in current Org file |
+
+:::

@@ -290,19 +290,13 @@ My experience with data types in shells is limited and mostly unpleasant: values
 
 Nushell [data type][nu-types] support goes past that. For starters, values declared in the shell itself have the appropriate type.
 
-```nushell
-1.2 | describe
-```
-
-```result
+```console
+$ 1.2 | describe
 float
 ```
 
-```nushell
-"1.2" | describe
-```
-
-```result
+```console
+$ "1.2" | describe
 string
 ```
 
@@ -317,11 +311,8 @@ What about conversions? In my fiddling so far, Nushell treats output from extern
 
 All right. Let's figure this out. What datetime is it right now?
 
-```nushell
-date now
-```
-
-```result
+```console
+$ date now
 Mon, 04 Jul 2022 18:08:26 -0700 (now)
 ```
 
@@ -331,17 +322,14 @@ I arbitrarily picked three months as my threshold. Nushell provides numerous sho
 
 Need to make a subexpression out of `date now` so Nushell has a date it can use for the math.
 
-```nushell
-(date now) - 90day
-```
-
-```result
+```console
+$ (date now) - 90day
 Tue, 05 Apr 2022 18:09:31 -0700 (3 months ago)
 ```
 
 Since `((date now) - 90day)` is a date and `published-at` is a date, I can do a direct comparison.
 
-``` nushell
+```nushell
 (
   hugo list all |
   from csv |

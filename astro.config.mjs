@@ -1,8 +1,10 @@
 // @ts-check
+import fs from "node:fs"
+
 import { defineConfig } from "astro/config"
 
 import astroExpressiveCode from "astro-expressive-code"
-import markdoc from "@astrojs/markdoc";
+import markdoc from "@astrojs/markdoc"
 import mdx from "@astrojs/mdx"
 import mdxDirective from "astro-mdx-directive"
 import {
@@ -31,7 +33,14 @@ const directives = {
 
 export default defineConfig({
   integrations: [
-    astroExpressiveCode(),
+    astroExpressiveCode({
+      shiki: {
+        langs: [
+          JSON.parse(fs.readFileSync("./etc/grammars/mako.tmLanguage.json", "utf-8")),
+          JSON.parse(fs.readFileSync("./etc/grammars/org.tmLanguage.json", "utf-8")),
+        ],
+      },
+    }),
     mdxDirective({ directives }),
     mdx(),
     markdoc({ allowHTML: true }),

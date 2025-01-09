@@ -511,7 +511,7 @@ The [export](https://taskwarrior.org/docs/commands/export.html) command prints t
 I don't see a `json-table` RST directive, though admittedly I haven't looked hard yet.
 Let's just pipe those to [jq](https://stedolan.github.io/jq/), and…
 
-```shell-session
+```console
 $ task export project:Site status:pending priority:H | \
   jq -r '.[] | [.id, .description, .urgency] | @csv'
 227,"rst basics for blogging",11.9
