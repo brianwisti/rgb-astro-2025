@@ -29,16 +29,12 @@ interface Props {
     date: Date;
 }
 
-const { date } = Astro.props as Props
+const { date, class: className = "" } = Astro.props as Props
 const timestamp = generateTimeStampInfo(date)
 ---
 
-<time class="dt-published" datetime={timestamp.forMachines}>
+<time class:list={[
+      "dt-published", className
+      ]} datetime={timestamp.forMachines}>
     {timestamp.forHumans}
 </time>
-
-<style>
-    time {
-      color: var(--rg-color-line);
-    }
-</style>

@@ -32,11 +32,10 @@ const isProd = import.meta.env.PROD
             type="application/rss+xml"
             href="/index.xml"
             title="Random Geekery"/>
-        <link rel="stylesheet" href="https://unpkg.com/open-props"/>
     </head>
-    <body>
+    <body class="bg-amber-50 dark:bg-amber-950 text-slate-950 dark:text-slate-50">
         <SiteHeader />
-        <main>
+        <main class="container mx-auto">
             <slot />
         </main>
         <SiteFooter />
@@ -47,129 +46,34 @@ const isProd = import.meta.env.PROD
 </html>
 
 <style is:global type="text/scss">
-    @import "https://unpkg.com/open-props";
-
-    *,
-    *:before,
-    *:after {
-        box-sizing: inherit;
-    }
-
     :root {
       color-scheme: light dark;
-      --rg-font-prose: var(--font-geometric-humanist);
-      --rg-font-mono: var(--font-monospace-code);
-      --rg-font-size: clamp(1rem, 1.5vw, 3rem);
-      --rg-font-size-smaller: 0.8em;
-
-      --rg-color-bg: light-dark(var(--sand-1), var(--sand-12));
-      --rg-color-fg: light-dark(var(--sand-11), var(--sand-0));
-      --rg-color-accent: light-dark(var(--sand-2), var(--sand-9));
-      --rg-color-line: light-dark(var(--sand-5), var(--sand-6));
-      --rg-color-link: light-dark(var(--lime-11), var(--lime-4));
-
-      --rg-border-radius: var(--radius-2);
-      --rg-border-radius-loose: var(--radius-3);
-    }
-
-    html {
-        box-sizing: border-box;
-    }
-
-    body {
-        background-color: var(--rg-color-bg);
-        color: var(--rg-color-fg);
-        font-family: var(--rg-font-prose);
-        font-size: var(--rg-font-size);
-        margin: 0;
-    }
-
-    main {
-      margin: 0 auto;
-      padding: var(--size-3);
-      max-width: 72ch;
-
-      @media(max-width: 800px) {
-        padding: var(--size-1);
-        max-width: 100%;
-      }
-    }
-
-    a {
-      text-decoration: none;
-      font-weight: bold;
-      color: var(--rg-color-link);
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
 
     img {
-      border-radius: var(--rg-border-radius);
       height: 100%;
       width: 100%;
       object-fit: cover;
     }
 
-    aside {
-      margin: 1rem;
-      background-color: var(--rg-color-accent);
-      border-radius: var(--rg-border-radius-loose);
-      border: thin solid var(--rg-color-line);
-      padding: 0 1rem;
-
-        header {
-          margin: -1rem;
-          font-size: var(--font-size-3);
-          margin-block-end: 0.5rem;
-          border-radius: var(--rg-border-radius-loose) var(--rg-border-radius-loose) 0 0;
-          background-color: var(--rg-color-line);
-          font-weight: bold;
-          text-align: center;
-          padding: 0.5rem;
-        }
-    }
-
     blockquote {
       font-style: italic;
       padding-inline-start: 1em;
-      border-radius: 0 0 0 var(--rg-border-radius-loose);
-      border-left: thin solid var(--rg-color-line);
-      border-bottom: thin solid var(--rg-color-line);
       margin-bottom: 0.25em;
-    }
-
-    figcaption {
-      font-size: var(--rg-font-size-smaller);
-      text-align: right;
-    }
-
-    pre, code, tt {
-      font-size: var(--rg-font-size-smaller);
-      font-family: var(--rg-font-mono);
     }
 
     pre {
         white-space: pre;
         overflow-x: auto;
-        border-radius: var(--rg-border-radius);
         padding: 1rem;
 
     }
 
     .attribution {
-      font-size: var(--rg-font-size-smaller);
-      color: var(--rg-color-line);
       text-align: center;
     }
 
     .expressive-code {
       margin-block: 2rem;
     }
-
-    .rich {
-      background-color: var(--gray-6);
-    }
-
 </style>

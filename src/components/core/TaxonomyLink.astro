@@ -1,36 +1,21 @@
 ---
 interface Props {
-    href: string;
-    classNames?: string;
+    href: string
+    className: string
+    title: string
 }
 
-const { href, classNames } = Astro.props;
-let classes = "p-category";
-if (classNames) {
-    classes += ` ${classNames}`;
-}
+const { href, class: className = "" } = Astro.props as Props
+const title = Astro.props.title || `taxonomy: ${href}`
 ---
 
-<a class={classes} {href}><slot /></a>
-
-<style type="text/scss">
-    a {
-      background-color: var(--rg-color-accent);
-      border-radius: var(--rg-border-radius);
-      color: var(--rg-color-fg);
-      display: inline-block;
-      padding: 0.25em 0.5em;
-
-      &.category {
-        outline: thin solid var(--rg-color-line);
-      }
-
-      &.tag {
-          font-style: italic;
-
-          &::before {
-              content: "#";
-          }
-      }
-  }
-</style>
+<a class:list={[
+   "p-category",
+   "bg-amber-300",
+   "text-slate-950",
+   "inline-block",
+   "rounded-md",
+   "mx-1",
+   "px-2",
+   "py-1",
+   className ]} {title} {href}><slot /></a>

@@ -26,41 +26,13 @@ const menuLinks = [
 ];
 ---
 
-<header>
-  <nav>
-    <MenuLink href="/">Random Geekery</MenuLink>
-    <ul>
+<header class="p-4 bg-amber-300 text-slate-950 mb-4">
+  <nav class="flex">
+    <MenuLink class="grow" href="/">Random Geekery</MenuLink>
       {
         menuLinks.map(({ href, text }) => (
-            <li>
-              <MenuLink {href}>{text}</MenuLink>
-            </li>
+              <MenuLink class="pl-4" {href}>{text}</MenuLink>
         ))
       }
-    </ul>
   </nav>
 </header>
-
-<style type="text/scss">
-    header {
-      background-color: var(--rg-color-accent);
-      padding: 1rem;
-    }
-
-    nav {
-        display: flex;
-        justify-content: space-between;
-
-        ul {
-            display: flex;
-            justify-content: flex-end;
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-
-            li {
-                margin-left: 1rem;
-            }
-        }
-    }
-</style>

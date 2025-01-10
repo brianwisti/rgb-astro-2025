@@ -8,6 +8,7 @@ const { category } = Astro.props;
 ---
 
 <TaxonomyLink
-    classNames="category"
+    class="outline outline-1 font-bold outline-amber-800"
+    title={`category: ${category}`}
     href={`/categories/${category}/`}
 >{category}</TaxonomyLink>

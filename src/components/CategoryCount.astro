@@ -5,28 +5,20 @@ interface Props {
 }
 
 const { category, count } = Astro.props as Props
-const containerClass = count ? "category-count" : "category-count empty"
+const containerClass = [
+  "not-prose",
+  "grid",
+  "grid-rows-2",
+  "mx-1",
+  "text-slate-950",
+  "text-opacity-80",
+]
+
+if (count < 1) {
+  containerClass.push("text-transparent")
+}
 ---
-<span class={containerClass}>
+<span class:list={containerClass}>
     <span>{category}</span>
-    <span class="count">{count || 0}</span>
+    <span class="text-center">{count || 0}</span>
 </span>
-
-<style type="text/scss">
-span {
-    font-size: var(--rg-font-size-smaller);
-
-    &.count {
-        text-align: center;
-    }
-}
-.category-count {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  margin: 0 0.5rem;
-
-  &.empty {
-      opacity: 0.3;
-  }
-}
-</style>

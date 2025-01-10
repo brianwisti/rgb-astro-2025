@@ -1,11 +1,15 @@
 ---
-import TaxonomyLink from "./core/TaxonomyLink.astro";
+import TaxonomyLink from "./core/TaxonomyLink.astro"
 
 interface Props {
-    tag: string;
+    tag: string
 }
 
-const { tag } = Astro.props;
+const { tag } = Astro.props as Prop
+const href = `/tags/${tag}/`
 ---
 
-<TaxonomyLink href={`/tags/${tag}/`} classNames="tag"><slot>{tag}</slot></TaxonomyLink>
+<TaxonomyLink
+    class="before:content-['#'] italic"
+    title={`tag: ${tag}`}
+    {href}><slot>{tag}</slot></TaxonomyLink>

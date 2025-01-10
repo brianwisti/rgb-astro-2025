@@ -2,19 +2,20 @@
 import { Image } from "astro:assets";
 
 interface Props {
-    src: string;
-    alt: string;
-    widths?: number[];
-    sizes?: string;
-    height?: number;
-    title?: string;
+    src: string
+    alt: string
+    className: string
+    widths?: number[]
+    sizes?: string
+    height?: number
+    title?: string
 }
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
 "/src/assets/img/**/*.{jpeg,jpg,png,gif,svg}",
 );
 
-const { src, alt, title } = Astro.props as Props
+const { src, alt, title, class: className = "" } = Astro.props as Props
 let assetPath = src.replace(/^[@\/]img/, "/src/assets/img");
 
 if (!images[assetPath]) {
@@ -45,8 +46,11 @@ if (!sizes && widths.length > 1) {
 ---
 
 <figure>
-  <Image src={image.default} {alt} {widths} {sizes} />
-    {title && <figcaption>{title}</figcaption>}
+  <Image
+      src={image.default}
+      class:list={["rounded-md", className]}
+      {alt} {widths} {sizes} />
+    {title && <figcaption class="text-right">{title}</figcaption>}
 </figure>
 
 <style type="text/scss">

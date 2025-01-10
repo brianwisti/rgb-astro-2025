@@ -15,6 +15,8 @@ import smartypants from "remark-smartypants"
 
 import sitemap from "@astrojs/sitemap";
 
+import tailwind from "@astrojs/tailwind";
+
 /** @type {import("astro-mdx-directive").DirectiveComponentList} */
 const directives = {
   container: [
@@ -45,6 +47,7 @@ export default defineConfig({
     mdx(),
     markdoc({ allowHTML: true }),
     sitemap(),
+    tailwind({applyBaseStyles: true}),
   ],
   markdown: {
     remarkPlugins: [remarkDefinitionList, smartypants],

@@ -10,4 +10,6 @@ const { series } = Astro.props
 const slug = slugify(series)
 ---
 
-<TaxonomyLink href={`/series/${slug}/`} classNames="series"><slot>{series}</slot></TaxonomyLink>
+<TaxonomyLink
+    href={`/series/${slug}/`}
+    title={`series: ${series}`}><slot>{series}</slot></TaxonomyLink>

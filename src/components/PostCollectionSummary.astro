@@ -25,21 +25,8 @@ const knownCategories = ["note", "gallery", "post", ]
 const { href, text, posts } = Astro.props as Props
 const categories = groupPostsByCategories(posts || [])
 ---
-<div>
-  <a {href}>{text}</a>
-    {knownCategories.map((category) => <CategoryCount {category} count={categories.get(category)?.length || 0} />)}
+<div class="rounded-md my-4 bg-amber-200 p-2 flex text-md">
+  <a class="font-bold text-lg grow text-slate-950"
+      {href}>{text}</a>
+  {knownCategories.map((category) => <CategoryCount {category} count={categories.get(category)?.length || 0} />)}
 </div>
-
-<style type="text/scss">
-  div {
-    background-color: var(--rg-color-accent);
-    padding: 0.5rem;
-    border-radius: var(--rg-border-radius);
-    border: thin solid var(--rg-color-line);
-    display: flex;
-    justify-content: space-between;
-  }
-  a {
-      flex-grow: 2;
-  }
-</style>

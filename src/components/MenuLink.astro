@@ -1,14 +1,13 @@
 ---
 interface Props {
   href: string
+  className: string
 }
 
-const { href } = Astro.props
+const { href, class: className = "" } = Astro.props as Props
 ---
-<a {href}><slot /></a>
-
-<style type="text/scss">
-  a {
-    color: var(--rg-color-fg);
-  }
-</style>
+<a class:list={[
+   "text-lg",
+   "font-bold",
+   className
+   ]} {href}><slot /></a>

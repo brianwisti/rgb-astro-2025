@@ -10,5 +10,7 @@ interface Props {
 const { frontmatter } = Astro.props as Props
 ---
 <PageLayout data={frontmatter}>
+  <article class="py-8 prose dark:prose-invert md:prose-l lg:prose-xl mx-auto">
     <slot />
+  </article>
 </PageLayout>

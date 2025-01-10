@@ -16,48 +16,21 @@ const { data } = Astro.props
 const { date, categories, tags, series, uses } = data
 ---
 
-<div class="meta">
-    <Timestamp {date} />
-    <div class="taxonomy">
-      {categories.map((category) => <CategoryLink {category} />)}
-      <ul>
-        {tags.map((tag) => <li><TagLink {tag} /></li>)}
-      </ul>
-      {uses
-        ? <ul> {uses.map((used) => <li><UsesLink {used} /></li>)} </ul>
-        : "" }
-      {series.map((thisSeries) => <SeriesLink series={thisSeries} />)}
-    </div>
+<div class="flex">
+  <Timestamp class="grow self-end" {date} />
+  <div>
+    {series
+      ? <div class="text-right mb-2">
+          {series.map((thisSeries) =>
+            <SeriesLink series={thisSeries} />)}
+        </div>
+      : "" }
+    {categories.map((category) =>
+      <CategoryLink {category} />)}
+    {uses.map((used) =>
+      <UsesLink {used} />)}
+    {tags.map((tag) =>
+      <TagLink {tag} />)}
+  </div>
 </div>
 
-<style type="text/scss">
-    .meta {
-      font-size: var(--rg-font-size-smaller);
-        display: grid;
-        grid-template-columns: 12ch auto;
-        grid-gap: 1ch;
-        align-items: center;
-
-        timestamp {
-            flex-shrink: 0;
-            display: inline-block;
-        }
-
-        .taxonomy {
-            justify-content: end;
-            display: flex;
-            flex-wrap: wrap;
-
-            ul {
-              display: flex;
-              list-style: none;
-              margin: 0;
-              padding-inline-start: 0.5em;
-
-              li {
-                margin-inline-start: 0.25em;
-              }
-            }
-        }
-    }
-</style>

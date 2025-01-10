@@ -8,4 +8,7 @@ interface Props {
 const { used } = Astro.props as Props
 ---
 
-<TaxonomyLink href={`/uses/${used}/`} classNames="uses"><slot>{used}</slot></TaxonomyLink>
+<TaxonomyLink
+    href={`/uses/${used}/`}
+    class="font-semibold"
+    title={`uses: ${used}`}><slot>{used}</slot></TaxonomyLink>

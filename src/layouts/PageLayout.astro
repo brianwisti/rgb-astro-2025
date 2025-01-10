@@ -19,8 +19,8 @@ const { title, description } = data
     <Breadcrumbs linkTextFormat="capitalized">
         <span slot="separator">/</span>
     </Breadcrumbs>
-    <header>
-        <h1>{title}</h1>
+    <header class="my-4">
+        <h1 class="text-4xl font-extrabold">{title}</h1>
         {description ? <PostDescription {description} /> : "" }
     </header>
     <slot />

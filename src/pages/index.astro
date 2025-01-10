@@ -20,16 +20,16 @@ const data = {
 ---
 
 <Layout {data} >
-  <aside class="h-card">
-    <header>
-      <a class="u-url u-uid" href="https://randomgeekery.org">
+  <aside class="h-card my-8">
+    <header class="text-lg text-center">
+      <a class="u-url u-uid font-bold" href="https://randomgeekery.org">
         <span class="p-name">Brian Wisti</span>
       </a>
       ( <a class="u-pronoun" href="https://pronoun.is/he">he / him / his</a> )
     </header>
-    <div class="body">
-      <Image src={avatarThumbnail} alt="Brian Wisti" height="256" width="192" class="u-photo" />
-      <div class="notes">
+    <div class="flex space-between">
+      <Image src={avatarThumbnail} alt="Brian Wisti" height="256" width="192" class="u-photo rounded-md" />
+      <div class="mx-4 prose md:prose-lg dark:prose-invert">
         <p class="p-note">
           Caffeinated, occasionally crafty geek from the Pacific Northwest, now living in <span class="p-locality">Tucson</span>. I like <span class="p-category">FOSS</span>, <a class="p-category" href="/tags/drawing/">drawing</a>, and <a class="p-category" href="/tags/knitting/">yarn</a>.
         </p>
@@ -40,51 +40,23 @@ const data = {
         You can find my designs on <a href="https://randomgeekery.threadless.com">Threadless</a> and
         <a href="https://www.designbyhumans.com/shop/randomgeek/">Design By Humans</a>
         </p>
-        <ul>
-          {socialLinks.map((link) => <li> <a rel="me" href={link.href} class="u-url" title={link.service} aria-label={link.service}> {link.service} </a> </li>)}
+        <ul class="flex justify-evenly mt-4">
+          {socialLinks.map((link) => <li class="inline-block"> <a rel="me" href={link.href} class="u-url" title={link.service} aria-label={link.service}> {link.service} </a> </li>)}
         </ul>
       </div>
     </div>
   </aside>
   <article>
-    <p>Anyway, here's my blog and stuff.</p>
+    <p class="m-4 text-lg">Anyway, here's my blog and stuff.</p>
     <PostListing {posts} {limit} />
   </article>
 </Layout>
 
 <style type="text/scss">
-  aside {
-    padding-block-end: 0;
-
-    header a {
-      color: var(--rg-color-fg);
-    }
-  }
-
-  ul {
-    display: flex;
-    list-style-type: none;
-    justify-content: space-evenly;
-
-    li {
-      font-size: 80%;
-      display: inline-block;
-    }
-  }
-
   .u-photo {
     width: 192px;
     @media (max-width: 800px) {
       display: none;
     }
-  }
-
-  .body {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .notes {
-    margin: 0 1rem;
   }
 </style>

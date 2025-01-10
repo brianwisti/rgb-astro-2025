@@ -15,9 +15,9 @@ const { title, description, cover_image } = data
 const widths = [256]
 ---
 
-<section class="h-entry">
+<section class="h-entry bg-amber-200 text-slate-950 rounded-lg mb-8 p-4">
     <header>
-      <a href={`/post/${post.id}/`}>
+      <a class="text-xl font-bold" href={`/post/${post.id}/`}>
           {title}
       </a>
       {description ? <PostDescription {description} /> : ""}
@@ -26,6 +26,7 @@ const widths = [256]
         cover_image ? (
             <MarkdocImage
                 src={cover_image}
+                class="overflow-hidden"
                 {widths}
                 alt=""
             />
@@ -40,13 +41,6 @@ const widths = [256]
 
 <style>
     section {
-      outline: thin solid var(--rg-color-line);
-      background-color: var(--rg-color-accent);
-      border-radius: var(--rg-border-radius);
-      margin-block-end: 1rem;
-      padding-block: 1em;
-      padding-inline: 1em;
-
       &:has(figure) {
         display: grid;
         padding-inline: 0;
@@ -68,7 +62,6 @@ const widths = [256]
 
       header {
         padding-block-end: 0.5rem;
-        font-size: var(--rg-font-size-smaller);
 
         a {
           display: block;
@@ -84,12 +77,6 @@ const widths = [256]
         grid-row-end: span 2;
         grid-column-start: main;
         grid-column-end: main;
-
-        img {
-          max-width: 100%;
-          aspect-ratio: var(--ratio-landscape);
-          border-radius: var(--rg-border-radius) 0 0 var(--rg-border-radius);
-        }
 
         footer {
           grid-row-start: footer;

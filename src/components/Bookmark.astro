@@ -10,5 +10,7 @@ const { href, title } = Astro.props
   <header>
     <a {href} class="u-bookmark-of">{title}</a>
   </header>
-  <slot />
+  <div class="ms-4">
+    <slot />
+  </div>
 </section>
