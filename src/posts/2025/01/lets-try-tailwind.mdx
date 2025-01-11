@@ -1,0 +1,95 @@
+---
+title: Let's Try Tailwind
+description: the new colors makes her think éclairs
+date: 2025-01-10 17:00:00 -07:00
+categories:
+  - note
+uses:
+  - astro
+  - tailwind
+tags:
+  - ssg
+cover_image: /img/2025/2025-01-10-cover.jpg
+posse:
+- https://hackers.town/@randomgeek/113806921740806898
+- https://www.linkedin.com/posts/brianwisti_lets-try-tailwind-activity-7283646845640196096-Ebdp
+---
+import UsesLink from "@components/UsesLink.astro"
+
+Hey I already switched this blog over to [Astro][astro].
+Why not keep trying new and interestingly uncomfortable things?
+So now all the site styles are done with [Tailwind][tailwind] classes.
+Well.
+Most of them.
+Still some of the more interesting CSS I haven't figure out how to map over.
+
+[astro]: https://astro.build
+[tailwind]: https://tailwindcss.com
+
+Will I stick with it?
+As always, I have no idea.
+
+So hey while it has my attention:
+use [Astro's `class:list` directive][classlist] to pass Tailwind class names up the component chain.
+Here's a tidied-up example.
+Please forgive my beginner-ness with both Astro and Tailwind.
+
+[classlist]: https://docs.astro.build/en/reference/directives-reference/#classlist
+
+Say I use a UsesLink component, which would link to a list of posts where I talked about using Astro.
+
+```astro title="lets-try-tailwind.mdx"
+<UsesLink used="astro" />
+```
+
+UsesLink itself is pretty small.
+
+```astro title="src/components/UsesLink.astro"
+---
+import TaxonomyLink from "./core/TaxonomyLink.astro"
+
+const { used } = Astro.props
+---
+
+<TaxonomyLink
+    href={`/uses/${used}/`}
+    class="font-semibold"><slot>{used}</slot></TaxonomyLink>
+```
+
+It calls the more generic TaxonomyLink, passing a Tailwind class name as a prop.
+
+```astro title="TaxonomyLink.astro"
+---
+const { href, class: className = "" } = Astro.props
+---
+
+<a class:list={[
+   "p-category",
+   "bg-amber-300",
+   "text-slate-950",
+   "inline-block",
+   "rounded-md",
+   "mx-1",
+   "px-2",
+   "py-1",
+   className ]} {href}><slot /></a>
+```
+
+TaxonomyLink uses `class:list` to paste that class prop onto a handful it's already using.
+The full list gets rendered in the final HTML.
+
+```html
+<a
+  class="p-category bg-amber-300 text-slate-950 inline-block rounded-md mx-1 px-2 py-1 font-semibold"
+  href="/uses/astro/">astro</a>
+```
+
+Oh and I'm writing this in a MDX file so I can just show you right here!
+The color classes will of course have changed multiple times by the time you read this.
+
+<UsesLink used="astro" />
+
+I still don't know if all those class names, and the extra steps to use them cleanly, is better than just using CSS.
+But hey I'm having fun, and can decipher more of contemporary corporate Web design.
+
+Anyways I'm kinda craving a donut right now.
