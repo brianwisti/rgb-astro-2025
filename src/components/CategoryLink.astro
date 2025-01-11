@@ -1,14 +1,14 @@
 ---
-import TaxonomyLink from './core/TaxonomyLink.astro';
+import TaxonomyLink from './core/TaxonomyLink.astro'
 
 interface Props {
-    category: string;
+    category: string
 }
-const { category } = Astro.props;
+const { category } = Astro.props
 ---
 
 <TaxonomyLink
-    class="outline outline-1 font-bold outline-amber-800"
+    class="outline outline-1 font-bold outline-base-800"
     title={`category: ${category}`}
     href={`/categories/${category}/`}
 >{category}</TaxonomyLink>

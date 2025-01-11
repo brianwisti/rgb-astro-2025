@@ -11,12 +11,13 @@ interface Props {
 }
 
 const { data  } = Astro.props as Props
-const { title, cover_image, description } = data
+console.log(data)
+const { title, cover_image, cover_caption = "", description } = data
 ---
 <PageLayout {data}>
     <article class="py-8">
         <header class="mb-8">
-            {cover_image ? <MarkdocImage src={cover_image} alt="" /> : ""}
+            {cover_image ? <MarkdocImage src={cover_image} alt={cover_caption} title={cover_caption} /> : ""}
             <PostMetadata {data} />
         </header>
         <section class="prose md:prose-l lg:prose-xl mx-auto dark:prose-invert">

@@ -1,9 +1,9 @@
 ---
 const { title } = Astro.props;
 ---
-<aside class="m-4 bg-amber-200 dark:bg-amber-800 text-slate-950 dark:text-slate-50 rounded-lg outline outline-1">
+<aside class="m-4 bg-gold-100 dark:bg-gold-800 text-base-900 dark:text-base-50 rounded-lg outline outline-1">
   {title ? <header class="mb-2 p-2 bg-amber-950 text-slate-50 rounded-t-md font-bold text-center">{title}</header> : "" }
-  <div class="m-4">
+  <div class="px-4">
     <slot />
   </div>
 </aside>

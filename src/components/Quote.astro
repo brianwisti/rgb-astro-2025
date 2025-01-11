@@ -12,7 +12,7 @@ const { from, cite, title } = Astro.props;
     <blockquote cite={cite}>
         <slot />
     </blockquote>
-    <figcaption>
+    <figcaption class="text-right">
         {from ? from : ""}
         {
             cite || title ? (

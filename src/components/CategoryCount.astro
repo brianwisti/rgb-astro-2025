@@ -5,18 +5,15 @@ interface Props {
 }
 
 const { category, count } = Astro.props as Props
+const textColor = count > 0 ? "text-base-900" : "text-base-500"
 const containerClass = [
   "not-prose",
   "grid",
   "grid-rows-2",
   "mx-1",
-  "text-slate-950",
+  textColor,
   "text-opacity-80",
 ]
-
-if (count < 1) {
-  containerClass.push("text-transparent")
-}
 ---
 <span class:list={containerClass}>
     <span>{category}</span>

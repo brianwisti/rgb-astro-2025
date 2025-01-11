@@ -26,7 +26,8 @@ const generateTimeStampInfo = (date: Date): TimeStampInfo => {
 }
 
 interface Props {
-    date: Date;
+    date: Date
+    class: string
 }
 
 const { date, class: className = "" } = Astro.props as Props
