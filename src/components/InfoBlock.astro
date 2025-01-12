@@ -1,0 +1,11 @@
+---
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props as Props
+---
+<div class="py-2 text-center">
+  <header class="font-bold pb-2">{title}</header>
+  <slot />
+</div>
