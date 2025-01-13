@@ -1,5 +1,6 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro"
+import PosseLinks from "@components/PosseLinks.astro"
 import PostHeader from "@components/PostHeader.astro"
 
 
@@ -10,7 +11,7 @@ interface Props {
 }
 
 const { data  } = Astro.props as Props
-const { title, cover_image, date, series, categories, uses, tags, cover_caption = "", description } = data
+const { posse } = data
 ---
 <PageLayout {data}>
     <article class="py-8">
@@ -18,5 +19,8 @@ const { title, cover_image, date, series, categories, uses, tags, cover_caption 
       <section class="prose md:prose-l lg:prose-xl mx-auto dark:prose-invert">
         <slot />
       </section>
+      {posse
+        ? <PosseLinks {posse} />
+        : "" }
     </article>
 </PageLayout>

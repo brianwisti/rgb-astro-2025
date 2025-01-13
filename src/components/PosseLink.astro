@@ -1,9 +1,43 @@
 ---
+import IconLink from "@components/IconLink.astro"
+
+
 interface Props {
   href: string
 }
 
+const siteIconProps = {
+  hackerstown: {
+    name: "mingcute:mastodon-fill",
+    title: "Hacker's Town",
+  },
+  linkedin: {
+    name: "mingcute:linkedin-fill",
+    title: "LinkedIn",
+  },
+  none: {
+    name: null,
+    title: null,
+  }
+}
+
+function getIconProps(url: URL) {
+  switch (url.hostname) {
+    case "hackers.town":
+      return siteIconProps.hackerstown
+    case "www.linkedin.com":
+      return siteIconProps.linkedin
+    default:
+      return siteIconProps.none
+  }
+}
+
 const { href } = Astro.props as Props
 const url = new URL(href)
+const { name, title } = getIconProps(url)
 ---
-<a {href} class="px-2">{url.hostname}</a>
+
+{(name && title)
+  ? <IconLink {href} {name} {title} />
+  : <a {href} class="u-syndication" rel="syndication">{url.hostname}</a>}
+
