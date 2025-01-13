@@ -60,6 +60,18 @@ describe.each(postsToLint)("$path", ({ post }) => {
     expect(intersection).toHaveLength(0)
   })
 
+  test("no unacceptable POSSE links", () => {
+    const allowedHosts = new Set([
+      "hackers.town",
+      "www.linkedin.com",
+    ])
+    const emptySet = new Set()
+
+    const posseLinks = post.data.posse || []
+    const posseHosts = new Set(posseLinks.map((href: string) => new URL(href).hostname))
+    expect(posseHosts.difference(allowedHosts)).toEqual(emptySet)
+  });
+
 })
 
 
