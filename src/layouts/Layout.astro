@@ -1,10 +1,10 @@
 ---
 import SiteFooter from "@components/SiteFooter.astro"
 import SiteHeader from "@components/SiteHeader.astro"
-import type { PostData } from "@lib/Post";
+import type { PageData } from "@lib/Post";
 
 interface Props {
-  data: PostData
+  data: PageData
 }
 
 const { data } = Astro.props as Props

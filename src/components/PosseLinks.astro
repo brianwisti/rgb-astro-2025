@@ -1,0 +1,18 @@
+---
+import PosseLink from "@components/PosseLink.astro"
+
+interface Props {
+  posse: string[]
+}
+
+const { posse } = Astro.props as Props
+---
+<div>
+  <p>
+    Got a comment? A question? More of a comment than a question?
+  </p>
+  <p>
+    Talk to me about this page on:
+    {posse.map((href) => <PosseLink {href} />)}
+  </p>
+</div>

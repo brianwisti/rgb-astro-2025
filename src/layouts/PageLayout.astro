@@ -2,17 +2,18 @@
 import "astro-breadcrumbs/breadcrumbs.css"
 import { Breadcrumbs } from "astro-breadcrumbs"
 
-import type { PostData } from "@lib/Post"
+import type { PageData } from "@lib/Post"
 
 import Layout from "@layouts/Layout.astro"
+import PosseLinks from "@components/PosseLinks.astro"
 import PostDescription from "@components/PostDescription.astro"
 
 interface Props {
-  data: PostData
+  data: PageData
 }
 
 const { data } = Astro.props as Props
-const { title, description } = data
+const { title, description, posse } = data
 ---
 
 <Layout {data}>
@@ -22,6 +23,7 @@ const { title, description } = data
     <header class="my-4">
         <h1 class="text-4xl font-extrabold">{title}</h1>
         {description ? <PostDescription {description} /> : "" }
+        {posse ? <PosseLinks {posse} /> : "" }
     </header>
     <slot />
 </Layout>

@@ -1,0 +1,9 @@
+---
+interface Props {
+  href: string
+}
+
+const { href } = Astro.props as Props
+const url = new URL(href)
+---
+<a {href} class="px-2">{url.hostname}</a>
