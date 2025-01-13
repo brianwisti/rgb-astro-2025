@@ -1,0 +1,67 @@
+---
+import CategoryLink from "@components/CategoryLink.astro"
+import InfoBlock from "@components/InfoBlock.astro"
+import MarkdocImage from "@components/MarkdocImage.astro"
+import PostDescription from "@components/PostDescription.astro"
+import PostMetadata from "@components/PostMetadata.astro"
+import SeriesLink from "@components/SeriesLink.astro"
+import TagLink from "@components/TagLink.astro"
+import Timestamp from "@components/Timestamp.astro"
+import UsesLink from "@components/UsesLink.astro"
+
+const { data } = Astro.props
+const { cover_image, cover_caption, date, series, categories, uses, tags } = data
+let headerClasses = [
+    "mb-8",
+]
+let infoClasses = [
+    "sm:grid",
+    "sm:grid-cols-2",
+    "p-4",
+    "bg-base-300",
+    "dark:bg-base-700",
+    "rounded-lg",
+]
+
+if (cover_image) {
+  headerClasses = headerClasses.concat([
+    "lg:flex",
+    "lg:justify-center",
+  ])
+
+  infoClasses = infoClasses.concat([
+    "lg:block",
+    "lg:ms-2",
+  ])
+}
+---
+<header class:list={headerClasses}>
+  {cover_image
+    ? <MarkdocImage src={cover_image} alt={cover_caption} title={cover_caption} />
+    : "" }
+  <div class:list={infoClasses}>
+    <InfoBlock title="Posted">
+      <Timestamp class="text-lg" {date} />
+    </InfoBlock>
+    {series.length > 0
+    ? <InfoBlock title="Series">
+        {series.map((thisSeries) => <SeriesLink series={thisSeries} />)}
+      </InfoBlock>
+      : "" }
+    {categories
+    ? <InfoBlock title="Categories">
+        {categories.map((category) => <CategoryLink {category} />)}
+      </InfoBlock>
+      : "" }
+    {uses.length > 0
+    ? <InfoBlock title="Uses">
+        {uses.map((used) => <UsesLink {used} />)}
+      </InfoBlock>
+      : "" }
+    {tags.length > 0
+    ? <InfoBlock title="Tags">
+        {tags.map((tag) => <TagLink {tag} />)}
+      </InfoBlock>
+      : "" }
+  </div>
+</header>

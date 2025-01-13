@@ -5,7 +5,7 @@ import { load } from "js-yaml"
 import { lint, readConfig } from "markdownlint/sync"
 import { describe, expect, test } from "vitest"
 
-import { PostSchema } from "@lib/Post.ts"
+import { PostSchema } from "src/content.config.ts"
 
 type ParsedPost = {
   path: string

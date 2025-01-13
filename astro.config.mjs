@@ -17,6 +17,8 @@ import sitemap from "@astrojs/sitemap";
 
 import tailwind from "@astrojs/tailwind";
 
+import icon from "astro-icon";
+
 /** @type {import("astro-mdx-directive").DirectiveComponentList} */
 const directives = {
   container: [
@@ -34,21 +36,14 @@ const directives = {
 };
 
 export default defineConfig({
-  integrations: [
-    astroExpressiveCode({
-      shiki: {
-        langs: [
-          JSON.parse(fs.readFileSync("./etc/grammars/mako.tmLanguage.json", "utf-8")),
-          JSON.parse(fs.readFileSync("./etc/grammars/org.tmLanguage.json", "utf-8")),
-        ],
-      },
-    }),
-    mdxDirective({ directives }),
-    mdx(),
-    markdoc({ allowHTML: true }),
-    sitemap(),
-    tailwind({applyBaseStyles: true}),
-  ],
+  integrations: [astroExpressiveCode({
+    shiki: {
+      langs: [
+        JSON.parse(fs.readFileSync("./etc/grammars/mako.tmLanguage.json", "utf-8")),
+        JSON.parse(fs.readFileSync("./etc/grammars/org.tmLanguage.json", "utf-8")),
+      ],
+    },
+  }), mdxDirective({ directives }), mdx(), markdoc({ allowHTML: true }), sitemap(), tailwind({applyBaseStyles: true}), icon()],
   markdown: {
     remarkPlugins: [remarkDefinitionList, smartypants],
     remarkRehype: { handlers: defListHastHandlers },
