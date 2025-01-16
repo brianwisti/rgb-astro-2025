@@ -48,7 +48,7 @@ if (!sizes && widths.length > 1) {
 <figure>
   <Image
       src={image.default}
-      class:list={["rounded-md", className]}
+      class:list={[className]}
       {alt} {widths} {sizes} />
     {title && <figcaption class="text-right">{title}</figcaption>}
 </figure>
@@ -59,6 +59,7 @@ if (!sizes && widths.length > 1) {
     height: 100%;
     margin: auto;
     object-fit: cover;
+    border-radius: var(--rg-border-radius);
 
     @container (min-width: 800px) {
         max-width: 1000px;

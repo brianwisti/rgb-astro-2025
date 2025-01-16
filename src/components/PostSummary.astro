@@ -15,9 +15,9 @@ const { title, description, cover_image } = data
 const widths = [256]
 ---
 
-<section class="h-entry bg-base-400 text-base-900 rounded-lg mb-8 p-4">
+<section class="h-entry">
     <header>
-      <a class="text-xl font-bold" href={`/post/${post.id}/`}>
+      <a href={`/post/${post.id}/`}>
           {title}
       </a>
       {description ? <PostDescription {description} /> : ""}
@@ -41,6 +41,19 @@ const widths = [256]
 
 <style>
     section {
+      margin-block-end: var(--rg-spacing-4);
+      padding: var(--rg-spacing-2);
+      border-radius: var(--rg-border-radius);
+
+      header {
+          font-size: 1.1em;
+
+          a {
+            font-weight: bold;
+            font-size: 1.1em;
+          }
+      }
+
       &:has(figure) {
         display: grid;
         padding-inline: 0;
@@ -61,7 +74,7 @@ const widths = [256]
       }
 
       header {
-        padding-block-end: 0.5rem;
+        padding-block-end: var(--rg-spacing);
 
         a {
           display: block;
