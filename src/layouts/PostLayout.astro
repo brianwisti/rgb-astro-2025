@@ -19,7 +19,7 @@ const { posse } = data
       <section class="prose md:prose-l lg:prose-xl mx-auto dark:prose-invert">
         <slot />
       </section>
-      {posse
+      {posse.length > 0
         ? <PosseLinks {posse} />
         : "" }
     </article>
