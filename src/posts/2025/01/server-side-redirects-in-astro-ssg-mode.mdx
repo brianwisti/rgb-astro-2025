@@ -1,0 +1,263 @@
+---
+title: Server-side Redirects in Astro SSG Mode
+description: plus a little about client-side redirects and why not
+date: 2025-01-15 15:45:00 -07:00
+draft: false
+categories:
+  - post
+tags:
+  - ssg
+uses:
+  - astro
+  - apache
+  - javascript
+posse:
+  - https://hackers.town/@randomgeek/113834824325730029
+  - https://www.linkedin.com/posts/brianwisti_server-side-redirects-in-astro-ssg-mode-activity-7285428898706726912-KkWh
+---
+
+I made [Astro][astro] build my `.htaccess` file for server-side redirects with [Apache][apache-httpd].
+With over a decade as Random Geekery, my site --
+
+[astro]: https://astro.build/
+[apache-httpd]: https://httpd.apache.org/
+
+Look I'm gonna go straight to the code and do the explanation after.
+If you need this information, you need it now.
+
+Put your generating logic in a `GET` function exported from `src/pages/ENDPOINT.js`.
+
+```javascript title="src/pages/htaccess.js"
+import { getCollection } from "astro:content"
+
+export async function GET(context) {
+  const posts = await getCollection("posts")
+
+  const directiveText = posts.map((post) =>
+    post.data.aliases.map((alias) => `Redirect 301 ${alias} /post/${post.id}/`)
+  ).flat().join("\n")
+
+  return new Response(directiveText)
+}
+```
+
+Astro didn't seem `src/pages/.htaccess.js`, possibly because it assumes hidden files should be ignored.
+Instead I build an `/htaccess` endpoint, and ensured my task runner renames the `htaccess` file afterwards.
+
+
+```make title="Justfile"
+build:
+  npm run build
+  mv dist/htaccess dist/.htaccess
+```
+
+That's all.
+
+:::note{title="Netlify _redirects too"}
+
+Untested, but I suspect the same flow lets you build a [Netlify _redirects][netlify-redirects] file.
+You need to fiddle with the details a bit:
+`_redirects.js` instead of `htaccess.js` and `{$alias} /post/${postId}` instead of a Rewrite directive.
+On the other hand, you shouldn't have to rename the generated file!
+
+[netlify-redirects]: https://docs.netlify.com/routing/redirects/
+
+:::
+
+Okay now I can get back to rambling.
+
+## Why did I do this
+
+With over a decade as Random Geekery, my site has seen multiple site generators and perennial reorganization ideas.
+I have a thousand redirects -- 1,076 to be precise.
+Other people linked to my site at some point, and I changed the URL since.
+I still want them to get the post they were linking to!
+
+
+## Client-side redirects in Astro
+
+You can [configure redirects in Astro][astro-redirects].
+In SSG mode, Astro redirects are implemented as HTML files with `<meta http-equiv="refresh">`.
+I can specify them as a mapping of old permalinks to new permalinks in my config.
+
+```javascript
+import { defineConfig } from "astro/config"
+
+export default defineConfig({
+  redirects: {
+    "/2020/04/indieweb-h-cards/": "/post/2020/04/indieweb-h-cards/",
+  },
+})
+```
+
+Astro currently uses `redirect` configuration to generate files like this on build.
+
+```html title="/2020/04/indieweb-h-cards/index.html"
+<!doctype html>
+<title>Redirecting to: https://randomgeekery.org/post/2020/04/indieweb-h-cards/</title>
+<meta http-equiv="refresh" content="0;url=https://randomgeekery.org/post/2020/04/indieweb-h-cards">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://randomgeekery.org/post/2020/04/indieweb-h-cards/">
+<body>
+  <a href="https://randomgeekery.org/post/2020/04/indieweb-h-cards/">
+    Redirecting from <code>/2020/04/indieweb-h-cards/</code> to <code>https://randomgeekery.org/post/2020/04/indieweb-h-cards/</code>
+  </a>
+</body>
+```
+
+That tells the browser "immediately refresh your location to `https://randomgeekery.org/post/2020/04/indieweb-h-cards/`,"
+while also informing the user that they're being redirected.
+Just in case the browser isn't cooperative.
+
+This is what most static site generators do for redirects.
+It works.
+Sometimes it's the only option available.
+Client-side redirects like this are not ideal, because they add work for the user agent --
+usually a desktop browser, but could be a bot or other Web-capable application.
+
+1. user agent fetches the initial URL
+2. Web server hands back `HTTP 200` and an HTML page containing the refresh meta
+3. user agent parses the HTTP message and the HTML page, noting the refresh and new URL
+4. user agent (probably) updates its location, fetching the new URL
+5. for however long it takes to start reloading, you (might) see a link telling you this is a redirect
+
+For you, the whole thing is pretty much instantaneous, assuming your system and network connection are up to par.
+But it's still extra work.
+To make matters worse, it might even [break the back button][w3c-reback].
+I have [wrestled with redirect accessibility][alias-templates] before.
+Unsuccessfully, I might add.
+
+[alias-templates]: /post/2020/05/alias-templates-in-hugo/
+
+[w3c-reback]: https://www.w3.org/QA/Tips/reback
+
+Plus there's the problem of an extra thousand lines in my config.
+Each page has its permalink history in frontmatter, in the `aliases` field.
+That was mainly for [Hugo][hugo-aliases], but I left that data in place in the Astro iteration.
+
+[hugo-aliases]: https://gohugo.io/content-management/urls/#aliases
+
+I *could* generate my config on the fly to extract redirect metadata --
+loading and parsing every page on my site before Astro loads and parses every page on my site.
+Or I *could* add a separate preparation task which processes all my pages and creates a data file to be loaded by `astro.config.mjs` --
+but then I'd have to rebuild the data file routinely, just in case.
+
+It's easier to just let Astro help the server handle redirects.
+
+## Server-side redirects
+
+Doing the redirect from the server speeds the exchange up considerably.
+Instead of returning a Web page to be parsed, processed, and possibly rendered, everything is handled at the [HTTP][http] layer.
+
+[http]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
+
+```http
+HTTP/1.1 301 Moved Permanently
+Location: https://randomgeekery.org/post/2020/04/indieweb-h-cards/index.html
+```
+
+The server responds to `HTTP GET` requests for the old page with [HTTP 301][http-301] to tell your user agent:
+"That link is at this new location, and you can cache that, because it'll be true forever."
+
+Well -- as much as anything online can be "forever."
+
+[http-301]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301
+
+The process now looks something like this:
+
+1. user agent fetches the initial URL
+2. Web server hands back the HTTP message
+3. user agent parses the HTTP message
+4. user agent (probably) updates its location, fetching the new URL
+5. for however long it takes to fetch, you (might) see a browser status bar update telling you this is a redirect
+
+Honestly it has been a very long time since I saw step five for server-side redirects.
+
+## Server-side redirects with Astro SSG
+
+So how do I set up server-side redirects?
+Well, you already saw the code.
+
+Oh what the heck.
+We'll go over it anyways.
+
+Random Geekery is served by Apache on a shared host.
+This Apache server processes server directives in a site-specific `.htaccess` file, and enables [redirect rules][mod-rewrite].
+Meanwhile, Astro can build files for endpoints via a corresponding source file.
+That file needs export a `GET` function, reflecting to what is expected from `HTTP GET` of that endpoint.
+
+[mod-rewrite]: https://httpd.apache.org/docs/2.4/rewrite/remapping.html
+
+```javascript title="src/pages/htaccess.js"
+export async function GET(context) {
+}
+```
+
+:::note
+
+Remember the trouble I mentioned with `.htaccess.js`.
+That's why I skipped the leading dot.
+
+:::
+
+As mentioned, permalink aliases are in post frontmatter.
+I need to access each of the posts for that.
+Since we are in Astro's build process, I can get the collection that Astro already loaded.
+
+```javascript title="src/pages/htaccess.js"
+import { getCollection } from "astro:content"
+
+export async function GET(context) {
+  const posts = await getCollection("posts")
+}
+```
+
+My `.htaccess` file needs a redirect rule for each mapping of old URL to new URL.
+1,075 variations of this, bundled into a single plain text file:
+
+```text
+Redirect 301 /2020/04/11/indieweb-h-cards/ /post/2020/04/indieweb-h-cards
+```
+
+Since my schema defines the default for `aliases` as a new empty array, I can be presumptuous.
+Map over each post's possibly empty list of aliases, generating lists of redirect rule strings.
+Then I can flatten them into a single list and turn it into a single string.
+
+```javascript title="src/pages/htaccess.js"
+export async function GET(context) {
+  // ...
+
+  const directiveText = posts.map((post) =>
+    post.data.aliases.map((alias) => `Redirect 301 ${alias} /post/${post.id}/`)
+  ).flat().join("\n")
+}
+```
+
+All Astro needs now from the `GET` function is a `Response`.
+
+```javascript title="src/pages/htaccess.js"
+import { getCollection } from "astro:content"
+
+export async function GET(context) {
+  // ...
+
+  return new Response(directiveText)
+}
+```
+
+After `npm run build` I move the generated file to its expected location.
+
+```sh
+mv dist/htaccess dist/.htaccess
+```
+
+A very good candidate for automation, since that's easy to forget when doing the whole thing manually.
+
+[astro-redirects]: https://docs.astro.build/en/reference/configuration-reference/#redirects
+
+## Wrap it up
+
+Astro's ability to generate arbitrary endpoints came in handy when I wanted to make more accessible redirects.
+I need to build and transfer 1,075 fewer files than before adding `.htaccess` to my site build process.
+I had fun.
+It's all good.
