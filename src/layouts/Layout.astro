@@ -1,7 +1,9 @@
 ---
 import SiteFooter from "@components/SiteFooter.astro"
 import SiteHeader from "@components/SiteHeader.astro"
-import type { PageData } from "@lib/Post";
+import type { PageData } from "@lib/Post"
+
+import "/src/styles/global.scss"
 
 interface Props {
   data: PageData
@@ -33,12 +35,9 @@ const isProd = import.meta.env.PROD
             href="/index.xml"
             title="Random Geekery"/>
     </head>
-    <body class="bg-base-100
-                 dark:bg-base-900
-                 text-base-900
-                 dark:text-base-100">
+    <body>
         <SiteHeader />
-        <main class="container mx-auto px-2">
+        <main>
             <slot />
         </main>
         <SiteFooter />
@@ -48,35 +47,11 @@ const isProd = import.meta.env.PROD
     </body>
 </html>
 
-<style is:global type="text/scss">
-    :root {
-      color-scheme: light dark;
-    }
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-
-    blockquote {
-      font-style: italic;
-      padding-inline-start: 1em;
-      margin-bottom: 0.25em;
-    }
-
-    pre {
-        white-space: pre;
-        overflow-x: auto;
-        padding: 1rem;
-
-    }
-
-    .attribution {
-      text-align: center;
-    }
-
-    .expressive-code {
-      margin-block: 2rem;
-    }
+<style>
+  main {
+    padding: var(--rg-spacing);
+    max-width: var(--rg-width-content);
+    margin: 0 auto;
+    font-size: var(--rg-font-size-prose);
+  }
 </style>

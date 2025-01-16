@@ -11,12 +11,11 @@ const menuLinks = [
 ]
 ---
 
-<footer class="mx-8 p-4 flex justify-between">
-  <section class="text-base-900 dark:text-base-100 text-opacity-60 text-center">
+<footer>
+  <section class="text-base-900 dark:text-base-100 text-opacity-60">
   <p>
     This work is licensed under a
     <a
-        class="font-bold"
         rel="license"
         href="http://creativecommons.org/licenses/by/4.0/">
       Creative Commons Attribution 4.0 International License
@@ -24,19 +23,36 @@ const menuLinks = [
   </p>
 
   <p>
-    Built with <a class="font-bold" href="https://astro.build">Astro</a>.
-    Styled with <a class="font-bold" href="https://tailwindcss.com">Tailwind CSS</a>.
+    Built with <a href="https://astro.build">Astro</a>.
+    Styled with <a href="https://tailwindcss.com">Tailwind CSS</a>.
   </p>
 
   <p>
   &copy; 2025 Brian Wisti. All rights reserved
   </p>
   </section>
-  <nav class="flex justify-end">
+  <nav>
     {
       menuLinks.map(({ href, text }) => (
-          <MenuLink class="pl-4" {href}>{text}</MenuLink>
+          <MenuLink {href}>{text}</MenuLink>
       ))
     }
   </nav>
 </footer>
+
+<style>
+  footer {
+    margin-inline: var(--rg-spacing-4);
+    padding: var(--rg-spacing-2);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  section {
+    text-align: center;
+  }
+
+  a {
+    font-weight: var(--rg-font-weight-bold);
+  }
+</style>

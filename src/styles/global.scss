@@ -1,0 +1,89 @@
+@use "open-props/style";
+
+:root {
+  color-scheme: light dark;
+
+  // --rg-color-accent: AccentColor;
+  // --rg-color-accent-text: AccentColorText;
+  // --rg-color-active-text: ActiveText;
+  // --rg-color-button-face: ButtonFace;
+  // --rg-color-button-text: ButtonText;
+  // --rg-color-canvas: Canvas;
+  // --rg-color-canvas-text: CanvasText;
+  // --rg-color-field: Field;
+  // --rg-color-field-text: FieldText;
+  // --rg-color-gray-text: GrayText;
+  // --rg-color-highlight: Highlight;
+  // --rg-color-highlight-text: HighlightText;
+  // --rg-color-link-text: LinkText;
+  // --rg-color-mark: Mark;
+  // --rg-color-mark-text: MarkText;
+  // --rg-color-selected-item: SelectedItem;
+  // --rg-color-selected-item-text: SelectedItemText;
+  // --rg-color-visited-text: VisitedText;
+
+  --rg-border-radius:            var(--radius-2);
+
+  --rg-color-accent:             AccentColor;
+  --rg-color-accent-text:        AccentColorText;
+  --rg-color-active-text:        ActiveText;
+  --rg-color-button-face:        ButtonFace;
+  --rg-color-button-text:        ButtonText;
+  --rg-color-canvas:             Canvas;
+  --rg-color-canvas-text:        CanvasText;
+  --rg-color-field:              Field;
+  --rg-color-field-text:         FieldText;
+  --rg-color-gray-text:          GrayText;
+  --rg-color-highlight:          Highlight;
+  --rg-color-highlight-text:     HighlightText;
+  --rg-color-link-text:          LinkText;
+  --rg-color-mark:               Mark;
+  --rg-color-mark-text:          MarkText;
+  --rg-color-selected-item:      SelectedItem;
+  --rg-color-selected-item-text: SelectedItemText;
+  --rg-color-visited-text:       VisitedText;
+
+  --rg-font-weight-bold:         bold;
+  --rg-font-ui:                  var(--font-neo-grotesque);
+  --rg-font-size-ui:             var(--font-size-3);
+  --rg-font-size-prose:          var(--font-size-2);
+
+  --rg-spacing:                  .5rem;
+  --rg-spacing-2:                calc(var(--rg-spacing) * 2);
+  --rg-spacing-4:                calc(var(--rg-spacing) * 4);
+  --rg-width-content:            800px;
+}
+
+body {
+  background-color: var(--rg-color-canvas);
+  color: var(--rg-color-canvas-text);
+  font-family: var(--rg-font-ui);
+  font-size: var(--rg-font-size-ui);
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+blockquote {
+  font-style: italic;
+  padding-inline-start: 1em;
+  margin-bottom: 0.25em;
+}
+
+pre {
+    white-space: pre;
+    overflow-x: auto;
+    padding: 1rem;
+
+}
+
+.attribution {
+  text-align: center;
+}
+
+.expressive-code {
+  margin-block: 2rem;
+}

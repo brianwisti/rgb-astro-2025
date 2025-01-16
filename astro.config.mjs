@@ -15,7 +15,6 @@ import smartypants from "remark-smartypants"
 
 import sitemap from "@astrojs/sitemap";
 
-import tailwind from "@astrojs/tailwind";
 
 import icon from "astro-icon";
 
@@ -43,7 +42,7 @@ export default defineConfig({
         JSON.parse(fs.readFileSync("./etc/grammars/org.tmLanguage.json", "utf-8")),
       ],
     },
-  }), mdxDirective({ directives }), mdx(), markdoc({ allowHTML: true }), sitemap(), tailwind({applyBaseStyles: true}), icon()],
+  }), mdxDirective({ directives }), mdx(), markdoc({ allowHTML: true }), sitemap(), icon()],
   markdown: {
     remarkPlugins: [remarkDefinitionList, smartypants],
     remarkRehype: { handlers: defListHastHandlers },
