@@ -10,13 +10,30 @@ interface Props {
   data: PostData
 }
 
+const proseClasses = [
+  "mx-auto",
+  "prose",
+  "md:prose-l",
+  "lg:prose-xl",
+  "prose-stone",
+  "prose-a:font-semibold",
+  "prose-a:text-green-600",
+  "prose-a:underline-offset-2",
+  "prose-a:hover:text-cerise-600",
+  "prose-a:hover:decoration-4",
+  "prose-a:hover:underline-offset-4",
+  "dark:prose-invert",
+  "dark:prose-a:text-green-200",
+  "dark:prose-a:hover:text-cerise-300",
+]
+
 const { data  } = Astro.props as Props
 const { posse } = data
 ---
 <PageLayout {data}>
     <article class="py-8">
       <PostHeader {data} />
-      <section class="prose md:prose-l lg:prose-xl mx-auto dark:prose-invert">
+      <section class:list={proseClasses}>
         <slot />
       </section>
       {posse.length > 0

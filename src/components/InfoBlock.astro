@@ -5,7 +5,7 @@ interface Props {
 
 const { title } = Astro.props as Props
 ---
-<div class="py-2 text-center">
+<div class="py-2 text-center grid grid-flow-row auto-rows-max">
   <header class="font-bold pb-2">{title}</header>
   <slot />
 </div>

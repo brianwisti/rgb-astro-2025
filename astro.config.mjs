@@ -13,11 +13,11 @@ import {
 } from "remark-definition-list"
 import smartypants from "remark-smartypants"
 
-import sitemap from "@astrojs/sitemap";
+import sitemap from "@astrojs/sitemap"
 
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite"
 
-import icon from "astro-icon";
+import icon from "astro-icon"
 
 /** @type {import("astro-mdx-directive").DirectiveComponentList} */
 const directives = {
@@ -36,6 +36,9 @@ const directives = {
 };
 
 export default defineConfig({
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [astroExpressiveCode({
     shiki: {
       langs: [
@@ -43,7 +46,7 @@ export default defineConfig({
         JSON.parse(fs.readFileSync("./etc/grammars/org.tmLanguage.json", "utf-8")),
       ],
     },
-  }), mdxDirective({ directives }), mdx(), markdoc({ allowHTML: true }), sitemap(), tailwind({applyBaseStyles: true}), icon()],
+  }), mdxDirective({ directives }), mdx(), markdoc({ allowHTML: true }), sitemap(), icon()],
   markdown: {
     remarkPlugins: [remarkDefinitionList, smartypants],
     remarkRehype: { handlers: defListHastHandlers },
