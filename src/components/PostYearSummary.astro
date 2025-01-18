@@ -1,12 +1,13 @@
 ---
-import type { PostInterface } from "@lib/Post"
+import type { TaxonomyEntry } from "@lib/TaxonomyHelpers"
 import PostCollectionSummary from "@components/PostCollectionSummary.astro"
 
 interface Props {
-    year: string;
-    posts: PostInterface[] | undefined
+    year: string
+    entry: TaxonomyEntry
 }
 
-const { year, posts } = Astro.props as Props
+const { year, entry } = Astro.props as Props
 ---
-<PostCollectionSummary href={`/post/${year}/`} text={year} {posts} />
+
+<PostCollectionSummary href={`/post/${year}/`} {entry} />

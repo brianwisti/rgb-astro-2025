@@ -3,26 +3,18 @@ import { collectSiteSeriesMap } from "@lib/TaxonomyHelpers"
 
 import PageLayout from "@layouts/PageLayout.astro"
 import PostCollectionSummary from "@components/PostCollectionSummary.astro"
+import TaxonomyListing from "@components/TaxonomyListing.astro"
 
 const slugs = await collectSiteSeriesMap()
 const data = {
   title: "Series",
-  description: "collections of posts that build on each other, sometimes on purpose",
+  description:
+    "collections of posts that build on each other, sometimes on purpose",
 }
 ---
 
 <PageLayout {data}>
-  <ul>
-    {
-      Array.from(slugs.keys())
-          .sort()
-          .map((slug) => (
-              <li>
-                <PostCollectionSummary href={`/series/${slug}/`} text={slug} posts={slugs.get(slug)} />
-              </li>
-          ))
-    }
-  </ul>
+  <TaxonomyListing {slugs} base="series" />
 </PageLayout>
 
 <style>
@@ -33,6 +25,6 @@ const data = {
   }
 
   li {
-    margin-block: .5em;
+    margin-block: 0.5em;
   }
 </style>

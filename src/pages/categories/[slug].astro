@@ -1,30 +1,36 @@
 ---
+import { render } from "astro:content"
 import { collectSiteCategoryMap } from "@lib/TaxonomyHelpers"
-import type { PostInterface } from "@lib/Post"
+import type { TaxonomyEntry } from "@lib/TaxonomyHelpers"
 
-import PageLayout from "@layouts/PageLayout.astro";
-import PostListing from "@components/PostListing.astro";
+import ProseBlock from "@components/ProseBlock.astro"
+import PageLayout from "@layouts/PageLayout.astro"
+import PostListing from "@components/PostListing.astro"
 
 export async function getStaticPaths() {
-  const slugs = await collectSiteCategoryMap();
+  const slugs = await collectSiteCategoryMap()
 
-  return Array.from(slugs.keys()).map((slug) => ({
+  return Array.from(slugs.entries()).map(([slug, entry]) => {
+    return {
       params: { slug },
-      props: { slug, posts: slugs.get(slug) },
-  }));
+      props: { slug, entry },
+    }
+  })
 }
 
 interface Props {
   slug: string
-  posts: PostInterface[]
+  entry: TaxonomyEntry
 }
 
-const { slug, posts } = Astro.props;
-const data = {
-  title: slug,
-}
+const { slug, entry } = Astro.props
+const { data } = entry.page
+const { Content } = await render(entry.page)
 ---
 
 <PageLayout {data}>
-    <PostListing {posts} />
+  <ProseBlock>
+    <Content />
+  </ProseBlock>
+  <PostListing posts={entry.posts} />
 </PageLayout>

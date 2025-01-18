@@ -4,7 +4,11 @@ export interface PageData {
   cover_image?: string
   cover_caption?: string
   aliases?: string[]
-  posse?: string[]
+}
+
+export interface PageInterface {
+  data: PostData
+  id: string
 }
 
 export interface PostData extends PageData {
@@ -13,6 +17,7 @@ export interface PostData extends PageData {
   categories: string[]
   uses: string[]
   series: string[]
+  posse?: string[]
 }
 
 export interface PostInterface {

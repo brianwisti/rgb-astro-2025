@@ -6,9 +6,5 @@ import TaxonomyListing from "@components/TaxonomyListing.astro"
 const slugs = await collectSiteCategoryMap()
 const base = "categories"
 ---
-Hypothetically provides clear dividing lines between the blurry blob that is my blog.
-Longer posts, quick notes, pretty gallery posts.
-I'm sure it'll all be chaos again eventually, but for now?
-So nice and tidy!
 
 <TaxonomyListing {slugs} {base} />

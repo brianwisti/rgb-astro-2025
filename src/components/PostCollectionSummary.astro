@@ -1,32 +1,41 @@
 ---
 import CategoryCount from "@components/CategoryCount.astro"
+import PostDescription from "./PostDescription.astro"
+
 import type { PostInterface } from "@lib/Post"
+import type { TaxonomyEntry } from "@lib/TaxonomyHelpers"
 
 interface Props {
-    href: string
-    text: string
-    posts: PostInterface[] | undefined;
+  href: string
+  entry: TaxonomyEntry
 }
 
-function groupPostsByCategories(posts: PostInterface[]): Map<string, PostInterface[]> {
-    const categories = new Map<string, PostInterface[]>()
-    posts.forEach((post) => {
-      for (const category of post.data.categories) {
-        if (!categories.has(category)) {
-            categories.set(category, [])
-        }
-        categories.get(category)?.push(post)
-      }
-    })
-    return categories
+function countPostsByCategory(posts: PostInterface[]): Map<string, number> {
+  const categories = new Map<string, number>()
+  posts.forEach((post) => {
+    for (const category of post.data.categories) {
+      const count = categories.get(category) || 0
+      categories.set(category, count + 1)
+    }
+  })
+
+  return categories
 }
 
-const knownCategories = ["note", "gallery", "post", ]
-const { href, text, posts } = Astro.props as Props
-const categories = groupPostsByCategories(posts || [])
+const knownCategories = ["note", "gallery", "post"]
+const { href, entry } = Astro.props as Props
+const { title, description } = entry.page.data
+const categories = countPostsByCategory(entry.posts)
 ---
+
 <div class="rounded-md my-4 bg-base-400 text-base-900 p-2 flex text-md">
-  <a class="font-bold text-lg grow text-base-900"
-      {href}>{text}</a>
-  {knownCategories.map((category) => <CategoryCount {category} count={categories.get(category)?.length || 0} />)}
+  <span class="grow">
+    <a class="font-bold text-lg text-base-900" {href}>{title}</a>
+    {description && <p class="italic px-4">{description}</p>}
+  </span>
+  {
+    knownCategories.map((category) => (
+      <CategoryCount {category} count={categories.get(category) || 0} />
+    ))
+  }
 </div>

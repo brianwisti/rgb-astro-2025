@@ -14,7 +14,7 @@ type ParsedPost = {
 
 const tagLimit = 3
 
-const posts: ParsedPost[] = glob.sync("src/posts/**/*.{mdx,mdoc}")
+const posts: ParsedPost[] = glob.sync("src/content/posts/**/*.{mdx,mdoc}")
   .map((path: string) => {
     return { path: path, post: matter.default(fs.readFileSync(path, "utf8")) }
   }
@@ -23,7 +23,7 @@ const posts: ParsedPost[] = glob.sync("src/posts/**/*.{mdx,mdoc}")
 const markdownlintConfig = readConfig(".markdownlint.yml", [load])
 
 const unlinted = [
-  "src/posts/2020/01/restructuredtext-basics-for-blogging.mdx"
+  "src/content/posts/2020/01/restructuredtext-basics-for-blogging.mdx"
 ]
 
 const shouldBeUses = [

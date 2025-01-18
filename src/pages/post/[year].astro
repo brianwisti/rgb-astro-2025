@@ -1,39 +1,34 @@
 ---
-import { getCollection } from "astro:content"
+import { render } from "astro:content"
 
 import PageLayout from "@layouts/PageLayout.astro"
 import PostListing from "@components/PostListing.astro"
-import type { PostInterface } from "@lib/Post"
+import ProseBlock from "@components/ProseBlock.astro"
+import type { TaxonomyEntry } from "@lib/TaxonomyHelpers"
+import { getYears } from "@lib/TaxonomyHelpers"
 
 export async function getStaticPaths() {
-    const posts = await getCollection("posts")
-    const years = new Map<string, PostInterface[]>()
+    const years = await getYears()
 
-    posts.forEach((post) => {
-        const year = post.data.date.getFullYear().toString()
-        if (!years.has(year)) {
-            years.set(year, [])
-        }
-        years.get(year)?.push(post);
-    })
-
-    return Array.from(years.keys()).map((year) => ({
+    return Array.from(years.entries()).map(([year, entry]) => ({
         params: { year },
-        props: { year, posts: years.get(year) },
+        props: { year, entry },
     }))
 }
 
 interface Props {
-    year: string;
-    posts: PostInterface[]
+    slug: string
+    entry: TaxonomyEntry
 }
 
-const { year, posts } = Astro.props as Props
-const data = {
-  title: `Posts from ${year}`,
-}
+const { year, entry } = Astro.props as Props
+const { data } = entry.page
+const { Content } = await render(entry.page)
 ---
 
 <PageLayout {data}>
-    <PostListing {posts} />
+    <ProseBlock>
+        <Content />
+    </ProseBlock>
+    <PostListing posts={entry.posts} />
 </PageLayout>

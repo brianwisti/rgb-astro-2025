@@ -1,43 +1,27 @@
 ---
-import { getCollection } from "astro:content";
-import PageLayout from "@layouts/PageLayout.astro";
-import PostYearSummary from "@components/PostYearSummary.astro";
-import type { PostInterface } from "@lib/Post";
+import PageLayout from "@layouts/PageLayout.astro"
+import PostCollectionSummary from "@components/PostCollectionSummary.astro"
 
-
-async function getYears() {
-    const posts = await getCollection("posts");
-    const years = new Map<string, PostInterface[]>();
-
-    posts.forEach((post) => {
-        const year = post.data.date.getFullYear().toString();
-        if (!years.has(year)) {
-            years.set(year, []);
-        }
-        years.get(year)?.push(post);
-    });
-
-    return years;
-}
+import { getYears } from "@lib/TaxonomyHelpers"
 
 const years = await getYears()
 const data = {
   title: "Posts",
-  description: "pretty much everything I put on this site, in chronological order",
+  description:
+    "pretty much everything I put on this site, in chronological order",
 }
 ---
 
 <PageLayout {data}>
-  <ul>
+  <div class="pt-4 border-t border-slate-950 dark:border-slate-50">
     {
-      Array.from(years.keys())
-        .sort()
-        .reverse()
-        .map((year) => (
-          <li><PostYearSummary year={year} posts={years.get(year)} /></li>
+      Array.from(years.entries())
+        .sort((a, b) => b[0].localeCompare(a[0]))
+        .map(([slug, entry]) => (
+          <PostCollectionSummary href={`/post/${slug}/`} entry={entry} />
         ))
     }
-  </ul>
+  </div>
 </PageLayout>
 
 <style>
@@ -48,6 +32,6 @@ const data = {
   }
 
   li {
-    margin-block: .5em;
+    margin-block: 0.5em;
   }
 </style>
