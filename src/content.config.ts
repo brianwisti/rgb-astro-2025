@@ -46,7 +46,7 @@ const years = defineCollection({
 
 
 const posts = defineCollection({
-  loader: glob({ pattern: "./**/[^_]*.{mdx,mdoc}", base: "src/content/posts" }),
+  loader: glob({ pattern: "./**/[^_]*.{mdx,mdoc}", base: "src/content/post" }),
   schema: PostSchema,
 });
 
