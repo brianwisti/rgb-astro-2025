@@ -80,13 +80,14 @@ ript>
 </html>
 ```
 
-But running this doesn’t quite get the result I was looking for. I just
-want the headlines, and I want them without the HTML, thank you very
-much.
+But running this doesn’t quite get the result I was looking for.
+I just want the headlines, and I want them without the HTML, thank you very much.
 
-Fark and a lot of other news sites make [RSS](https://blogging.im/RSS)
-feeds available. These are special XML files containing mainly - you
-guessed it, the headlines, without the HTML, you’re very welcome.
+Fark and a lot of other news sites make [RSS][rss] feeds available.
+These are special XML files containing mainly -
+you guessed it, the headlines, without the HTML, you’re very welcome.
+
+[rss]: https://en.wikipedia.org/wiki/RSS
 
 ``` ruby
 require 'open-uri'
@@ -112,13 +113,15 @@ This is a little closer to what we want.
   </rss>
 ```
 
-Now I get the RSS file dumped to the console. At least the story
-headlines are little easier to find. To get the behavior I want, though,
-we’re going to need to chop out the bits we don’t care about and get
-straight to the headlines. This task is straightforward in Ruby, thanks
-to the [RSS](http://ruby-doc.org/stdlib/libdoc/rss/rdoc/index.html)
-library. The RSS library has recently been made an official part of the
-standard libs, which makes a lot of this exercise much easier.
+Now I get the RSS file dumped to the console.
+At least the story headlines are little easier to find.
+To get the behavior I want, though,
+we’re going to need to chop out the bits we don’t care about and get straight to the headlines.
+This task is straightforward in Ruby, thanks to the [RSS][ruby-rss] library.
+The RSS library has recently been made an official part of the standard libs,
+which makes a lot of this exercise much easier.
+
+[ruby-rss]: https://ruby-doc.org/stdlib-3.0.2/libdoc/rss/rdoc/RSS.html
 
 ```ruby
 require 'open-uri'
@@ -506,9 +509,11 @@ $ ruby19 fark.rb -c psa
 Attention zoo visitors - please do not taunt the concrete chimpanzee
 ```
 
-That works. Pretty nicely, I might add.
-[OptParse](http://www.ruby-doc.org/stdlib/libdoc/optparse/rdoc/) is a
-great library for handling command-line arguments.
+That works.
+Pretty nicely, I might add.
+[OptionParser][option-parser] is a great class for handling command-line arguments.
+
+[option-parser]: https://ruby-doc.org/stdlib-3.0.1/libdoc/optparse/rdoc/OptionParser.html
 
 This program now does everything that I set out to do, and then some. I
 might choose to do a some refactoring to "bulletproof" the code, or wrap

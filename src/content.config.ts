@@ -50,4 +50,4 @@ const posts = defineCollection({
   schema: PostSchema,
 });
 
-export const collections = { categories, posts, series, uses, years };
+export const collections = { categories, posts, series, uses, tags, years };

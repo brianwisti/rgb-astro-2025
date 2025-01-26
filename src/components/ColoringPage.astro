@@ -19,7 +19,7 @@ const linework = await images[lineworkPath]()
 const thumbnail = images[thumbnailPath]()
 const filename = path.basename(lineworkPath)
 ---
-<div class="image-link">
+<div class="m-4 image-link">
   <div class="image-link-preview">
     <a href={linework.default.src}>
       <Image src={thumbnail} alt="thumbnail of linked image" height="96" width="96" />
@@ -40,6 +40,11 @@ const filename = path.basename(lineworkPath)
 </div>
 
 <style>
+
+  img {
+    object-fit: scale-down;
+  }
+
   .image-link {
     display: grid;
     grid-template-columns: 96px 1fr;

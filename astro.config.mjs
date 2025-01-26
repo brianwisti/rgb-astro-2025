@@ -7,6 +7,7 @@ import astroExpressiveCode from "astro-expressive-code"
 import markdoc from "@astrojs/markdoc"
 import mdx from "@astrojs/mdx"
 import mdxDirective from "astro-mdx-directive"
+import pagefind from "astro-pagefind"
 import {
   remarkDefinitionList,
   defListHastHandlers,
@@ -28,7 +29,7 @@ const directives = {
     },
     {
       name: "quote",
-      path: "src/components/quote.astro",
+      path: "src/components/Quote.astro",
     },
   ],
   leaf: [],
@@ -36,6 +37,9 @@ const directives = {
 };
 
 export default defineConfig({
+  build: {
+    format: "directory",
+  },
   vite: {
     plugins: [tailwindcss()],
   },
@@ -46,7 +50,7 @@ export default defineConfig({
         JSON.parse(fs.readFileSync("./etc/grammars/org.tmLanguage.json", "utf-8")),
       ],
     },
-  }), mdxDirective({ directives }), mdx(), markdoc({ allowHTML: true }), sitemap(), icon()],
+  }), mdxDirective({ directives }), mdx(), markdoc({ allowHTML: true }), sitemap(), icon(), pagefind()],
   markdown: {
     remarkPlugins: [remarkDefinitionList, smartypants],
     remarkRehype: { handlers: defListHastHandlers },

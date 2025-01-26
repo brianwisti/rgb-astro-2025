@@ -24,3 +24,4 @@ pnpm-debug.log*
 .idea/
 
 src/data/link_check_report.json
+tmp

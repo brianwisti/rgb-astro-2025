@@ -31,7 +31,7 @@ const { data  } = Astro.props as Props
 const { posse } = data
 ---
 <PageLayout {data}>
-    <article class="py-8">
+    <article class="py-8" data-pagefind-body>
       <PostHeader {data} />
       <section class:list={proseClasses}>
         <slot />

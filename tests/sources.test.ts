@@ -18,7 +18,7 @@ const posts: ParsedPost[] = glob.sync("src/content/post/**/*.{mdx,mdoc}")
   .map((path: string) => {
     return { path: path, post: matter.default(fs.readFileSync(path, "utf8")) }
   }
-)
+  )
 
 const markdownlintConfig = readConfig(".markdownlint.yml", [load])
 
@@ -69,6 +69,9 @@ describe.each(postsToLint)("$path", ({ post }) => {
 
     const posseLinks = post.data.posse || []
     const posseHosts = new Set(posseLinks.map((href: string) => new URL(href).hostname))
+    // NOTE: Set.difference is part of the 2024 JS baseline.
+    //  So if the test failes here with complaints about Set.difference,
+    //  check your Node.js version.
     expect(posseHosts.difference(allowedHosts)).toEqual(emptySet)
   });
 

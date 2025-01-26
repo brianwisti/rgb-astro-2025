@@ -74,13 +74,15 @@ There are a few versions of Python available for download:
 2.  The official release of
     [Python 2.6.1](https://www.python.org/download/releases/2.6.1)
 
-Okay, there is also [Jython](http://jython.org) and
-[IronPython](http://www.codeplex.com/Wiki/View.aspx?ProjectName=IronPython),
-but both of these are for special platforms -
-[Java](http://java.sun.com) and [.NET](http://www.microsoft.com/net/),
-respectively. As such, they have more specific requirements than I am
-interested in covering here. Don’t let that stop *you* from feeling
-bold, though!
+Okay, there is also [Jython][jython] and [IronPython][iron-python], but both of these are for special platforms -
+[Java][java] and [.NET][dotnet], respectively.
+As such, they have more specific requirements than I am interested in covering here.
+Don’t let that stop *you* from feeling bold, though!
+
+[jython]: https://jython.org
+[iron-python]: https://ironpython.net
+[java]: https://java.com
+[dotnet]: https://dotnet.microsoft.com
 
 Which one you install is mostly a personal choice. The language itself
 is the same as long as you’re looking at the same version number,
@@ -97,12 +99,12 @@ users. It’s the version that I’m using for testing the tutorial in
 Linux, so maybe that has some bearing on your decision.
 
 :::note
-PythonWin is still available to you as part of the
-[win32all](http://starship.python.net/crew/mhammond/win32/) package, but
-you need to download and install it separately from your Python
-distribution. ActiveState Python for Linux includes IDLE, so I will be
-getting my Python from them for this article.
+PythonWin is still available to you as part of the [win32all][pywin32] package,
+but you need to download and install it separately from your Python distribution.
+ActiveState Python for Linux includes IDLE, so I will be getting my Python from them for this article.
 :::
+
+[pywin32]: https://github.com/mhammond/pywin32
 
 Python 2.6, on the other hand, is the "official" version. It comes with
 a standard set of tools which are available on every platform that
@@ -118,18 +120,14 @@ you need to get it and put it on your machine.
 
 ### Linux
 
-Your distribution probably has some version of Python available, but I
-prefer to get mine from [ActiveState](https://activestate.com). It’s
-easy enough to install, and is usually more up-to-date than what ships
-with most Linux distributions. There are also fewer concerns about
-figuring out whether you installed the `idle` or `pydoc` packages. You
-just install ActivePython and get to work.
+Your distribution probably has some version of Python available.
+I prefer to get mine from [ActiveState][active-state].
+It’s easy enough to install, and is usually more up-to-date than what ships with most Linux distributions.
+There are also fewer concerns about figuring out whether you installed the `idle` or `pydoc` packages.
+You just install [ActivePython][active-python] and get to work.
 
-The latest ActivePython downloads are available from
-
-:::quote
-http://downloads.activestate.com/ActivePython/releases/
-:::
+[active-state]: https://activestate.com
+[active-python]: https://www.activestate.com/platform/supported-languages/python/
 
 Open up a terminal after your download finishes and move to the
 directory that is holding the archive. Use `sudo` to run the
@@ -188,10 +186,9 @@ Now I am going to describe installation in the Windows environment. It’s
 even easier to install Python for Windows (short version: download and
 run the installer, click "Next" until done).
 
-You can always find links to download the latest version of Python at
-the Python site itself:
+Find links to download the latest version of Python at the official [Python downloads page][python-downloads].
 
-> http://www.python.org/download
+[python-downloads]: https://www.python.org/downloads/
 
 Somewhere around the top of the page is a link to the latest version.
 Look for the first version that doesn’t have "alpha", "beta", or
@@ -618,8 +615,10 @@ BeginnersGuide](https://wiki.python.org/moin/BeginnersGuide).
 I have a few favorites of my own.
 
 - [The Official Python Tutorial](http://docs.python.org/tutorial/)
-- [Dive Into Python](http://www.diveintopython.net/)
+- [Dive Into Python][dive-into-python]
 - [How To Think Like a Computer Scientist In Python](http://openbookproject.net/thinkcs/python/english2e/)
+
+[dive-into-python]: https://diveintopython3.net
 
 ### Quick Reference: Using IDLE
 
