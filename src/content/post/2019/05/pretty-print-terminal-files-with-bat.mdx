@@ -24,7 +24,9 @@ I have the [Pygments](http://pygments.org/) syntax highlighting library
 for [Python](/tags/python) installed, so I could use `pygmentize` piped
 to `less` for paging:
 
-    $ pygmentize -g work.sql | less -NR
+```sh
+pygmentize -g work.sql | less -NR
+```
 
 However, that is noticeably slow and most definitely not convenient.
 Adding an alias helped the convenience, but did nothing for the
@@ -39,15 +41,17 @@ Packages are available for several Linux distributions, or you can
 install it via [Homebrew](https://brew.sh/) (reminder: Homebrew works on
 macOS *and* Linux these days).
 
-    $ brew install bat
+```sh
+brew install bat
+```
 
-<aside class="admonition">
+:::note
 
 Oh hey there’s something about the [Nix](https://nixos.org/nix/) package
 manager on the `bat` README. Adding a [Taskwarrior](/tags/taskwarrior)
 item to check that out later.
 
-</aside>
+:::
 
 Sometimes I need to check the structure of files where whitespace
 matters: tab-delimited files, Makefiles, Python, stuff like that. `bat
