@@ -1,0 +1,36 @@
+---
+// uses _hyperscript
+interface Props {
+  className: string
+}
+
+const { class: className = "" } = Astro.props as Props
+---
+
+<div
+  class:list={[className]}
+  _="init get localStorage.useDarkScheme
+        then set $useDarkScheme to it
+        then if no $useDarkScheme
+          if window.matchMedia('(prefers-color-scheme: dark)')
+            set $useDarkScheme to 1
+          else
+            set $useDarkScheme to 0
+          end
+        end
+        then if $useDarkScheme is 1 then add .dark to <html/> end
+        then set localStorage.useDarkScheme to $useDarkScheme">
+  <button
+    data-theme-toggle
+    aria-label="Switch Site Color Theme"
+    class="border border-accent-900 px-1 rounded-md
+      bg-accent-50 text-base-900 hover:bg-active-500 hover:text-base-100
+      dark:bg-accent-900 dark:text-base-50 dark:hover:bg-active-500 dark:hover:text-base-50"
+    _="on click
+      toggle .dark on <html/>
+      then if <html.dark/> exists
+        set localStorage.useDarkScheme to 1
+      else set localStorage.useDarkScheme to 0 end">
+    Light / Dark
+  </button>
+</div>

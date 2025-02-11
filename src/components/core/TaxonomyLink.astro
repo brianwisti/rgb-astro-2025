@@ -9,17 +9,23 @@ const { href, class: className = "" } = Astro.props as Props
 const title = Astro.props.title || `taxonomy: ${href}`
 ---
 
-<a class:list={[
-   "p-category",
-   "bg-acccent-50",
-   "text-base-900",
-   "hover:bg-accent",
-   "hover:text-base-100",
-   "inline-block",
-   "rounded-md",
-   "border",
-   "border-accent-900",
-   "m-1",
-   "px-2",
-   "py-1",
-   className ]} {title} {href}><slot /></a>
+<a
+    class:list={[
+        "p-category",
+        "bg-acccent-50",
+        "text-base-900",
+        "hover:bg-accent",
+        "hover:text-base-100",
+        "inline-block",
+        "rounded-md",
+        "border",
+        "border-accent-900",
+        "m-1",
+        "px-2",
+        "py-1",
+        className,
+    ]}
+    {title}
+    {href}>
+    <slot />
+</a>

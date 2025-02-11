@@ -1,7 +1,8 @@
 ---
 import Search from "astro-pagefind/components/Search"
 
-import MenuLink from "@components/MenuLink.astro";
+import MenuLink from "@components/MenuLink.astro"
+import ThemeControl from "@components/ThemeControl.astro"
 
 interface MenuLink {
     href: string;
@@ -36,6 +37,7 @@ const menuLinks = [
               <MenuLink class="pl-4" {href}>{text}</MenuLink>
         ))
       }
+    <ThemeControl class="pl-4 text-lg" />
   </nav>
   <Search id="search" className="pagefind-ui" uiOptions={{ showImages: false }} />
 </header>

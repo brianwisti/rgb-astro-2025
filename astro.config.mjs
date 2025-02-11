@@ -4,6 +4,7 @@ import fs from "node:fs"
 import { defineConfig } from "astro/config"
 
 import astroExpressiveCode from "astro-expressive-code"
+import hyperscript from "astro-hyperscript"
 import markdoc from "@astrojs/markdoc"
 import mdx from "@astrojs/mdx"
 import mdxDirective from "astro-mdx-directive"
@@ -50,7 +51,15 @@ export default defineConfig({
         JSON.parse(fs.readFileSync("./etc/grammars/org.tmLanguage.json", "utf-8")),
       ],
     },
-  }), mdxDirective({ directives }), mdx(), markdoc({ allowHTML: true }), sitemap(), icon(), pagefind()],
+  }),
+  mdxDirective({ directives }),
+  mdx(),
+  markdoc({ allowHTML: true }),
+  sitemap(),
+  icon(),
+  pagefind(),
+  hyperscript(),
+  ],
   markdown: {
     remarkPlugins: [remarkDefinitionList, smartypants],
     remarkRehype: { handlers: defListHastHandlers },
