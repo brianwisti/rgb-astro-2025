@@ -2,6 +2,8 @@
 
 @plugin "@tailwindcss/typography";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-current: currentColor;
   --color-transparent: transparent;
@@ -54,4 +56,31 @@
   --color-accent-900: oklch(10% 0.1776 139.24);
 
   --font-sans: Avenir, Montserrat, Corbel, URW Gothic, source-sans-pro, sans-serif;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+blockquote {
+  font-style: italic;
+  padding-inline-start: 1em;
+  margin-bottom: 0.25em;
+}
+
+pre {
+    white-space: pre;
+    overflow-x: auto;
+    padding: 1rem;
+
+}
+
+.attribution {
+  text-align: center;
+}
+
+.expressive-code {
+  margin-block: 2rem;
 }
